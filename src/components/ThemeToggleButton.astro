@@ -4,38 +4,71 @@
 <label class="relative inline-block w-16 h-8">
   <input type="checkbox" id="theme-toggle" class="opacity-0 w-0 h-0" aria-label="Toggle theme" />
   <span class="absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-gray-300 dark:bg-gray-700 transition duration-300 rounded-full"></span>
-  <span class="absolute content-[""] h-6 w-6 left-1 bottom-1 bg-white transition duration-300 rounded-full flex items-center justify-center">
-    <span class="icon-light text-yellow-500">☀️</span>
-    <span class="icon-dark text-blue-500 hidden">🌙</span>
+  <span class="slider absolute h-6 w-6 left-1 bottom-1 bg-white transition-all duration-300 rounded-full flex items-center justify-center">
+    <img src="/src/assets/icons/light_mode.svg" alt="Modo claro" class="icon-light w-5 h-5 transition-all duration-300" />
+    <img src="/src/assets/icons/dark_mode.svg" alt="Modo oscuro" class="icon-dark w-5 h-5 hidden transition-all duration-300" />
   </span>
 </label>
 
 <script>
-  const themeToggle = document.getElementById('theme-toggle') as HTMLInputElement;
-  const html = document.documentElement;
-
-  function setTheme(theme: string) {
-    if (theme === 'dark') {
-      html.classList.add('dark');
+  function updateToggleButton() {
+    const themeToggle = document.getElementById('theme-toggle') as HTMLInputElement;
+    const lightIcon = document.querySelector('.icon-light') as HTMLElement;
+    const darkIcon = document.querySelector('.icon-dark') as HTMLElement;
+    const slider = document.querySelector('.slider') as HTMLElement;
+    const isDark = document.documentElement.classList.contains('dark');
+    
+    if (!themeToggle || !lightIcon || !darkIcon || !slider) return;
+    
+    if (isDark) {
       themeToggle.checked = true;
+      lightIcon.classList.add('hidden');
+      darkIcon.classList.remove('hidden');
+      slider.style.transform = 'translateX(32px)';
+      // Aplicar rotación al ícono
+      darkIcon.style.transform = 'rotate(360deg)';
+      lightIcon.style.transform = 'rotate(0deg)';
     } else {
-      html.classList.remove('dark');
       themeToggle.checked = false;
+      lightIcon.classList.remove('hidden');
+      darkIcon.classList.add('hidden');
+      slider.style.transform = 'translateX(0px)';
+      // Aplicar rotación al ícono
+      lightIcon.style.transform = 'rotate(360deg)';
+      darkIcon.style.transform = 'rotate(0deg)';
     }
-    localStorage.setItem('theme', theme);
   }
 
-  themeToggle.addEventListener('change', () => {
-    setTheme(themeToggle.checked ? 'dark' : 'light');
-  });
+  function initializeToggle() {
+    const themeToggle = document.getElementById('theme-toggle') as HTMLInputElement;
+    
+    if (themeToggle) {
+      // Actualizar el estado inicial del toggle
+      updateToggleButton();
+      
+      // Agregar event listener para cambios
+      themeToggle.addEventListener('change', () => {
+        // Usar la función global de animación
+        if ((window as any).toggleThemeWithAnimation) {
+          (window as any).toggleThemeWithAnimation();
+        }
+        // Actualizar el toggle después de un delay para sincronizar con la animación
+        setTimeout(updateToggleButton, 350);
+      });
+      
+      // Observar cambios en el tema para actualizar el toggle
+      const observer = new MutationObserver(updateToggleButton);
+      observer.observe(document.documentElement, { 
+        attributes: true, 
+        attributeFilter: ['class'] 
+      });
+    }
+  }
 
-  // On load, set theme from localStorage or system preference
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-  if (savedTheme) {
-    setTheme(savedTheme);
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeToggle);
   } else {
-    setTheme(systemPrefersDark ? 'dark' : 'light');
+    initializeToggle();
   }
 </script>

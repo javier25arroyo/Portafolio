@@ -7,27 +7,156 @@ import '../styles/global.css';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <title>Professional Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+      .theme-transition-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 9999;
+        background: transparent;
+        transform-origin: top right;
+        transition: none;
+      }
+
+      .theme-transition-overlay.transitioning-to-dark {
+        background: rgba(17, 24, 39, 0.4);
+        clip-path: circle(0% at 85% 60px);
+        animation: expandRoomDark 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      .theme-transition-overlay.transitioning-to-light {
+        background: rgba(243, 244, 246, 0.4);
+        clip-path: circle(0% at 85% 60px);
+        animation: expandRoomLight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      }
+
+      @keyframes expandRoomDark {
+        0% {
+          clip-path: circle(0% at 85% 60px);
+        }
+        30% {
+          clip-path: circle(20% at 85% 60px);
+        }
+        100% {
+          clip-path: circle(140% at 85% 60px);
+        }
+      }
+
+      @keyframes expandRoomLight {
+        0% {
+          clip-path: circle(0% at 85% 60px);
+        }
+        30% {
+          clip-path: circle(20% at 85% 60px);
+        }
+        100% {
+          clip-path: circle(140% at 85% 60px);
+        }
+      }
+
+      /* Prevent theme flicker during transition */
+      html.theme-transitioning * {
+        transition: none !important;
+      }
+    </style>
   </head>
-  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans">
-    <header class="bg-white dark:bg-gray-800 shadow-md">
+  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans" style="transition: background-color 0.8s ease-in-out, color 0.8s ease-in-out;">
+    <!-- Theme Transition Overlay -->
+    <div id="theme-transition-overlay" class="theme-transition-overlay"></div>
+    
+    <header class="bg-white dark:bg-gray-800 shadow-md transition-colors duration-700 ease-in-out">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 class="text-2xl font-bold text-blue-500 dark:text-blue-400"></h1>
+        <h1 class="text-2xl font-bold text-blue-500 dark:text-blue-400 transition-colors duration-700 ease-in-out"></h1>
         <ThemeToggleButton />
       </div>
     </header>
     <main class="container mx-auto px-4 py-8">
       <slot />
     </main>
-    <footer class="bg-white dark:bg-gray-800 mt-8 py-4">
-      <div class="container mx-auto px-4 text-center text-gray-500 dark:text-gray-400">
+    <footer class="bg-white dark:bg-gray-800 mt-8 py-4 transition-colors duration-700 ease-in-out">
+      <div class="container mx-auto px-4 text-center text-gray-500 dark:text-gray-400 transition-colors duration-700 ease-in-out">
         &copy; {new Date().getFullYear()} Javier Pérez Arroyo
       </div>
     </footer>
+    
+    <script>
+      function initializeTheme() {
+        // Detecta el tema inicial
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+
+      function toggleThemeWithAnimation() {
+        const html = document.documentElement;
+        const overlay = document.getElementById('theme-transition-overlay');
+        const isDark = html.classList.contains('dark');
+        
+        // Verificar que el overlay existe
+        if (!overlay) return;
+        
+        // Prevenir múltiples animaciones simultáneas
+        if (overlay.classList.contains('transitioning-to-dark') || 
+            overlay.classList.contains('transitioning-to-light')) {
+          return;
+        }
+        
+        // Agregar clase de transición para prevenir parpadeos
+        html.classList.add('theme-transitioning');
+        
+        // Configurar la animación según el tema actual
+        if (isDark) {
+          // Cambiar a tema claro
+          overlay.classList.add('transitioning-to-light');
+        } else {
+          // Cambiar a tema oscuro
+          overlay.classList.add('transitioning-to-dark');
+        }
+        
+        // Cambiar el tema después de un pequeño delay para que se vea la animación
+        setTimeout(() => {
+          if (isDark) {
+            html.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+          } else {
+            html.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+          }
+        }, 300);
+        
+        // Limpiar las clases de animación después de que termine
+        setTimeout(() => {
+          if (overlay) {
+            overlay.classList.remove('transitioning-to-dark', 'transitioning-to-light');
+          }
+          html.classList.remove('theme-transitioning');
+        }, 1000);
+      }
+
+      // Exponer la función globalmente para que el botón pueda usarla
+      (window as any).toggleThemeWithAnimation = toggleThemeWithAnimation;
+
+      // Inicializar el tema cuando el DOM esté listo
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeTheme);
+      } else {
+        initializeTheme();
+      }
+    </script>
   </body>
 </html>
