@@ -1,0 +1,41 @@
+---
+// src/components/ThemeToggleButton.astro
+---
+<label class="relative inline-block w-16 h-8">
+  <input type="checkbox" id="theme-toggle" class="opacity-0 w-0 h-0" aria-label="Toggle theme" />
+  <span class="absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-gray-300 dark:bg-gray-700 transition duration-300 rounded-full"></span>
+  <span class="absolute content-[""] h-6 w-6 left-1 bottom-1 bg-white transition duration-300 rounded-full flex items-center justify-center">
+    <span class="icon-light text-yellow-500">☀️</span>
+    <span class="icon-dark text-blue-500 hidden">🌙</span>
+  </span>
+</label>
+
+<script>
+  const themeToggle = document.getElementById('theme-toggle') as HTMLInputElement;
+  const html = document.documentElement;
+
+  function setTheme(theme: string) {
+    if (theme === 'dark') {
+      html.classList.add('dark');
+      themeToggle.checked = true;
+    } else {
+      html.classList.remove('dark');
+      themeToggle.checked = false;
+    }
+    localStorage.setItem('theme', theme);
+  }
+
+  themeToggle.addEventListener('change', () => {
+    setTheme(themeToggle.checked ? 'dark' : 'light');
+  });
+
+  // On load, set theme from localStorage or system preference
+  const savedTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (savedTheme) {
+    setTheme(savedTheme);
+  } else {
+    setTheme(systemPrefersDark ? 'dark' : 'light');
+  }
+</script>
