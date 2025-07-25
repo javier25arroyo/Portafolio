@@ -1,143 +1,215 @@
 ---
 ---
-<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-slate-900 transition-all duration-700 ease-in-out">
-  <!-- Elementos decorativos de fondo -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none">
-    <div class="absolute top-20 left-10 w-72 h-72 bg-blue-300 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-pulse"></div>
-    <div class="absolute top-40 right-10 w-72 h-72 bg-emerald-300 dark:bg-emerald-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
-    <div class="absolute -bottom-20 left-1/2 w-72 h-72 bg-indigo-300 dark:bg-indigo-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
+<!-- Hero Section con animaciones progresivas -->
+<div class="min-h-screen relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+  
+  <!-- Elementos de fondo animados -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Geometric shapes -->
+    <div class="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
+    <div class="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-3xl animate-pulse animation-delay-3000"></div>
+    
+    <!-- Grid pattern -->
+    <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
   </div>
 
-  <div class="container mx-auto px-6 py-8 flex flex-col lg:flex-row items-center justify-center gap-12 relative z-10">
-    <!-- Contenido principal -->
-    <div class="flex-1 flex flex-col items-start text-left max-w-2xl">
-      <!-- Badge de saludo -->
-      <div class="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6 border border-blue-200 dark:border-blue-800 transition-all duration-300">
-        <span class="w-2 h-2 bg-emerald-500 rounded-full mr-3 animate-pulse"></span>
-        Available for new opportunities
+  <!-- Contenido principal con animaciones escalonadas -->
+  <div class="relative z-10 flex items-center justify-center min-h-screen">
+    <div class="container mx-auto px-6 py-12">
+      
+      <!-- Header con introducción animada -->
+      <div class="text-left mb-8 animate-fade-in-up animation-delay-500">
+        <div class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-sm mb-6">
+          <div class="w-2 h-2 bg-emerald-400 rounded-full mr-3 animate-ping"></div>
+          <span class="text-emerald-400 text-sm font-medium">Available for opportunities</span>
+        </div>
+        
+        <p class="text-slate-400 text-xl font-light mb-4 animate-fade-in-up animation-delay-700">
+          Hi, I'm Javier Arroyo
+        </p>
+        
+        <!-- Título principal con efecto de escritura -->
+        <h1 class="text-6xl md:text-8xl font-bold leading-tight text-white mb-6 animate-fade-in-up animation-delay-900">
+          <span class="block animate-slide-in-left">Software</span>
+          <span class="block bg-gradient-to-r from-blue-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-slide-in-right animation-delay-1200">Developer</span>
+        </h1>
       </div>
 
-      <!-- Título principal con gradiente -->
-      <h1 class="text-5xl md:text-7xl font-bold mb-4 leading-tight">
-        <span class="bg-gradient-to-r from-slate-800 via-blue-600 to-indigo-600 dark:from-slate-100 dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
-          Full Stack
-        </span>
-        <br />
-        <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-emerald-600 dark:from-indigo-400 dark:via-purple-400 dark:to-emerald-400 bg-clip-text text-transparent">
-          Developer
-        </span>
-      </h1>
-
-      <!-- Subtítulo con mejor tipografía -->
-      <div class="text-2xl md:text-3xl text-slate-600 dark:text-slate-300 mb-3 font-medium">
-        Hi, I'm <span class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent font-bold text-3xl md:text-4xl">Javier Arroyo</span>
+      <!-- Descripción con animación -->
+      <div class="max-w-4xl mb-12 animate-fade-in-up animation-delay-1400">
+        <p class="text-slate-300 text-xl md:text-2xl leading-relaxed font-light">
+          Crafting exceptional digital experiences through 
+          <span class="text-purple-400 font-medium relative">
+            innovative design
+            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 to-blue-400 transform scale-x-0 animate-expand-line animation-delay-2000"></span>
+          </span> 
+          and 
+          <span class="text-emerald-400 font-medium relative">
+            cutting-edge technology
+            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-emerald-400 to-blue-400 transform scale-x-0 animate-expand-line animation-delay-2200"></span>
+          </span>
+        </p>
       </div>
 
-      <!-- Descripción mejorada -->
-      <p class="text-lg md:text-xl max-w-2xl mb-8 text-slate-600 dark:text-slate-300 leading-relaxed">
-        Transforming innovative ideas into <span class="text-emerald-600 dark:text-emerald-400 font-semibold">interactive</span> and 
-        <span class="text-blue-600 dark:text-blue-400 font-semibold">seamless</span> digital experiences with cutting-edge full stack development.
-      </p>
-
-      <!-- Botones de acción mejorados -->
-      <div class="flex flex-col sm:flex-row gap-4 mb-8">
-        <button class="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      <!-- CTAs con animaciones -->
+      <div class="flex flex-col sm:flex-row gap-6 mb-12 animate-fade-in-up animation-delay-1600">
+        <a href="#projects" class="group px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-3">
+          <span>View My Work</span>
+          <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>
-          Download CV
-        </button>
-        <button class="px-8 py-4 bg-transparent border-2 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-semibold rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 flex items-center gap-2">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        </a>
+        
+        <a href="#contact" class="group px-8 py-4 bg-transparent border-2 border-slate-600 hover:border-emerald-500 text-slate-300 hover:text-emerald-400 font-semibold rounded-xl transition-all duration-300 flex items-center gap-3">
+          <span>Let's Connect</span>
+          <svg class="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
           </svg>
-          Let's Talk
-        </button>
-      </div>
-
-      <!-- Enlaces sociales rediseñados -->
-      <div class="flex gap-4 mt-4">
-        <a href="#" aria-label="GitHub" class="group p-4 rounded-xl bg-white dark:bg-slate-800 shadow-md hover:shadow-lg border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 transform hover:-translate-y-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-          </svg>
-        </a>
-        <a href="#" aria-label="LinkedIn" class="group p-4 rounded-xl bg-white dark:bg-slate-800 shadow-md hover:shadow-lg border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 transform hover:-translate-y-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-          </svg>
-        </a>
-        <a href="#" aria-label="Mail" class="group p-4 rounded-xl bg-white dark:bg-slate-800 shadow-md hover:shadow-lg border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 transform hover:-translate-y-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M0 3v18h24v-18h-24zm21.518 2l-9.518 7.713-9.518-7.713h19.036zm-19.518 14v-11.817l10 8.104 10-8.104v11.817h-20z"/>
-          </svg>
         </a>
       </div>
-    </div>
 
-    <!-- Sección visual/imagen del lado derecho -->
-    <div class="flex-shrink-0 lg:flex-1 flex items-center justify-center lg:justify-end">
-      <!-- Card de perfil moderno -->
-      <div class="relative">
-        <!-- Card principal -->
-        <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 max-w-sm border border-slate-200 dark:border-slate-700 backdrop-blur-sm">
-          <!-- Avatar placeholder -->
-          <div class="w-32 h-32 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-            <span class="text-4xl font-bold text-white">JA</span>
-          </div>
-          
-          <!-- Info -->
-          <div class="text-center">
-            <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-2">Javier Arroyo</h3>
-            <p class="text-slate-600 dark:text-slate-400 mb-4">Full Stack Developer</p>
-            
-            <!-- Skills tags -->
-            <div class="flex flex-wrap gap-2 justify-center">
-              <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">React</span>
-              <span class="px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-medium rounded-full">Node.js</span>
-              <span class="px-3 py-1 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 text-xs font-medium rounded-full">TypeScript</span>
-            </div>
-          </div>
+      <!-- Navegación mejorada -->
+      <nav class="flex items-center justify-center gap-8 animate-fade-in-up animation-delay-1800">
+        <a href="#home" class="group flex items-center gap-3 px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 transition-all duration-300">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full group-hover:animate-ping"></span>
+          <span class="font-medium">Home</span>
+        </a>
+        <a href="#about" class="group flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-800/50 text-slate-400 hover:text-white transition-all duration-300">
+          <span class="font-medium">About</span>
+        </a>
+        <a href="#projects" class="group flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-800/50 text-slate-400 hover:text-white transition-all duration-300">
+          <span class="font-medium">Projects</span>
+        </a>
+        <a href="#contact" class="group flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-slate-800/50 text-slate-400 hover:text-white transition-all duration-300">
+          <span class="font-medium">Contact</span>
+        </a>
+      </nav>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce animation-delay-3000">
+        <div class="flex flex-col items-center gap-2 text-slate-400">
+          <span class="text-xs font-medium">Scroll to explore</span>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
         </div>
-
-        <!-- Elementos flotantes decorativos -->
-        <div class="absolute -top-4 -right-4 w-20 h-20 bg-emerald-500 rounded-xl opacity-20 animate-pulse animation-delay-1000"></div>
-        <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-500 rounded-lg opacity-20 animate-pulse animation-delay-3000"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ABOUT ME Section -->
-<section class="py-20 bg-white dark:bg-slate-800 transition-all duration-700 ease-in-out">
-  <div class="container mx-auto px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <!-- Section Title -->
-      <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center">
-        <span class="bg-gradient-to-r from-slate-800 via-blue-600 to-indigo-600 dark:from-slate-100 dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
-          ABOUT ME
-        </span>
-      </h2>
-      
-      <!-- Description -->
-      <p class="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed max-w-3xl mx-auto">
-        I excel due to my effective communication and strong teamwork abilities. I employ critical thinking to tackle complex problems and show significant adaptability when presented with new technological challenges. My dedication to continuous learning ensures I stay up-to-date and consistently grow in software development.
-      </p>
-    </div>
-  </div>
-</section>
-
 <style>
-  .animation-delay-1000 {
-    animation-delay: 1s;
+  /* Animaciones progresivas y suaves */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
-  .animation-delay-2000 {
-    animation-delay: 2s;
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
-  .animation-delay-3000 {
-    animation-delay: 3s;
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
-  .animation-delay-4000 {
-    animation-delay: 4s;
+
+  @keyframes expand-line {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Grid pattern de fondo */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Clases de animación */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-expand-line {
+    animation: expand-line 0.8s ease-out forwards;
+  }
+
+  /* Delays progresivos */
+  .animation-delay-500 { animation-delay: 0.5s; }
+  .animation-delay-700 { animation-delay: 0.7s; }
+  .animation-delay-900 { animation-delay: 0.9s; }
+  .animation-delay-1000 { animation-delay: 1s; }
+  .animation-delay-1200 { animation-delay: 1.2s; }
+  .animation-delay-1400 { animation-delay: 1.4s; }
+  .animation-delay-1600 { animation-delay: 1.6s; }
+  .animation-delay-1800 { animation-delay: 1.8s; }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-2200 { animation-delay: 2.2s; }
+  .animation-delay-3000 { animation-delay: 3s; }
+
+  /* Efectos hover mejorados */
+  .group:hover .group-hover\:animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Transiciones suaves para elementos interactivos */
+  a, button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .animate-fade-in-up,
+    .animate-slide-in-left,
+    .animate-slide-in-right {
+      animation-duration: 0.6s;
+    }
+  }
+
+  /* Efecto de parallax sutil */
+  .bg-grid-pattern {
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
   }
 </style>

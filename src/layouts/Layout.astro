@@ -15,6 +15,7 @@ import '../styles/global.css';
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
     <style>
+      /* Sistema de transiciones de tema mejorado */
       .theme-transition-overlay {
         position: fixed;
         top: 0;
@@ -29,231 +30,314 @@ import '../styles/global.css';
       }
 
       .theme-transition-overlay.transitioning-to-dark {
-        background: rgba(17, 24, 39, 0.4);
+        background: radial-gradient(circle at 85% 60px, rgba(17, 24, 39, 0.8) 0%, transparent 60%);
         clip-path: circle(0% at 85% 60px);
-        animation: expandRoomDark 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation: expandThemeDark 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       }
 
       .theme-transition-overlay.transitioning-to-light {
-        background: rgba(243, 244, 246, 0.4);
+        background: radial-gradient(circle at 85% 60px, rgba(243, 244, 246, 0.8) 0%, transparent 60%);
         clip-path: circle(0% at 85% 60px);
-        animation: expandRoomLight 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        animation: expandThemeLight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       }
 
-      @keyframes expandRoomDark {
+      @keyframes expandThemeDark {
         0% {
           clip-path: circle(0% at 85% 60px);
+          background: radial-gradient(circle at 85% 60px, rgba(17, 24, 39, 0) 0%, transparent 60%);
         }
-        30% {
-          clip-path: circle(20% at 85% 60px);
+        50% {
+          clip-path: circle(25% at 85% 60px);
+          background: radial-gradient(circle at 85% 60px, rgba(17, 24, 39, 0.6) 0%, transparent 60%);
         }
         100% {
-          clip-path: circle(140% at 85% 60px);
+          clip-path: circle(150% at 85% 60px);
+          background: radial-gradient(circle at 85% 60px, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.3) 60%);
         }
       }
 
-      @keyframes expandRoomLight {
+      @keyframes expandThemeLight {
         0% {
           clip-path: circle(0% at 85% 60px);
+          background: radial-gradient(circle at 85% 60px, rgba(243, 244, 246, 0) 0%, transparent 60%);
         }
-        30% {
-          clip-path: circle(20% at 85% 60px);
+        50% {
+          clip-path: circle(25% at 85% 60px);
+          background: radial-gradient(circle at 85% 60px, rgba(243, 244, 246, 0.6) 0%, transparent 60%);
         }
         100% {
-          clip-path: circle(140% at 85% 60px);
+          clip-path: circle(150% at 85% 60px);
+          background: radial-gradient(circle at 85% 60px, rgba(243, 244, 246, 0.9) 0%, rgba(243, 244, 246, 0.3) 60%);
         }
       }
 
-      /* Prevent theme flicker during transition */
+      /* Prevenir parpadeos durante transiciones */
       html.theme-transitioning * {
         transition: none !important;
       }
+
+      /* Scroll suave global */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Mejoras de accesibilidad y UX */
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      /* Transiciones globales mejoradas */
+      body {
+        transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                    color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-x: hidden;
+      }
+
+      /* Loading state para mejor UX */
+      .page-loading {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .page-loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Foco visible mejorado para accesibilidad */
+      :focus-visible {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
     </style>
   </head>
-    <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100" style="font-family: 'Montserrat', sans-serif; transition: background-color 0.5s, color 0.5s;">
+    <body class="bg-slate-900 dark:bg-slate-900 text-slate-800 dark:text-slate-100 page-loading" style="font-family: 'Montserrat', sans-serif;">
     <!-- Theme Transition Overlay -->
     <div id="theme-transition-overlay" class="theme-transition-overlay"></div>
     
-    <header class="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-700 sticky top-0 z-50">
-      <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-3">
-          <div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
-            <span class="text-white font-bold text-sm">JA</span>
-          </div>
-          <h1 class="text-xl font-bold bg-gradient-to-r from-slate-800 to-blue-600 dark:from-slate-100 dark:to-blue-400 bg-clip-text text-transparent font-sans">
-            Javier Arroyo
-          </h1>
-        </div>
-        
-        <nav class="hidden md:flex items-center gap-8 font-sans">
-          <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium">
-            About
-          </a>
-          <a href="#experience" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium">
-            Experience
-          </a>
-          <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium">
-            Projects
-          </a>
-          <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium">
-            Contact
-          </a>
-        </nav>
-
-        <div class="flex items-center gap-4">
-          <button id="mobile-menu-toggle" class="md:hidden p-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
+    <!-- Header mejorado con mejor UX -->
+    <header class="fixed top-6 right-6 z-50">
+      <div class="flex items-center gap-4">
+        <!-- Theme toggle con backdrop blur -->
+        <div class="bg-white/10 dark:bg-slate-800/30 backdrop-blur-md rounded-2xl p-2 border border-white/20 dark:border-slate-700/50 shadow-lg">
           <ThemeToggleButton />
         </div>
       </div>
-      
-      <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-700 font-sans">
-        <nav class="container mx-auto px-6 py-4 flex flex-col gap-4">
-          <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium py-2">
-            About me
-          </a>
-          <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium py-2">
-            Skills
-          </a>
-          <a href="#experience" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium py-2">
-            Experience
-          </a>
-          <a href="#certifications" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium py-2">
-            Certifications
-          </a>
-          <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium py-2">
-            Projects
-          </a>
-          <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 font-medium py-2">
-            Contact
-          </a>
-        </nav>
-      </div>
     </header>
+    
+    <!-- Loading indicator -->
+    <div id="loading-indicator" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 rounded-full px-4 py-2 text-blue-400 text-sm font-medium opacity-0 transition-opacity duration-300">
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+        <span>Loading...</span>
+      </div>
+    </div>
+    
     <main class="min-h-screen">
       <slot />
     </main>
-    <footer class="bg-white dark:bg-slate-800 mt-8 py-8 border-t border-slate-200 dark:border-slate-700">
-      <div class="container mx-auto px-6 text-center">
-        <div class="flex flex-col items-center gap-4">
-          <div class="flex items-center gap-3">
-            <div class="w-6 h-6 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-md flex items-center justify-center">
-              <span class="text-white font-bold text-xs">JA</span>
-            </div>
-            <span class="text-slate-600 dark:text-slate-400 font-medium">
-              &copy; {new Date().getFullYear()} Javier Pérez Arroyo
-            </span>
-          </div>
-          <p class="text-sm text-slate-500 dark:text-slate-500">
-            Built with ❤️ using Astro & Tailwind CSS
-          </p>
-        </div>
-      </div>
-    </footer>
     
     <script>
+      // Sistema de tema mejorado con mejor UX
       function initializeTheme() {
-        // Detecta el tema inicial
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
+        console.log("Initializing theme in Layout");
+        try {
+          const savedTheme = localStorage.getItem('theme');
+          console.log("Saved theme:", savedTheme);
+          
+          if (savedTheme === 'light') {
+            document.documentElement.classList.remove('dark');
+            console.log("Set to light theme");
+          } else {
+            document.documentElement.classList.add('dark');
+            console.log("Set to dark theme");
+            if (!savedTheme) {
+              localStorage.setItem('theme', 'dark');
+            }
+          }
+        } catch (error) {
+          console.error("Error initializing theme:", error);
         }
       }
 
       function toggleThemeWithAnimation() {
-        const html = document.documentElement;
-        const overlay = document.getElementById('theme-transition-overlay');
-        const isDark = html.classList.contains('dark');
-        
-        // Verificar que el overlay existe
-        if (!overlay) return;
-        
-        // Prevenir múltiples animaciones simultáneas
-        if (overlay.classList.contains('transitioning-to-dark') || 
-            overlay.classList.contains('transitioning-to-light')) {
-          return;
-        }
-        
-        // Agregar clase de transición para prevenir parpadeos
-        html.classList.add('theme-transitioning');
-        
-        // Configurar la animación según el tema actual
-        if (isDark) {
-          // Cambiar a tema claro
-          overlay.classList.add('transitioning-to-light');
-        } else {
-          // Cambiar a tema oscuro
-          overlay.classList.add('transitioning-to-dark');
-        }
-        
-        // Cambiar el tema después de un pequeño delay para que se vea la animación
-        setTimeout(() => {
+        console.log("Toggle theme with animation called");
+        try {
+          const html = document.documentElement;
+          const overlay = document.getElementById('theme-transition-overlay');
+          const isDark = html.classList.contains('dark');
+          
+          console.log("Current theme:", isDark ? "dark" : "light");
+          console.log("Overlay element:", overlay ? "found" : "not found");
+          
+          if (!overlay) {
+            console.error("Overlay element not found, using fallback");
+            // Fallback sin animación
+            if (isDark) {
+              html.classList.remove('dark');
+              localStorage.setItem('theme', 'light');
+            } else {
+              html.classList.add('dark');
+              localStorage.setItem('theme', 'dark');
+            }
+            return;
+          }
+          
+          if (overlay.classList.contains('transitioning-to-dark') || 
+              overlay.classList.contains('transitioning-to-light')) {
+            console.log("Already transitioning, ignoring request");
+            return;
+          }
+          
+          // Mostrar loading indicator durante transición
+          showLoadingIndicator();
+          
+          html.classList.add('theme-transitioning');
+          
           if (isDark) {
-            html.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
+            console.log("Transitioning to light theme");
+            overlay.classList.add('transitioning-to-light');
           } else {
-            html.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
+            console.log("Transitioning to dark theme");
+            overlay.classList.add('transitioning-to-dark');
           }
-        }, 300);
-        
-        // Limpiar las clases de animación después de que termine
-        setTimeout(() => {
-          if (overlay) {
-            overlay.classList.remove('transitioning-to-dark', 'transitioning-to-light');
-          }
-          html.classList.remove('theme-transitioning');
-        }, 1000);
+          
+          setTimeout(() => {
+            if (isDark) {
+              html.classList.remove('dark');
+              localStorage.setItem('theme', 'light');
+            } else {
+              html.classList.add('dark');
+              localStorage.setItem('theme', 'dark');
+            }
+            console.log("Theme classes updated");
+          }, 400);
+          
+          setTimeout(() => {
+            if (overlay) {
+              overlay.classList.remove('transitioning-to-dark', 'transitioning-to-light');
+            }
+            html.classList.remove('theme-transitioning');
+            hideLoadingIndicator();
+            console.log("Animation completed");
+          }, 1200);
+        } catch (error) {
+          console.error("Error toggling theme:", error);
+        }
       }
 
-      // Exponer la función globalmente para que el botón pueda usarla
-      (window as any).toggleThemeWithAnimation = toggleThemeWithAnimation;
+      // Indicador de carga
+      function showLoadingIndicator() {
+        const indicator = document.getElementById('loading-indicator');
+        if (indicator) {
+          indicator.style.opacity = '1';
+        }
+      }
 
-      // Mobile menu functionality
-      function initializeMobileMenu() {
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
+      function hideLoadingIndicator() {
+        const indicator = document.getElementById('loading-indicator');
+        if (indicator) {
+          indicator.style.opacity = '0';
+        }
+      }
+
+      // Animación de carga de página
+      function initializePageLoad() {
+        const body = document.body;
         
-        if (mobileMenuToggle && mobileMenu) {
-          mobileMenuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-          });
+        // Agregar clase de cargado después de un breve delay
+        setTimeout(() => {
+          body.classList.remove('page-loading');
+          body.classList.add('page-loaded');
+        }, 100);
+      }
 
-          // Close mobile menu when clicking on a link
-          const mobileLinks = mobileMenu.querySelectorAll('a');
-          mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-              mobileMenu.classList.add('hidden');
-            });
-          });
-
-          // Close mobile menu when clicking outside
-          document.addEventListener('click', (e) => {
-            if (!mobileMenuToggle.contains(e.target as Node) && !mobileMenu.contains(e.target as Node)) {
-              mobileMenu.classList.add('hidden');
+      // Scroll suave mejorado para navegación
+      function initializeSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
             }
           });
-        }
+        });
       }
 
-      // Inicializar el tema y el menú móvil cuando el DOM esté listo
+      // Optimización de rendimiento con Intersection Observer
+      function initializeIntersectionObserver() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-in-view');
+            }
+          });
+        }, observerOptions);
+
+        // Observar elementos con animaciones
+        document.querySelectorAll('[class*="animate-"]').forEach(el => {
+          observer.observe(el);
+        });
+      }
+
+      // Gestión mejorada de eventos de teclado para accesibilidad
+      function initializeKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+          // ESC para cerrar modales o overlays
+          if (e.key === 'Escape') {
+            // Aquí puedes agregar lógica para cerrar modales
+          }
+          
+          // Tab navigation mejorada
+          if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-navigation');
+          }
+        });
+
+        document.addEventListener('mousedown', () => {
+          document.body.classList.remove('keyboard-navigation');
+        });
+      }
+
+      // Exponer funciones globalmente
+      window.toggleThemeWithAnimation = toggleThemeWithAnimation;
+
+      // Inicialización cuando el DOM esté listo
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
           initializeTheme();
-          initializeMobileMenu();
+          initializePageLoad();
+          initializeSmoothScroll();
+          initializeIntersectionObserver();
+          initializeKeyboardNavigation();
         });
       } else {
         initializeTheme();
-        initializeMobileMenu();
+        initializePageLoad();
+        initializeSmoothScroll();
+        initializeIntersectionObserver();
+        initializeKeyboardNavigation();
       }
+
+      // Optimización de rendimiento: Debounce para resize events
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          // Aquí puedes agregar lógica de redimensionamiento si es necesario
+        }, 250);
+      });
     </script>
   </body>
 </html>
