@@ -1,5 +1,6 @@
 ---
 import Welcome from '../components/Welcome.astro';
+import SkillsRadial from '../components/SkillsRadial.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -7,5 +8,38 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<Welcome />
+	<section id="home">
+		<Welcome />
+	</section>
+	
+	<section id="about" class="min-h-screen bg-slate-50 dark:bg-slate-800/50 py-20">
+		<div class="container mx-auto px-6">
+			<h2 class="text-4xl font-bold text-center mb-16 text-slate-800 dark:text-slate-100">
+				Technical Skills
+			</h2>
+			<SkillsRadial />
+		</div>
+	</section>
+	
+	<section id="projects" class="min-h-screen py-20">
+		<div class="container mx-auto px-6">
+			<h2 class="text-4xl font-bold text-center mb-16 text-slate-800 dark:text-slate-100">
+				Projects
+			</h2>
+			<div class="text-center text-slate-600 dark:text-slate-400">
+				<p class="text-lg">Projects section coming soon...</p>
+			</div>
+		</div>
+	</section>
+	
+	<section id="contact" class="min-h-screen bg-slate-50 dark:bg-slate-800/50 py-20">
+		<div class="container mx-auto px-6">
+			<h2 class="text-4xl font-bold text-center mb-16 text-slate-800 dark:text-slate-100">
+				Contact
+			</h2>
+			<div class="text-center text-slate-600 dark:text-slate-400">
+				<p class="text-lg">Contact section coming soon...</p>
+			</div>
+		</div>
+	</section>
 </Layout>

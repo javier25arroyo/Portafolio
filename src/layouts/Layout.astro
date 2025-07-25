@@ -111,17 +111,60 @@ import '../styles/global.css';
         outline-offset: 2px;
         border-radius: 4px;
       }
+
+      /* Animación para el punto brillante del navbar */
+      .glowing-dot {
+        animation: pulse-glow 2s infinite;
+      }
+
+      @keyframes pulse-glow {
+        0% {
+          box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+        }
+      }
+
+      /* Mejorar la transición del navbar link */
+      .nav-link:hover .glowing-dot {
+        animation: pulse-glow 1.5s infinite;
+        box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
+      }
     </style>
   </head>
     <body class="bg-slate-900 dark:bg-slate-900 text-slate-800 dark:text-slate-100 page-loading" style="font-family: 'Montserrat', sans-serif;">
     <!-- Theme Transition Overlay -->
     <div id="theme-transition-overlay" class="theme-transition-overlay"></div>
     
-    <!-- Header mejorado con mejor UX -->
-    <header class="fixed top-6 right-6 z-50">
-      <div class="flex items-center gap-4">
-        <!-- Theme toggle con backdrop blur -->
-        <div class="bg-white/10 dark:bg-slate-800/30 backdrop-blur-md rounded-2xl p-2 border border-white/20 dark:border-slate-700/50 shadow-lg">
+    <!-- Header mejorado con navbar y theme toggle -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/10 dark:bg-slate-800/10 backdrop-blur-md border-b border-white/20 dark:border-slate-700/50">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center relative">
+        <!-- Navbar centrado -->
+        <nav class="flex items-center space-x-8">
+          <a href="#home" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
+            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
+            Home
+          </a>
+          <a href="#about" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
+            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
+            About
+          </a>
+          <a href="#projects" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
+            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
+            Projects
+          </a>
+          <a href="#contact" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
+            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
+            Contact
+          </a>
+        </nav>
+        
+        <!-- Theme toggle posicionado absolutamente a la derecha -->
+        <div class="absolute right-0 bg-white/10 dark:bg-slate-800/30 backdrop-blur-md rounded-2xl p-2 border border-white/20 dark:border-slate-700/50 shadow-lg">
           <ThemeToggleButton />
         </div>
       </div>
@@ -135,7 +178,7 @@ import '../styles/global.css';
       </div>
     </div>
     
-    <main class="min-h-screen">
+    <main class="min-h-screen pt-20">
       <slot />
     </main>
     
