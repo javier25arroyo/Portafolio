@@ -1,10 +1,10 @@
 ---
-// src/components/ThemeToggleButton.astro
+// src/components/Them        slider.style.transform = 'translateX(32px)';ToggleButton.astro
 ---
-<label class="relative inline-block w-16 h-8">
+<label class="relative inline-block w-16 h-8 group cursor-pointer">
   <input type="checkbox" id="theme-toggle" class="opacity-0 w-0 h-0" aria-label="Toggle theme" />
-  <span class="absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-gray-300 dark:bg-gray-700 transition duration-300 rounded-full"></span>
-  <span class="slider absolute h-6 w-6 left-1 bottom-1 bg-white dark:bg-gray-400 transition-all duration-300 rounded-full flex items-center justify-center">
+  <span class="absolute cursor-pointer top-0 left-0 right-0 bottom-0 bg-slate-200 dark:bg-slate-700 transition duration-300 rounded-full shadow-inner group-hover:bg-slate-300 dark:group-hover:bg-slate-600"></span>
+  <span class="slider absolute h-7 w-7 left-0.5 bottom-0.5 bg-white dark:bg-slate-800 transition-all duration-300 rounded-full flex items-center justify-center shadow-md border border-slate-200 dark:border-slate-600">
     <img src="/src/assets/icons/light_mode.svg" alt="Modo claro" class="icon-light w-5 h-5 transition-all duration-300" />
     <img src="/src/assets/icons/dark_mode.svg" alt="Modo oscuro" class="icon-dark w-5 h-5 hidden transition-all duration-300" />
   </span>
@@ -25,7 +25,6 @@
       lightIcon.classList.add('hidden');
       darkIcon.classList.remove('hidden');
       slider.style.transform = 'translateX(32px)';
-      // Aplicar rotación al ícono
       darkIcon.style.transform = 'rotate(360deg)';
       lightIcon.style.transform = 'rotate(0deg)';
     } else {
@@ -33,7 +32,6 @@
       lightIcon.classList.remove('hidden');
       darkIcon.classList.add('hidden');
       slider.style.transform = 'translateX(0px)';
-      // Aplicar rotación al ícono
       lightIcon.style.transform = 'rotate(360deg)';
       darkIcon.style.transform = 'rotate(0deg)';
     }

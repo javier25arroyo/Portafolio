@@ -5,8 +5,17 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['JetBrainsMono Nerd Font Mono', 'JetBrains Mono', 'sans-serif'],
       },
+      fontSize: {
+        'base': '1rem',
+        'sm': '0.875rem',
+        'md': '1.125rem',
+        'h3': '1.5rem',
+        'h2': '2rem',
+        'h1': '3rem',
+        'hero': '4rem',
+      }
     },
   },
   plugins: [],
