@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['JetBrainsMono Nerd Font Mono', 'JetBrains Mono', 'sans-serif'],
+        sans: ['Montserrat', 'sans-serif'],
       },
       fontSize: {
         'base': '1rem',
@@ -15,6 +15,16 @@ export default {
         'h2': '2rem',
         'h1': '3rem',
         'hero': '4rem',
+      },
+      colors: {
+        'bg-primary': 'var(--bg-primary)',
+        'bg-surface': 'var(--bg-surface)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'color-primary': 'var(--color-primary)',
+        'color-secondary': 'var(--color-secondary)',
+        'border-color': 'var(--border-color)',
+        'shadow-color': 'var(--shadow-color)',
       }
     },
   },

@@ -46,11 +46,9 @@
       
       // Agregar event listener para cambios
       themeToggle.addEventListener('change', () => {
-        // Usar la función global de animación
         if ((window as any).toggleThemeWithAnimation) {
           (window as any).toggleThemeWithAnimation();
         }
-        // Actualizar el toggle después de un delay para sincronizar con la animación
         setTimeout(updateToggleButton, 350);
       });
       
