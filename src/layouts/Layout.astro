@@ -157,6 +157,10 @@ import '../styles/global.css';
             <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
             Projects
           </a>
+          <a href="#technical-skills" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
+            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
+            Skills
+          </a>
           <a href="#contact" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
             <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
             Contact
@@ -178,9 +182,62 @@ import '../styles/global.css';
       </div>
     </div>
     
+
     <main class="min-h-screen pt-20">
       <slot />
+
+      <!-- Soft Skills dentro de la sección de Technical Skills -->
+      <section id="soft-skills" class="max-w-6xl mx-auto mt-10 mb-12 px-6">
+        <h3 class="text-xl md:text-2xl font-semibold text-green-400 mb-6 tracking-tight text-center">Soft Skills</h3>
+        <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+          <li class="soft-skill-item">Effective Communication</li>
+          <li class="soft-skill-item">Teamwork and Collaboration</li>
+          <li class="soft-skill-item">Problem-Solving</li>
+          <li class="soft-skill-item">Critical and Analytical Thinking</li>
+          <li class="soft-skill-item">Adaptability</li>
+          <li class="soft-skill-item">Continuous Learning</li>
+          <li class="soft-skill-item">Time Management</li>
+          <li class="soft-skill-item">Attention to Detail</li>
+          <li class="soft-skill-item">Proactivity</li>
+          <li class="soft-skill-item">Self-Management</li>
+        </ul>
+      </section>
     </main>
+
+    <style>
+      #soft-skills {
+        background: linear-gradient(90deg, rgba(16,185,129,0.08) 0%, rgba(59,130,246,0.06) 100%);
+        border-radius: 1.2rem;
+        box-shadow: 0 4px 24px 0 rgba(16,185,129,0.07);
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+      .soft-skill-item {
+        background: rgba(16,185,129,0.13);
+        color: #10b981;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.8rem 1.2rem;
+        border-radius: 2rem;
+        box-shadow: 0 2px 8px 0 rgba(16,185,129,0.08);
+        transition: background 0.2s, color 0.2s, transform 0.2s;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50px;
+      }
+      .soft-skill-item:hover {
+        background: #10b981;
+        color: #fff;
+        transform: translateY(-4px) scale(1.06);
+        box-shadow: 0 4px 16px 0 rgba(16,185,129,0.18);
+      }
+    </style>
     
     <script>
       // Sistema de tema mejorado con mejor UX
@@ -302,7 +359,7 @@ import '../styles/global.css';
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector((this as HTMLAnchorElement).getAttribute('href'));
             if (target) {
               target.scrollIntoView({
                 behavior: 'smooth',
