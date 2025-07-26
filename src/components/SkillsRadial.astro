@@ -1,439 +1,100 @@
 ---
-// Importar iconos SVG desde la carpeta assets/icons
-import JavaIcon from '../assets/icons/java.svg?raw';
-import CSharpIcon from '../assets/icons/CSharp.svg?raw';
-import HTMLIcon from '../assets/icons/HTML.svg?raw';
-import CSSIcon from '../assets/icons/CSS.svg?raw';
-import JavaScriptIcon from '../assets/icons/JavaScript.svg?raw';
-import TypeScriptIcon from '../assets/icons/TypeScript.svg?raw';
-import NodeJSIcon from '../assets/icons/Node.js.svg?raw';
-import AngularIcon from '../assets/icons/Angular.svg?raw';
-import MySQLIcon from '../assets/icons/MySQL.svg?raw';
-import SqlServerIcon from '../assets/icons/SqlServer.svg?raw';
-import OracleIcon from '../assets/icons/Oracle.svg?raw';
-import GitIcon from '../assets/icons/GIT.svg?raw';
-import AzureIcon from '../assets/icons/Azure.svg?raw';
-import MongoDBIcon from '../assets/icons/MongoDB.svg?raw';
-import FigmaIcon from '../assets/icons/Figma.svg?raw';
-
-// Datos de habilidades para slider infinito
-const skills = [
-  { 
-    name: "Java", 
-    percentage: 85, 
-    color: "#f89500",
-    icon: JavaIcon
-  },
-  { 
-    name: "C#", 
-    percentage: 80, 
-    color: "#239120",
-    icon: CSharpIcon
-  },
-  { 
-    name: "HTML", 
-    percentage: 95, 
-    color: "#e34f26",
-    icon: HTMLIcon
-  },
-  { 
-    name: "CSS", 
-    percentage: 90, 
-    color: "#1572b6",
-    icon: CSSIcon
-  },
-  { 
-    name: "JavaScript", 
-    percentage: 88, 
-    color: "#f7df1e",
-    icon: JavaScriptIcon
-  },
-  { 
-    name: "TypeScript", 
-    percentage: 82, 
-    color: "#3178c6",
-    icon: TypeScriptIcon
-  },
-  { 
-    name: "Node.js", 
-    percentage: 78, 
-    color: "#339933",
-    icon: NodeJSIcon
-  },
-  { 
-    name: "Angular", 
-    percentage: 75, 
-    color: "#dd0031",
-    icon: AngularIcon
-  },
-  { 
-    name: "MySQL", 
-    percentage: 80, 
-    color: "#4479a1",
-    icon: MySQLIcon
-  },
-  { 
-    name: "SQL Server", 
-    percentage: 85, 
-    color: "#cc2927",
-    icon: SqlServerIcon
-  },
-  { 
-    name: "Oracle", 
-    percentage: 70, 
-    color: "#f80000",
-    icon: OracleIcon
-  },
-  { 
-    name: "MongoDB", 
-    percentage: 75, 
-    color: "#47a248",
-    icon: MongoDBIcon
-  },
-  { 
-    name: "GIT", 
-    percentage: 90, 
-    color: "#f05032",
-    icon: GitIcon
-  },
-  { 
-    name: "Azure", 
-    percentage: 72, 
-    color: "#0078d4",
-    icon: AzureIcon
-  },
-  { 
-    name: "Figma", 
-    percentage: 68, 
-    color: "#f24e1e",
-    icon: FigmaIcon
-  }
+const softSkills = [
+  "Effective Communication",
+  "Teamwork and Collaboration",
+  "Problem-Solving",
+  "Critical and Analytical Thinking",
+  "Adaptability",
+  "Continuous Learning",
+  "Time Management",
+  "Attention to Detail",
+  "Proactivity",
+  "Self-Management"
 ];
 ---
 
-<div class="skills-container">
-  <div class="skills-track">
-    {skills.concat(skills).map((skill, index) => (
-      <div class="skill-item" style={`--skill-color: ${skill.color};`}>
-        <div class="skill-icon" set:html={skill.icon}></div>
-        <div class="skill-label">{skill.name}</div>
-      </div>
+<section id="soft-skills" class="soft-skills-section">
+  <h3 class="soft-skills-title">Soft</h3>
+  <ul class="soft-skills-list">
+    {softSkills.map(skill => (
+      <li class="soft-skill-item">{skill}</li>
     ))}
-  </div>
-</div>
+  </ul>
+</section>
 
 <style>
-  .skills-container {
-    background: #1a1a1a;
-    border-radius: 1rem;
-    padding: 2rem 0;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    max-width: 100%;
+  .soft-skills-section {
+    background: linear-gradient(90deg, rgba(16,185,129,0.08) 0%, rgba(59,130,246,0.06) 100%);
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 24px 0 rgba(16,185,129,0.07);
+    margin: 2.5rem auto 0 auto;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    max-width: 900px;
   }
-
-  .skills-track {
-    display: flex;
-    gap: 3rem;
-    animation: scroll-infinite 40s linear infinite;
-    width: max-content;
+  .soft-skills-title {
+    text-align: center;
+    color: #10b981;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.01em;
   }
-
-  .skills-container:hover .skills-track {
-    animation-play-state: paused;
-  }
-
-  @keyframes scroll-infinite {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .skill-item {
-    display: flex;
-    flex-direction: column;
+  .soft-skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem 1.5rem;
+    justify-items: center;
     align-items: center;
-    gap: 0.75rem;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    min-width: 120px;
-    position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0;
+    margin: 0;
+    list-style: none;
   }
-
-  .skill-item:hover {
-    transform: translateY(-8px) scale(1.05);
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--skill-color);
-    box-shadow: 
-      0 10px 30px rgba(0, 0, 0, 0.3),
-      0 0 20px rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.3);
-  }
-
-  .skill-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--skill-color);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .skill-item:hover::before {
-    opacity: 1;
-  }
-
-  .skill-icon {
-    width: 48px;
-    height: 48px;
+  .soft-skill-item {
+    background: rgba(16,185,129,0.13);
+    color: #10b981;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 2rem;
+    box-shadow: 0 2px 8px 0 rgba(16,185,129,0.08);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    letter-spacing: 0.02em;
+    text-align: center;
+    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: brightness(0.9);
-    transition: filter 0.3s ease, transform 0.3s ease;
   }
-
-  .skill-item:hover .skill-icon {
-    filter: brightness(1.2) drop-shadow(0 0 10px var(--skill-color));
-    transform: scale(1.1) rotate(-2deg);
+  .soft-skill-item:hover {
+    background: #10b981;
+    color: #fff;
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 4px 16px 0 rgba(16,185,129,0.18);
   }
-
-  .skill-icon svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .skill-label {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #e2e8f0;
-    text-align: center;
-    white-space: nowrap;
-    letter-spacing: 0.025em;
-    transition: color 0.3s ease;
-  }
-
-  .skill-item:hover .skill-label {
-    color: #ffffff;
-    text-shadow: 0 0 8px var(--skill-color);
-  }
-
-  /* Gradientes de fade en los bordes */
-  .skills-container::before,
-  .skills-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 80px;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .skills-container::before {
-    left: 0;
-    background: linear-gradient(90deg, #1a1a1a 0%, rgba(26, 26, 26, 0.8) 50%, transparent 100%);
-  }
-
-  .skills-container::after {
-    right: 0;
-    background: linear-gradient(270deg, #1a1a1a 0%, rgba(26, 26, 26, 0.8) 50%, transparent 100%);
-  }
-
-  /* Responsividad */
   @media (max-width: 768px) {
-    .skills-container {
-      padding: 1.5rem 0;
+    .soft-skills-section {
+      padding: 1.2rem 0.5rem 1rem 0.5rem;
     }
-
-    .skills-track {
-      gap: 2rem;
-      animation-duration: 35s;
+    .soft-skills-list {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.7rem 1rem;
     }
-
-    .skill-item {
-      min-width: 100px;
-      padding: 0.8rem;
-    }
-
-    .skill-icon {
-      width: 40px;
-      height: 40px;
-    }
-
-    .skill-label {
-      font-size: 0.8rem;
-    }
-
-    .skills-container::before,
-    .skills-container::after {
-      width: 60px;
+    .soft-skill-item {
+      font-size: 0.92rem;
+      padding: 0.6rem 0.8rem;
     }
   }
-
   @media (max-width: 480px) {
-    .skills-container {
-      padding: 1rem 0;
+    .soft-skills-section {
+      padding: 0.7rem 0.2rem 0.7rem 0.2rem;
     }
-
-    .skills-track {
-      gap: 1.5rem;
-      animation-duration: 30s;
+    .soft-skills-list {
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.5rem 0.7rem;
     }
-
-    .skill-item {
-      min-width: 80px;
-      padding: 0.6rem;
-    }
-
-    .skill-icon {
-      width: 36px;
-      height: 36px;
-    }
-
-    .skill-label {
-      font-size: 0.75rem;
-    }
-
-    .skills-container::before,
-    .skills-container::after {
-      width: 40px;
-    }
-  }
-
-  /* Optimización para dispositivos con movimiento reducido */
-  @media (prefers-reduced-motion: reduce) {
-    .skills-track {
-      animation-duration: 80s;
-    }
-    
-    .skill-item:hover {
-      transform: translateY(-4px) scale(1.02);
+    .soft-skill-item {
+      font-size: 0.85rem;
+      padding: 0.5rem 0.5rem;
     }
   }
 </style>
-
-<script>
-  // Inicializar el carrusel de habilidades
-  function initializeSkillsCarousel() {
-    const container = document.querySelector('.skills-container') as HTMLElement;
-    const track = document.querySelector('.skills-track') as HTMLElement;
-    
-    if (!container || !track) return;
-
-    // Agregar interactividad mejorada
-    const skillItems = document.querySelectorAll('.skill-item') as NodeListOf<HTMLElement>;
-    
-    skillItems.forEach((item) => {
-      // Efecto hover mejorado con colores dinámicos
-      item.addEventListener('mouseenter', () => {
-        const skillColor = getComputedStyle(item).getPropertyValue('--skill-color').trim();
-        
-        // Convertir color hex a RGB para usar en box-shadow
-        const rgbColor = hexToRgb(skillColor);
-        if (rgbColor) {
-          item.style.setProperty('--skill-color-r', rgbColor.r.toString());
-          item.style.setProperty('--skill-color-g', rgbColor.g.toString());
-          item.style.setProperty('--skill-color-b', rgbColor.b.toString());
-        }
-      });
-
-      // Efecto de click
-      item.addEventListener('click', () => {
-        console.log(`Habilidad seleccionada: ${item.querySelector('.skill-label')?.textContent}`);
-        
-        // Efecto visual de pulso
-        item.style.transform = 'translateY(-8px) scale(1.08)';
-        setTimeout(() => {
-          item.style.transform = '';
-        }, 200);
-      });
-
-      // Soporte para navegación por teclado
-      item.setAttribute('tabindex', '0');
-      item.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          item.click();
-        }
-      });
-    });
-
-    // Control de animación con intersection observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          track.style.animationPlayState = 'running';
-        } else {
-          track.style.animationPlayState = 'paused';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    observer.observe(container);
-
-    // Pausar animación al enfocar cualquier elemento
-    container.addEventListener('focusin', () => {
-      track.style.animationPlayState = 'paused';
-    });
-
-    container.addEventListener('focusout', () => {
-      track.style.animationPlayState = 'running';
-    });
-  }
-
-  // Función para convertir hex a RGB
-  function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
-  }
-
-  // Función para ajustar velocidad según el tamaño de pantalla
-  function adjustAnimationSpeed() {
-    const track = document.querySelector('.skills-track') as HTMLElement;
-    if (!track) return;
-
-    const screenWidth = window.innerWidth;
-    let duration = 40; // duración base en segundos
-
-    if (screenWidth < 480) {
-      duration = 30;
-    } else if (screenWidth < 768) {
-      duration = 35;
-    }
-
-    track.style.animationDuration = `${duration}s`;
-  }
-
-  // Inicializar cuando el DOM esté listo
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initializeSkillsCarousel();
-      adjustAnimationSpeed();
-    });
-  } else {
-    initializeSkillsCarousel();
-    adjustAnimationSpeed();
-  }
-
-  // Ajustar velocidad al redimensionar
-  let resizeTimeout: number;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = window.setTimeout(adjustAnimationSpeed, 250);
-  });
-</script>
