@@ -34,41 +34,40 @@
         <div class="bubble" data-skill="Proactivity">
             <span>Proactivity</span>
         </div>
+        <div class="bubble" data-skill="Resilience">
+            <span>Resilience</span>
+        </div>
     </div>
 </div>
 
 <style>
     .soft-skills-container {
         position: relative;
-        min-height: 700px;
-        height: 700px; /* Fixed height to ensure proper container dimensions */
+        min-height: 500px; /* Reduced from 700px */
+        height: 500px; /* Reduced from 700px */
         display: flex;
         align-items: stretch; /* Changed from center to stretch */
         justify-content: center;
         overflow: hidden;
-        background: linear-gradient(135deg, 
-            rgba(59, 130, 246, 0.08) 0%, 
-            rgba(139, 92, 246, 0.08) 25%,
-            rgba(16, 185, 129, 0.08) 50%,
-            rgba(34, 197, 94, 0.08) 75%,
-            rgba(236, 72, 153, 0.08) 100%);
-        border-radius: 2rem;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Completely transparent background */
+        background: transparent;
+        border-radius: 0;
+        backdrop-filter: none;
+        border: none;
     }
 
     .bubbles-container {
         position: relative;
-        width: 100%;
-        height: 100%;
-        min-height: 600px; /* Ensure minimum height for animation space */
+        width: 85%; /* Reduced from 100% to make it more compact */
+        height: 90%; /* Reduced from 100% to add some margin */
+        min-height: 400px; /* Reduced from 600px */
         display: block; /* Ensure it takes up space in the flex parent */
         /* The following properties are for when using grid on smaller screens */
         /* display: flex; */
         /* flex-wrap: wrap; */
         /* justify-content: center; */
         /* align-items: center; */
-        padding: 2rem;
+        padding: 1.5rem; /* Reduced from 2rem */
         perspective: 1000px;
         transform-style: preserve-3d;
         overflow: hidden; /* Contain the bubbles */
@@ -114,7 +113,8 @@
     .bubble[data-skill="Teamwork"],
     .bubble[data-skill="Collaboration"],
     .bubble[data-skill="Adaptability"],
-    .bubble[data-skill="Proactivity"] {
+    .bubble[data-skill="Proactivity"],
+    .bubble[data-skill="Resilience"] {
         min-width: 150px;
         min-height: 150px;
         padding: 1.2rem;
@@ -221,10 +221,12 @@
     /* Responsive design */
     @media (max-width: 768px) {
         .soft-skills-container {
-            min-height: 600px;
+            min-height: 450px; /* Adjusted for smaller container */
+            height: 450px;
         }
 
         .bubbles-container {
+            width: 95%; /* Slightly larger on mobile for better use of space */
             padding: 1rem;
             position: relative;
             display: grid;
@@ -329,8 +331,8 @@
             }
 
             initPosition(containerRect: DOMRect) {
-                // Account for padding (2rem = 32px on each side)
-                const padding = 32;
+                // Account for padding (1.5rem = 24px on each side)
+                const padding = 24;
                 const availableWidth = containerRect.width - (padding * 2) - this.width;
                 const availableHeight = containerRect.height - (padding * 2) - this.height;
                 
@@ -366,8 +368,8 @@
                 this.x += this.vx;
                 this.y += this.vy;
 
-                // Account for padding (2rem = 32px)
-                const padding = 32;
+                // Account for padding (1.5rem = 24px)
+                const padding = 24;
                 const minX = padding;
                 const maxX = containerRect.width - padding - this.width;
                 const minY = padding;
