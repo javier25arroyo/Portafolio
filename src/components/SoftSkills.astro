@@ -49,206 +49,441 @@
 <style>
     .soft-skills-container {
         position: relative;
-        min-height: 700px;
+        min-height: 280px; /* Much shorter height */
+        max-width: 1200px; /* Much wider container */
+        width: 100%;
+        margin: 0 auto; /* Center the container */
         display: flex;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        background: linear-gradient(135deg, 
-            rgba(59, 130, 246, 0.08) 0%, 
-            rgba(139, 92, 246, 0.08) 25%,
-            rgba(16, 185, 129, 0.08) 50%,
-            rgba(34, 197, 94, 0.08) 75%,
-            rgba(236, 72, 153, 0.08) 100%);
-        border-radius: 2rem;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: 
+            /* Subtle bubble medium effect */
+            radial-gradient(ellipse at 20% 30%, rgba(173, 216, 230, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 70%, rgba(255, 182, 193, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 10%, rgba(144, 238, 144, 0.05) 0%, transparent 50%),
+            /* Base gradient */
+            linear-gradient(135deg, 
+                rgba(59, 130, 246, 0.06) 0%, 
+                rgba(139, 92, 246, 0.06) 25%,
+                rgba(16, 185, 129, 0.06) 50%,
+                rgba(34, 197, 94, 0.06) 75%,
+                rgba(236, 72, 153, 0.06) 100%);
+        border-radius: 1.5rem;
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        
+        /* Subtle animation for the container */
+        animation: bubbleEnv 20s ease-in-out infinite;
+    }
+    
+    @keyframes bubbleEnv {
+        0%, 100% { 
+            background-size: 300% 300%, 300% 300%, 300% 300%, 100% 100%;
+            background-position: 0% 50%, 100% 50%, 50% 0%, 0% 0%;
+        }
+        33% { 
+            background-size: 250% 250%, 350% 350%, 400% 400%, 100% 100%;
+            background-position: 30% 70%, 70% 30%, 20% 80%, 0% 0%;
+        }
+        66% { 
+            background-size: 400% 400%, 250% 250%, 300% 300%, 100% 100%;
+            background-position: 70% 30%, 30% 70%, 80% 20%, 0% 0%;
+        }
     }
 
     .bubbles-container {
         position: relative;
         width: 100%;
         height: 100%;
-        padding: 2rem;
+        padding: 1.5rem; /* Reduced padding for tighter layout */
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .bubble {
         position: absolute;
-        background: radial-gradient(ellipse at 32% 28%, 
-            rgba(255, 255, 255, 0.95) 0%, 
-            rgba(255, 255, 255, 0.85) 40%,
-            rgba(255, 255, 255, 0.75) 100%);
-        backdrop-filter: blur(20px);
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        border-radius: 52% 48% 45% 55% / 58% 42% 65% 35%;
+        background: 
+            /* Main bubble surface with realistic transparency */
+            radial-gradient(ellipse at 25% 25%, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.08) 40%,
+                rgba(255, 255, 255, 0.02) 100%),
+            /* Soap film iridescence effect */
+            linear-gradient(135deg, 
+                rgba(255, 182, 193, 0.1) 0%,
+                rgba(173, 216, 230, 0.1) 25%,
+                rgba(144, 238, 144, 0.1) 50%,
+                rgba(255, 218, 185, 0.1) 75%,
+                rgba(221, 160, 221, 0.1) 100%);
+        
+        /* Realistic bubble border */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        
+        /* Glass-like effects */
+        backdrop-filter: blur(8px);
+        
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         cursor: pointer;
+        
+        /* Realistic bubble shadows and highlights */
         box-shadow: 
-            0 12px 40px rgba(0, 0, 0, 0.15),
-            0 4px 12px rgba(0, 0, 0, 0.1),
-            inset 0 2px 4px rgba(255, 255, 255, 0.8),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+            /* Main shadow */
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            /* Soft glow */
+            0 0 20px rgba(255, 255, 255, 0.1),
+            /* Inner highlight (soap film effect) */
+            inset 20px 20px 40px rgba(255, 255, 255, 0.1),
+            /* Surface tension highlight */
+            inset -10px -10px 20px rgba(255, 255, 255, 0.05);
+            
         will-change: transform;
         backface-visibility: hidden;
+        
+        /* Add bubble surface reflections */
+        position: relative;
+        overflow: hidden;
+        
+        /* Subtle animation for floating */
+        animation: gentleFloat 6s ease-in-out infinite;
+    }
+    
+    @keyframes gentleFloat {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        33% { transform: translateY(-2px) rotate(1deg); }
+        66% { transform: translateY(1px) rotate(-1deg); }
+    }
+    
+    /* Realistic bubble highlight/reflection */
+    .bubble::before {
+        content: '';
+        position: absolute;
+        top: 15%;
+        left: 20%;
+        width: 30%;
+        height: 30%;
+        background: radial-gradient(ellipse at center,
+            rgba(255, 255, 255, 0.6) 0%,
+            rgba(255, 255, 255, 0.3) 40%,
+            transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 3;
+    }
+    
+    /* Secondary smaller reflection */
+    .bubble::after {
+        content: '';
+        position: absolute;
+        top: 60%;
+        right: 25%;
+        width: 15%;
+        height: 15%;
+        background: radial-gradient(ellipse at center,
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 100%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 3;
     }
 
     .bubble span {
         font-size: 1rem;
-        font-weight: 700;
-        color: #1e293b;
+        font-weight: 600;
+        color: rgba(30, 41, 59, 0.9);
         line-height: 1.3;
-        padding: 1.2rem;
-        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
-        z-index: 2;
+        padding: 0.8rem;
+        text-shadow: 
+            0 1px 2px rgba(255, 255, 255, 0.8),
+            0 1px 4px rgba(255, 255, 255, 0.4);
+        z-index: 4;
         position: relative;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.02em;
         text-align: center;
-        display: block;
-        max-width: 85%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
         word-wrap: break-word;
         hyphens: auto;
+        overflow-wrap: break-word;
+        transition: all 0.3s ease;
+        pointer-events: none;
     }
 
-    /* Dark mode styles */
+    /* Dark mode realistic bubble styles */
     :global(.dark) .bubble {
-        background: radial-gradient(ellipse at 32% 28%, 
-            rgba(51, 65, 85, 0.95) 0%, 
-            rgba(30, 41, 59, 0.9) 40%,
-            rgba(15, 23, 42, 0.85) 100%);
-        border: 2px solid rgba(148, 163, 184, 0.3);
+        background: 
+            /* Dark mode bubble surface */
+            radial-gradient(ellipse at 25% 25%, 
+                rgba(148, 163, 184, 0.12) 0%, 
+                rgba(100, 116, 139, 0.08) 40%,
+                rgba(51, 65, 85, 0.02) 100%),
+            /* Dark mode iridescence */
+            linear-gradient(135deg, 
+                rgba(139, 92, 246, 0.08) 0%,
+                rgba(59, 130, 246, 0.08) 25%,
+                rgba(16, 185, 129, 0.08) 50%,
+                rgba(245, 158, 11, 0.08) 75%,
+                rgba(236, 72, 153, 0.08) 100%);
+        
+        border: 1px solid rgba(148, 163, 184, 0.15);
         box-shadow: 
-            0 12px 40px rgba(0, 0, 0, 0.4),
-            0 4px 12px rgba(0, 0, 0, 0.3),
-            inset 0 2px 4px rgba(148, 163, 184, 0.2),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            0 0 20px rgba(148, 163, 184, 0.05),
+            inset 20px 20px 40px rgba(148, 163, 184, 0.05),
+            inset -10px -10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    :global(.dark) .bubble::before {
+        background: radial-gradient(ellipse at center,
+            rgba(241, 245, 249, 0.3) 0%,
+            rgba(241, 245, 249, 0.15) 40%,
+            transparent 70%);
+    }
+
+    :global(.dark) .bubble::after {
+        background: radial-gradient(ellipse at center,
+            rgba(241, 245, 249, 0.2) 0%,
+            rgba(241, 245, 249, 0.05) 50%,
+            transparent 100%);
     }
 
     :global(.dark) .bubble span {
-        color: #f1f5f9;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        color: rgba(241, 245, 249, 0.9);
+        text-shadow: 
+            0 1px 2px rgba(0, 0, 0, 0.8),
+            0 1px 4px rgba(148, 163, 184, 0.2);
     }
 
-    /* Responsive design */
+    /* Responsive design for wide, short container */
+    @media (max-width: 1024px) {
+        .soft-skills-container {
+            max-width: 95%;
+            min-height: 260px;
+        }
+    }
+
     @media (max-width: 768px) {
         .soft-skills-container {
-            min-height: 500px;
+            min-height: 240px; /* Keep it short on tablets */
+            max-width: 95%;
+            border-radius: 1.25rem;
         }
 
         .bubbles-container {
             padding: 1rem;
         }
 
-        .bubble {
-            min-width: 90px !important;
-            min-height: 90px !important;
-            max-width: 120px !important;
-            max-height: 120px !important;
-            margin: 0.3rem;
-        }
-
         .bubble span {
             font-size: 0.75rem;
-            padding: 0.6rem;
+            padding: 0.5rem;
         }
     }
 
     @media (max-width: 480px) {
         .soft-skills-container {
-            min-height: 400px;
+            min-height: 200px; /* Very short on mobile */
+            max-width: 95%;
+            border-radius: 1rem;
         }
 
         .bubbles-container {
-            gap: 0.8rem;
-        }
-
-        .bubble {
-            min-width: 80px !important;
-            min-height: 80px !important;
-            max-width: 100px !important;
-            max-height: 100px !important;
+            padding: 0.75rem;
         }
 
         .bubble span {
             font-size: 0.65rem;
-            padding: 0.4rem;
+            padding: 0.35rem;
+        }
+    }
+
+    /* Extra large screens */
+    @media (min-width: 1400px) {
+        .soft-skills-container {
+            max-width: 1400px; /* Even wider on very large screens */
         }
     }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        console.log('🚀 SoftSkills component loaded');
         const bubbles = document.querySelectorAll('.bubble');
+        console.log(`📊 Found ${bubbles.length} bubbles to animate`);
         
-        // Function to calculate optimal bubble size based on text length
-        function calculateBubbleSize(text, wordCount) {
-            let baseSize = 150;
-            let minSize = 140;
-            let maxSize = 200;
-
-            if (window.innerWidth <= 768) { // Adjust for smaller screens
-                baseSize = 100;
-                minSize = 90;
-                maxSize = 120;
+        // Enhanced function to calculate optimal bubble size based on text content
+        function calculateBubbleSize(text, span) {
+            // Create a temporary element to measure actual text dimensions
+            const tempSpan = document.createElement('span');
+            tempSpan.style.cssText = `
+                font-size: ${window.getComputedStyle(span).fontSize};
+                font-weight: ${window.getComputedStyle(span).fontWeight};
+                font-family: ${window.getComputedStyle(span).fontFamily};
+                line-height: ${window.getComputedStyle(span).lineHeight};
+                visibility: hidden;
+                position: absolute;
+                top: -9999px;
+                white-space: nowrap;
+            `;
+            tempSpan.textContent = text.replace('<br>', ' ');
+            document.body.appendChild(tempSpan);
+            
+            const textWidth = tempSpan.offsetWidth;
+            const textHeight = tempSpan.offsetHeight;
+            document.body.removeChild(tempSpan);
+            
+            // Calculate optimal padding based on text content
+            const wordCount = text.split(/\s+/).length;
+            const hasLineBreaks = text.includes('<br>') || span.innerHTML.includes('<br>');
+            
+            // Base padding calculations
+            let paddingX = 40; // Minimum horizontal padding
+            let paddingY = 40; // Minimum vertical padding
+            
+            // Responsive adjustments
+            if (window.innerWidth <= 768) {
+                paddingX = 24;
+                paddingY = 24;
             }
-            if (window.innerWidth <= 480) { // Adjust for even smaller screens
-                baseSize = 90;
-                minSize = 80;
-                maxSize = 100;
+            if (window.innerWidth <= 480) {
+                paddingX = 16;
+                paddingY = 16;
             }
             
-            if (wordCount === 2) {
-                return { width: baseSize + 20, height: baseSize + 20 };
+            // Adjust padding based on text characteristics
+            if (wordCount > 2) {
+                paddingX += 8;
+                paddingY += 8;
             }
             
-            const textLength = text.length;
-            const lengthFactor = Math.min(textLength / 12, 2.5);
-            const wordFactor = Math.min(wordCount / 3, 1.5);
+            if (hasLineBreaks) {
+                paddingY += 12;
+            }
             
-            let size = baseSize + (lengthFactor * 15) + (wordFactor * 10);
-            size = Math.max(minSize, Math.min(maxSize, size));
+            // Calculate final dimensions
+            let width = textWidth + paddingX;
+            let height = hasLineBreaks ? textHeight * 1.8 + paddingY : textHeight + paddingY;
             
-            return { width: size, height: size };
+            // Ensure circular/oval shape by adjusting dimensions
+            const aspectRatio = width / height;
+            if (aspectRatio > 1.3) {
+                height = width / 1.2;
+            } else if (aspectRatio < 0.8) {
+                width = height * 0.9;
+            }
+            
+            // Apply size constraints
+            const minSize = window.innerWidth <= 480 ? 80 : window.innerWidth <= 768 ? 90 : 120;
+            const maxSize = window.innerWidth <= 480 ? 140 : window.innerWidth <= 768 ? 160 : 220;
+            
+            width = Math.max(minSize, Math.min(maxSize, width));
+            height = Math.max(minSize, Math.min(maxSize, height));
+            
+            return { width: Math.round(width), height: Math.round(height) };
         }
         
-        // Apply dynamic sizing to bubbles
-        bubbles.forEach((bubble, index) => {
-            const skillText = bubble.dataset.skill.trim();
-            const wordCount = skillText.split(/\s+/).length;
-            const { width, height } = calculateBubbleSize(skillText, wordCount);
+        // Apply enhanced dynamic sizing to bubbles
+        function applySizing() {
+            bubbles.forEach((bubble, index) => {
+                const skillText = bubble.dataset.skill.trim();
+                const span = bubble.querySelector('span');
+                const { width, height } = calculateBubbleSize(skillText, span);
 
-            bubble.style.width = `${width}px`;
-            bubble.style.height = `${height}px`;
+                bubble.style.width = `${width}px`;
+                bubble.style.height = `${height}px`;
 
-            // Ensure smooth animations
-            bubble.style.willChange = 'transform';
-            bubble.style.backfaceVisibility = 'hidden';
-            bubble.style.transition = 'transform 0.3s ease-out';
+                // Ensure smooth animations
+                bubble.style.willChange = 'transform';
+                bubble.style.backfaceVisibility = 'hidden';
+                bubble.style.transition = 'all 0.3s ease-out';
+                
+                // Adjust font size if needed for better fit
+                const currentFontSize = parseFloat(window.getComputedStyle(span).fontSize);
+                const textLength = skillText.length;
+                
+                // Dynamic font scaling for very long text
+                if (textLength > 18 && width >= (window.innerWidth <= 480 ? 130 : 180)) {
+                    const scaleFactor = Math.max(0.85, 1 - (textLength - 18) * 0.02);
+                    span.style.fontSize = `${currentFontSize * scaleFactor}px`;
+                }
+            });
+        }
+        
+        // Apply initial sizing
+        console.log('📏 Applying initial bubble sizing...');
+        applySizing();
+        
+        // Reapply sizing on window resize for responsive behavior
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                console.log('📱 Reapplying sizing after resize...');
+                applySizing();
+            }, 150);
         });
 
-        // Clean Physics System - NO FLICKERING
+        // Realistic Bubble Physics System
         class BubblePhysics {
             constructor(bubble, container) {
+                console.log('🫧 Initializing bubble physics for:', bubble.dataset.skill);
                 this.bubble = bubble;
                 this.container = container;
                 this.isActive = true;
                 this.isHovered = false;
 
-                // Physics properties
+                // Physics properties for reliable bubble behavior
                 this.x = 0;
                 this.y = 0;
                 this.z = 0;
-                this.vx = (Math.random() - 0.5) * 2;
-                this.vy = (Math.random() - 0.5) * 2;
-                this.vz = (Math.random() - 0.5) * 2;
-                this.damping = 0.9;
-                this.maxSpeed = 1.5;
+                this.vx = (Math.random() - 0.5) * 1.2;
+                this.vy = -0.4 - Math.random() * 0.4; // Strong upward movement
+                this.vz = (Math.random() - 0.5) * 0.5;
+                this.damping = 0.98;
+                this.maxSpeed = 2;
+                this.buoyancy = 0.02; // Stronger upward force
+                
+                // Bubble wobble and surface tension effects
+                this.wobbleX = Math.random() * Math.PI * 2;
+                this.wobbleY = Math.random() * Math.PI * 2;
+                this.wobbleSpeedX = 0.02 + Math.random() * 0.03;
+                this.wobbleSpeedY = 0.025 + Math.random() * 0.035;
+                this.wobbleAmplitude = 0.3 + Math.random() * 0.4;
+                
+                // Shape deformation (surface tension)
+                this.deformX = 1;
+                this.deformY = 1;
+                this.deformSpeed = 0.01 + Math.random() * 0.02;
+                this.deformOffset = Math.random() * Math.PI * 2;
+                
+                // Iridescent color shifting
+                this.colorShift = Math.random() * 360;
+                this.colorSpeed = 0.5 + Math.random() * 1;
 
                 this.updateDimensions();
                 this.initializePosition();
-                this.animate();
+                
+                console.log(`✅ Bubble "${this.bubble.dataset.skill}" initialized at position:`, {
+                    x: this.x, 
+                    y: this.y, 
+                    z: this.z,
+                    containerWidth: this.containerWidth,
+                    containerHeight: this.containerHeight
+                });
+                
+                // Start animation immediately
+                setTimeout(() => {
+                    console.log(`🎬 Starting animation for "${this.bubble.dataset.skill}"`);
+                    this.animate();
+                }, 10);
             }
 
             updateDimensions() {
@@ -257,84 +492,301 @@
 
                 this.bubbleWidth = bubbleRect.width;
                 this.bubbleHeight = bubbleRect.height;
-                this.containerWidth = containerRect.width;
-                this.containerHeight = containerRect.height;
+                this.containerWidth = containerRect.width * 0.85; // Use more of the width
+                this.containerHeight = containerRect.height * 0.7; // Use more of the height
 
-                this.minX = -(this.containerWidth / 2) + (this.bubbleWidth / 2);
-                this.maxX = (this.containerWidth / 2) - (this.bubbleWidth / 2);
-                this.minY = -(this.containerHeight / 2) + (this.bubbleHeight / 2);
-                this.maxY = (this.containerHeight / 2) - (this.bubbleHeight / 2);
-                this.minZ = -200; // Arbitrary depth limit
-                this.maxZ = 200; // Arbitrary depth limit
+                // Calculate boundaries optimized for wide, short container
+                this.minX = -this.containerWidth / 2 + this.bubbleWidth / 2 + 15;
+                this.maxX = this.containerWidth / 2 - this.bubbleWidth / 2 - 15;
+                this.minY = -this.containerHeight / 2 + this.bubbleHeight / 2 + 10;
+                this.maxY = this.containerHeight / 2 - this.bubbleHeight / 2 - 10;
+                this.minZ = -30;
+                this.maxZ = 30;
             }
 
             initializePosition() {
-                this.x = this.minX + Math.random() * (this.maxX - this.minX);
-                this.y = this.minY + Math.random() * (this.maxY - this.minY);
+                // Ensure even distribution across the full width
+                const fullWidth = this.maxX - this.minX;
+                this.x = this.minX + Math.random() * fullWidth;
+                
+                // Start at different heights for more natural distribution
+                const startHeight = Math.random() * (this.containerHeight * 0.8);
+                this.y = this.maxY - startHeight;
+                
                 this.z = this.minZ + Math.random() * (this.maxZ - this.minZ);
 
-                // Assign consistent random initial velocities for all axes
-                this.vx = (Math.random() - 0.5) * 4; // Random velocity for X
-                this.vy = (Math.random() - 0.5) * 4; // Random velocity for Y
-                this.vz = (Math.random() - 0.5) * 4; // Random velocity for Z
-
-                // Ensure minimum speed to avoid static bubbles
-                if (Math.abs(this.vx) < 1) this.vx = (this.vx >= 0 ? 1 : -1) * 1;
-                if (Math.abs(this.vy) < 1) this.vy = (this.vy >= 0 ? 1 : -1) * 1;
-                if (Math.abs(this.vz) < 1) this.vz = (this.vz >= 0 ? 1 : -1) * 1;
+                // Gentle initial velocities for realistic bubble movement
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = -0.1 - Math.random() * 0.2; // Natural upward movement
+                this.vz = (Math.random() - 0.5) * 0.3;
             }
 
             checkBoundaries() {
+                // Horizontal boundaries - gentle bounce
                 if (this.x <= this.minX || this.x >= this.maxX) {
-                    this.vx = -this.vx * this.damping;
+                    this.vx = -this.vx * (this.damping + Math.random() * 0.02);
+                    this.x = Math.max(this.minX, Math.min(this.maxX, this.x));
                 }
-                if (this.y <= this.minY || this.y >= this.maxY) {
-                    this.vy = -this.vy * this.damping;
+                
+                // When bubble reaches top, reset to bottom with new random position
+                if (this.y <= this.minY) {
+                    // Reset with completely random horizontal position
+                    const fullWidth = this.maxX - this.minX;
+                    this.x = this.minX + Math.random() * fullWidth;
+                    this.y = this.maxY - 20;
+                    this.vy = -0.1 - Math.random() * 0.15;
+                    this.vx = (Math.random() - 0.5) * 0.8;
                 }
+                
+                // If bubble somehow goes too low, keep it in bounds
+                if (this.y >= this.maxY) {
+                    this.y = this.maxY - 10;
+                    this.vy = Math.abs(this.vy) * -0.3; // Gentle upward bounce
+                }
+                
+                // Z-axis boundaries
                 if (this.z <= this.minZ || this.z >= this.maxZ) {
                     this.vz = -this.vz * this.damping;
+                    this.z = Math.max(this.minZ, Math.min(this.maxZ, this.z));
                 }
             }
 
             animate() {
-                if (!this.isActive) return;
+                if (!this.isActive) {
+                    console.log(`⏸️ Animation paused for "${this.bubble.dataset.skill}"`);
+                    return;
+                }
 
                 if (!this.isHovered) {
+                    // Simplified, reliable movement system
+                    
+                    // Basic upward movement (buoyancy)
+                    this.vy -= 0.02; // Constant upward force
+                    
+                    // Simple wobble effect
+                    const time = Date.now() * 0.001;
+                    const wobbleX = Math.sin(time * 2 + this.wobbleX) * 0.5;
+                    const wobbleY = Math.cos(time * 1.5 + this.wobbleY) * 0.3;
+                    
+                    // Update velocities
+                    this.vx += wobbleX * 0.02;
+                    this.vy += wobbleY * 0.01;
+                    
+                    // Simple damping
+                    this.vx *= 0.98;
+                    this.vy *= 0.99;
+                    this.vz *= 0.98;
+                    
+                    // Ensure minimum upward movement
+                    if (this.vy > -0.1) this.vy = -0.1;
+                    
+                    // Speed limits
+                    this.vx = Math.max(-1.5, Math.min(1.5, this.vx));
+                    this.vy = Math.max(-2, Math.min(0.5, this.vy));
+                    this.vz = Math.max(-0.5, Math.min(0.5, this.vz));
+                    
+                    // Update positions
                     this.x += this.vx;
                     this.y += this.vy;
                     this.z += this.vz;
+                    
+                    // Check boundaries
                     this.checkBoundaries();
-
-                    this.bubble.style.transform = `translate3d(${this.x}px, ${this.y}px, ${this.z}px)`;
+                    
+                    // Simple deformation
+                    const deformX = 1 + Math.sin(time * 0.8 + this.deformOffset) * 0.03;
+                    const deformY = 1 + Math.cos(time * 1.2 + this.deformOffset) * 0.02;
+                    
+                    // Apply transform with debugging
+                    const transform = `translate3d(${this.x}px, ${this.y}px, ${this.z}px) scale(${deformX}, ${deformY})`;
+                    this.bubble.style.transform = transform;
+                    
+                    // Debug log every 120 frames (about 2 seconds at 60fps)
+                    if (Math.floor(time * 60) % 120 === 0) {
+                        console.log(`🌊 "${this.bubble.dataset.skill}" position:`, {
+                            x: Math.round(this.x), 
+                            y: Math.round(this.y), 
+                            vx: Math.round(this.vx * 100) / 100,
+                            vy: Math.round(this.vy * 100) / 100,
+                            transform: transform
+                        });
+                    }
+                    
+                    // Simple color shift
+                    this.colorShift += 0.3;
+                    if (this.colorShift > 360) this.colorShift -= 360;
+                    this.bubble.style.filter = `hue-rotate(${this.colorShift * 0.1}deg) brightness(1.02)`;
                 }
 
                 requestAnimationFrame(() => this.animate());
             }
 
+            // Bubble pop animation
+            pop() {
+                this.isActive = false;
+                const originalScale = this.bubble.style.transform;
+                
+                // Pop animation
+                this.bubble.style.transition = 'all 0.15s ease-out';
+                this.bubble.style.transform = `${originalScale} scale(1.3)`;
+                this.bubble.style.opacity = '0';
+                
+                setTimeout(() => {
+                    // Reset bubble with random position across full width
+                    this.bubble.style.transition = 'none';
+                    this.bubble.style.opacity = '1';
+                    
+                    // Force new random position across full container width
+                    const fullWidth = this.maxX - this.minX;
+                    this.x = this.minX + Math.random() * fullWidth;
+                    this.y = this.maxY - Math.random() * (this.containerHeight * 0.3);
+                    this.z = this.minZ + Math.random() * (this.maxZ - this.minZ);
+                    
+                    // Reset velocities
+                    this.vx = (Math.random() - 0.5) * 0.6;
+                    this.vy = -0.1 - Math.random() * 0.2;
+                    this.vz = (Math.random() - 0.5) * 0.3;
+                    
+                    this.bubble.style.transform = `translate3d(${this.x}px, ${this.y}px, ${this.z}px)`;
+                    this.isActive = true;
+                }, 200);
+            }
+
             pause() {
                 this.isHovered = true;
+                // Add subtle glow effect when hovered
+                this.bubble.style.boxShadow += ', 0 0 30px rgba(255, 255, 255, 0.3)';
             }
 
             resume() {
                 this.isHovered = false;
+                // Remove glow effect
+                const shadow = this.bubble.style.boxShadow;
+                this.bubble.style.boxShadow = shadow.replace(', 0 0 30px rgba(255, 255, 255, 0.3)', '');
             }
         }
 
         // Initialize physics system
         const bubbleContainer = document.querySelector('.bubbles-container');
+        console.log('🎯 Bubble container found:', bubbleContainer);
+        
+        if (!bubbleContainer) {
+            console.error('❌ ERROR: bubbles-container not found!');
+            return;
+        }
+        
         const physicsInstances = [];
 
+        // Initialize bubbles immediately for reliable movement
+        console.log('🔄 Starting bubble physics initialization...');
         bubbles.forEach((bubble, index) => {
             const physics = new BubblePhysics(bubble, bubbleContainer);
             physicsInstances.push(physics);
 
-            bubble.addEventListener('mouseenter', () => physics.pause());
-            bubble.addEventListener('mouseleave', () => physics.resume());
+            // Distribute bubbles evenly across container width
+            const totalBubbles = bubbles.length;
+            const sectionWidth = (physics.maxX - physics.minX) / totalBubbles;
+            const baseX = physics.minX + (index * sectionWidth) + (sectionWidth * 0.5);
+            
+            // Set initial position
+            physics.x = baseX + (Math.random() - 0.5) * (sectionWidth * 0.8);
+            physics.y = physics.maxY - Math.random() * (physics.containerHeight * 0.8);
+            physics.z = Math.random() * 50 - 25;
+            
+            // Set initial velocities for immediate movement
+            physics.vx = (Math.random() - 0.5) * 1.2;
+            physics.vy = -0.3 - Math.random() * 0.5; // Strong initial upward movement
+            physics.vz = (Math.random() - 0.5) * 0.4;
+            
+            // Apply initial transform
+            bubble.style.transform = `translate3d(${physics.x}px, ${physics.y}px, ${physics.z}px)`;
+
+            // Enhanced interactions
+            bubble.addEventListener('mouseenter', () => {
+                physics.pause();
+                bubble.style.cursor = 'pointer';
+            });
+            
+            bubble.addEventListener('mouseleave', () => {
+                physics.resume();
+            });
+            
+            // Click to pop bubble
+            bubble.addEventListener('click', (e) => {
+                e.preventDefault();
+                physics.pop();
+                
+                // Create pop particles effect
+                createPopEffect(e.clientX, e.clientY);
+            });
         });
+        
+        // Create pop effect particles
+        function createPopEffect(x, y) {
+            const particleCount = 8;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: fixed;
+                    width: 4px;
+                    height: 4px;
+                    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 1000;
+                    left: ${x}px;
+                    top: ${y}px;
+                `;
+                
+                document.body.appendChild(particle);
+                
+                // Animate particle
+                const angle = (i / particleCount) * Math.PI * 2;
+                const velocity = 50 + Math.random() * 30;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                particle.animate([
+                    { transform: 'translate(0, 0)', opacity: 1 },
+                    { transform: `translate(${vx}px, ${vy}px)`, opacity: 0 }
+                ], {
+                    duration: 300,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                }).onfinish = () => particle.remove();
+            }
+        }
 
         // Handle window resize
         window.addEventListener('resize', () => {
+            console.log('📐 Window resized, updating bubble dimensions...');
             physicsInstances.forEach(physics => physics.updateDimensions());
         });
+        
+        // Debug function - call this in console if needed
+        window.debugBubbles = function() {
+            console.log('🔍 BUBBLE DEBUG INFO:');
+            console.log('Total bubbles:', bubbles.length);
+            console.log('Physics instances:', physicsInstances.length);
+            console.log('Container dimensions:', {
+                width: bubbleContainer.offsetWidth,
+                height: bubbleContainer.offsetHeight
+            });
+            
+            physicsInstances.forEach((physics, index) => {
+                console.log(`Bubble ${index} (${physics.bubble.dataset.skill}):`, {
+                    active: physics.isActive,
+                    hovered: physics.isHovered,
+                    position: { x: physics.x, y: physics.y, z: physics.z },
+                    velocity: { vx: physics.vx, vy: physics.vy, vz: physics.vz },
+                    boundaries: { 
+                        minX: physics.minX, maxX: physics.maxX,
+                        minY: physics.minY, maxY: physics.maxY
+                    }
+                });
+            });
+        };
+        
+        console.log('✅ Bubble initialization completed!');
+        console.log('💡 Type "debugBubbles()" in console for detailed info');
     });
 </script>
