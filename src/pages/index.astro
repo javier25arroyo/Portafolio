@@ -1,6 +1,7 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
 import Layout from '../layouts/Layout.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
@@ -21,29 +22,7 @@ import Layout from '../layouts/Layout.astro';
 		
 		<section id="projects" class="min-h-screen py-20 reveal">
 			<div class="container mx-auto px-6">
-				<div class="text-center mb-16">
-					<h2 class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-4">
-						My Projects
-					</h2>
-					<p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-						Showcase of my recent work and personal projects
-					</p>
-				</div>
-				<div class="text-center text-slate-600 dark:text-slate-400">
-					<div class="bg-white dark:bg-slate-800 rounded-2xl p-12 shadow-lg border border-slate-200 dark:border-slate-700">
-						<div class="w-16 h-16 mx-auto mb-6 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
-							<svg class="w-8 h-8 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
-							</svg>
-						</div>
-						<h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mb-3">
-							Coming Soon
-						</h3>
-						<p class="text-slate-600 dark:text-slate-400">
-							I'm currently working on some exciting projects. Stay tuned for updates!
-						</p>
-					</div>
-				</div>
+				<Projects />
 			</div>
 		</section>
 		
@@ -53,9 +32,6 @@ import Layout from '../layouts/Layout.astro';
 					<h2 class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-4">
 						Get In Touch
 					</h2>
-					<p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-						Let's connect and discuss opportunities for collaboration
-					</p>
 				</div>
 				<div class="max-w-4xl mx-auto">
 					<div class="grid md:grid-cols-2 gap-8">

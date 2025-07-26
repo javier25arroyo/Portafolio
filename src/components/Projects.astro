@@ -1,0 +1,346 @@
+---
+// Componente de proyectos destacados
+const projects = [
+  {
+    title: "Veterinaria Moka",
+    image: '/src/assets/img-projects/Captura de pantalla 2025-07-26 112847.png',
+    description: "A full-stack solution for a veterinary practice.",  
+    link: "https://github.com/javier25arroyo/Veterinaria-Moka.git"
+  },
+  {
+    title: "Lab Management System",
+    image: '/src/assets/img-projects/Captura de pantalla 2025-07-26 114002.png',
+    description: "Development of a Java Swing desktop application for user management and asset administration.",
+    link: "https://github.com/javier25arroyo/Lab1.git"
+  },
+  {
+    title: "CodeCrafters Gaming",
+    image: '/src/assets/img-projects/Captura de pantalla 2025-07-26 114137.png',
+    description: "Full-stack development (Angular and Spring Boot) of a video game application for seniors to help prevent cognitive decline.", 
+    link: "https://github.com/javier25arroyo/CodeCrafters-FrontEnd.git"
+  },
+  {
+    title: "Puzzle Game for Seniors",
+    image: '/src/assets/img-projects/Captura de pantalla 2025-07-26 115039.png',
+    description: "Development of a puzzle video game for seniors.",
+    link: "https://github.com/javier25arroyo/puzzle-game.git"
+  },
+  {
+    title: "CareConnect IoT System",
+    image: '/src/assets/img-projects/default-project.svg',
+    description: "Development of a physical server system for obstacle detection using an Ideaboard in MicroPython.",
+    link: "https://github.com/javier25arroyo/CareConnect.git"
+  },
+  // Agrega más proyectos aquí
+  {
+    title: "Oracle Tech Store DB",
+    image: '/src/assets/img-projects/oracle-database.svg',
+    description: "Database management project for a tech product sales store in Oracle Database.",
+    link: "https://github.com/javier25arroyo/Proyecto-programacion-de-bases-de-datos.git"
+  }
+];
+---
+
+<section class="projects-section">
+  <h2 class="projects-title">My Projects</h2>
+  <div class="projects-grid">
+    {projects.map(project => (
+      <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-card">
+        <div class="project-image-container">
+          <img src={project.image} alt={project.title} class="project-image" loading="lazy" />
+          <div class="project-overlay">
+            <div class="github-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </div>
+            <span class="view-project">Ver Proyecto</span>
+          </div>
+        </div>
+        <div class="project-info">
+          <h3 class="project-name">{project.title}</h3>
+          <p class="project-description">{project.description}</p>
+          <div class="project-cta">
+            <span class="cta-text">Ver en GitHub</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon">
+              <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+            </svg>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+.projects-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 3rem auto;
+  padding: 2rem 1rem;
+}
+.projects-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.project-card {
+  background: var(--bg-surface);
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px rgba(59,130,246,0.08);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 420px;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(59,130,246,0.2);
+  border-color: var(--color-primary);
+}
+
+.project-image-container {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-image[src*="default-project"], .project-image:not([src]) {
+  display: none;
+}
+
+.project-image-container:has(.project-image[src*="default-project"]),
+.project-image-container:has(.project-image:not([src])) {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+.project-image-container:has(.project-image[src*="default-project"])::before,
+.project-image-container:has(.project-image:not([src]))::before {
+  content: "🔧";
+  font-size: 3rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.06);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.github-icon {
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover .github-icon {
+  transform: scale(1.1);
+}
+
+.view-project {
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+.project-info {
+  padding: 1.2rem 1rem 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.project-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-name {
+  color: var(--color-secondary);
+}
+
+.project-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.project-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.project-card:hover .project-cta {
+  color: var(--color-secondary);
+  transform: translateX(4px);
+}
+
+.external-link-icon {
+  transition: transform 0.2s ease;
+}
+
+.project-card:hover .external-link-icon {
+  transform: rotate(45deg);
+}
+
+.cta-text {
+  position: relative;
+}
+
+.cta-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-secondary);
+  transition: width 0.3s ease;
+}
+
+.project-card:hover .cta-text::after {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 1.5rem 0.5rem;
+  }
+  .projects-title {
+    font-size: 1.8rem;
+  }
+  .projects-grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    max-width: 600px;
+  }
+  .project-card {
+    max-width: none;
+    height: auto;
+    min-height: 380px;
+  }
+  .project-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+  .view-project {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-section {
+    padding: 1rem 0.25rem;
+  }
+  .projects-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .project-card {
+    height: auto;
+    min-height: 350px;
+  }
+  .project-info {
+    padding: 1rem 0.75rem 1.25rem 0.75rem;
+  }
+  .project-name {
+    font-size: 1rem;
+  }
+  .project-description {
+    font-size: 0.9rem;
+  }
+  .project-cta {
+    font-size: 0.8rem;
+  }
+}
+
+/* Estilos especiales para mejor distribución */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 700px;
+  }
+  /* Con 6 proyectos, distribución perfecta de 3 filas x 2 columnas */
+}
+
+@media (min-width: 1025px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1000px;
+  }
+  /* Con 6 proyectos, distribución perfecta de 2 filas x 3 columnas */
+}
+</style>
