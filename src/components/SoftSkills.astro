@@ -1,0 +1,490 @@
+---
+// Soft Skills Component with Bubble Animation
+---
+
+<div class="soft-skills-container">
+    <div class="bubbles-container">
+        <div class="bubble" data-skill="Effective Communication">
+            <span>Effective Communication</span>
+        </div>
+        <div class="bubble" data-skill="Teamwork and Collaboration">
+            <span>Teamwork &amp; Collaboration</span>
+        </div>
+        <div class="bubble" data-skill="Problem-Solving">
+            <span>Problem-Solving</span>
+        </div>
+        <div class="bubble" data-skill="Critical and Analytical Thinking">
+            <span>Critical &amp; Analytical Thinking</span>
+        </div>
+        <div class="bubble" data-skill="Adaptability">
+            <span>Adaptability</span>
+        </div>
+        <div class="bubble" data-skill="Continuous Learning">
+            <span>Continuous Learning</span>
+        </div>
+        <div class="bubble" data-skill="Time Management">
+            <span>Time Management</span>
+        </div>
+        <div class="bubble" data-skill="Attention to Detail">
+            <span>Attention to Detail</span>
+        </div>
+        <div class="bubble" data-skill="Proactivity">
+            <span>Proactivity</span>
+        </div>
+        <div class="bubble" data-skill="Self-Management">
+            <span>Self-Management</span>
+        </div>
+    </div>
+</div>
+
+<style>
+    .soft-skills-container {
+        position: relative;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: linear-gradient(135deg, 
+            rgba(59, 130, 246, 0.08) 0%, 
+            rgba(139, 92, 246, 0.08) 25%,
+            rgba(16, 185, 129, 0.08) 50%,
+            rgba(34, 197, 94, 0.08) 75%,
+            rgba(236, 72, 153, 0.08) 100%);
+        border-radius: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .bubbles-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    .bubble {
+        position: absolute;
+        background: radial-gradient(ellipse at 32% 28%, 
+            rgba(255, 255, 255, 0.95) 0%, 
+            rgba(255, 255, 255, 0.85) 40%,
+            rgba(255, 255, 255, 0.75) 100%);
+        backdrop-filter: blur(20px);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-radius: 52% 48% 45% 55% / 58% 42% 65% 35%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.15),
+            0 4px 12px rgba(0, 0, 0, 0.1),
+            inset 0 2px 4px rgba(255, 255, 255, 0.8),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+        animation: bubbleFloat 8s ease-in-out infinite, bubbleSway 12s ease-in-out infinite, bubbleDeform 15s ease-in-out infinite;
+    }
+
+    .bubble::before {
+        content: '';
+        position: absolute;
+        top: 18%;
+        left: 22%;
+        width: 28%;
+        height: 22%;
+        background: radial-gradient(ellipse, 
+            rgba(255, 255, 255, 0.9) 0%, 
+            rgba(255, 255, 255, 0.3) 70%, 
+            transparent 100%);
+        border-radius: 60% 40% 45% 55% / 50% 70% 30% 50%;
+        filter: blur(1px);
+        z-index: 1;
+        animation: shimmer 10s ease-in-out infinite;
+    }
+
+    .bubble span {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #1e293b;
+        line-height: 1.3;
+        padding: 1rem;
+        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+        z-index: 2;
+        position: relative;
+        letter-spacing: 0.02em;
+        text-align: center;
+        display: block;
+        max-width: 90%;
+    }
+
+    /* Dark mode styles */
+    :global(.dark) .bubble {
+        background: radial-gradient(ellipse at 32% 28%, 
+            rgba(51, 65, 85, 0.95) 0%, 
+            rgba(30, 41, 59, 0.9) 40%,
+            rgba(15, 23, 42, 0.85) 100%);
+        border: 2px solid rgba(148, 163, 184, 0.3);
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.4),
+            0 4px 12px rgba(0, 0, 0, 0.3),
+            inset 0 2px 4px rgba(148, 163, 184, 0.2),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    :global(.dark) .bubble::before {
+        background: radial-gradient(ellipse, 
+            rgba(148, 163, 184, 0.4) 0%, 
+            rgba(148, 163, 184, 0.1) 70%, 
+            transparent 100%);
+    }
+
+    :global(.dark) .bubble span {
+        color: #f1f5f9;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Hover effects */
+    .bubble:hover {
+        transform: translateY(-12px) scale(1.08);
+        border-radius: 48% 52% 55% 45% / 42% 58% 35% 65%;
+        box-shadow: 
+            0 20px 50px rgba(0, 0, 0, 0.2),
+            0 8px 20px rgba(0, 0, 0, 0.15),
+            inset 0 2px 6px rgba(255, 255, 255, 0.9),
+            inset 0 -2px 6px rgba(0, 0, 0, 0.1);
+        background: radial-gradient(ellipse at 35% 25%, 
+            rgba(16, 185, 129, 0.2) 0%, 
+            rgba(34, 197, 94, 0.15) 40%,
+            rgba(255, 255, 255, 0.8) 100%);
+        animation-play-state: paused;
+    }
+
+    :global(.dark) .bubble:hover {
+        background: radial-gradient(ellipse at 35% 25%, 
+            rgba(16, 185, 129, 0.3) 0%, 
+            rgba(34, 197, 94, 0.25) 40%,
+            rgba(51, 65, 85, 0.9) 100%);
+        box-shadow: 
+            0 20px 50px rgba(0, 0, 0, 0.5),
+            0 8px 20px rgba(0, 0, 0, 0.4),
+            inset 0 2px 6px rgba(148, 163, 184, 0.3),
+            inset 0 -2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Advanced floating and swaying animations */
+    @keyframes bubbleFloat {
+        0%, 100% {
+            transform: translateY(0px) translateX(0px);
+        }
+        25% {
+            transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+            transform: translateY(-10px) translateX(-5px);
+        }
+        75% {
+            transform: translateY(-25px) translateX(-10px);
+        }
+    }
+
+    @keyframes bubbleSway {
+        0%, 100% {
+            transform: translateX(0px) rotate(0deg);
+        }
+        33% {
+            transform: translateX(15px) rotate(1deg);
+        }
+        66% {
+            transform: translateX(-15px) rotate(-1deg);
+        }
+    }
+
+    @keyframes bubbleDeform {
+        0%, 100% {
+            border-radius: 52% 48% 45% 55% / 58% 42% 65% 35%;
+        }
+        25% {
+            border-radius: 48% 52% 55% 45% / 42% 58% 35% 65%;
+        }
+        50% {
+            border-radius: 55% 45% 40% 60% / 65% 35% 70% 30%;
+        }
+        75% {
+            border-radius: 45% 55% 60% 40% / 35% 65% 30% 70%;
+        }
+    }
+
+    @keyframes shimmer {
+        0%, 100% {
+            opacity: 0.9;
+            transform: translateX(0px) translateY(0px);
+        }
+        50% {
+            opacity: 0.6;
+            transform: translateX(2px) translateY(-1px);
+        }
+    }
+
+    /* Individual bubble positioning and sizing */
+    .bubble:nth-child(1) {
+        width: 160px;
+        height: 160px;
+        top: 15%;
+        left: 8%;
+        border-radius: 52% 48% 45% 55% / 58% 42% 65% 35%;
+        animation-delay: 0s, 0s, 0s;
+        animation-duration: 7s, 11s, 16s;
+    }
+
+    .bubble:nth-child(2) {
+        width: 140px;
+        height: 140px;
+        top: 45%;
+        left: 25%;
+        border-radius: 48% 52% 55% 45% / 42% 58% 35% 65%;
+        animation-delay: 1s, 2s, 3s;
+        animation-duration: 9s, 13s, 18s;
+    }
+
+    .bubble:nth-child(3) {
+        width: 130px;
+        height: 130px;
+        top: 20%;
+        left: 45%;
+        border-radius: 55% 45% 40% 60% / 65% 35% 70% 30%;
+        animation-delay: 2s, 1s, 5s;
+        animation-duration: 8s, 10s, 14s;
+    }
+
+    .bubble:nth-child(4) {
+        width: 170px;
+        height: 170px;
+        top: 60%;
+        left: 65%;
+        border-radius: 45% 55% 60% 40% / 35% 65% 30% 70%;
+        animation-delay: 0.5s, 3s, 2s;
+        animation-duration: 10s, 14s, 20s;
+    }
+
+    .bubble:nth-child(5) {
+        width: 145px;
+        height: 145px;
+        top: 10%;
+        left: 72%;
+        border-radius: 60% 40% 35% 65% / 50% 50% 75% 25%;
+        animation-delay: 3s, 1.5s, 7s;
+        animation-duration: 6s, 12s, 15s;
+    }
+
+    .bubble:nth-child(6) {
+        width: 155px;
+        height: 155px;
+        top: 65%;
+        left: 15%;
+        border-radius: 40% 60% 65% 35% / 70% 30% 25% 75%;
+        animation-delay: 1.5s, 4s, 4s;
+        animation-duration: 11s, 9s, 17s;
+    }
+
+    .bubble:nth-child(7) {
+        width: 125px;
+        height: 125px;
+        top: 35%;
+        left: 85%;
+        border-radius: 58% 42% 38% 62% / 45% 55% 68% 32%;
+        animation-delay: 4s, 0.5s, 6s;
+        animation-duration: 7s, 15s, 13s;
+    }
+
+    .bubble:nth-child(8) {
+        width: 165px;
+        height: 165px;
+        top: 75%;
+        left: 45%;
+        border-radius: 42% 58% 62% 38% / 55% 45% 32% 68%;
+        animation-delay: 2.5s, 2.5s, 8s;
+        animation-duration: 9s, 11s, 19s;
+    }
+
+    .bubble:nth-child(9) {
+        width: 135px;
+        height: 135px;
+        top: 50%;
+        left: 5%;
+        border-radius: 65% 35% 30% 70% / 40% 60% 80% 20%;
+        animation-delay: 5s, 3.5s, 1s;
+        animation-duration: 8s, 13s, 16s;
+    }
+
+    .bubble:nth-child(10) {
+        width: 150px;
+        height: 150px;
+        top: 25%;
+        left: 25%;
+        border-radius: 35% 65% 70% 30% / 60% 40% 20% 80%;
+        animation-delay: 3.5s, 5s, 9s;
+        animation-duration: 10s, 12s, 21s;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .soft-skills-container {
+            min-height: 500px;
+        }
+
+        .bubbles-container {
+            padding: 1rem;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .bubble {
+            position: relative !important;
+            width: 120px !important;
+            height: 120px !important;
+            top: auto !important;
+            left: auto !important;
+            margin: 0.5rem;
+        }
+
+        .bubble span {
+            font-size: 0.75rem;
+            padding: 0.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .bubbles-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .bubble {
+            width: 100px !important;
+            height: 100px !important;
+        }
+
+        .bubble span {
+            font-size: 0.65rem;
+            padding: 0.25rem;
+        }
+    }
+
+    /* Enhanced entrance animation */
+    @keyframes bubblePop {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+            border-radius: 50%;
+        }
+        60% {
+            transform: scale(1.1);
+            opacity: 0.8;
+            border-radius: 45% 55% 55% 45% / 60% 40% 40% 60%;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .bubble {
+        animation: bubblePop 1s ease-out, bubbleFloat 8s ease-in-out infinite 1s, bubbleSway 12s ease-in-out infinite 1s, bubbleDeform 15s ease-in-out infinite 1s;
+    }
+</style>
+
+<script>
+    // Add interactive hover effects
+    document.addEventListener('DOMContentLoaded', function() {
+        const bubbles = document.querySelectorAll('.bubble') as NodeListOf<HTMLElement>;
+        
+        bubbles.forEach((bubble, index) => {
+            // Add staggered entrance animation
+            bubble.style.animationDelay = `${index * 0.15}s`;
+            
+            // Add click interaction
+            bubble.addEventListener('click', function(this: HTMLElement) {
+                const skill = this.dataset.skill;
+                
+                // Create a ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    background: rgba(16, 185, 129, 0.4);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: ripple 0.8s ease-out;
+                    pointer-events: none;
+                    z-index: 1;
+                `;
+                
+                this.appendChild(ripple);
+                
+                // Remove ripple after animation
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 800);
+                
+                // Add a scaling pulse effect
+                this.style.animation = 'bubblePulse 0.4s ease-out';
+                
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 400);
+                
+                // Optional: Show skill details (can be expanded)
+                console.log(`Skill selected: ${skill}`);
+            });
+
+            // Add random gentle movement on mouse enter
+            bubble.addEventListener('mouseenter', function(this: HTMLElement) {
+                const randomX = (Math.random() - 0.5) * 10;
+                const randomY = (Math.random() - 0.5) * 10;
+                this.style.transform = `translateY(-12px) translateX(${randomX}px) scale(1.08)`;
+            });
+
+            bubble.addEventListener('mouseleave', function(this: HTMLElement) {
+                this.style.transform = '';
+            });
+        });
+    });
+
+    // Add dynamic CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes ripple {
+            to {
+                width: 250px;
+                height: 250px;
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubblePulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+            100% {
+                transform: scale(1.08);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
