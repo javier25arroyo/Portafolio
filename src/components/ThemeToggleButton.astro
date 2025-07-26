@@ -1,329 +1,291 @@
 ---
 /**
- * ThemeToggleButton.astro
- * 
- * Componente de alternancia de tema (claro/oscuro) con experiencia de usuario premium
+ * ThemeToggleButton.astro - Versión simplificada y funcional
  * 
  * Características:
- * - Animaciones fluidas en la transición entre temas
- * - Efecto ripple en la interacción
- * - Feedback háptico (vibración) en dispositivos que lo soportan
- * - Compatibilidad con teclado y navegación por teclado
- * - Soporte para lectores de pantalla con notificaciones de cambio de tema
- * - Optimizado para preferencias de reducción de movimiento
- * - Diseño adaptable y estético
+ * - Toggle funcional con slider animado
+ * - Cambio de iconos suave
+ * - Compatibilidad con el sistema de tema global
+ * - Accesibilidad básica
  */
 ---
-<!-- Componente ThemeToggleButton - Versión simplificada para depuración -->
+
 <div class="theme-toggle-container">
-  <style>
-    .theme-toggle-btn {
-      background-color: #f1f5f9;
-      border-radius: 9999px;
-      cursor: pointer;
-      display: flex;
-      height: 2.5rem;
-      overflow: hidden;
-      position: relative;
-      transition: all 0.3s ease;
-      width: 5rem;
-    }
+  <input 
+    type="checkbox" 
+    id="theme-toggle" 
+    class="theme-toggle-input" 
+    aria-label="Cambiar entre tema claro y oscuro"
+  />
+  <label for="theme-toggle" class="theme-toggle-btn">
+    <!-- Slider que se mueve -->
+    <div class="toggle-slider"></div>
     
-    .dark .theme-toggle-btn {
-      background-color: #1e293b;
-    }
+    <!-- Icono del sol (tema claro) -->
+    <div class="toggle-icon sun-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="3"/>
+        <line x1="12" y1="21" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="3" y2="12"/>
+        <line x1="21" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+    </div>
     
-    .toggle-slider {
-      background-color: white;
-      border-radius: 50%;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      height: 2rem;
-      left: 0.25rem;
-      position: absolute;
-      top: 0.25rem;
-      transition: transform 0.3s ease;
-      width: 2rem;
-    }
-    
-    .dark .toggle-slider {
-      background-color: #334155;
-      transform: translateX(2.5rem);
-    }
-    
-    .toggle-icon {
-      align-items: center;
-      color: #334155;
-      display: flex;
-      font-size: 1.25rem;
-      height: 100%;
-      justify-content: center;
-      position: absolute;
-      top: 0;
-      transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
-      /* Se añade transición de transform */
-      z-index: 2;
-    }
-    .toggle-icon-bg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      background: rgba(51, 65, 85, 0.12); /* fondo oscuro sutil para contraste */
-      z-index: 0;
-      pointer-events: none;
-      transition: background 0.3s;
-    }
-    .dark .toggle-icon-bg {
-      background: rgba(226, 232, 240, 0.18); /* fondo claro sutil en modo oscuro */
-    }
-    .toggle-icon img {
-      width: 1.5rem;
-      height: 1.5rem;
-      display: block;
-      position: relative;
-      z-index: 1;
-      transition: transform 0.7s cubic-bezier(.4,0,.2,1), opacity 0.5s cubic-bezier(.4,0,.2,1);
-      will-change: transform, opacity;
-    }
-    .toggle-icon.sun {
-      opacity: 1;
-      right: 0.25rem;
-      /* Estado inicial: sin rotación */
-    }
-    
-    .toggle-icon.moon {
-      left: 0.25rem;
-      opacity: 0;
-      /* Estado inicial: sin rotación */
-    }
-    
-    /* Animación al activar modo oscuro */
-    .theme-toggle-btn.theme-animating .toggle-icon.sun img {
-      transform: rotate(180deg) scale(0.7);
-      opacity: 0;
-    }
-    .theme-toggle-btn.theme-animating .toggle-icon.sun {
-      opacity: 0;
-    }
-    .theme-toggle-btn.theme-animating .toggle-icon.moon img {
-      transform: rotate(-180deg) scale(1);
-      opacity: 1;
-    }
-    .theme-toggle-btn.theme-animating .toggle-icon.moon {
-      opacity: 1;
-    }
-    /* Estado final en modo oscuro */
-    .dark .toggle-icon.sun {
-      opacity: 0;
-    }
-    .dark .toggle-icon.moon {
-      color: #e2e8f0;
-      opacity: 1;
-    }
-    /* Estado final: luna visible, sol oculto */
-    .dark .toggle-icon.sun img {
-      opacity: 0;
-      transform: rotate(180deg) scale(0.7);
-    }
-    .dark .toggle-icon.moon img {
-      opacity: 1;
-      transform: rotate(0deg) scale(1);
-    }
-    /* Estado inicial: sol visible, luna oculta */
-    .toggle-icon.sun img {
-      opacity: 1;
-      transform: rotate(0deg) scale(1);
-    }
-    .toggle-icon.moon img {
-      opacity: 0;
-      transform: rotate(-180deg) scale(0.7);
-    }
-    /* Para accesibilidad */
-    .theme-toggle-input {
-      height: 1px;
-      left: -9999px;
-      position: absolute;
-      width: 1px;
-    }
-    
-    .theme-toggle-input:focus + .theme-toggle-btn {
-      outline: 2px solid #3b82f6;
-    }
-    
-    .sr-only {
-      border: 0;
-      clip: rect(0, 0, 0, 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      white-space: nowrap;
-      width: 1px;
-    }
-  </style>
-
-  <div class="theme-toggle-wrapper">
-    <input 
-      type="checkbox" 
-      id="theme-toggle" 
-      class="theme-toggle-input" 
-      aria-label="Cambiar tema" 
-    />
-    <label for="theme-toggle" class="theme-toggle-btn">
-      <div class="toggle-slider"></div>
-      <div class="toggle-icon moon">
-        <span class="toggle-icon-bg"></span>
-        <img src="/src/assets/icons/dark_mode.svg" alt="Modo oscuro" />
-      </div>
-      <div class="toggle-icon sun">
-        <span class="toggle-icon-bg"></span>
-        <img src="/src/assets/icons/light_mode.svg" alt="Modo claro" />
-      </div>
-    </label>
-    <div id="theme-status" class="sr-only" role="status" aria-live="polite"></div>
-  </div>
+    <!-- Icono de la luna (tema oscuro) -->
+    <div class="toggle-icon moon-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </div>
+  </label>
+  
+  <!-- Estado para accesibilidad -->
+  <div id="theme-status" class="sr-only" role="status" aria-live="polite"></div>
 </div>
+
+<style>
+  .theme-toggle-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Input oculto */
+  .theme-toggle-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Botón principal */
+  .theme-toggle-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 3.5rem;
+    height: 1.75rem;
+    background: #e2e8f0;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  /* Estado oscuro del botón */
+  .dark .theme-toggle-btn {
+    background: #334155;
+  }
+
+  /* Focus visible */
+  .theme-toggle-input:focus + .theme-toggle-btn {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  /* Hover */
+  .theme-toggle-btn:hover {
+    transform: scale(1.05);
+  }
+
+  /* Slider que se mueve */
+  .toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+  }
+
+  /* Mover slider cuando está checked */
+  .theme-toggle-input:checked + .theme-toggle-btn .toggle-slider {
+    transform: translateX(1.75rem);
+    background: #1e293b;
+  }
+
+  /* Iconos base */
+  .toggle-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .toggle-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 2;
+  }
+
+  /* Posición del icono del sol */
+  .sun-icon {
+    left: 0.375rem;
+    color: #f59e0b;
+    opacity: 1;
+  }
+
+  /* Posición del icono de la luna */
+  .moon-icon {
+    right: 0.375rem;
+    color: #6b7280;
+    opacity: 0;
+  }
+
+  /* Estados cuando está checked (tema oscuro) */
+  .theme-toggle-input:checked + .theme-toggle-btn .sun-icon {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+
+  .theme-toggle-input:checked + .theme-toggle-btn .moon-icon {
+    opacity: 1;
+    color: #e2e8f0;
+    transform: translateY(-50%) scale(1);
+  }
+
+  /* Utilidad para accesibilidad */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Animación suave para modo reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .theme-toggle-btn,
+    .toggle-slider,
+    .toggle-icon {
+      transition-duration: 0.1s;
+    }
+  }
+</style>
+
 <script>
-  // Definición global para TypeScript
-  declare global {
-    interface Window {
-      toggleThemeWithAnimation?: () => void;
+  console.log('🔧 Inicializando Theme Toggle simplificado...');
+
+  function initializeThemeToggle() {
+    const toggleInput = document.getElementById('theme-toggle') as HTMLInputElement;
+    const themeStatus = document.getElementById('theme-status') as HTMLElement;
+    
+    if (!toggleInput) {
+      console.error('❌ Theme toggle input no encontrado');
+      return;
+    }
+
+    // Configurar estado inicial basado en el tema actual
+    updateToggleState();
+
+    // Event listener para el cambio
+    toggleInput.addEventListener('change', handleThemeChange);
+
+    // Observar cambios en el tema desde otras fuentes
+    observeThemeChanges();
+
+    console.log('✅ Theme Toggle inicializado correctamente');
+  }
+
+  function updateToggleState() {
+    const toggleInput = document.getElementById('theme-toggle') as HTMLInputElement;
+    const themeStatus = document.getElementById('theme-status') as HTMLElement;
+    
+    if (!toggleInput) return;
+
+    const isDark = document.documentElement.classList.contains('dark');
+    toggleInput.checked = isDark;
+    
+    if (themeStatus) {
+      themeStatus.textContent = isDark 
+        ? 'Tema oscuro activado' 
+        : 'Tema claro activado';
+    }
+
+    console.log(`🎨 Estado del toggle actualizado: ${isDark ? 'oscuro' : 'claro'}`);
+  }
+
+  function handleThemeChange() {
+    const toggleInput = document.getElementById('theme-toggle') as HTMLInputElement;
+    
+    if (!toggleInput) return;
+
+    const willBeDark = toggleInput.checked;
+    console.log(`🔄 Cambiando tema a: ${willBeDark ? 'oscuro' : 'claro'}`);
+
+    // Usar la función global si está disponible
+    if (typeof window.toggleThemeWithAnimation === 'function') {
+      console.log('🎭 Usando función global de animación');
+      window.toggleThemeWithAnimation();
+    } else {
+      // Fallback directo
+      console.log('🔄 Usando cambio directo de tema');
+      const html = document.documentElement;
+      
+      if (willBeDark) {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      }
+    }
+
+    // Actualizar estado de accesibilidad
+    const themeStatus = document.getElementById('theme-status');
+    if (themeStatus) {
+      themeStatus.textContent = willBeDark 
+        ? 'Tema oscuro activado' 
+        : 'Tema claro activado';
+    }
+
+    // Feedback háptico opcional
+    if ('vibrate' in navigator) {
+      navigator.vibrate(10);
     }
   }
 
-  // Función simplificada para inicializar el botón de tema
-  function setupThemeToggle() {
-    try {
-      console.log("Inicializando botón de tema...");
-      const toggleInput = document.getElementById('theme-toggle') as HTMLInputElement;
-      const themeStatus = document.getElementById('theme-status');
-      
-      if (!toggleInput) {
-        console.error("No se encontró el input del toggle de tema");
-        return;
-      }
-      
-      // Configurar estado inicial según el tema actual
-      const isDarkMode = document.documentElement.classList.contains('dark');
-      toggleInput.checked = isDarkMode;
-      
-      if (themeStatus) {
-        themeStatus.textContent = isDarkMode 
-          ? "Tema oscuro activado" 
-          : "Tema claro activado";
-      }
-      
-      // Evento de cambio en el toggle
-      toggleInput.addEventListener('change', () => {
-        try {
-          // Animación de iconos
-          const isDark = !document.documentElement.classList.contains('dark');
-          animateThemeIcons(isDark);
-
-          // Intentar usar la función global de animación si está disponible
-          if (typeof window.toggleThemeWithAnimation === 'function') {
-            console.log("Usando función global de animación de tema");
-            window.toggleThemeWithAnimation();
-          } else {
-            // Fallback básico para cambiar tema
-            console.log("Usando fallback para cambiar tema");
-            const html = document.documentElement;
-            const newIsDark = !html.classList.contains('dark');
-            
-            if (newIsDark) {
-              html.classList.add('dark');
-              localStorage.setItem('theme', 'dark');
-            } else {
-              html.classList.remove('dark');
-              localStorage.setItem('theme', 'light');
-            }
-            
-            // Actualizar estado para accesibilidad
-            if (themeStatus) {
-              themeStatus.textContent = newIsDark 
-                ? "Tema oscuro activado" 
-                : "Tema claro activado";
-            }
-          }
-        } catch (error) {
-          console.error("Error al cambiar el tema:", error);
+  function observeThemeChanges() {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          console.log('🔍 Cambio de tema detectado desde fuente externa');
+          updateToggleState();
         }
       });
-      
-      // Soporte de accesibilidad para teclado
-      toggleInput.addEventListener('keydown', (e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          toggleInput.click();
-        }
-      });
-      
-      // Observar cambios en el tema para actualizar el toggle
-      const observer = new MutationObserver((mutations) => {
-        for (const mutation of mutations) {
-          if (mutation.attributeName === 'class') {
-            const isDark = document.documentElement.classList.contains('dark');
-            toggleInput.checked = isDark;
-            
-            if (themeStatus) {
-              themeStatus.textContent = isDark 
-                ? "Tema oscuro activado" 
-                : "Tema claro activado";
-            }
-          }
-        }
-      });
-      
-      observer.observe(document.documentElement, { 
-        attributes: true, 
-        attributeFilter: ['class'] 
-      });
-      
-      console.log("Botón de tema inicializado correctamente");
-    } catch (error) {
-      console.error("Error al configurar el botón de tema:", error);
-    }
-  }
-
-  // Añadir animación suave al cambiar el tema
-  function animateThemeIcons(isDarkMode) {
-    const btn = document.querySelector('.theme-toggle-btn');
-    if (!btn) return;
-    btn.classList.add('theme-animating');
-    setTimeout(() => {
-      btn.classList.remove('theme-animating');
-    }, 700); // Duración igual a la transición CSS
+    });
+    
+    observer.observe(document.documentElement, { 
+      attributes: true, 
+      attributeFilter: ['class'] 
+    });
   }
 
   // Inicializar cuando el DOM esté listo
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupThemeToggle);
+    document.addEventListener('DOMContentLoaded', initializeThemeToggle);
   } else {
-    // Si ya está cargado, intentar inicializar
-    window.setTimeout(setupThemeToggle, 100);
+    initializeThemeToggle();
   }
 </script>
-
-<!--
-  SOLUCIÓN DE PROBLEMAS Y DEPURACIÓN:
-  
-  Si tienes problemas con la visualización del botón de tema:
-  
-  1. Verifica la consola del navegador para mensajes de error.
-  
-  2. Asegúrate de que el componente Layout.astro importa correctamente este componente:
-     import ThemeToggleButton from '../components/ThemeToggleButton.astro';
-  
-  3. Si tienes problemas con el cambio de tema, verifica que la función toggleThemeWithAnimation
-     está correctamente definida y expuesta en Layout.astro:
-     window.toggleThemeWithAnimation = toggleThemeWithAnimation;
-     
-  4. Esta es una versión simplificada para debugging. Una vez que funcione, puedes volver
-     a implementar características avanzadas de UX/UI como los efectos ripple.
-  
-  5. El botón usa CSS puro en lugar de Tailwind para facilitar la depuración.
--->
