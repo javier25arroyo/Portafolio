@@ -94,24 +94,68 @@
                    bubbleDeform 15s ease-in-out infinite;
         transform-style: preserve-3d;
         will-change: transform;
+        /* Auto-sizing properties */
+        min-width: 140px;
+        min-height: 140px;
+        max-width: 220px;
+        max-height: 220px;
+        width: auto;
+        height: auto;
+        padding: 1.5rem;
+    }
+
+    /* Content-based sizing for specific bubbles */
+    .bubble[data-skill="Teamwork"],
+    .bubble[data-skill="Collaboration"],
+    .bubble[data-skill="Adaptability"],
+    .bubble[data-skill="Proactivity"] {
+        min-width: 150px;
+        min-height: 150px;
+        padding: 1.2rem;
+    }
+
+    .bubble[data-skill="Problem-Solving"],
+    .bubble[data-skill="Time Management"] {
+        min-width: 170px;
+        min-height: 170px;
+        padding: 1.3rem;
+    }
+
+    .bubble[data-skill="Effective Communication"],
+    .bubble[data-skill="Critical Thinking"],
+    .bubble[data-skill="Continuous Learning"],
+    .bubble[data-skill="Attention to Detail"] {
+        min-width: 190px;
+        min-height: 190px;
+        padding: 1.4rem;
     }
 
     .bubble span {
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 700;
         color: #1e293b;
-        line-height: 1.3;
-        padding: 1.2rem;
+        line-height: 1.2;
         text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
         z-index: 2;
         position: relative;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.02em;
         text-align: center;
         display: block;
-        max-width: 85%;
         word-wrap: break-word;
         hyphens: auto;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+        overflow: visible;
+    }
+
+    /* Adjust font size for longer content */
+    .bubble[data-skill="Effective Communication"] span,
+    .bubble[data-skill="Critical Thinking"] span,
+    .bubble[data-skill="Continuous Learning"] span,
+    .bubble[data-skill="Attention to Detail"] span {
+        font-size: 0.85rem;
+        white-space: normal;
+        line-height: 1.1;
     }
 
     /* Dark mode styles */
@@ -186,10 +230,8 @@
         }
     }
 
-    /* Individual bubble positioning */
+    /* Individual bubble positioning - now with dynamic sizing */
     .bubble:nth-child(1) {
-        width: 180px;
-        height: 180px;
         top: 12%;
         left: 6%;
         animation-delay: 0s;
@@ -197,8 +239,6 @@
     }
 
     .bubble:nth-child(2) {
-        width: 165px;
-        height: 165px;
         top: 48%;
         left: 22%;
         animation-delay: 1.5s;
@@ -206,8 +246,6 @@
     }
 
     .bubble:nth-child(3) {
-        width: 155px;
-        height: 155px;
         top: 18%;
         left: 42%;
         animation-delay: 3s;
@@ -215,8 +253,6 @@
     }
 
     .bubble:nth-child(4) {
-        width: 190px;
-        height: 190px;
         top: 62%;
         left: 62%;
         animation-delay: 0.8s;
@@ -224,8 +260,6 @@
     }
 
     .bubble:nth-child(5) {
-        width: 170px;
-        height: 170px;
         top: 8%;
         left: 70%;
         animation-delay: 4.2s;
@@ -233,8 +267,6 @@
     }
 
     .bubble:nth-child(6) {
-        width: 175px;
-        height: 175px;
         top: 67%;
         left: 12%;
         animation-delay: 2s;
@@ -242,8 +274,6 @@
     }
 
     .bubble:nth-child(7) {
-        width: 150px;
-        height: 150px;
         top: 32%;
         left: 83%;
         animation-delay: 5.8s;
@@ -251,8 +281,6 @@
     }
 
     .bubble:nth-child(8) {
-        width: 185px;
-        height: 185px;
         top: 77%;
         left: 42%;
         animation-delay: 3.5s;
@@ -260,8 +288,6 @@
     }
 
     .bubble:nth-child(9) {
-        width: 160px;
-        height: 160px;
         top: 52%;
         left: 3%;
         animation-delay: 6.2s;
@@ -269,8 +295,6 @@
     }
 
     .bubble:nth-child(10) {
-        width: 175px;
-        height: 175px;
         top: 22%;
         left: 22%;
         animation-delay: 4.8s;
@@ -295,16 +319,27 @@
 
         .bubble {
             position: relative !important;
-            width: 140px !important;
-            height: 140px !important;
+            min-width: 120px !important;
+            min-height: 120px !important;
+            max-width: 160px !important;
+            max-height: 160px !important;
+            width: auto !important;
+            height: auto !important;
             top: auto !important;
             left: auto !important;
             margin: 0.5rem;
+            padding: 0.8rem !important;
         }
 
         .bubble span {
-            font-size: 0.85rem;
-            padding: 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .bubble[data-skill="Effective Communication"] span,
+        .bubble[data-skill="Critical Thinking"] span,
+        .bubble[data-skill="Continuous Learning"] span,
+        .bubble[data-skill="Attention to Detail"] span {
+            font-size: 0.75rem;
         }
     }
 
@@ -315,13 +350,22 @@
         }
 
         .bubble {
-            width: 120px !important;
-            height: 120px !important;
+            min-width: 100px !important;
+            min-height: 100px !important;
+            max-width: 140px !important;
+            max-height: 140px !important;
+            padding: 0.6rem !important;
         }
 
         .bubble span {
-            font-size: 0.75rem;
-            padding: 0.5rem;
+            font-size: 0.7rem;
+        }
+
+        .bubble[data-skill="Effective Communication"] span,
+        .bubble[data-skill="Critical Thinking"] span,
+        .bubble[data-skill="Continuous Learning"] span,
+        .bubble[data-skill="Attention to Detail"] span {
+            font-size: 0.65rem;
         }
     }
 </style>
