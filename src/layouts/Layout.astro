@@ -1,6 +1,9 @@
 ---
 import ThemeToggleButton from '../components/ThemeToggleButton.astro';
+import Navigation from '../components/Navigation.astro';
+import UXEnhancements from '../components/UXEnhancements.astro';
 import '../styles/global.css';
+import '../styles/shared.css';
 ---
 <!doctype html>
 <html lang="en" class="font-sans">
@@ -140,39 +143,14 @@ import '../styles/global.css';
     <!-- Theme Transition Overlay -->
     <div id="theme-transition-overlay" class="theme-transition-overlay"></div>
     
-    <!-- Header mejorado con navbar y theme toggle -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/10 dark:bg-slate-800/10 backdrop-blur-md border-b border-white/20 dark:border-slate-700/50">
-      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-center relative">
-        <!-- Navbar centrado -->
-        <nav class="flex items-center space-x-8">
-          <a href="#home" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
-            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
-            Home
-          </a>
-          <a href="#about" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
-            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
-            About
-          </a>
-          <a href="#projects" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
-            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
-            Projects
-          </a>
-          <a href="#technical-skills" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
-            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
-            Skills
-          </a>
-          <a href="#contact" class="nav-link group relative flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 hover:bg-green-500/20 hover:text-green-400 text-slate-800 dark:text-slate-100 font-medium">
-            <span class="glowing-dot w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg shadow-green-400/50"></span>
-            Contact
-          </a>
-        </nav>
-        
-        <!-- Theme toggle posicionado absolutamente a la derecha -->
-        <div class="absolute right-0 bg-white/10 dark:bg-slate-800/30 backdrop-blur-md rounded-2xl p-2 border border-white/20 dark:border-slate-700/50 shadow-lg">
-          <ThemeToggleButton />
-        </div>
+    <!-- Header con navegación y theme toggle -->
+    <div class="relative">
+      <Navigation />
+      <!-- Theme toggle posicionado absolutamente -->
+      <div class="fixed top-4 right-6 z-50 glass rounded-2xl p-2 shadow-lg">
+        <ThemeToggleButton />
       </div>
-    </header>
+    </div>
     
     <!-- Loading indicator -->
     <div id="loading-indicator" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 bg-blue-500/10 backdrop-blur-md border border-blue-500/20 rounded-full px-4 py-2 text-blue-400 text-sm font-medium opacity-0 transition-opacity duration-300">
@@ -185,24 +163,10 @@ import '../styles/global.css';
 
     <main class="min-h-screen pt-20">
       <slot />
-
-      <!-- Soft Skills dentro de la sección de Technical Skills -->
-      <section id="soft-skills" class="max-w-6xl mx-auto mt-10 mb-12 px-6">
-        <h3 class="text-xl md:text-2xl font-semibold text-green-400 mb-6 tracking-tight text-center">Soft</h3>
-        <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-          <li class="soft-skill-item">Effective Communication</li>
-          <li class="soft-skill-item">Teamwork and Collaboration</li>
-          <li class="soft-skill-item">Problem-Solving</li>
-          <li class="soft-skill-item">Critical and Analytical Thinking</li>
-          <li class="soft-skill-item">Adaptability</li>
-          <li class="soft-skill-item">Continuous Learning</li>
-          <li class="soft-skill-item">Time Management</li>
-          <li class="soft-skill-item">Attention to Detail</li>
-          <li class="soft-skill-item">Proactivity</li>
-          <li class="soft-skill-item">Self-Management</li>
-        </ul>
-      </section>
-    </main>
+    <footer class="bg-slate-900 dark:bg-slate-900 text-slate-100 dark:text-slate-200 py-8">
+      <div class="container mx-auto text-center">
+        <p class="text-sm">© 2023 Javier Arroyo. All rights reserved.</p>
+      </div>
 
     <style>
       #soft-skills {
@@ -431,7 +395,7 @@ import '../styles/global.css';
       }
 
       // Optimización de rendimiento: Debounce para resize events
-      let resizeTimeout;
+      let resizeTimeout: NodeJS.Timeout;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
@@ -439,5 +403,8 @@ import '../styles/global.css';
         }, 250);
       });
     </script>
+    
+    <!-- UX Enhancements -->
+    <UXEnhancements />
   </body>
 </html>

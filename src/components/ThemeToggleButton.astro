@@ -59,29 +59,88 @@
       justify-content: center;
       position: absolute;
       top: 0;
-      transition: opacity 0.3s ease;
-      width: 2rem;
+      transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+      /* Se añade transición de transform */
+      z-index: 2;
     }
-    
+    .toggle-icon-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: rgba(51, 65, 85, 0.12); /* fondo oscuro sutil para contraste */
+      z-index: 0;
+      pointer-events: none;
+      transition: background 0.3s;
+    }
+    .dark .toggle-icon-bg {
+      background: rgba(226, 232, 240, 0.18); /* fondo claro sutil en modo oscuro */
+    }
+    .toggle-icon img {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: block;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.7s cubic-bezier(.4,0,.2,1), opacity 0.5s cubic-bezier(.4,0,.2,1);
+      will-change: transform, opacity;
+    }
     .toggle-icon.sun {
       opacity: 1;
       right: 0.25rem;
+      /* Estado inicial: sin rotación */
     }
     
     .toggle-icon.moon {
       left: 0.25rem;
       opacity: 0;
+      /* Estado inicial: sin rotación */
     }
     
+    /* Animación al activar modo oscuro */
+    .theme-toggle-btn.theme-animating .toggle-icon.sun img {
+      transform: rotate(180deg) scale(0.7);
+      opacity: 0;
+    }
+    .theme-toggle-btn.theme-animating .toggle-icon.sun {
+      opacity: 0;
+    }
+    .theme-toggle-btn.theme-animating .toggle-icon.moon img {
+      transform: rotate(-180deg) scale(1);
+      opacity: 1;
+    }
+    .theme-toggle-btn.theme-animating .toggle-icon.moon {
+      opacity: 1;
+    }
+    /* Estado final en modo oscuro */
     .dark .toggle-icon.sun {
       opacity: 0;
     }
-    
     .dark .toggle-icon.moon {
       color: #e2e8f0;
       opacity: 1;
     }
-    
+    /* Estado final: luna visible, sol oculto */
+    .dark .toggle-icon.sun img {
+      opacity: 0;
+      transform: rotate(180deg) scale(0.7);
+    }
+    .dark .toggle-icon.moon img {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+    /* Estado inicial: sol visible, luna oculta */
+    .toggle-icon.sun img {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+    .toggle-icon.moon img {
+      opacity: 0;
+      transform: rotate(-180deg) scale(0.7);
+    }
     /* Para accesibilidad */
     .theme-toggle-input {
       height: 1px;
@@ -116,13 +175,18 @@
     />
     <label for="theme-toggle" class="theme-toggle-btn">
       <div class="toggle-slider"></div>
-      <div class="toggle-icon moon">🌙</div>
-      <div class="toggle-icon sun">☀️</div>
+      <div class="toggle-icon moon">
+        <span class="toggle-icon-bg"></span>
+        <img src="/src/assets/icons/dark_mode.svg" alt="Modo oscuro" />
+      </div>
+      <div class="toggle-icon sun">
+        <span class="toggle-icon-bg"></span>
+        <img src="/src/assets/icons/light_mode.svg" alt="Modo claro" />
+      </div>
     </label>
     <div id="theme-status" class="sr-only" role="status" aria-live="polite"></div>
   </div>
 </div>
-
 <script>
   // Definición global para TypeScript
   declare global {
@@ -156,6 +220,10 @@
       // Evento de cambio en el toggle
       toggleInput.addEventListener('change', () => {
         try {
+          // Animación de iconos
+          const isDark = !document.documentElement.classList.contains('dark');
+          animateThemeIcons(isDark);
+
           // Intentar usar la función global de animación si está disponible
           if (typeof window.toggleThemeWithAnimation === 'function') {
             console.log("Usando función global de animación de tema");
@@ -219,6 +287,16 @@
     } catch (error) {
       console.error("Error al configurar el botón de tema:", error);
     }
+  }
+
+  // Añadir animación suave al cambiar el tema
+  function animateThemeIcons(isDarkMode) {
+    const btn = document.querySelector('.theme-toggle-btn');
+    if (!btn) return;
+    btn.classList.add('theme-animating');
+    setTimeout(() => {
+      btn.classList.remove('theme-animating');
+    }, 700); // Duración igual a la transición CSS
   }
 
   // Inicializar cuando el DOM esté listo

@@ -1,12 +1,31 @@
 ---
 import TechnicalSkills from './TechnicalSkills.astro';
 import SkillsRadial from './SkillsRadial.astro';
+
 ---
 
 <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-center mb-16 text-slate-800 dark:text-slate-100">
-        Skills
-    </h2>
-    <SkillsRadial />
-    <TechnicalSkills />
+    <!-- Main Title -->
+    <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 mb-4">
+            My Skills
+        </h2>
+        <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            A comprehensive overview of my technical expertise that drives successful project delivery
+        </p>
+    </div>
+
+    <!-- Technical Skills Section -->
+    <div class="mb-20">
+        <div class="text-center mb-12">
+            <h3 class="text-3xl font-bold text-slate-800 dark:text-slate-100 mb-4">
+                Technical Skills
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400">
+                Technologies and tools I work with
+            </p>
+        </div>
+        <SkillsRadial />
+    </div>
 </div>
+

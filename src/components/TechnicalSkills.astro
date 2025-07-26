@@ -1,113 +1,23 @@
 ---
-// Importar iconos SVG desde la carpeta assets/icons
-import JavaIcon from '../assets/icons/java.svg?raw';
-import CSharpIcon from '../assets/icons/CSharp.svg?raw';
-import HTMLIcon from '../assets/icons/HTML.svg?raw';
-import CSSIcon from '../assets/icons/CSS.svg?raw';
-import JavaScriptIcon from '../assets/icons/JavaScript.svg?raw';
-import TypeScriptIcon from '../assets/icons/TypeScript.svg?raw';
-import NodeJSIcon from '../assets/icons/Node.js.svg?raw';
-import AngularIcon from '../assets/icons/Angular.svg?raw';
-import MySQLIcon from '../assets/icons/MySQL.svg?raw';
-import SqlServerIcon from '../assets/icons/SqlServer.svg?raw';
-import OracleIcon from '../assets/icons/Oracle.svg?raw';
-import GitIcon from '../assets/icons/GIT.svg?raw';
-import AzureIcon from '../assets/icons/Azure.svg?raw';
-import MongoDBIcon from '../assets/icons/MongoDB.svg?raw';
-import FigmaIcon from '../assets/icons/Figma.svg?raw';
+import Icon from './Icon.astro';
 
 // Datos de habilidades para slider infinito
 const skills = [
-  { 
-    name: "Java", 
-    percentage: 85, 
-    color: "#f89500",
-    icon: JavaIcon
-  },
-  { 
-    name: "C#", 
-    percentage: 80, 
-    color: "#239120",
-    icon: CSharpIcon
-  },
-  { 
-    name: "HTML", 
-    percentage: 95, 
-    color: "#e34f26",
-    icon: HTMLIcon
-  },
-  { 
-    name: "CSS", 
-    percentage: 90, 
-    color: "#1572b6",
-    icon: CSSIcon
-  },
-  { 
-    name: "JavaScript", 
-    percentage: 88, 
-    color: "#f7df1e",
-    icon: JavaScriptIcon
-  },
-  { 
-    name: "TypeScript", 
-    percentage: 82, 
-    color: "#3178c6",
-    icon: TypeScriptIcon
-  },
-  { 
-    name: "Node.js", 
-    percentage: 78, 
-    color: "#339933",
-    icon: NodeJSIcon
-  },
-  { 
-    name: "Angular", 
-    percentage: 75, 
-    color: "#dd0031",
-    icon: AngularIcon
-  },
-  { 
-    name: "MySQL", 
-    percentage: 80, 
-    color: "#4479a1",
-    icon: MySQLIcon
-  },
-  { 
-    name: "SQL Server", 
-    percentage: 85, 
-    color: "#cc2927",
-    icon: SqlServerIcon
-  },
-  { 
-    name: "Oracle", 
-    percentage: 70, 
-    color: "#f80000",
-    icon: OracleIcon
-  },
-  { 
-    name: "MongoDB", 
-    percentage: 75, 
-    color: "#47a248",
-    icon: MongoDBIcon
-  },
-  { 
-    name: "GIT", 
-    percentage: 90, 
-    color: "#f05032",
-    icon: GitIcon
-  },
-  { 
-    name: "Azure", 
-    percentage: 72, 
-    color: "#0078d4",
-    icon: AzureIcon
-  },
-  { 
-    name: "Figma", 
-    percentage: 68, 
-    color: "#f24e1e",
-    icon: FigmaIcon
-  }
+  { name: "Java", percentage: 85, color: "#f89500", iconName: "java" },
+  { name: "C#", percentage: 80, color: "#239120", iconName: "csharp" },
+  { name: "HTML", percentage: 95, color: "#e34f26", iconName: "html" },
+  { name: "CSS", percentage: 90, color: "#1572b6", iconName: "css" },
+  { name: "JavaScript", percentage: 88, color: "#f7df1e", iconName: "javascript" },
+  { name: "TypeScript", percentage: 82, color: "#3178c6", iconName: "typescript" },
+  { name: "Node.js", percentage: 78, color: "#339933", iconName: "nodejs" },
+  { name: "Angular", percentage: 75, color: "#dd0031", iconName: "angular" },
+  { name: "MySQL", percentage: 80, color: "#4479a1", iconName: "mysql" },
+  { name: "SQL Server", percentage: 85, color: "#cc2927", iconName: "sqlserver" },
+  { name: "Oracle", percentage: 70, color: "#f80000", iconName: "oracle" },
+  { name: "MongoDB", percentage: 75, color: "#47a248", iconName: "mongodb" },
+  { name: "GIT", percentage: 90, color: "#f05032", iconName: "git" },
+  { name: "Azure", percentage: 72, color: "#0078d4", iconName: "azure" },
+  { name: "Figma", percentage: 68, color: "#f24e1e", iconName: "figma" }
 ];
 ---
 
@@ -115,7 +25,9 @@ const skills = [
   <div class="skills-track">
     {skills.concat(skills).map((skill, index) => (
       <div class="skill-item" style={`--skill-color: ${skill.color};`}>
-        <div class="skill-icon" set:html={skill.icon}></div>
+        <div class="skill-icon">
+          <Icon name={skill.iconName} size="lg" />
+        </div>
         <div class="skill-label">{skill.name}</div>
       </div>
     ))}

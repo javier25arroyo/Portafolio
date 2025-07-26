@@ -1,0 +1,140 @@
+---
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/20 dark:border-slate-700/20 transition-all duration-300">
+  <div class="container mx-auto px-6">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo/Brand -->
+      <div class="flex items-center">
+        <a href="#home" class="text-xl font-bold text-slate-800 dark:text-slate-100 hover:text-emerald-500 transition-colors">
+          JA
+        </a>
+      </div>
+      
+      <!-- Navigation Links -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
+          Home
+        </a>
+        <a href="#about" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
+          Skills
+        </a>
+        <a href="#projects" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
+          Projects
+        </a>
+        <a href="#contact" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
+          Contact
+        </a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4">
+      <div class="flex flex-col space-y-3">
+        <a href="#home" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
+          Home
+        </a>
+        <a href="#about" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
+          Skills
+        </a>
+        <a href="#projects" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
+          Projects
+        </a>
+        <a href="#contact" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
+          Contact
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav-link {
+    position: relative;
+  }
+  
+  .nav-link:hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #10b981, #059669);
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #10b981, #059669);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+</style>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+  
+  // Smooth scrolling for navigation links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Close mobile menu if open
+          mobileMenu?.classList.add('hidden');
+        }
+      }
+    });
+  });
+  
+  // Active link highlighting
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let current = '';
+    sections.forEach(section => {
+      const htmlSection = section as HTMLElement;
+      const sectionTop = htmlSection.offsetTop - 100;
+      if (scrollY >= sectionTop) {
+        const id = section.getAttribute('id');
+        if (id) current = id;
+      }
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.remove('text-emerald-500');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('text-emerald-500');
+      }
+    });
+  });
+</script>

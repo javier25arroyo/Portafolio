@@ -1,0 +1,70 @@
+---
+interface Props {
+  name: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+  color?: string;
+}
+
+const { name, size = 'md', class: className = '', color } = Astro.props;
+
+const sizes = {
+  sm: 'w-4 h-4',
+  md: 'w-6 h-6', 
+  lg: 'w-8 h-8',
+  xl: 'w-12 h-12'
+};
+
+const iconClasses = `${sizes[size]} ${className}`;
+
+// Mapeo de iconos disponibles
+const iconMap: Record<string, string> = {
+  // Tech skills icons
+  'java': '/src/assets/icons/java.svg',
+  'csharp': '/src/assets/icons/CSharp.svg',
+  'html': '/src/assets/icons/HTML.svg',
+  'css': '/src/assets/icons/CSS.svg',
+  'javascript': '/src/assets/icons/JavaScript.svg',
+  'typescript': '/src/assets/icons/TypeScript.svg',
+  'nodejs': '/src/assets/icons/Node.js.svg',
+  'angular': '/src/assets/icons/Angular.svg',
+  'mysql': '/src/assets/icons/MySQL.svg',
+  'sqlserver': '/src/assets/icons/SqlServer.svg',
+  'oracle': '/src/assets/icons/Oracle.svg',
+  'mongodb': '/src/assets/icons/MongoDB.svg',
+  'git': '/src/assets/icons/GIT.svg',
+  'azure': '/src/assets/icons/Azure.svg',
+  'figma': '/src/assets/icons/Figma.svg',
+  
+  // Theme icons
+  'light-mode': '/src/assets/icons/light_mode.svg',
+  'dark-mode': '/src/assets/icons/dark_mode.svg'
+};
+
+// Importar dinámicamente el SVG
+const iconPath = iconMap[name.toLowerCase()];
+let iconContent = '';
+
+if (iconPath) {
+  try {
+    // Para iconos SVG, necesitamos importarlos como raw
+    const iconModule = await import(/* @vite-ignore */ `${iconPath}?raw`);
+    iconContent = iconModule.default;
+  } catch (error) {
+    console.warn(`Icon ${name} not found at ${iconPath}`);
+  }
+}
+---
+
+{iconContent ? (
+  <div 
+    class={iconClasses} 
+    style={color ? `color: ${color}` : ''}
+    set:html={iconContent}
+  />
+) : (
+  <!-- Fallback si el icono no se encuentra -->
+  <div class={`${iconClasses} bg-slate-300 dark:bg-slate-600 rounded flex items-center justify-center text-xs text-slate-600 dark:text-slate-300`}>
+    {name.charAt(0).toUpperCase()}
+  </div>
+)}
