@@ -5,7 +5,7 @@
 <div class="soft-skills-container">
     <div class="bubbles-container">
         <div class="bubble" data-skill="Effective Communication">
-            <span>Effective Communication</span>
+            <span>Effective<br>Communication</span>
         </div>
         <div class="bubble" data-skill="Teamwork">
             <span>Teamwork</span>
@@ -17,19 +17,19 @@
             <span>Problem-Solving</span>
         </div>
         <div class="bubble" data-skill="Critical Thinking">
-            <span>Critical Thinking</span>
+            <span>Critical<br>Thinking</span>
         </div>
         <div class="bubble" data-skill="Analytical Thinking">
-            <span>Analytical Thinking</span>
+            <span>Analytical<br>Thinking</span>
         </div>
         <div class="bubble" data-skill="Adaptability">
             <span>Adaptability</span>
         </div>
         <div class="bubble" data-skill="Continuous Learning">
-            <span>Continuous Learning</span>
+            <span>Continuous<br>Learning</span>
         </div>
         <div class="bubble" data-skill="Time Management">
-            <span>Time Management</span>
+            <span>Time<br>Management</span>
         </div>
         <div class="bubble" data-skill="Attention to Detail">
             <span>Attention to Detail</span>
@@ -487,8 +487,10 @@
 
         .bubble {
             position: relative !important;
-            width: 140px !important;
-            height: 140px !important;
+            min-width: 120px !important;
+            min-height: 120px !important;
+            max-width: 160px !important;
+            max-height: 160px !important;
             top: auto !important;
             left: auto !important;
             margin: 0.5rem;
@@ -515,8 +517,10 @@
         }
 
         .bubble {
-            width: 120px !important;
-            height: 120px !important;
+            min-width: 100px !important;
+            min-height: 100px !important;
+            max-width: 140px !important;
+            max-height: 140px !important;
         }
 
         .bubble span {
@@ -554,13 +558,80 @@
                    bubbleDeform 15s ease-in-out infinite 1s,
                    bubbleDrift 6s ease-in-out infinite 1s;
     }
+
+    /* Dynamic sizing styles */
+    .bubble.auto-size {
+        min-width: 140px;
+        min-height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .bubble.auto-size span {
+        padding: 0.8rem 1rem;
+        word-break: break-word;
+        hyphens: auto;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    /* Special handling for longer single words */
+    .bubble.auto-size[data-skill*="Adaptability"] span,
+    .bubble.auto-size[data-skill*="Collaboration"] span,
+    .bubble.auto-size[data-skill*="Proactivity"] span,
+    .bubble.auto-size[data-skill*="Resilience"] span {
+        white-space: normal;
+        word-break: break-word;
+    }
+
 </style>
 
 <script>
-    // Add interactive hover effects and random movement
     document.addEventListener('DOMContentLoaded', function() {
         const bubbles = document.querySelectorAll('.bubble');
         
+        // Function to calculate optimal bubble size based on text length
+        function calculateBubbleSize(text, wordCount) {
+            const baseSize = 150;
+            const minSize = 140;
+            const maxSize = 200;
+            
+            // If exactly 2 words, keep fixed size
+            if (wordCount === 2) {
+                return { width: baseSize + 20, height: baseSize + 20 };
+            }
+            
+            // Calculate size based on text length and word count
+            const textLength = text.length;
+            const lengthFactor = Math.min(textLength / 12, 2.5); // Normalize text length
+            const wordFactor = Math.min(wordCount / 3, 1.5); // Normalize word count
+            
+            // Calculate dynamic size
+            let size = baseSize + (lengthFactor * 15) + (wordFactor * 10);
+            size = Math.max(minSize, Math.min(maxSize, size));
+            
+            return { width: size, height: size };
+        }
+        
+        // Apply dynamic sizing to bubbles
+        bubbles.forEach((bubble, index) => {
+            const skillText = bubble.dataset.skill.trim();
+            const wordCount = skillText.split(/\s+/).length;
+            const { width, height } = calculateBubbleSize(skillText, wordCount);
+            
+            // Apply size - all bubbles get dynamic sizing
+            bubble.style.width = `${width}px`;
+            bubble.style.height = `${height}px`;
+            
+            // Add auto-size class only for non-2-word bubbles for special styling
+            if (wordCount !== 2) {
+                bubble.classList.add('auto-size');
+            }
+        });
+
         // Function to generate random movement
         function addRandomMovement(bubble, index) {
             const randomInterval = 3000 + Math.random() * 4000; // 3-7 seconds
