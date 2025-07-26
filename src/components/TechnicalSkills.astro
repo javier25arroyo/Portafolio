@@ -21,10 +21,10 @@ const skills = [
 ];
 ---
 
-<div class="skills-container">
+<div class="skills-container dark:bg-surface bg-slate-50 shadow-lg">
   <div class="skills-track">
     {skills.concat(skills).map((skill, index) => (
-      <div class="skill-item" style={`--skill-color: ${skill.color};`}>
+      <div class="skill-item hover-lift transition-bounce" style={`--skill-color: ${skill.color};`}>
         <div class="skill-icon">
           <Icon name={skill.iconName} size="lg" />
         </div>
@@ -36,20 +36,23 @@ const skills = [
 
 <style>
   .skills-container {
-    background: #1a1a1a;
+    background: var(--bg-surface);
     border-radius: 1rem;
     padding: 2rem 0;
     overflow: hidden;
     position: relative;
     width: 100%;
     max-width: 100%;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border: 1px solid var(--border-color);
   }
 
   .skills-track {
     display: flex;
-    gap: 3rem;
+    gap: 2.5rem;
     animation: scroll-infinite 40s linear infinite;
     width: max-content;
+    padding: 1rem 0.5rem;
   }
 
   .skills-container:hover .skills-track {
@@ -69,23 +72,23 @@ const skills = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    transition: all 0.3s ease;
+    gap: 0.5rem;
+    padding: 1.75rem 1.5rem;
+    border-radius: 1rem;
     cursor: pointer;
-    min-width: 120px;
+    min-width: 140px;
     position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px var(--shadow-color);
   }
 
   .skill-item:hover {
     transform: translateY(-8px) scale(1.05);
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--bg-surface);
     border-color: var(--skill-color);
     box-shadow: 
-      0 10px 30px rgba(0, 0, 0, 0.3),
+      0 10px 30px var(--shadow-color),
       0 0 20px rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.3);
   }
 
@@ -95,10 +98,11 @@ const skills = [
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
+    height: 3px;
     background: var(--skill-color);
     opacity: 0;
     transition: opacity 0.3s ease;
+    border-radius: 3px 3px 0 0;
   }
 
   .skill-item:hover::before {
@@ -106,13 +110,16 @@ const skills = [
   }
 
   .skill-icon {
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
     filter: brightness(0.9);
     transition: filter 0.3s ease, transform 0.3s ease;
+    margin-bottom: 0.75rem;
+    position: relative;
+    overflow: visible;
   }
 
   .skill-item:hover .skill-icon {
@@ -120,24 +127,62 @@ const skills = [
     transform: scale(1.1) rotate(-2deg);
   }
 
-  .skill-icon svg {
-    width: 100%;
-    height: 100%;
+  .skill-icon svg,
+  .skill-icon img {
+    width: 48px !important;
+    height: 48px !important;
+    max-width: 48px;
+    max-height: 48px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Forzar el tamaño específico para los iconos del componente Icon */
+  .skill-icon :global(.w-8),
+  .skill-icon :global(.h-8) {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .skill-icon :global(svg) {
+    width: 48px !important;
+    height: 48px !important;
   }
 
   .skill-label {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #e2e8f0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
     text-align: center;
     white-space: nowrap;
     letter-spacing: 0.025em;
     transition: color 0.3s ease;
+    margin-bottom: 0.25rem;
+  }
+
+  .skill-percentage {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: all 0.3s ease;
+    background: var(--bg-surface);
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+    margin-top: 0.25rem;
   }
 
   .skill-item:hover .skill-label {
-    color: #ffffff;
+    color: var(--color-primary);
     text-shadow: 0 0 8px var(--skill-color);
+  }
+
+  .skill-item:hover .skill-percentage {
+    color: var(--skill-color);
+    font-weight: 700;
+    background-color: rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.1);
+    box-shadow: 0 0 10px rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.2);
+    transform: scale(1.05);
   }
 
   /* Gradientes de fade en los bordes */
@@ -154,37 +199,53 @@ const skills = [
 
   .skills-container::before {
     left: 0;
-    background: linear-gradient(90deg, #1a1a1a 0%, rgba(26, 26, 26, 0.8) 50%, transparent 100%);
+    background: linear-gradient(90deg, var(--bg-surface) 0%, rgba(var(--bg-surface-rgb, 255, 255, 255), 0.8) 50%, transparent 100%);
   }
 
   .skills-container::after {
     right: 0;
-    background: linear-gradient(270deg, #1a1a1a 0%, rgba(26, 26, 26, 0.8) 50%, transparent 100%);
+    background: linear-gradient(270deg, var(--bg-surface) 0%, rgba(var(--bg-surface-rgb, 255, 255, 255), 0.8) 50%, transparent 100%);
   }
 
   /* Responsividad */
   @media (max-width: 768px) {
     .skills-container {
       padding: 1.5rem 0;
+      border-radius: 0.75rem;
     }
 
     .skills-track {
       gap: 2rem;
       animation-duration: 35s;
+      padding: 0.5rem;
     }
 
     .skill-item {
-      min-width: 100px;
-      padding: 0.8rem;
+      min-width: 120px;
+      padding: 1.25rem 1rem;
     }
 
     .skill-icon {
-      width: 40px;
-      height: 40px;
+      width: 52px;
+      height: 52px;
+    }
+
+    .skill-icon svg,
+    .skill-icon img,
+    .skill-icon :global(.w-8),
+    .skill-icon :global(.h-8),
+    .skill-icon :global(svg) {
+      width: 40px !important;
+      height: 40px !important;
     }
 
     .skill-label {
+      font-size: 0.85rem;
+    }
+    
+    .skill-percentage {
       font-size: 0.8rem;
+      padding: 0.15rem 0.5rem;
     }
 
     .skills-container::before,
@@ -196,6 +257,7 @@ const skills = [
   @media (max-width: 480px) {
     .skills-container {
       padding: 1rem 0;
+      border-radius: 0.75rem;
     }
 
     .skills-track {
@@ -204,17 +266,34 @@ const skills = [
     }
 
     .skill-item {
-      min-width: 80px;
-      padding: 0.6rem;
+      min-width: 100px;
+      padding: 1rem;
     }
 
     .skill-icon {
-      width: 36px;
-      height: 36px;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-icon svg,
+    .skill-icon img,
+    .skill-icon :global(.w-8),
+    .skill-icon :global(.h-8),
+    .skill-icon :global(svg) {
+      width: 36px !important;
+      height: 36px !important;
     }
 
     .skill-label {
       font-size: 0.75rem;
+      margin-bottom: 0.1rem;
+    }
+    
+    .skill-percentage {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.4rem;
+      margin-top: 0.1rem;
     }
 
     .skills-container::before,
@@ -233,6 +312,38 @@ const skills = [
       transform: translateY(-4px) scale(1.02);
     }
   }
+
+  /* Estilos adicionales para unificar con el tema del sitio */
+  .skill-item {
+    backdrop-filter: blur(5px);
+  }
+
+  .skill-item:nth-child(3n+1):hover {
+    border-color: var(--color-primary);
+  }
+
+  .skill-item:nth-child(3n+2):hover {
+    border-color: var(--color-secondary);
+  }
+
+  /* Efecto de radar en los elementos */
+  .skill-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 1rem;
+    background: radial-gradient(circle at center, transparent 30%, rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.1) 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+  }
+
+  .skill-item:hover::after {
+    opacity: 1;
+  }
 </style>
 
 <script>
@@ -243,8 +354,49 @@ const skills = [
     
     if (!container || !track) return;
 
+    // Adaptación a tema claro/oscuro
+    function updateGradients() {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      const baseColor = isDarkMode ? '31, 41, 55' : '255, 255, 255';
+      container.style.setProperty('--bg-surface-rgb', baseColor);
+    }
+    
+    // Observar cambios en el tema
+    const themeObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          updateGradients();
+        }
+      });
+    });
+    
+    themeObserver.observe(document.documentElement, { attributes: true });
+    updateGradients();
+
     // Agregar interactividad mejorada
     const skillItems = document.querySelectorAll('.skill-item') as NodeListOf<HTMLElement>;
+    
+    // Función para forzar el tamaño correcto de los iconos
+    function enforceIconSizes() {
+      const allIcons = document.querySelectorAll('.skill-icon svg, .skill-icon img') as NodeListOf<HTMLElement>;
+      allIcons.forEach(icon => {
+        const container = icon.closest('.skill-icon') as HTMLElement;
+        if (container) {
+          const containerWidth = container.offsetWidth;
+          const iconSize = containerWidth * 0.75; // 75% del contenedor
+          icon.style.width = `${iconSize}px`;
+          icon.style.height = `${iconSize}px`;
+          icon.style.maxWidth = `${iconSize}px`;
+          icon.style.maxHeight = `${iconSize}px`;
+        }
+      });
+    }
+    
+    // Aplicar tamaños iniciales
+    enforceIconSizes();
+    
+    // Reaplicar después de un breve delay para asegurar que todo esté cargado
+    setTimeout(enforceIconSizes, 100);
     
     skillItems.forEach((item) => {
       // Efecto hover mejorado con colores dinámicos
@@ -346,6 +498,24 @@ const skills = [
   let resizeTimeout: number;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = window.setTimeout(adjustAnimationSpeed, 250);
+    resizeTimeout = window.setTimeout(() => {
+      adjustAnimationSpeed();
+      // También reaplicar tamaños de iconos al redimensionar
+      const container = document.querySelector('.skills-container') as HTMLElement;
+      if (container) {
+        const allIcons = document.querySelectorAll('.skill-icon svg, .skill-icon img') as NodeListOf<HTMLElement>;
+        allIcons.forEach(icon => {
+          const iconContainer = icon.closest('.skill-icon') as HTMLElement;
+          if (iconContainer) {
+            const containerWidth = iconContainer.offsetWidth;
+            const iconSize = containerWidth * 0.75;
+            icon.style.width = `${iconSize}px`;
+            icon.style.height = `${iconSize}px`;
+            icon.style.maxWidth = `${iconSize}px`;
+            icon.style.maxHeight = `${iconSize}px`;
+          }
+        });
+      }
+    }, 250);
   });
 </script>
