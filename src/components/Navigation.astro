@@ -14,16 +14,16 @@
       <!-- Navigation Links - Centrados -->
       <div class="hidden md:flex items-center justify-center space-x-10">
         <a href="#home" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
-          Home
+          <span class="nav-anim"><span>H</span><span>o</span><span>m</span><span>e</span></span>
         </a>
         <a href="#about" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
-          Skills
+          <span class="nav-anim"><span>S</span><span>k</span><span>i</span><span>l</span><span>l</span><span>s</span></span>
         </a>
         <a href="#projects" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
-          Projects
+          <span class="nav-anim"><span>P</span><span>r</span><span>o</span><span>j</span><span>e</span><span>c</span><span>t</span><span>s</span></span>
         </a>
         <a href="#contact" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
-          Contact
+          <span class="nav-anim"><span>C</span><span>o</span><span>n</span><span>t</span><span>a</span><span>c</span><span>t</span></span>
         </a>
       </div>
       
@@ -41,16 +41,16 @@
     <div id="mobile-menu" class="mobile-menu hidden md:hidden pb-4">
       <div class="flex flex-col space-y-3">
         <a href="#home" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
-          Home
+          <span class="nav-anim"><span>H</span><span>o</span><span>m</span><span>e</span></span>
         </a>
         <a href="#about" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
-          Skills
+          <span class="nav-anim"><span>S</span><span>k</span><span>i</span><span>l</span><span>l</span><span>s</span></span>
         </a>
         <a href="#projects" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
-          Projects
+          <span class="nav-anim"><span>P</span><span>r</span><span>o</span><span>j</span><span>e</span><span>c</span><span>t</span><span>s</span></span>
         </a>
         <a href="#contact" class="nav-link text-slate-600 dark:text-slate-300 hover:text-emerald-500 transition-colors font-medium">
-          Contact
+          <span class="nav-anim"><span>C</span><span>o</span><span>n</span><span>t</span><span>a</span><span>c</span><span>t</span></span>
         </a>
       </div>
     </div>
@@ -97,7 +97,7 @@
     transform: scale(0.8);
     animation: fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     animation-delay: 0.5s;
-    min-width: 60px; /* Reservar espacio mínimo */
+    min-width: 60px;
   }
 
   @keyframes fadeInScale {
@@ -111,19 +111,24 @@
     }
   }
 
-  /* Links con animación escalonada */
+  /* Links del navbar - animación y estilos unificados */
   .nav-link {
     position: relative;
     opacity: 0;
     transform: translateY(-20px);
     animation: slideInLink 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    white-space: nowrap; /* Prevenir wrap de texto */
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
   }
 
-  .nav-link:nth-child(1) { animation-delay: 0.6s; }
-  .nav-link:nth-child(2) { animation-delay: 0.7s; }
-  .nav-link:nth-child(3) { animation-delay: 0.8s; }
-  .nav-link:nth-child(4) { animation-delay: 0.9s; }
+  .nav-link:nth-child(1) { animation-delay: 1.2s; }
+  .nav-link:nth-child(2) { animation-delay: 1.3s; }
+  .nav-link:nth-child(3) { animation-delay: 1.4s; }
+  .nav-link:nth-child(4) { animation-delay: 1.5s; }
 
   @keyframes slideInLink {
     0% {
@@ -136,32 +141,11 @@
     }
   }
 
-  /* Efectos hover mejorados */
-  .nav-link {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 0.75rem;
-    padding: 0.75rem 1.5rem;
-    font-weight: 500;
-    letter-spacing: 0.025em;
-  }
-
+  /* Efectos hover */
   .nav-link:hover {
     background: rgba(16, 185, 129, 0.12);
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-  }
-  
-  .nav-link:hover::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 1.5rem;
-    right: 1.5rem;
-    height: 2px;
-    background: linear-gradient(90deg, #10b981, #059669);
-    transform: scaleX(1);
-    transition: transform 0.3s ease;
-    border-radius: 1px;
   }
   
   .nav-link::after {
@@ -176,6 +160,11 @@
     transition: transform 0.3s ease;
     border-radius: 1px;
   }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
 
   /* Link activo */
   .nav-link.active {
@@ -183,18 +172,69 @@
     background: rgba(16, 185, 129, 0.1);
   }
 
-  .nav-link.active::after {
-    transform: scaleX(1);
+  /* Animación de letras individuales */
+  .nav-anim span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+    animation: navLetterIn 0.4s cubic-bezier(0.4,0,0.2,1) forwards;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
   }
 
-  /* Botón móvil con animación */
+  .nav-anim span:nth-child(1) { animation-delay: 1.6s; }
+  .nav-anim span:nth-child(2) { animation-delay: 1.65s; }
+  .nav-anim span:nth-child(3) { animation-delay: 1.7s; }
+  .nav-anim span:nth-child(4) { animation-delay: 1.75s; }
+  .nav-anim span:nth-child(5) { animation-delay: 1.8s; }
+  .nav-anim span:nth-child(6) { animation-delay: 1.85s; }
+  .nav-anim span:nth-child(7) { animation-delay: 1.9s; }
+  .nav-anim span:nth-child(8) { animation-delay: 1.95s; }
+
+  @keyframes navLetterIn {
+    0% { opacity: 0; transform: translateY(-10px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Animación hover individual para cada letra */
+  .nav-link:hover .nav-anim span {
+    animation: letterBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .nav-link:hover .nav-anim span:nth-child(1) { animation-delay: 0s; }
+  .nav-link:hover .nav-anim span:nth-child(2) { animation-delay: 0.05s; }
+  .nav-link:hover .nav-anim span:nth-child(3) { animation-delay: 0.1s; }
+  .nav-link:hover .nav-anim span:nth-child(4) { animation-delay: 0.15s; }
+  .nav-link:hover .nav-anim span:nth-child(5) { animation-delay: 0.2s; }
+  .nav-link:hover .nav-anim span:nth-child(6) { animation-delay: 0.25s; }
+  .nav-link:hover .nav-anim span:nth-child(7) { animation-delay: 0.3s; }
+  .nav-link:hover .nav-anim span:nth-child(8) { animation-delay: 0.35s; }
+
+  @keyframes letterBounce {
+    0%, 100% { 
+      transform: translateY(0) scale(1); 
+      color: inherit;
+    }
+    50% { 
+      transform: translateY(-8px) scale(1.1); 
+      color: #10b981;
+      text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+    }
+  }
+
+  /* Efecto adicional: cambio de color en secuencia */
+  .nav-link:hover .nav-anim span {
+    animation-fill-mode: forwards;
+  }
+
+  /* Botón móvil */
   .mobile-menu-btn {
     opacity: 0;
     transform: scale(0.8);
     animation: fadeInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     animation-delay: 1s;
     transition: all 0.3s ease;
-    min-width: 60px; /* Balancear con el logo */
+    min-width: 60px;
     display: flex;
     justify-content: center;
   }
@@ -205,7 +245,7 @@
     border-radius: 0.75rem;
   }
 
-  /* Menú móvil mejorado */
+  /* Menú móvil */
   .mobile-menu {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
@@ -255,7 +295,7 @@
     transition: transform 0.3s ease;
   }
 
-  /* Mejoras responsive */
+  /* Responsive */
   @media (max-width: 768px) {
     .navbar {
       padding: 0 1rem;
@@ -263,6 +303,21 @@
     
     .mobile-menu {
       margin: 0 0.5rem;
+    }
+
+    /* Animación más sutil en móviles */
+    .nav-link:hover .nav-anim span {
+      animation: letterBounceSubtle 0.4s ease-out;
+    }
+
+    @keyframes letterBounceSubtle {
+      0%, 100% { 
+        transform: translateY(0) scale(1); 
+      }
+      50% { 
+        transform: translateY(-3px) scale(1.05); 
+        color: #10b981;
+      }
     }
   }
 
@@ -279,7 +334,6 @@
     }
   }
 
-  /* Centramiento mejorado para pantallas medianas */
   @media (min-width: 768px) and (max-width: 1024px) {
     .nav-link {
       padding: 0.65rem 1.25rem;
@@ -287,12 +341,13 @@
     }
   }
 
-  /* Reducir animaciones para accesibilidad */
+  /* Accesibilidad */
   @media (prefers-reduced-motion: reduce) {
     .navbar,
     .nav-link,
     .logo,
-    .mobile-menu-btn {
+    .mobile-menu-btn,
+    .nav-anim span {
       animation: none;
       transform: none;
       opacity: 1;
@@ -300,6 +355,12 @@
     
     .nav-link:hover {
       transform: none;
+    }
+
+    .nav-link:hover .nav-anim span {
+      animation: none;
+      color: #10b981;
+      transition: color 0.2s ease;
     }
   }
 </style>
@@ -363,7 +424,7 @@
       setTimeout(() => mobileMenu.classList.add('show'), 10);
       
       // Animar icono del botón
-      const icon = mobileMenuBtn.querySelector('svg');
+      const icon = mobileMenuBtn.querySelector('svg') as SVGElement;
       if (icon) {
         icon.style.transform = 'rotate(90deg)';
       }
@@ -378,7 +439,7 @@
       setTimeout(() => mobileMenu.classList.add('hidden'), 300);
       
       // Restaurar icono
-      const icon = mobileMenuBtn.querySelector('svg');
+      const icon = mobileMenuBtn.querySelector('svg') as SVGElement;
       if (icon) {
         icon.style.transform = 'rotate(0deg)';
       }
@@ -386,7 +447,7 @@
   }
 
   function initializeSmoothScrolling() {
-    document.querySelectorAll('.nav-link').forEach((link, index) => {
+    document.querySelectorAll('.nav-link').forEach((link) => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const href = link.getAttribute('href');
@@ -395,9 +456,10 @@
           const target = document.querySelector(href);
           if (target) {
             // Efecto de clic
-            link.style.transform = 'scale(0.95)';
+            const htmlLink = link as HTMLElement;
+            htmlLink.style.transform = 'scale(0.95)';
             setTimeout(() => {
-              link.style.transform = '';
+              htmlLink.style.transform = '';
             }, 150);
             
             // Scroll suave

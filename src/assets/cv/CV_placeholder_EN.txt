@@ -1,0 +1,3 @@
+This is a placeholder file for Javier Arroyo's English CV.
+Replace this file with your actual CV in PDF format.
+Suggested name: CV_Javier_Arroyo_EN.pdf

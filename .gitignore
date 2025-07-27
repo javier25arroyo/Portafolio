@@ -23,3 +23,6 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 src/components/GetInTouch.astro
+.claude/settings.local.json
+.claude/settings.local.json
+.claude/settings.local.json
