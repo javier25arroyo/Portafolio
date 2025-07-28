@@ -1,5 +1,4 @@
 ---
-import ThemeToggleButton from '../components/ThemeToggleButton.astro';
 import Navigation from '../components/Navigation.astro';
 import UXEnhancements from '../components/UXEnhancements.astro';
 import '../styles/global.css';
@@ -18,67 +17,6 @@ import '../styles/shared.css';
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
     <style>
-      /* Sistema de transiciones de tema mejorado */
-      .theme-transition-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        pointer-events: none;
-        z-index: 9999;
-        background: transparent;
-        transform-origin: top right;
-        transition: none;
-      }
-
-      .theme-transition-overlay.transitioning-to-dark {
-        background: radial-gradient(circle at 85% 60px, rgba(17, 24, 39, 0.8) 0%, transparent 60%);
-        clip-path: circle(0% at 85% 60px);
-        animation: expandThemeDark 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      }
-
-      .theme-transition-overlay.transitioning-to-light {
-        background: radial-gradient(circle at 85% 60px, rgba(243, 244, 246, 0.8) 0%, transparent 60%);
-        clip-path: circle(0% at 85% 60px);
-        animation: expandThemeLight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      }
-
-      @keyframes expandThemeDark {
-        0% {
-          clip-path: circle(0% at 85% 60px);
-          background: radial-gradient(circle at 85% 60px, rgba(17, 24, 39, 0) 0%, transparent 60%);
-        }
-        50% {
-          clip-path: circle(25% at 85% 60px);
-          background: radial-gradient(circle at 85% 60px, rgba(17, 24, 39, 0.6) 0%, transparent 60%);
-        }
-        100% {
-          clip-path: circle(150% at 85% 60px);
-          background: radial-gradient(circle at 85% 60px, rgba(17, 24, 39, 0.9) 0%, rgba(17, 24, 39, 0.3) 60%);
-        }
-      }
-
-      @keyframes expandThemeLight {
-        0% {
-          clip-path: circle(0% at 85% 60px);
-          background: radial-gradient(circle at 85% 60px, rgba(243, 244, 246, 0) 0%, transparent 60%);
-        }
-        50% {
-          clip-path: circle(25% at 85% 60px);
-          background: radial-gradient(circle at 85% 60px, rgba(243, 244, 246, 0.6) 0%, transparent 60%);
-        }
-        100% {
-          clip-path: circle(150% at 85% 60px);
-          background: radial-gradient(circle at 85% 60px, rgba(243, 244, 246, 0.9) 0%, rgba(243, 244, 246, 0.3) 60%);
-        }
-      }
-
-      /* Prevenir parpadeos durante transiciones */
-      html.theme-transitioning * {
-        transition: none !important;
-      }
-
       /* Scroll suave global */
       html {
         scroll-behavior: smooth;
@@ -140,16 +78,10 @@ import '../styles/shared.css';
     </style>
   </head>
     <body class="bg-slate-900 dark:bg-slate-900 text-slate-800 dark:text-slate-100 page-loading" style="font-family: 'Montserrat', sans-serif;">
-    <!-- Theme Transition Overlay -->
-    <div id="theme-transition-overlay" class="theme-transition-overlay"></div>
     
-    <!-- Header con navegación y theme toggle -->
+    <!-- Header con navegación -->
     <div class="relative">
       <Navigation />
-      <!-- Theme toggle integrado en el navbar -->
-      <div class="fixed top-4 right-6 z-50 glass rounded-2xl p-3 shadow-lg backdrop-blur-md border border-white/20 dark:border-slate-700/50">
-        <ThemeToggleButton />
-      </div>
     </div>
     
     <!-- Loading indicator mejorado -->
@@ -209,141 +141,7 @@ import '../styles/shared.css';
       // Declaraciones globales para TypeScript
       declare global {
         interface Window {
-          toggleThemeWithAnimation?: () => void;
           layoutInitialized?: boolean;
-        }
-      }
-
-      // Sistema de tema mejorado con mejor UX
-      function initializeTheme() {
-        console.log("Initializing theme in Layout");
-        try {
-          const savedTheme = localStorage.getItem('theme');
-          console.log("Saved theme:", savedTheme);
-          
-          if (savedTheme === 'light') {
-            document.documentElement.classList.remove('dark');
-            console.log("Set to light theme");
-          } else {
-            document.documentElement.classList.add('dark');
-            console.log("Set to dark theme");
-            if (!savedTheme) {
-              localStorage.setItem('theme', 'dark');
-            }
-          }
-        } catch (error) {
-          console.error("Error initializing theme:", error);
-        }
-      }
-
-      function toggleThemeWithAnimation() {
-        console.log('🌈 Iniciando transición de tema premium...');
-        try {
-          const html = document.documentElement;
-          const overlay = document.getElementById('theme-transition-overlay');
-          const isDark = html.classList.contains('dark');
-          
-          if (!overlay) {
-            console.error('❌ Overlay no encontrado, usando fallback');
-            fallbackThemeToggle(isDark);
-            return;
-          }
-          
-          if (overlay.classList.contains('transitioning-to-dark') || 
-              overlay.classList.contains('transitioning-to-light')) {
-            console.log('⏳ Ya hay una transición en progreso');
-            return;
-          }
-          
-          // Preparar transición
-          prepareThemeTransition(isDark);
-          
-          // Mostrar loading y efectos
-          showLoadingIndicator();
-          showThemeParticles(!isDark);
-          
-          html.classList.add('theme-transitioning');
-          
-          // Aplicar overlay con animación
-          if (isDark) {
-            console.log('🌅 Cambiando a tema claro');
-            overlay.classList.add('transitioning-to-light');
-          } else {
-            console.log('🌙 Cambiando a tema oscuro');
-            overlay.classList.add('transitioning-to-dark');
-          }
-          
-          // Cambiar tema en el momento óptimo
-          setTimeout(() => {
-            applyThemeChange(isDark);
-          }, 600);
-          
-          // Limpiar transición
-          setTimeout(() => {
-            cleanupThemeTransition(overlay);
-          }, 1400);
-          
-        } catch (error) {
-          console.error('❌ Error en transición de tema:', error);
-          fallbackThemeToggle(isDark);
-        }
-      }
-
-      function prepareThemeTransition(isDark) {
-        // Pausar animaciones no esenciales
-        document.body.style.pointerEvents = 'none';
-        
-        // Preparar elementos para la transición
-        const navbar = document.getElementById('main-nav');
-        if (navbar) {
-          navbar.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        }
-      }
-
-      function applyThemeChange(isDark) {
-        const html = document.documentElement;
-        
-        if (isDark) {
-          html.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-          console.log('☀️ Tema claro aplicado');
-        } else {
-          html.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
-          console.log('🌚 Tema oscuro aplicado');
-        }
-        
-        // Disparar evento personalizado
-        window.dispatchEvent(new CustomEvent('themeChanged', {
-          detail: { isDark: !isDark }
-        }));
-      }
-
-      function cleanupThemeTransition(overlay) {
-        const html = document.documentElement;
-        
-        if (overlay) {
-          overlay.classList.remove('transitioning-to-dark', 'transitioning-to-light');
-        }
-        
-        html.classList.remove('theme-transitioning');
-        document.body.style.pointerEvents = '';
-        
-        hideLoadingIndicator();
-        hideThemeParticles();
-        
-        console.log('✅ Transición de tema completada');
-      }
-
-      function fallbackThemeToggle(isDark) {
-        const html = document.documentElement;
-        
-        if (isDark) {
-          html.classList.remove('dark');
-          localStorage.setItem('theme', 'light');
-        } else {
-          html.classList.add('dark');
-          localStorage.setItem('theme', 'dark');
         }
       }
 
@@ -362,71 +160,6 @@ import '../styles/shared.css';
           indicator.style.opacity = '0';
           indicator.style.transform = 'translateX(-50%) scale(0.9)';
         }
-      }
-
-      // Sistema de partículas para transición
-      function showThemeParticles(isDarkMode) {
-        const particleContainer = getOrCreateParticleContainer();
-        const particleCount = 12;
-        
-        for (let i = 0; i < particleCount; i++) {
-          const particle = createThemeParticle(isDarkMode);
-          particleContainer.appendChild(particle);
-          
-          // Animar partícula
-          setTimeout(() => {
-            particle.style.opacity = '1';
-            particle.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px) scale(1)`;
-          }, i * 50);
-        }
-      }
-
-      function hideThemeParticles() {
-        const container = document.getElementById('theme-particles');
-        if (container) {
-          container.innerHTML = '';
-        }
-      }
-
-      function getOrCreateParticleContainer() {
-        let container = document.getElementById('theme-particles');
-        if (!container) {
-          container = document.createElement('div');
-          container.id = 'theme-particles';
-          container.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 9998;
-          `;
-          document.body.appendChild(container);
-        }
-        return container;
-      }
-
-      function createThemeParticle(isDarkMode) {
-        const particle = document.createElement('div');
-        const size = Math.random() * 4 + 2;
-        const color = isDarkMode ? '#1e293b' : '#f1f5f9';
-        
-        particle.style.cssText = `
-          position: absolute;
-          width: ${size}px;
-          height: ${size}px;
-          background: ${color};
-          border-radius: 50%;
-          top: 50%;
-          left: 50%;
-          opacity: 0;
-          transform: translate(-50%, -50%) scale(0);
-          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 0 ${size * 2}px ${color};
-        `;
-        
-        return particle;
       }
 
       // Animación de carga de página
@@ -496,9 +229,6 @@ import '../styles/shared.css';
         });
       }
 
-      // Exponer funciones globalmente
-      window.toggleThemeWithAnimation = toggleThemeWithAnimation;
-
       // Prevenir múltiples inicializaciones
       if (!window.layoutInitialized) {
         window.layoutInitialized = true;
@@ -506,14 +236,12 @@ import '../styles/shared.css';
         // Inicialización cuando el DOM esté listo
         if (document.readyState === 'loading') {
           document.addEventListener('DOMContentLoaded', () => {
-            initializeTheme();
             initializePageLoad();
             initializeSmoothScroll();
             initializeIntersectionObserver();
             initializeKeyboardNavigation();
           });
         } else {
-          initializeTheme();
           initializePageLoad();
           initializeSmoothScroll();
           initializeIntersectionObserver();
