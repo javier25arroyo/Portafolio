@@ -118,17 +118,18 @@
     transform: translateY(-20px);
     animation: slideInLink 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     white-space: nowrap;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.18s cubic-bezier(0.4, 0, 0.2, 1), color 0.18s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1), transform 0.18s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 0.75rem;
     padding: 0.75rem 1.5rem;
-    font-weight: 500;
-    letter-spacing: 0.025em;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    font-size: 1.08rem;
   }
 
-  .nav-link:nth-child(1) { animation-delay: 1.2s; }
-  .nav-link:nth-child(2) { animation-delay: 1.3s; }
-  .nav-link:nth-child(3) { animation-delay: 1.4s; }
-  .nav-link:nth-child(4) { animation-delay: 1.5s; }
+  .nav-link:nth-child(1) { animation-delay: 0.7s; }
+  .nav-link:nth-child(2) { animation-delay: 0.8s; }
+  .nav-link:nth-child(3) { animation-delay: 0.9s; }
+  .nav-link:nth-child(4) { animation-delay: 1.0s; }
 
   @keyframes slideInLink {
     0% {
@@ -176,55 +177,86 @@
   .nav-anim span {
     display: inline-block;
     opacity: 0;
-    transform: translateY(-10px) scale(0.95);
-    animation: navLetterIn 0.4s cubic-bezier(0.4,0,0.2,1) forwards;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(-10px) scale(0.97);
+    animation: navLetterIn 0.22s cubic-bezier(0.4,0,0.2,1) forwards;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    position: relative;
   }
 
-  .nav-anim span:nth-child(1) { animation-delay: 1.6s; }
-  .nav-anim span:nth-child(2) { animation-delay: 1.65s; }
-  .nav-anim span:nth-child(3) { animation-delay: 1.7s; }
-  .nav-anim span:nth-child(4) { animation-delay: 1.75s; }
-  .nav-anim span:nth-child(5) { animation-delay: 1.8s; }
-  .nav-anim span:nth-child(6) { animation-delay: 1.85s; }
-  .nav-anim span:nth-child(7) { animation-delay: 1.9s; }
-  .nav-anim span:nth-child(8) { animation-delay: 1.95s; }
+  .nav-anim span:nth-child(1) { animation-delay: 0.15s; }
+  .nav-anim span:nth-child(2) { animation-delay: 0.18s; }
+  .nav-anim span:nth-child(3) { animation-delay: 0.21s; }
+  .nav-anim span:nth-child(4) { animation-delay: 0.24s; }
+  .nav-anim span:nth-child(5) { animation-delay: 0.27s; }
+  .nav-anim span:nth-child(6) { animation-delay: 0.30s; }
+  .nav-anim span:nth-child(7) { animation-delay: 0.33s; }
+  .nav-anim span:nth-child(8) { animation-delay: 0.36s; }
 
   @keyframes navLetterIn {
     0% { opacity: 0; transform: translateY(-10px) scale(0.95); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* Animación hover individual para cada letra */
+  /* Efecto hover mejorado - onda de iluminación */
   .nav-link:hover .nav-anim span {
-    animation: letterBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: letterWave 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    animation-fill-mode: forwards;
   }
 
   .nav-link:hover .nav-anim span:nth-child(1) { animation-delay: 0s; }
-  .nav-link:hover .nav-anim span:nth-child(2) { animation-delay: 0.05s; }
-  .nav-link:hover .nav-anim span:nth-child(3) { animation-delay: 0.1s; }
-  .nav-link:hover .nav-anim span:nth-child(4) { animation-delay: 0.15s; }
-  .nav-link:hover .nav-anim span:nth-child(5) { animation-delay: 0.2s; }
-  .nav-link:hover .nav-anim span:nth-child(6) { animation-delay: 0.25s; }
-  .nav-link:hover .nav-anim span:nth-child(7) { animation-delay: 0.3s; }
-  .nav-link:hover .nav-anim span:nth-child(8) { animation-delay: 0.35s; }
+  .nav-link:hover .nav-anim span:nth-child(2) { animation-delay: 0.08s; }
+  .nav-link:hover .nav-anim span:nth-child(3) { animation-delay: 0.16s; }
+  .nav-link:hover .nav-anim span:nth-child(4) { animation-delay: 0.24s; }
+  .nav-link:hover .nav-anim span:nth-child(5) { animation-delay: 0.32s; }
+  .nav-link:hover .nav-anim span:nth-child(6) { animation-delay: 0.40s; }
+  .nav-link:hover .nav-anim span:nth-child(7) { animation-delay: 0.48s; }
+  .nav-link:hover .nav-anim span:nth-child(8) { animation-delay: 0.56s; }
 
-  @keyframes letterBounce {
-    0%, 100% { 
-      transform: translateY(0) scale(1); 
+  @keyframes letterWave {
+    0% { 
+      transform: translateY(0) scale(1);
       color: inherit;
+      text-shadow: none;
     }
-    50% { 
-      transform: translateY(-8px) scale(1.1); 
+    25% { 
+      transform: translateY(-3px) scale(1.08);
       color: #10b981;
-      text-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+      text-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+    }
+    100% { 
+      transform: translateY(0) scale(1);
+      color: #10b981;
+      text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
     }
   }
 
-  /* Efecto adicional: cambio de color en secuencia */
-  .nav-link:hover .nav-anim span {
-    animation-fill-mode: forwards;
+  /* Efecto de brillo sutil en hover */
+  .nav-link:hover .nav-anim span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+    border-radius: 4px;
+    animation: shine 0.6s ease-out;
+    pointer-events: none;
+  }
+
+  @keyframes shine {
+    0% { 
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+    50% { 
+      opacity: 1;
+    }
+    100% { 
+      opacity: 0;
+      transform: translateX(100%);
+    }
   }
 
   /* Botón móvil */
@@ -307,16 +339,18 @@
 
     /* Animación más sutil en móviles */
     .nav-link:hover .nav-anim span {
-      animation: letterBounceSubtle 0.4s ease-out;
+      animation: letterWaveMobile 0.4s ease-out;
     }
 
-    @keyframes letterBounceSubtle {
+    @keyframes letterWaveMobile {
       0%, 100% { 
         transform: translateY(0) scale(1); 
+        color: inherit;
       }
       50% { 
-        transform: translateY(-3px) scale(1.05); 
+        transform: translateY(-2px) scale(1.03); 
         color: #10b981;
+        text-shadow: 0 0 6px rgba(16, 185, 129, 0.4);
       }
     }
   }
@@ -360,7 +394,8 @@
     .nav-link:hover .nav-anim span {
       animation: none;
       color: #10b981;
-      transition: color 0.2s ease;
+      transition: color 0.25s ease;
+      text-shadow: 0 0 4px rgba(16, 185, 129, 0.3);
     }
   }
 </style>
