@@ -6,7 +6,8 @@
       "Bash(rm:*)",
       "Bash(npm run build:*)",
       "Bash(npm run dev:*)",
-      "Bash(touch:*)"
+      "Bash(touch:*)",
+      "Bash(sed:*)"
     ],
     "deny": []
   }

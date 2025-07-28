@@ -3,38 +3,40 @@
 const projects = [
   {
     title: "Veterinaria Moka",
-    image: '/src/assets/img-projects/Captura de pantalla 2025-07-26 112847.png',
+    image: '/assets/img-projects/Captura de pantalla 2025-07-26 112847.png',
     description: "A full-stack solution for a veterinary practice.",  
     link: "https://github.com/javier25arroyo/Veterinaria-Moka.git"
   },
   {
     title: "Lab Management System",
-    image: '/src/assets/img-projects/Captura de pantalla 2025-07-26 114002.png',
+    image: '/assets/img-projects/Captura de pantalla 2025-07-26 114002.png',
     description: "Development of a Java Swing desktop application for user management and asset administration.",
     link: "https://github.com/javier25arroyo/Lab1.git"
   },
   {
-    title: "CodeCrafters Gaming",
-    image: '/src/assets/img-projects/Captura de pantalla 2025-07-26 114137.png',
+    title: "CodeCrafters",
+    image: '/assets/img-projects/Captura de pantalla 2025-07-26 114137.png',
     description: "Full-stack development (Angular and Spring Boot) of a video game application for seniors to help prevent cognitive decline.", 
-    link: "https://github.com/javier25arroyo/CodeCrafters-FrontEnd.git"
+    link: "https://github.com/javier25arroyo/CodeCrafters-FrontEnd.git",
+    backendLink: "https://github.com/javier25arroyo/CodeCrafters-BackEnd.git",
+    hasMultipleRepos: true
   },
   {
     title: "Puzzle Game for Seniors",
-    image: '/src/assets/img-projects/Captura de pantalla 2025-07-26 115039.png',
+    image: '/assets/img-projects/Captura de pantalla 2025-07-26 115039.png',
     description: "Development of a puzzle video game for seniors.",
     link: "https://github.com/javier25arroyo/puzzle-game.git"
   },
   {
     title: "CareConnect IoT System",
-    image: '/src/assets/img-projects/default-project.svg',
+    image: '/assets/img-projects/default-project.svg',
     description: "Development of a physical server system for obstacle detection using an Ideaboard in MicroPython.",
     link: "https://github.com/javier25arroyo/CareConnect.git"
   },
   // Agrega más proyectos aquí
   {
     title: "Oracle Tech Store DB",
-    image: '/src/assets/img-projects/oracle-database.svg',
+    image: '/assets/img-projects/oracle-database.svg',
     description: "Database management project for a tech product sales store in Oracle Database.",
     link: "https://github.com/javier25arroyo/Proyecto-programacion-de-bases-de-datos.git"
   }
@@ -45,7 +47,7 @@ const projects = [
   <h2 class="projects-title">My Projects</h2>
   <div class="projects-grid">
     {projects.map(project => (
-      <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-card">
+      <div class="project-card">
         <div class="project-image-container">
           <img src={project.image} alt={project.title} class="project-image" loading="lazy" />
           <div class="project-overlay">
@@ -60,18 +62,34 @@ const projects = [
         <div class="project-info">
           <h3 class="project-name">{project.title}</h3>
           <p class="project-description">{project.description}</p>
-          <div class="project-cta">
-            <span class="cta-text">Ver en GitHub</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon">
-              <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
-            </svg>
-          </div>
+          {project.hasMultipleRepos ? (
+            <div class="project-links">
+              <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-cta">
+                <span class="cta-text">Frontend</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon">
+                  <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                </svg>
+              </a>
+              <a href={project.backendLink} target="_blank" rel="noopener noreferrer" class="project-cta">
+                <span class="cta-text">Backend</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon">
+                  <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                </svg>
+              </a>
+            </div>
+          ) : (
+            <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-cta">
+              <span class="cta-text">Ver en GitHub</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon">
+                <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+              </svg>
+            </a>
+          )}
         </div>
-      </a>
+      </div>
     ))}
   </div>
 </section>
-
 <style>
 .projects-section {
   width: 100%;
@@ -108,7 +126,6 @@ const projects = [
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   color: inherit;
-  cursor: pointer;
   position: relative;
   width: 100%;
   max-width: 300px;
@@ -238,10 +255,11 @@ const projects = [
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.3s ease;
+  text-decoration: none;
   margin-top: auto;
 }
 
-.project-card:hover .project-cta {
+.project-cta:hover {
   color: var(--color-secondary);
   transform: translateX(4px);
 }
@@ -250,7 +268,7 @@ const projects = [
   transition: transform 0.2s ease;
 }
 
-.project-card:hover .external-link-icon {
+.project-cta:hover .external-link-icon {
   transform: rotate(45deg);
 }
 
@@ -269,8 +287,28 @@ const projects = [
   transition: width 0.3s ease;
 }
 
-.project-card:hover .cta-text::after {
+.project-cta:hover .cta-text::after {
   width: 100%;
+}
+.project-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.project-links .project-cta {
+  margin-top: 0;
+}
+
+.project-cta.backend-link {
+  margin-top: 0.5rem;
+  color: var(--color-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.project-cta.backend-link a:hover {
+  color: var(--color-secondary);
 }
 @media (max-width: 768px) {
   .projects-section {
@@ -324,6 +362,9 @@ const projects = [
   }
   .project-cta {
     font-size: 0.8rem;
+  }
+  .project-links {
+    gap: 0.4rem;
   }
 }
 
