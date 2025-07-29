@@ -76,11 +76,11 @@
     .bubble {
         position: absolute;
         background: radial-gradient(ellipse at 32% 28%, 
-            rgba(255, 255, 255, 0.95) 0%, 
-            rgba(255, 255, 255, 0.85) 40%,
-            rgba(255, 255, 255, 0.75) 100%);
-        backdrop-filter: blur(20px);
-        border: 2px solid rgba(255, 255, 255, 0.4);
+            rgba(36, 36, 56, 0.95) 0%, 
+            rgba(26, 26, 35, 0.85) 40%,
+            rgba(10, 10, 15, 0.75) 100%);
+        backdrop-filter: blur(20px) saturate(1.2);
+        border: 2px solid var(--border-medium);
         border-radius: 52% 48% 45% 55% / 58% 42% 65% 35%;
         display: flex;
         align-items: center;
@@ -92,10 +92,10 @@
                     box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
                     background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 
-            0 12px 40px rgba(0, 0, 0, 0.15),
-            0 4px 12px rgba(0, 0, 0, 0.1),
-            inset 0 2px 4px rgba(255, 255, 255, 0.8),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+            0 12px 40px var(--shadow-medium),
+            0 4px 12px var(--shadow-subtle),
+            inset 0 2px 4px rgba(226, 232, 240, 0.1),
+            inset 0 -2px 4px var(--shadow-subtle);
         /* CSS animations are removed to be replaced by JS */
         transform-style: preserve-3d;
         will-change: transform, border-radius;
@@ -139,9 +139,9 @@
     .bubble span {
         font-size: 0.95rem;
         font-weight: 700;
-        color: #1e293b;
+        color: var(--text-primary);
         line-height: 1.2;
-        text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+        text-shadow: 0 1px 3px var(--shadow-subtle);
         z-index: 2;
         position: relative;
         letter-spacing: 0.02em;

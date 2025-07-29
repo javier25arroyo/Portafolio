@@ -1,0 +1,285 @@
+---
+import Button from './Button.astro';
+---
+<!-- 🎨 Hero Section Modernizado -->
+<div class="min-h-screen relative overflow-hidden">
+  
+  <!-- Fondo con gradiente mejorado -->
+  <div class="absolute inset-0" style="background: var(--gradient-hero);">
+    <!-- Elementos de fondo animados con nueva paleta -->
+    <div class="absolute inset-0 pointer-events-none">
+      <!-- Geometric shapes con colores actualizados -->
+      <div class="absolute top-20 left-20 w-72 h-72 rounded-full blur-3xl animate-pulse" 
+           style="background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%); animation-delay: 1s;"></div>
+      <div class="absolute bottom-20 right-20 w-96 h-96 rounded-full blur-3xl animate-pulse" 
+           style="background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%); animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-3xl animate-pulse" 
+           style="background: radial-gradient(circle, rgba(5, 150, 105, 0.08) 0%, transparent 70%); animation-delay: 3s;"></div>
+      
+      <!-- Grid pattern sutil -->
+      <div class="absolute inset-0 opacity-5 grid-pattern"></div>
+    </div>
+  </div>
+
+  <!-- Contenido principal con animaciones escalonadas -->
+  <div class="relative z-10 flex items-center justify-center min-h-screen pt-16">
+    <div class="container mx-auto px-6 py-12">
+      
+      <!-- Header con introducción animada -->
+      <div class="text-left mb-8 animate-fade-in-up" style="animation-delay: 0.5s;">
+        <div class="inline-flex items-center px-4 py-2 rounded-full backdrop-blur-sm mb-6 glass-dark border border-border-light">
+          <div class="w-2 h-2 rounded-full mr-3 animate-ping" style="background: var(--color-secondary);"></div>
+          <span class="font-medium" style="color: var(--color-secondary); font-size: 0.875rem;">Available for opportunities</span>
+        </div>
+        
+        <p class="text-xl font-light mb-4 animate-fade-in-up" style="color: var(--text-secondary); animation-delay: 0.7s;">
+          Hi, I'm Javier Arroyo
+        </p>
+        
+        <!-- Título principal con efecto de escritura mejorado -->
+        <h1 class="text-6xl md:text-8xl font-bold leading-tight mb-6" style="color: var(--text-primary);">
+          <span class="block animate-slide-in-left" style="animation-delay: 0.9s;">Software</span>
+          <span class="block gradient-text animate-slide-in-right" style="animation-delay: 1.2s;">Developer</span>
+        </h1>
+      </div>
+
+      <!-- Descripción con animación mejorada -->
+      <div class="max-w-4xl mb-12 animate-fade-in-up" style="animation-delay: 1.4s;">
+        <p class="text-xl md:text-2xl leading-relaxed font-light" style="color: var(--text-secondary);">
+          Crafting exceptional digital experiences through 
+          <span class="font-medium relative text-glow" style="color: var(--color-accent);">
+            innovative design
+            <span class="absolute -bottom-1 left-0 w-full h-0.5 transform scale-x-0 animate-scale-in" 
+                  style="background: var(--gradient-primary); animation-delay: 2s;"></span>
+          </span> 
+          and 
+          <span class="font-medium relative text-glow-secondary" style="color: var(--color-secondary);">
+            cutting-edge technology
+            <span class="absolute -bottom-1 left-0 w-full h-0.5 transform scale-x-0 animate-scale-in" 
+                  style="background: var(--gradient-primary); animation-delay: 2.2s;"></span>
+          </span>
+        </p>
+      </div>
+      <!-- CTAs con animaciones mejoradas -->
+      <div class="flex flex-col sm:flex-row gap-6 mb-12 animate-fade-in-up" style="animation-delay: 1.6s;">
+        <a href="#projects" class="btn-primary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-view-work">
+          <span>View My Work</span>
+          <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+        
+        <a href="#contact" class="btn-secondary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-lets-connect">
+          <span>Let's Connect</span>
+          <svg class="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Scroll indicator mejorado -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce" style="animation-delay: 3s;">
+        <div class="flex flex-col items-center gap-2" style="color: var(--text-muted);">
+          <span class="text-xs font-medium">Scroll to explore</span>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🎨 Estilos personalizados para animaciones -->
+<style>
+  /* === ANIMACIONES MEJORADAS === */
+  @keyframes scale-in {
+    from {
+      transform: scale-x(0);
+    }
+    to {
+      transform: scale-x(1);
+    }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* === GRID PATTERN === */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(var(--border-subtle) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* === EFECTOS HOVER ESPECIALES === */
+  .btn-primary, .btn-secondary {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before, .btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-primary:hover::before, .btn-secondary:hover::before {
+    left: 100%;
+  }
+
+  /* === RESPONSIVE ADJUSTMENTS === */
+  @media (max-width: 768px) {
+    .text-6xl {
+      font-size: 3rem;
+    }
+    
+    .md\\:text-8xl {
+      font-size: 4rem;
+    }
+    
+    .text-xl {
+      font-size: 1.125rem;
+    }
+    
+    .md\\:text-2xl {
+      font-size: 1.25rem;
+    }
+  }
+
+  /* === PERFORMANCE OPTIMIZATIONS === */
+  .btn-primary, .btn-secondary, .hover-lift {
+    will-change: transform;
+  }
+
+  /* === ACCESSIBILITY === */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-bounce,
+    .animate-pulse,
+    .animate-ping {
+      animation: none;
+    }
+    
+    .hover-lift:hover {
+      transform: none;
+    }
+  }
+</style>
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes expand-line {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Grid pattern de fondo */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Clases de animación */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-expand-line {
+    animation: expand-line 0.8s ease-out forwards;
+  }
+
+  /* Delays progresivos */
+  .animation-delay-500 { animation-delay: 0.5s; }
+  .animation-delay-700 { animation-delay: 0.7s; }
+  .animation-delay-900 { animation-delay: 0.9s; }
+  .animation-delay-1000 { animation-delay: 1s; }
+  .animation-delay-1200 { animation-delay: 1.2s; }
+  .animation-delay-1400 { animation-delay: 1.4s; }
+  .animation-delay-1600 { animation-delay: 1.6s; }
+  .animation-delay-1800 { animation-delay: 1.8s; }
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-2200 { animation-delay: 2.2s; }
+  .animation-delay-3000 { animation-delay: 3s; }
+
+  /* Efectos hover mejorados */
+  .group:hover .group-hover\:animate-ping {
+    animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  /* Transiciones suaves para elementos interactivos */
+  a, button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .animate-fade-in-up,
+    .animate-slide-in-left,
+    .animate-slide-in-right {
+      animation-duration: 0.6s;
+    }
+  }
+
+  /* Efecto de parallax sutil */
+  .bg-grid-pattern {
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+</style>

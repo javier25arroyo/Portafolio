@@ -21,7 +21,7 @@ const skills = [
 ];
 ---
 
-<div class="skills-container dark:bg-surface bg-slate-50 shadow-lg">
+<div class="skills-container shadow-lg" style="background: var(--bg-surface);">
   <div class="skills-track">
     {skills.concat(skills).map((skill, index) => (
       <div class="skill-item hover-lift transition-bounce" style={`--skill-color: ${skill.color};`}>
@@ -43,8 +43,8 @@ const skills = [
     position: relative;
     width: 100%;
     max-width: 100%;
-    box-shadow: 0 10px 30px var(--shadow-color);
-    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px var(--shadow-medium);
+    border: 1px solid var(--border-light);
   }
 
   .skills-track {
@@ -78,18 +78,18 @@ const skills = [
     cursor: pointer;
     min-width: 140px;
     position: relative;
-    background: var(--bg-primary);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px var(--shadow-color);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-light);
+    box-shadow: 0 4px 6px var(--shadow-subtle);
   }
 
   .skill-item:hover {
     transform: translateY(-8px) scale(1.05);
-    background: var(--bg-surface);
+    background: var(--bg-accent);
     border-color: var(--skill-color);
     box-shadow: 
-      0 10px 30px var(--shadow-color),
-      0 0 20px rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.3);
+      0 10px 30px var(--shadow-medium),
+      0 0 20px rgba(var(--skill-color-r, 99), var(--skill-color-g, 102), var(--skill-color-b, 241), 0.3);
   }
 
   .skill-item::before {

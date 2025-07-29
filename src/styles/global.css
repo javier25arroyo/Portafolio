@@ -3,13 +3,71 @@
 @tailwind utilities;
 
 :root {
-  /* Dark Theme Colors */
-  --bg-primary: #111827;
-  --bg-surface: #1F2937;
-  --text-primary: #F9FAFB;
-  --text-secondary: #D1D5DB;
-  --color-primary: #6366F1;
-  --color-secondary: #34D399;
-  --border-color: rgba(249, 250, 251, 0.1);
-  --shadow-color: rgba(0, 0, 0, 0.2);
+  /* 🎨 Paleta de colores refinada - Sistema de diseño moderno */
+  
+  /* === BACKGROUNDS === */
+  --bg-primary: #0B0D17;        /* Azul marino profundo - más elegante */
+  --bg-surface: #151825;        /* Superficie intermedia con más calidez */
+  --bg-elevated: #1F2337;       /* Superficie elevada - mejor contraste */
+  --bg-accent: #252947;         /* Acentos y hover - más refinado */
+  --bg-glass: rgba(31, 35, 55, 0.7);  /* Para efectos glass */
+  
+  /* === COLORES PRINCIPALES === */
+  --color-primary: #4F46E5;     /* Indigo más refinado y profesional */
+  --color-primary-light: #6366F1; /* Variante clara */
+  --color-primary-dark: #3730A3;  /* Variante oscura */
+  
+  --color-secondary: #059669;   /* Verde esmeralda más equilibrado */
+  --color-secondary-light: #10B981;
+  --color-secondary-dark: #047857;
+  
+  --color-accent: #7C3AED;      /* Violeta más saturado */
+  --color-accent-light: #8B5CF6;
+  --color-accent-dark: #5B21B6;
+  
+  --color-highlight: #0891B2;   /* Cyan más sofisticado */
+  --color-highlight-light: #06B6D4;
+  --color-highlight-dark: #0E7490;
+  
+  /* === COLORES DE TEXTO === */
+  --text-primary: #F1F5F9;      /* Blanco puro pero suave */
+  --text-secondary: #CBD5E1;    /* Gris claro con mejor legibilidad */
+  --text-muted: #94A3B8;        /* Gris medio para texto desactivado */
+  --text-subtle: #64748B;       /* Para elementos muy secundarios */
+  
+  /* === SISTEMA DE BORDES === */
+  --border-subtle: rgba(241, 245, 249, 0.06);   /* Bordes muy sutiles */
+  --border-light: rgba(241, 245, 249, 0.12);    /* Bordes normales */
+  --border-medium: rgba(241, 245, 249, 0.18);   /* Bordes destacados */
+  --border-strong: rgba(241, 245, 249, 0.25);   /* Bordes muy visibles */
+  
+  /* === SOMBRAS REFINADAS === */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.3);
+  --shadow-glow-secondary: 0 0 20px rgba(5, 150, 105, 0.3);
+  
+  /* === GRADIENTES MEJORADOS === */
+  --gradient-primary: linear-gradient(135deg, #4F46E5 0%, #7C3AED 35%, #059669 70%, #0891B2 100%);
+  --gradient-hero: linear-gradient(135deg, #0B0D17 0%, #151825 50%, #1F2337 100%);
+  --gradient-card: linear-gradient(145deg, rgba(31, 35, 55, 0.8) 0%, rgba(37, 41, 71, 0.6) 100%);
+  --gradient-button: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+  --gradient-button-hover: linear-gradient(135deg, #3730A3 0%, #4F46E5 100%);
+  
+  /* === ESPACIADO SISTEMA === */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+  
+  /* === TRANSICIONES === */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }

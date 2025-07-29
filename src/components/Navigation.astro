@@ -1,40 +1,43 @@
 ---
 ---
 
-<nav id="main-nav" class="navbar fixed top-0 left-0 right-0 z-50 bg-white/85 dark:bg-slate-900/85 backdrop-blur-xl border-b border-slate-200/30 dark:border-slate-700/30 transition-all duration-500 ease-out">
+<!-- 🎨 Navegación Modernizada -->
+<nav id="main-nav" class="navbar fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b transition-all duration-500 ease-out glass-dark">
   <div class="container mx-auto px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
-      <!-- Logo/Brand -->
+      <!-- Logo/Brand Mejorado -->
       <div class="flex items-center">
-        <a href="#home" class="logo group relative overflow-hidden">
-          <span class="gradient-text relative z-10 text-xl font-bold transition-all duration-300">JA</span>
-          <div class="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -m-2"></div>
+        <a href="#home" class="logo group relative overflow-hidden" data-track="nav-logo">
+          <span class="gradient-text relative z-10 text-xl font-bold transition-all duration-300 hover:scale-110">JA</span>
+          <div class="absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -m-2" 
+               style="background: var(--gradient-primary); opacity: 0.1;"></div>
         </a>
       </div>
       
-      <!-- Navigation Links - Centrados -->
+      <!-- Navigation Links Mejorados -->
       <div class="hidden md:flex items-center space-x-1">
-        <a href="#home" class="nav-link group relative" data-text="Home">
+        <a href="#home" class="nav-link group relative" data-text="Home" data-track="nav-home">
           <span class="nav-text">Home</span>
           <div class="nav-indicator"></div>
         </a>
-        <a href="#about" class="nav-link group relative" data-text="Skills">
+        <a href="#about" class="nav-link group relative" data-text="Skills" data-track="nav-skills">
           <span class="nav-text">Skills</span>
           <div class="nav-indicator"></div>
         </a>
-        <a href="#projects" class="nav-link group relative" data-text="Projects">
+        <a href="#projects" class="nav-link group relative" data-text="Projects" data-track="nav-projects">
           <span class="nav-text">Projects</span>
           <div class="nav-indicator"></div>
         </a>
-        <a href="#contact" class="nav-link group relative" data-text="Contact">
+        <a href="#contact" class="nav-link group relative" data-text="Contact" data-track="nav-contact">
           <span class="nav-text">Contact</span>
           <div class="nav-indicator"></div>
         </a>
       </div>
       
-      <!-- Mobile Menu Button -->
+      <!-- Mobile Menu Button Mejorado -->
       <div class="md:hidden">
-        <button id="mobile-menu-btn" class="mobile-menu-btn group relative p-2 rounded-lg transition-all duration-300" aria-label="Toggle menu">
+        <button id="mobile-menu-btn" class="mobile-menu-btn group relative p-2 rounded-lg transition-all duration-300 hover:bg-white/5" 
+                aria-label="Toggle menu" data-track="nav-mobile-toggle">
           <div class="hamburger">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
@@ -44,13 +47,14 @@
       </div>
     </div>
     
-    <!-- Progress indicator -->
-    <div class="scroll-progress absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-emerald-500 to-blue-500 transition-all duration-300 ease-out origin-left scale-x-0"></div>
+    <!-- Progress indicator mejorado -->
+    <div class="scroll-progress absolute bottom-0 left-0 h-0.5 transition-all duration-300 ease-out origin-left scale-x-0" 
+         style="background: var(--gradient-primary);"></div>
   </div>
   
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="mobile-menu absolute top-full left-0 right-0 overflow-hidden transition-all duration-400 ease-out max-h-0 opacity-0">
-    <div class="mobile-menu-content bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200/30 dark:border-slate-700/30 m-4 rounded-2xl shadow-xl">
+    <div class="mobile-menu-content backdrop-blur-xl border-b m-4 rounded-2xl shadow-xl" style="background: rgba(26, 26, 35, 0.95); border-color: var(--border-light);">
       <div class="p-6 space-y-2">
         <a href="#home" class="mobile-nav-link block">
           <span class="mobile-nav-text">Home</span>
@@ -95,15 +99,9 @@
 
   /* Estados del navbar según scroll */
   .navbar.scrolled {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  }
-
-  .dark .navbar.scrolled {
-    background: rgba(15, 23, 42, 0.9);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    background: rgba(26, 26, 35, 0.95) !important;
+    border-color: var(--border-medium) !important;
+    box-shadow: 0 8px 32px var(--shadow-medium);
   }
 
   .navbar.hidden {
@@ -117,12 +115,8 @@
     transform: scale(0.8) rotate(-5deg);
     animation: logo-enter 0.6s var(--nav-spring) forwards;
     animation-delay: 0.5s;
-    color: #1e293b;
+    color: var(--text-primary);
     transition: all var(--nav-duration) var(--nav-timing);
-  }
-
-  .dark .logo {
-    color: #f1f5f9;
   }
 
   @keyframes logo-enter {
@@ -134,21 +128,14 @@
 
   .logo:hover {
     transform: scale(1.05) rotate(2deg);
-    filter: drop-shadow(0 0 8px var(--emerald-glow));
-  }
-
-  .gradient-text {
-    background: linear-gradient(135deg, #10b981, #3b82f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
   }
 
   /* Sistema de navegación moderno */
   .nav-link {
     position: relative;
     padding: 0.75rem 1.25rem;
-    color: #64748b;
+    color: var(--text-secondary);
     font-weight: 500;
     font-size: 0.9rem;
     border-radius: 0.75rem;
@@ -157,10 +144,6 @@
     transform: translateY(-20px);
     animation: nav-link-enter 0.5s var(--nav-timing) forwards;
     overflow: hidden;
-  }
-
-  .dark .nav-link {
-    color: #94a3b8;
   }
 
   .nav-link:nth-child(1) { animation-delay: 0.7s; }
@@ -177,14 +160,10 @@
 
   /* Efectos hover modernos */
   .nav-link:hover {
-    color: #10b981;
-    background: rgba(16, 185, 129, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
-  }
-
-  .dark .nav-link:hover {
+    color: var(--color-secondary);
     background: rgba(16, 185, 129, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.2);
   }
 
   /* Indicador de link activo */
@@ -194,7 +173,7 @@
     left: 50%;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #10b981, #3b82f6);
+    background: var(--gradient-primary);
     border-radius: 1px;
     transform: translateX(-50%);
     transition: width var(--nav-duration) var(--nav-timing);
