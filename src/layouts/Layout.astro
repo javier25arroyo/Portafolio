@@ -12,6 +12,14 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Script para corregir rutas en GitHub Pages -->
+    <script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
+      // Cargar el script de corrección de rutas dinámicamente
+      const script = document.createElement('script');
+      script.src = baseUrl + '/fixPaths.js';
+      document.head.appendChild(script);
+    </script>
+    
     <!-- Favicon configuration - Multiple formats for maximum compatibility -->
     <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}/favicon.ico`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${import.meta.env.BASE_URL}/assets/icons/favicon.ico`} />
