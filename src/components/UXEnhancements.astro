@@ -2,7 +2,7 @@
 ---
 
 <!-- Scroll Progress Indicator -->
-<div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 bg-slate-200 dark:bg-slate-700 z-50">
+<div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 bg-slate-700 z-50">
   <div id="scroll-progress-bar" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 transition-all duration-300 ease-out" style="width: 0%"></div>
 </div>
 
@@ -17,19 +17,7 @@
   </svg>
 </button>
 
-<!-- Loading Overlay -->
-<div id="loading-overlay" class="fixed inset-0 bg-slate-900 z-50 flex items-center justify-center">
-  <div class="text-center">
-    <div class="w-16 h-16 border-4 border-emerald-200 border-top-emerald-600 rounded-full animate-spin mx-auto mb-4"></div>
-    <p class="text-slate-300 text-lg">Loading...</p>
-  </div>
-</div>
-
 <style>
-  .border-top-emerald-600 {
-    border-top-color: #059669;
-  }
-  
   /* Smooth reveal animations */
   .reveal {
     opacity: 0;
@@ -102,17 +90,6 @@
       top: 0,
       behavior: 'smooth'
     });
-  });
-
-  // Hide loading overlay
-  window.addEventListener('load', () => {
-    const loadingOverlay = document.getElementById('loading-overlay');
-    setTimeout(() => {
-      loadingOverlay?.classList.add('opacity-0');
-      setTimeout(() => {
-        loadingOverlay?.remove();
-      }, 300);
-    }, 1000);
   });
 
   // Initial calls
