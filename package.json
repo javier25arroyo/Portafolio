@@ -6,10 +6,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",
+    "@vercel/speed-insights": "^1.2.0",
     "astro": "^5.12.0",
     "autoprefixer": "^10.4.21",
     "emailjs-com": "^3.2.0",
@@ -18,6 +20,7 @@
   },
   "devDependencies": {
     "@rollup/rollup-win32-x64-msvc": "^4.46.1",
+    "gh-pages": "^6.3.0",
     "rollup": "^4.46.1"
   }
 }

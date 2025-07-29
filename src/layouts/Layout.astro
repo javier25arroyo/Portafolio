@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import UXEnhancements from '../components/UXEnhancements.astro';
 import '../styles/global.css';
 import '../styles/shared.css';
+import  SpeedInsights  from "@vercel/speed-insights/astro"
 ---
 <!doctype html>
 <html lang="en" class="font-sans scroll-smooth">
@@ -12,9 +13,9 @@ import '../styles/shared.css';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Favicon configuration - Multiple formats for maximum compatibility -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}/favicon.ico`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${import.meta.env.BASE_URL}/assets/icons/favicon.ico`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}/assets/icons/favicon.ico`} />
 
     <!-- Theme color for browser UI -->
     <meta name="theme-color" content="#4F46E5" />
