@@ -6,7 +6,7 @@
   <div class="container mx-auto px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
       <!-- Logo/Brand Mejorado -->
-      <div class="flex items-center">
+      <div class="flex-1 flex items-center">
         <a href="#home" class="logo group relative overflow-hidden" data-track="nav-logo">
           <span class="gradient-text relative z-10 text-xl font-bold transition-all duration-300 hover:scale-110">JA</span>
           <div class="absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -m-2" 
@@ -15,7 +15,7 @@
       </div>
       
       <!-- Navigation Links Mejorados -->
-      <div class="hidden md:flex items-center space-x-1">
+      <div class="hidden md:flex flex-1 items-center justify-center space-x-1">
         <a href="#home" class="nav-link group relative" data-text="Home" data-track="nav-home">
           <span class="nav-text">Home</span>
           <div class="nav-indicator"></div>
@@ -35,15 +35,17 @@
       </div>
       
       <!-- Mobile Menu Button Mejorado -->
-      <div class="md:hidden">
-        <button id="mobile-menu-btn" class="mobile-menu-btn group relative p-2 rounded-lg transition-all duration-300 hover:bg-white/5" 
-                aria-label="Toggle menu" data-track="nav-mobile-toggle">
-          <div class="hamburger">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-          </div>
-        </button>
+      <div class="flex-1 flex justify-end">
+        <div class="md:hidden">
+          <button id="mobile-menu-btn" class="mobile-menu-btn group relative p-2 rounded-lg transition-all duration-300 hover:bg-white/5" 
+                  aria-label="Toggle menu" data-track="nav-mobile-toggle">
+            <div class="hamburger">
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+              <span class="hamburger-line"></span>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
     

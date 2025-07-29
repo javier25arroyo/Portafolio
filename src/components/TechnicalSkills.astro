@@ -185,26 +185,26 @@ const skills = [
     transform: scale(1.05);
   }
 
-  /* Gradientes de fade en los bordes */
+  /* Gradientes de fade en los bordes para efecto infinito */
   .skills-container::before,
   .skills-container::after {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 80px;
+    width: 150px; /* Aumentado para un degradado más suave */
     z-index: 2;
     pointer-events: none;
   }
 
   .skills-container::before {
     left: 0;
-    background: linear-gradient(90deg, var(--bg-surface) 0%, rgba(var(--bg-surface-rgb, 255, 255, 255), 0.8) 50%, transparent 100%);
+    background: linear-gradient(to right, var(--bg-surface) 25%, transparent 100%);
   }
 
   .skills-container::after {
     right: 0;
-    background: linear-gradient(270deg, var(--bg-surface) 0%, rgba(var(--bg-surface-rgb, 255, 255, 255), 0.8) 50%, transparent 100%);
+    background: linear-gradient(to left, var(--bg-surface) 25%, transparent 100%);
   }
 
   /* Responsividad */
@@ -250,7 +250,7 @@ const skills = [
 
     .skills-container::before,
     .skills-container::after {
-      width: 60px;
+      width: 100px;
     }
   }
 
@@ -298,7 +298,7 @@ const skills = [
 
     .skills-container::before,
     .skills-container::after {
-      width: 40px;
+      width: 70px;
     }
   }
 

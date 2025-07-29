@@ -15,9 +15,18 @@ import Button from './Button.astro';
           <span class="font-medium text-sm status-text">Available for opportunities</span>
         </div>
         
-        <p class="text-xl font-light mb-4 animate-fade-in-up greeting-text">
-          Hi, I'm Javier Arroyo
-        </p>
+        <!-- Greeting con efectos impactantes -->
+        <div class="greeting-container mb-4">
+          <p class="text-2xl md:text-3xl font-light animate-fade-in-up greeting-text">
+            <span class="greeting-word" data-word="Hi,">Hi,</span>
+            <span class="greeting-word" data-word="I'm">I'm</span>
+            <span class="name-highlight" data-name="Javier Arroyo">
+              <span class="name-letter" data-letter="J">J</span><span class="name-letter" data-letter="a">a</span><span class="name-letter" data-letter="v">v</span><span class="name-letter" data-letter="i">i</span><span class="name-letter" data-letter="e">e</span><span class="name-letter" data-letter="r">r</span>
+              <span class="name-space"> </span>
+              <span class="name-letter" data-letter="A">A</span><span class="name-letter" data-letter="r">r</span><span class="name-letter" data-letter="r">r</span><span class="name-letter" data-letter="o">o</span><span class="name-letter" data-letter="y">y</span><span class="name-letter" data-letter="o">o</span>
+            </span>
+          </p>
+        </div>
         
         <!-- Título principal con efecto de escritura mejorado -->
         <h1 class="text-6xl md:text-8xl font-bold leading-tight mb-6 hero-title">
@@ -109,9 +118,111 @@ import Button from './Button.astro';
     animation-delay: 0.5s;
   }
 
+  /* === GREETING EFFECTS === */
+  .greeting-container {
+    position: relative;
+    overflow: hidden;
+  }
+
   .greeting-text {
     animation-delay: 0.7s;
     color: var(--text-secondary);
+    position: relative;
+  }
+
+  .greeting-word {
+    display: inline-block;
+    margin-right: 0.5rem;
+    opacity: 0;
+    animation: slideInFromLeft 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .greeting-word:nth-child(1) {
+    animation-delay: 0.8s;
+  }
+
+  .greeting-word:nth-child(2) {
+    animation-delay: 1.0s;
+  }
+
+  /* === NAME HIGHLIGHT EFFECTS === */
+  .name-highlight {
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-shadow: 0 0 30px rgba(79, 70, 229, 0.5);
+    animation: nameGlow 2s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.3));
+  }
+
+  /* Gradient overlay effect */
+  .name-highlight::after {
+    content: attr(data-name);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, 
+      var(--color-accent) 0%, 
+      var(--color-secondary) 50%, 
+      var(--color-primary) 100%);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .name-highlight::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, 
+      rgba(79, 70, 229, 0.1), 
+      rgba(124, 58, 237, 0.1), 
+      rgba(5, 150, 105, 0.1));
+    border-radius: 12px;
+    filter: blur(20px);
+    opacity: 0;
+    animation: glowPulse 3s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  .name-letter {
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    transform: translateY(100px) rotateX(90deg);
+    animation: letterReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transition: all 0.3s ease;
+  }
+
+  .name-letter:hover {
+    transform: scale(1.2) translateY(-5px);
+    text-shadow: 0 10px 20px rgba(79, 70, 229, 0.5);
+  }
+
+  /* Staggered animation delays for each letter */
+  .name-letter:nth-child(1) { animation-delay: 1.2s; }
+  .name-letter:nth-child(2) { animation-delay: 1.3s; }
+  .name-letter:nth-child(3) { animation-delay: 1.4s; }
+  .name-letter:nth-child(4) { animation-delay: 1.5s; }
+  .name-letter:nth-child(5) { animation-delay: 1.6s; }
+  .name-letter:nth-child(6) { animation-delay: 1.7s; }
+  .name-letter:nth-child(8) { animation-delay: 1.9s; }
+  .name-letter:nth-child(9) { animation-delay: 2.0s; }
+  .name-letter:nth-child(10) { animation-delay: 2.1s; }
+  .name-letter:nth-child(11) { animation-delay: 2.2s; }
+  .name-letter:nth-child(12) { animation-delay: 2.3s; }
+  .name-letter:nth-child(13) { animation-delay: 2.4s; }
+
+  .name-space {
+    width: 0.5rem;
+    animation-delay: 1.8s;
   }
 
   .title-first {
@@ -196,6 +307,80 @@ import Button from './Button.astro';
     }
   }
 
+  /* === GREETING KEYFRAMES === */
+  @keyframes slideInFromLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px) translateY(20px) rotateY(-90deg);
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateX(10px) translateY(-5px) rotateY(0deg);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) translateY(0) rotateY(0deg);
+    }
+  }
+
+  @keyframes letterReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(100px) rotateX(90deg) scale(0.3);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateY(-10px) rotateX(0deg) scale(1.1);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg) scale(1);
+    }
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes nameGlow {
+    0% {
+      text-shadow: 0 0 30px rgba(79, 70, 229, 0.5);
+      filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.3));
+    }
+    100% {
+      text-shadow: 0 0 50px rgba(79, 70, 229, 0.8);
+      filter: drop-shadow(0 0 40px rgba(79, 70, 229, 0.6));
+    }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes textShimmer {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
   .animate-scale-in {
     animation: scale-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
@@ -219,17 +404,77 @@ import Button from './Button.astro';
     }
   }
 
+  /* === RESPONSIVE GREETING === */
+  @media (max-width: 768px) {
+    .greeting-text {
+      font-size: 1.5rem;
+    }
+    
+    .name-highlight {
+      font-size: 1.75rem;
+    }
+    
+    .name-letter:hover {
+      transform: scale(1.1) translateY(-3px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .greeting-text {
+      font-size: 1.25rem;
+    }
+    
+    .name-highlight {
+      font-size: 1.5rem;
+    }
+  }
+
   /* === ACCESSIBILITY === */
   @media (prefers-reduced-motion: reduce) {
     .animate-bounce,
     .animate-pulse,
     .animate-ping,
-    .hero-bg::before {
+    .hero-bg::before,
+    .greeting-word,
+    .name-letter,
+    .name-highlight {
       animation: none;
     }
     
-    .hover-lift:hover {
+    .name-highlight {
+      color: var(--color-accent);
+      text-shadow: none;
+      filter: none;
+    }
+    
+    .name-highlight::before,
+    .name-highlight::after {
+      display: none;
+    }
+    
+    .hover-lift:hover,
+    .name-letter:hover {
       transform: none;
+    }
+    
+    .greeting-word,
+    .name-letter {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* === HIGH CONTRAST MODE === */
+  @media (prefers-contrast: high) {
+    .name-highlight {
+      color: var(--text-primary);
+      text-shadow: none;
+      filter: none;
+    }
+    
+    .name-highlight::before,
+    .name-highlight::after {
+      display: none;
     }
   }
 </style>
