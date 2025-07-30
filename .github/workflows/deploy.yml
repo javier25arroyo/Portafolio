@@ -65,7 +65,7 @@ jobs:
       
       # Install dependencies with detected package manager
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --no-optional
         working-directory: ${{ env.BUILD_PATH }}
       
       # Build with auto-configured site and base URLs
