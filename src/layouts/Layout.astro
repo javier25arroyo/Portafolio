@@ -1,7 +1,6 @@
 ---
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
-import UXEnhancements from '../components/UXEnhancements.astro';
 import '../styles/global.css';
 import '../styles/shared.css';
 import  SpeedInsights  from "@vercel/speed-insights/astro"
@@ -218,7 +217,25 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     <Footer />
     
     <!-- Componentes UX -->
-    <UXEnhancements />
+    <div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-50 scroll-progress-bg">
+      <div id="scroll-progress-bar" class="h-full transition-all duration-300 ease-out scroll-progress-bar" style="width: 0%;"></div>
+    </div>
+    <button 
+      id="back-to-top" 
+      class="fixed bottom-8 right-8 w-14 h-14 rounded-full shadow-lg transition-all duration-300 transform opacity-0 pointer-events-none z-40 glass-elevated hover:neon-glow back-to-top-btn"
+      aria-label="Back to top"
+      data-track="back-to-top"
+    >
+      <svg class="w-6 h-6 mx-auto back-to-top-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+      </svg>
+    </button>
+    <div id="page-loader" class="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 page-loader">
+      <div class="flex flex-col items-center">
+        <div class="w-12 h-12 border-4 border-transparent rounded-full animate-spin mb-4 loader-spinner"></div>
+        <p class="loader-text">Loading amazing content...</p>
+      </div>
+    </div>
 
     <script>
       // === INICIALIZACIÓN DE LA PÁGINA ===
@@ -264,6 +281,72 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
             }
           });
         });
+
+        // === UX Enhancements Script ===
+        let ticking = false;
+
+        function updateScrollProgress() {
+          const scrollProgress = document.getElementById('scroll-progress-bar');
+          if (!scrollProgress) return;
+          
+          const scrollTop = window.pageYOffset;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+          
+          scrollProgress.style.width = scrollPercent + '%';
+        }
+
+        function toggleBackToTop() {
+          const backToTop = document.getElementById('back-to-top');
+          if (!backToTop) return;
+          
+          const scrollTop = window.pageYOffset;
+          
+          if (scrollTop > 300) {
+            backToTop.classList.remove('opacity-0', 'pointer-events-none');
+            backToTop.classList.add('opacity-100', 'pointer-events-auto', 'hover:scale-110');
+          } else {
+            backToTop.classList.add('opacity-0', 'pointer-events-none');
+            backToTop.classList.remove('opacity-100', 'pointer-events-auto', 'hover:scale-110');
+          }
+        }
+
+        function hideLoader() {
+          const loader = document.getElementById('page-loader');
+          if (!loader) return;
+          
+          setTimeout(() => {
+            document.body.classList.add('page-loaded');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+              loader.style.display = 'none';
+            }, 500);
+          }, 800);
+        }
+
+        function handleScroll() {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              updateScrollProgress();
+              toggleBackToTop();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }
+
+        hideLoader();
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+          backToTop.addEventListener('click', () => {
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+          });
+        }
       });
     </script>
   </body>
