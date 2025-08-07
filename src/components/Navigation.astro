@@ -438,9 +438,6 @@ import ThemeToggleButton from './ThemeToggleButton.astro';
     }
 
     private async init(): Promise<void> {
-      console.log('🚀 Inicializando Navbar Premium v2.0...');
-      
-      // Esperar a que el DOM esté completamente cargado
       if (document.readyState === 'loading') {
         await new Promise(resolve => {
           document.addEventListener('DOMContentLoaded', resolve);
