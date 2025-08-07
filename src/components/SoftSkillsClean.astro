@@ -1,476 +1,197 @@
 ---
-// Simple Soft Skills Component with Working Animations
+// Interactive Soft Skills Component with Physics Simulation (Corrected)
 ---
 
-<div class="soft-skills-container">
-    <div class="bubbles-container">
-        <div class="bubble" data-skill="Effective Communication">
-            <span>Effective<br>Communication</span>
-        </div>
-        <div class="bubble" data-skill="Teamwork">
-            <span>Teamwork</span>
-        </div>
-        <div class="bubble" data-skill="Collaboration">
-            <span>Collaboration</span>
-        </div>
-        <div class="bubble" data-skill="Problem-Solving">
-            <span>Problem-Solving</span>
-        </div>
-        <div class="bubble" data-skill="Critical Thinking">
-            <span>Critical<br>Thinking</span>
-        </div>
-        <div class="bubble" data-skill="Adaptability">
-            <span>Adaptability</span>
-        </div>
-        <div class="bubble" data-skill="Continuous Learning">
-            <span>Continuous<br>Learning</span>
-        </div>
-        <div class="bubble" data-skill="Time Management">
-            <span>Time<br>Management</span>
-        </div>
-        <div class="bubble" data-skill="Attention to Detail">
-            <span>Attention to Detail</span>
-        </div>
-        <div class="bubble" data-skill="Proactivity">
-            <span>Proactivity</span>
-        </div>
-        <div class="bubble" data-skill="Resilience">
-            <span>Resilience</span>
-        </div>
-    </div>
+<div id="soft-skills-container" class="relative w-full max-w-4xl mx-auto my-16 reveal">
+  <div id="bubbles-canvas" class="w-full min-h-[400px] rounded-2xl glass-premium overflow-hidden">
+    <!-- Bubbles are injected here by JS -->
+  </div>
 </div>
 
 <style>
-    .soft-skills-container {
-        position: relative;
-        min-height: 500px; /* Reduced from 700px */
-        height: 500px; /* Reduced from 700px */
-        display: flex;
-        align-items: stretch; /* Changed from center to stretch */
-        justify-content: center;
-        overflow: hidden;
-        /* Completely transparent background */
-        background: transparent;
-        border-radius: 0;
-        backdrop-filter: none;
-        border: none;
-    }
+  /* Mobile-first: Default to a static, touch-friendly grid */
+  #bubbles-canvas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    padding: 1.5rem;
+    align-content: center;
+    justify-content: center;
+  }
 
-    .bubbles-container {
-        position: relative;
-        width: 85%; /* Reduced from 100% to make it more compact */
-        height: 90%; /* Reduced from 100% to add some margin */
-        min-height: 400px; /* Reduced from 600px */
-        display: block; /* Ensure it takes up space in the flex parent */
-        /* The following properties are for when using grid on smaller screens */
-        /* display: flex; */
-        /* flex-wrap: wrap; */
-        /* justify-content: center; */
-        /* align-items: center; */
-        padding: 1.5rem; /* Reduced from 2rem */
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        overflow: hidden; /* Contain the bubbles */
-    }
+  .bubble {
+    position: relative;
+    background: radial-gradient(circle at 30% 30%, var(--bg-accent) 0%, var(--bg-elevated) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-primary);
+    font-weight: 600;
+    box-shadow: inset 0 0 10px rgba(255,255,255,0.1), 0 10px 20px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    user-select: none;
+    aspect-ratio: 1 / 1; /* Maintain circular shape */
+    padding: 0.5rem;
+  }
 
+  .bubble span {
+      font-size: 0.85rem;
+  }
+
+  /* Apply a subtle press effect on touch */
+  .bubble:active {
+      transform: scale(0.95);
+  }
+
+  /* --- Desktop-only Physics Animation (Progressive Enhancement) --- */
+  /* This media query activates the physics simulation for tablets (landscape) and up */
+  @media (min-width: 769px) {
+    #bubbles-canvas {
+        display: block; /* Revert to block for absolute positioning */
+        height: 500px;
+        cursor: grab;
+    }
+    #bubbles-canvas:active {
+        cursor: grabbing;
+    }
     .bubble {
-        position: absolute;
-        background: radial-gradient(ellipse at 32% 28%, 
-            rgba(36, 36, 56, 0.95) 0%, 
-            rgba(26, 26, 35, 0.85) 40%,
-            rgba(10, 10, 15, 0.75) 100%);
-        backdrop-filter: blur(20px) saturate(1.2);
-        border: 2px solid var(--border-medium);
-        border-radius: 52% 48% 45% 55% / 58% 42% 65% 35%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        cursor: pointer;
-        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                    border-radius 0.5s ease-in-out,
-                    box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                    background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 
-            0 12px 40px var(--shadow-medium),
-            0 4px 12px var(--shadow-subtle),
-            inset 0 2px 4px rgba(226, 232, 240, 0.1),
-            inset 0 -2px 4px var(--shadow-subtle);
-        /* CSS animations are removed to be replaced by JS */
-        transform-style: preserve-3d;
-        will-change: transform, border-radius;
-        /* Auto-sizing properties */
-        min-width: 140px;
-        min-height: 140px;
-        max-width: 220px;
-        max-height: 220px;
-        width: auto;
-        height: auto;
-        padding: 1.5rem;
+        position: absolute; /* Enable absolute positioning for physics */
     }
-
-    /* Content-based sizing for specific bubbles */
-    .bubble[data-skill="Teamwork"],
-    .bubble[data-skill="Collaboration"],
-    .bubble[data-skill="Adaptability"],
-    .bubble[data-skill="Proactivity"],
-    .bubble[data-skill="Resilience"] {
-        min-width: 150px;
-        min-height: 150px;
-        padding: 1.2rem;
-    }
-
-    .bubble[data-skill="Problem-Solving"],
-    .bubble[data-skill="Time Management"] {
-        min-width: 170px;
-        min-height: 170px;
-        padding: 1.3rem;
-    }
-
-    .bubble[data-skill="Effective Communication"],
-    .bubble[data-skill="Critical Thinking"],
-    .bubble[data-skill="Continuous Learning"],
-    .bubble[data-skill="Attention to Detail"] {
-        min-width: 190px;
-        min-height: 190px;
-        padding: 1.4rem;
-    }
-
-    .bubble span {
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        line-height: 1.2;
-        text-shadow: 0 1px 3px var(--shadow-subtle);
-        z-index: 2;
-        position: relative;
-        letter-spacing: 0.02em;
-        text-align: center;
-        display: block;
-        word-wrap: break-word;
-        hyphens: auto;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        white-space: nowrap;
-        overflow: visible;
-    }
-
-    /* Adjust font size for longer content */
-    .bubble[data-skill="Effective Communication"] span,
-    .bubble[data-skill="Critical Thinking"] span,
-    .bubble[data-skill="Continuous Learning"] span,
-    .bubble[data-skill="Attention to Detail"] span {
-        font-size: 0.85rem;
-        white-space: normal;
-        line-height: 1.1;
-    }
-
-    /* Dark mode styles */
-    :global(.dark) .bubble {
-        background: radial-gradient(ellipse at 32% 28%, 
-            rgba(51, 65, 85, 0.95) 0%, 
-            rgba(30, 41, 59, 0.9) 40%,
-            rgba(15, 23, 42, 0.85) 100%);
-        border: 2px solid rgba(148, 163, 184, 0.3);
-        box-shadow: 
-            0 12px 40px rgba(0, 0, 0, 0.4),
-            0 4px 12px rgba(0, 0, 0, 0.3),
-            inset 0 2px 4px rgba(148, 163, 184, 0.2),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    :global(.dark) .bubble span {
-        color: #f1f5f9;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-    }
-
-    /* Hover effects are now handled by JS */
-    .bubble.is-hovered {
-        border-radius: 48% 52% 55% 45% / 42% 58% 35% 65%;
-        box-shadow: 
-            0 25px 60px rgba(0, 0, 0, 0.25),
-            0 12px 25px rgba(0, 0, 0, 0.2),
-            inset 0 3px 8px rgba(255, 255, 255, 0.95),
-            inset 0 -3px 8px rgba(0, 0, 0, 0.15),
-            0 0 0 3px rgba(16, 185, 129, 0.3),
-            0 0 20px rgba(16, 185, 129, 0.4);
-        background: radial-gradient(ellipse at 35% 25%, 
-            rgba(16, 185, 129, 0.3) 0%, 
-            rgba(34, 197, 94, 0.25) 40%,
-            rgba(255, 255, 255, 0.9) 100%);
+    .bubble:hover {
+        transform: scale(1.1);
+        box-shadow: inset 0 0 15px rgba(255,255,255,0.2), 0 15px 30px rgba(0,0,0,0.3), 0 0 20px var(--color-primary);
         z-index: 10;
     }
-
-    .bubble.is-exploding {
-        transform: scale(1.5);
-        opacity: 0;
-        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
-    }
-
-    /* Animations are now handled by JS */
-    @keyframes bubbleDeform {
-        0%, 100% {
-            border-radius: 52% 48% 45% 55% / 58% 42% 65% 35%;
-        }
-        50% {
-            border-radius: 48% 52% 55% 45% / 42% 58% 35% 65%;
-        }
-    }
-
-    /* Individual bubble positioning is now handled by JS */
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-        .soft-skills-container {
-            min-height: 450px; /* Adjusted for smaller container */
-            height: 450px;
-        }
-
-        .bubbles-container {
-            width: 95%; /* Slightly larger on mobile for better use of space */
-            padding: 1rem;
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
-            align-items: center;
-            justify-items: center;
-        }
-
-        .bubble {
-            position: relative !important;
-            min-width: 120px !important;
-            min-height: 120px !important;
-            max-width: 160px !important;
-            max-height: 160px !important;
-            width: auto !important;
-            height: auto !important;
-            top: auto !important;
-            left: auto !important;
-            margin: 0.5rem;
-            padding: 0.8rem !important;
-        }
-
-        .bubble span {
-            font-size: 0.8rem;
-        }
-
-        .bubble[data-skill="Effective Communication"] span,
-        .bubble[data-skill="Critical Thinking"] span,
-        .bubble[data-skill="Continuous Learning"] span,
-        .bubble[data-skill="Attention to Detail"] span {
-            font-size: 0.75rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .bubbles-container {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .bubble {
-            min-width: 100px !important;
-            min-height: 100px !important;
-            max-width: 140px !important;
-            max-height: 140px !important;
-            padding: 0.6rem !important;
-        }
-
-        .bubble span {
-            font-size: 0.7rem;
-        }
-
-        .bubble[data-skill="Effective Communication"] span,
-        .bubble[data-skill="Critical Thinking"] span,
-        .bubble[data-skill="Continuous Learning"] span,
-        .bubble[data-skill="Attention to Detail"] span {
-            font-size: 0.65rem;
-        }
-    }
+  }
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const container = document.querySelector('.bubbles-container') as HTMLElement;
-        const bubbles = document.querySelectorAll('.bubble') as NodeListOf<HTMLElement>;
-        let animationFrameId: number;
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('bubbles-canvas');
+    if (!canvas) return;
 
-        if (!container) {
-            console.error('Bubbles container not found!');
-            return;
-        }
+    const skills = [
+      "Effective Communication", "Teamwork", "Collaboration", "Problem-Solving", 
+      "Critical Thinking", "Adaptability", "Continuous Learning", "Time Management",
+      "Attention to Detail", "Proactivity", "Resilience"
+    ];
 
-        // --- Physics and Animation Core ---
+    let bubbles = [];
+    let mouse = { x: null, y: null, radius: 150 };
+    let animationFrameId;
 
-        class BubblePhysics {
-            element: HTMLElement;
-            x!: number;
-            y!: number;
-            vx!: number;
-            vy!: number;
-            width!: number;
-            height!: number;
-            isPaused: boolean = false;
-            isExploding: boolean = false;
-            randomForceInterval: number;
+    class Bubble {
+      constructor(skill, x, y, vx, vy, radius) {
+        this.skill = skill;
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
+        this.radius = radius;
+        this.element = document.createElement('div');
+        this.element.className = 'bubble';
+        this.element.style.width = `${radius * 2}px`;
+        this.element.style.height = `${radius * 2}px`;
+        this.element.innerHTML = `<span>${skill}</span>`;
+        // Set initial position using transform for performance
+        this.element.style.transform = `translate(${this.x - this.radius}px, ${this.y - this.radius}px)`;
+        canvas.appendChild(this.element);
+      }
 
-            constructor(element: HTMLElement, containerRect: DOMRect) {
-                this.element = element;
-                this.updateDimensions();
-                this.initPosition(containerRect);
-                this.initVelocity();
+      update(allBubbles, mouse) {
+        // Wall collision
+        if (this.x + this.radius >= canvas.clientWidth || this.x - this.radius <= 0) this.vx = -this.vx;
+        if (this.y + this.radius >= canvas.clientHeight || this.y - this.radius <= 0) this.vy = -this.vy;
 
-                // Apply a small random force periodically for more natural movement
-                this.randomForceInterval = window.setInterval(() => this.addRandomForce(), Math.random() * 5000 + 2000);
-            }
-
-            updateDimensions() {
-                const rect = this.element.getBoundingClientRect();
-                this.width = rect.width;
-                this.height = rect.height;
-            }
-
-            initPosition(containerRect: DOMRect) {
-                // Account for padding (1.5rem = 24px on each side)
-                const padding = 24;
-                const availableWidth = containerRect.width - (padding * 2) - this.width;
-                const availableHeight = containerRect.height - (padding * 2) - this.height;
-                
-                this.x = padding + Math.random() * Math.max(0, availableWidth);
-                this.y = padding + Math.random() * Math.max(0, availableHeight);
-            }
-
-            initVelocity() {
-                const speed = 0.5;
-                const angle = Math.random() * 2 * Math.PI;
-                this.vx = Math.cos(angle) * speed;
-                this.vy = Math.sin(angle) * speed;
-            }
-
-            addRandomForce() {
-                if (this.isPaused || this.isExploding) return;
-                const forceStrength = 0.2;
-                this.vx += (Math.random() - 0.5) * forceStrength;
-                this.vy += (Math.random() - 0.5) * forceStrength;
-
-                // Clamp velocity to a max speed
-                const maxSpeed = 0.8;
-                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-                if (speed > maxSpeed) {
-                    this.vx = (this.vx / speed) * maxSpeed;
-                    this.vy = (this.vy / speed) * maxSpeed;
-                }
-            }
-
-            updatePosition(containerRect: DOMRect) {
-                if (this.isPaused || this.isExploding) return;
-
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Account for padding (1.5rem = 24px)
-                const padding = 24;
-                const minX = padding;
-                const maxX = containerRect.width - padding - this.width;
-                const minY = padding;
-                const maxY = containerRect.height - padding - this.height;
-
-                // Collision detection with container walls (considering padding)
-                if (this.x <= minX || this.x >= maxX) {
-                    this.vx *= -1; // Reverse horizontal velocity
-                    this.x = Math.max(minX, Math.min(this.x, maxX)); // Clamp position
-                }
-                if (this.y <= minY || this.y >= maxY) {
-                    this.vy *= -1; // Reverse vertical velocity
-                    this.y = Math.max(minY, Math.min(this.y, maxY)); // Clamp position
-                }
-            }
-
-            draw() {
-                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
-            }
-
-            pause() {
-                this.isPaused = true;
-                this.element.classList.add('is-hovered');
-            }
-
-            resume() {
-                this.isPaused = false;
-                this.element.classList.remove('is-hovered');
-            }
-
-            explode() {
-                if (this.isExploding) return;
-                this.isExploding = true;
-                this.element.classList.add('is-exploding');
-
-                setTimeout(() => {
-                    this.element.classList.remove('is-exploding');
-                    const containerRect = container.getBoundingClientRect();
-                    this.initPosition(containerRect);
-                    this.initVelocity();
-                    this.isExploding = false;
-                }, 500); // Matches CSS transition time
+        // Mouse repulsion
+        if (mouse.x && mouse.y) {
+            let dx = this.x - mouse.x;
+            let dy = this.y - mouse.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < mouse.radius + this.radius) {
+              let force = (mouse.radius + this.radius - distance) / (mouse.radius + this.radius);
+              this.vx += (dx / distance) * force * 2;
+              this.vy += (dy / distance) * force * 2;
             }
         }
 
-        const bubbleInstances: BubblePhysics[] = [];
-
-        function setup() {
-            const containerRect = container.getBoundingClientRect();
-            bubbles.forEach(bubble => {
-                const instance = new BubblePhysics(bubble, containerRect);
-                bubbleInstances.push(instance);
-
-                // Add event listeners for interaction
-                bubble.addEventListener('mouseenter', () => instance.pause());
-                bubble.addEventListener('mouseleave', () => instance.resume());
-                bubble.addEventListener('click', () => instance.explode());
-            });
-        }
-
-        function animate() {
-            const containerRect = container.getBoundingClientRect();
-            bubbleInstances.forEach(instance => {
-                instance.updatePosition(containerRect);
-                instance.draw();
-            });
-            animationFrameId = requestAnimationFrame(animate);
-        }
-
-        // --- Initialization and Resize Handling ---
-
-        function init() {
-            // Clear previous instances and listeners if any
-            bubbleInstances.length = 0;
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-            
-            // Check if we are on a mobile view where grid is used
-            const isMobileView = getComputedStyle(container).display === 'grid';
-            if (isMobileView) {
-                // On mobile, we don't run the physics simulation.
-                // The grid layout handles positioning.
-                return;
-            }
-
-            // Add a small delay to ensure the container has proper dimensions
-            setTimeout(() => {
-                setup();
-                animate();
-            }, 100);
-        }
-
-        // Re-initialize on window resize to adapt to new container dimensions
-        let resizeTimeout: number;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = window.setTimeout(init, 250);
+        // Bubble-to-bubble collision
+        allBubbles.forEach(other => {
+          if (this === other) return;
+          let dx = other.x - this.x;
+          let dy = other.y - this.y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < this.radius + other.radius) {
+            let overlap = 0.5 * (distance - this.radius - other.radius);
+            this.x += overlap * (this.x - other.x) / distance;
+            this.y += overlap * (this.y - other.y) / distance;
+            other.x -= overlap * (this.x - other.x) / distance;
+            other.y -= overlap * (this.y - other.y) / distance;
+            [this.vx, other.vx] = [other.vx, this.vx];
+            [this.vy, other.vy] = [other.vy, this.vy];
+          }
         });
 
-        // Initial start with delay to ensure DOM is fully rendered
-        setTimeout(init, 200);
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= 0.995; // Damping to prevent infinite speed
+        this.vy *= 0.995;
+
+        this.element.style.transform = `translate(${this.x - this.radius}px, ${this.y - this.radius}px)`;
+      }
+    }
+
+    function runSimulation() {
+      bubbles.forEach(bubble => bubble.update(bubbles, mouse));
+      animationFrameId = requestAnimationFrame(runSimulation);
+    }
+
+    function setup() {
+      canvas.innerHTML = '';
+      bubbles = [];
+      cancelAnimationFrame(animationFrameId);
+
+      const isDesktop = window.matchMedia("(min-width: 769px)").matches;
+
+      if (isDesktop) {
+        const sizes = [65, 75, 85];
+        skills.forEach(skill => {
+          let radius = sizes[Math.floor(Math.random() * sizes.length)];
+          let x = Math.random() * (canvas.clientWidth - radius * 2) + radius;
+          let y = Math.random() * (canvas.clientHeight - radius * 2) + radius;
+          let vx = (Math.random() - 0.5) * 1.5;
+          let vy = (Math.random() - 0.5) * 1.5;
+          bubbles.push(new Bubble(skill, x, y, vx, vy, radius));
+        });
+        runSimulation();
+      } else {
+        skills.forEach(skill => {
+          const bubbleEl = document.createElement('div');
+          bubbleEl.className = 'bubble';
+          bubbleEl.innerHTML = `<span>${skill}</span>`;
+          canvas.appendChild(bubbleEl);
+        });
+      }
+    }
+
+    canvas.addEventListener('mousemove', e => {
+      if (window.matchMedia("(min-width: 769px)").matches) {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      }
     });
+
+    canvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(setup, 250);
+    });
+
+    setup();
+  });
 </script>

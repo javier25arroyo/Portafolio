@@ -131,12 +131,12 @@ const projects = [
 .project-card {
   background: var(--bg-surface);
   border-radius: 1.25rem;
-  box-shadow: 0 4px 24px rgba(59,130,246,0.08);
-  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--transition-normal);
   text-decoration: none;
   color: inherit;
   position: relative;
@@ -145,16 +145,30 @@ const projects = [
   height: 420px;
 }
 
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 1.25rem;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  z-index: -1;
+}
+
 .project-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 40px rgba(59,130,246,0.2);
-  border-color: var(--color-primary);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: var(--shadow-xl);
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-image-container {
   width: 100%;
   aspect-ratio: 16/9;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: var(--gradient-hero);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,7 +180,7 @@ const projects = [
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform var(--transition-slow) ease-in-out;
 }
 
 .project-image[src*="default-project"], .project-image:not([src]) {
