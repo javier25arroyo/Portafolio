@@ -210,39 +210,6 @@ El proyecto incluye un pipeline de CI/CD completamente automatizado:
 
 </div>
 
----
-
-## 🤝 **Contribuciones**
-
-<div align="center">
-
-¿Interesado en contribuir? ¡Excelente! Sigue estos pasos:
-
-```bash
-# 1️⃣ Fork el proyecto
-# 2️⃣ Crea tu rama de feature
-git checkout -b feature/AmazingFeature
-
-# 3️⃣ Commit tus cambios
-git commit -m 'Add: Increíble nueva funcionalidad'
-
-# 4️⃣ Push a tu rama
-git push origin feature/AmazingFeature
-
-# 5️⃣ Abre un Pull Request
-```
-
-### **Tipos de Contribuciones Bienvenidas**
-- 🐛 Bug fixes
-- ✨ Nuevas características
-- 📝 Mejoras en documentación
-- 🎨 Mejoras de UI/UX
-- ⚡ Optimizaciones de performance
-
-</div>
-
----
-
 ## 📄 **Licencia & Créditos**
 
 <div align="center">
