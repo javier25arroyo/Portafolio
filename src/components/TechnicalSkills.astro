@@ -80,34 +80,19 @@ const skills = [
     position: relative;
     background: var(--bg-elevated);
     border: 1px solid var(--border-light);
-    box-shadow: 0 4px 6px var(--shadow-subtle);
+    box-shadow: 0 2px 6px var(--shadow-subtle);
+    will-change: transform;
+    contain: content;
   }
 
   .skill-item:hover {
-    transform: translateY(-8px) scale(1.05);
+    transform: translateY(-6px) scale(1.03);
     background: var(--bg-accent);
     border-color: var(--skill-color);
-    box-shadow: 
-      0 10px 30px var(--shadow-medium),
-      0 0 20px rgba(var(--skill-color-r, 99), var(--skill-color-g, 102), var(--skill-color-b, 241), 0.3);
+    box-shadow: 0 8px 20px var(--shadow-medium);
   }
 
-  .skill-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--skill-color);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 3px 3px 0 0;
-  }
-
-  .skill-item:hover::before {
-    opacity: 1;
-  }
+  /* Eliminado el pseudo-elemento superior para evitar la "línea" y re-paints innecesarios */
 
   .skill-icon {
     width: 64px;
@@ -115,16 +100,14 @@ const skills = [
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: brightness(0.9);
-    transition: filter 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease;
     margin-bottom: 0.75rem;
     position: relative;
     overflow: visible;
   }
 
   .skill-item:hover .skill-icon {
-    filter: brightness(1.2) drop-shadow(0 0 10px var(--skill-color));
-    transform: scale(1.1) rotate(-2deg);
+    transform: scale(1.08) rotate(-2deg);
   }
 
   .skill-icon svg,
@@ -174,7 +157,6 @@ const skills = [
 
   .skill-item:hover .skill-label {
     color: var(--color-primary);
-    text-shadow: 0 0 8px var(--skill-color);
   }
 
   .skill-item:hover .skill-percentage {
@@ -225,10 +207,7 @@ const skills = [
       padding: 1.25rem 1rem;
     }
 
-    .skill-icon {
-      width: 52px;
-      height: 52px;
-    }
+  .skill-icon { width: 52px; height: 52px; }
 
     .skill-icon svg,
     .skill-icon img,
@@ -270,11 +249,7 @@ const skills = [
       padding: 1rem;
     }
 
-    .skill-icon {
-      width: 46px;
-      height: 46px;
-      margin-bottom: 0.5rem;
-    }
+  .skill-icon { width: 46px; height: 46px; margin-bottom: 0.5rem; }
 
     .skill-icon svg,
     .skill-icon img,
@@ -313,10 +288,7 @@ const skills = [
     }
   }
 
-  /* Estilos adicionales para unificar con el tema del sitio */
-  .skill-item {
-    backdrop-filter: blur(5px);
-  }
+  /* Estilos adicionales para unificar con el tema del sitio (sin blur por performance) */
 
   .skill-item:nth-child(3n+1):hover {
     border-color: var(--color-primary);
@@ -326,23 +298,13 @@ const skills = [
     border-color: var(--color-secondary);
   }
 
-  /* Efecto de radar en los elementos */
-  .skill-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 1rem;
-    background: radial-gradient(circle at center, transparent 30%, rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.1) 70%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    z-index: -1;
-  }
+  /* Eliminado efecto radar para evitar repaints costosos */
 
-  .skill-item:hover::after {
-    opacity: 1;
+  /* Optimización de la pista: animación más suave y GPU-friendly */
+  .skills-track { will-change: transform; }
+  @keyframes scroll-infinite {
+    0% { transform: translate3d(0,0,0); }
+    100% { transform: translate3d(-50%,0,0); }
   }
 </style>
 
@@ -354,76 +316,9 @@ const skills = [
     
     if (!container || !track) return;
 
-    // Adaptación a tema claro/oscuro
-    function updateGradients() {
-      const isDarkMode = document.documentElement.classList.contains('dark');
-      const baseColor = isDarkMode ? '31, 41, 55' : '255, 255, 255';
-      container.style.setProperty('--bg-surface-rgb', baseColor);
-    }
-    
-    // Observar cambios en el tema
-    const themeObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          updateGradients();
-        }
-      });
-    });
-    
-    themeObserver.observe(document.documentElement, { attributes: true });
-    updateGradients();
-
-    // Agregar interactividad mejorada
+    // Accesibilidad básica: permitir foco en items para pausar el carrusel
     const skillItems = document.querySelectorAll('.skill-item') as NodeListOf<HTMLElement>;
-    
-    // Función para forzar el tamaño correcto de los iconos
-    function enforceIconSizes() {
-      const allIcons = document.querySelectorAll('.skill-icon svg, .skill-icon img') as NodeListOf<HTMLElement>;
-      allIcons.forEach(icon => {
-        const container = icon.closest('.skill-icon') as HTMLElement;
-        if (container) {
-          const containerWidth = container.offsetWidth;
-          const iconSize = containerWidth * 0.75; // 75% del contenedor
-          icon.style.width = `${iconSize}px`;
-          icon.style.height = `${iconSize}px`;
-          icon.style.maxWidth = `${iconSize}px`;
-          icon.style.maxHeight = `${iconSize}px`;
-        }
-      });
-    }
-    
-    // Aplicar tamaños iniciales
-    enforceIconSizes();
-    
-    // Reaplicar después de un breve delay para asegurar que todo esté cargado
-    setTimeout(enforceIconSizes, 100);
-    
     skillItems.forEach((item) => {
-      // Efecto hover mejorado con colores dinámicos
-      item.addEventListener('mouseenter', () => {
-        const skillColor = getComputedStyle(item).getPropertyValue('--skill-color').trim();
-        
-        // Convertir color hex a RGB para usar en box-shadow
-        const rgbColor = hexToRgb(skillColor);
-        if (rgbColor) {
-          item.style.setProperty('--skill-color-r', rgbColor.r.toString());
-          item.style.setProperty('--skill-color-g', rgbColor.g.toString());
-          item.style.setProperty('--skill-color-b', rgbColor.b.toString());
-        }
-      });
-
-      // Efecto de click
-      item.addEventListener('click', () => {
-        console.log(`Habilidad seleccionada: ${item.querySelector('.skill-label')?.textContent}`);
-        
-        // Efecto visual de pulso
-        item.style.transform = 'translateY(-8px) scale(1.08)';
-        setTimeout(() => {
-          item.style.transform = '';
-        }, 200);
-      });
-
-      // Soporte para navegación por teclado
       item.setAttribute('tabindex', '0');
       item.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -456,23 +351,13 @@ const skills = [
     });
   }
 
-  // Función para convertir hex a RGB
-  function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16),
-      g: parseInt(result[2], 16),
-      b: parseInt(result[3], 16)
-    } : null;
-  }
-
   // Función para ajustar velocidad según el tamaño de pantalla
   function adjustAnimationSpeed() {
     const track = document.querySelector('.skills-track') as HTMLElement;
     if (!track) return;
 
     const screenWidth = window.innerWidth;
-    let duration = 40; // duración base en segundos
+  let duration = 40; // duración base en segundos
 
     if (screenWidth < 480) {
       duration = 30;
@@ -500,22 +385,6 @@ const skills = [
     clearTimeout(resizeTimeout);
     resizeTimeout = window.setTimeout(() => {
       adjustAnimationSpeed();
-      // También reaplicar tamaños de iconos al redimensionar
-      const container = document.querySelector('.skills-container') as HTMLElement;
-      if (container) {
-        const allIcons = document.querySelectorAll('.skill-icon svg, .skill-icon img') as NodeListOf<HTMLElement>;
-        allIcons.forEach(icon => {
-          const iconContainer = icon.closest('.skill-icon') as HTMLElement;
-          if (iconContainer) {
-            const containerWidth = iconContainer.offsetWidth;
-            const iconSize = containerWidth * 0.75;
-            icon.style.width = `${iconSize}px`;
-            icon.style.height = `${iconSize}px`;
-            icon.style.maxWidth = `${iconSize}px`;
-            icon.style.maxHeight = `${iconSize}px`;
-          }
-        });
-      }
     }, 250);
   });
 </script>
