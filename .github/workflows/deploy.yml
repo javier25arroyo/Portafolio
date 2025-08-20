@@ -1,25 +1,22 @@
 name: Deploy Astro Portfolio to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-  # Allows manual deployment from Actions tab
   workflow_dispatch:
 
-# Sets permissions for GitHub Pages deployment
+
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 env:
-  BUILD_PATH: "." # Project root directory
+  BUILD_PATH: "." 
 
 jobs:
   build:
@@ -29,7 +26,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       
-      # Smart package manager detection (from astro.yml)
       - name: Detect package manager
         id: detect-package-manager
         run: |
@@ -50,7 +46,6 @@ jobs:
             exit 1
           fi
       
-      # Latest Node.js with smart caching
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -58,17 +53,14 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
           cache-dependency-path: ${{ env.BUILD_PATH }}/${{ steps.detect-package-manager.outputs.lockfile }}
       
-      # Auto-configure GitHub Pages settings
       - name: Setup GitHub Pages
         id: pages
         uses: actions/configure-pages@v5
       
-      # Install dependencies with detected package manager
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --no-optional
         working-directory: ${{ env.BUILD_PATH }}
       
-      # Build with auto-configured site and base URLs
       - name: Build Astro site
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
@@ -76,7 +68,6 @@ jobs:
             --base "${{ steps.pages.outputs.base_path }}"
         working-directory: ${{ env.BUILD_PATH }}
       
-      # Upload build artifacts for deployment
       - name: Upload build artifacts
         uses: actions/upload-pages-artifact@v3
         with:
