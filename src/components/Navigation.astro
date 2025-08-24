@@ -2,7 +2,7 @@
 ---
 
 <!-- 🎨 Navegación Modernizada -->
-<nav id="main-nav" class="navbar fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b transition-all duration-500 ease-out glass-dark">
+<nav id="main-nav" class="navbar fixed top-0 left-0 right-0 z-40 backdrop-blur-xl border-b transition-all duration-500 ease-out glass-dark">
   <div class="container mx-auto px-6 lg:px-8">
     <div class="relative flex items-center justify-between h-16">
       <!-- Logo/Brand Mejorado -->
@@ -619,7 +619,7 @@
     private handleNavbarVisibility(scrollY: number): void {
       if (!this.navbar) return;
 
-      const threshold = 100;
+      const threshold = 200;
       const isScrollingDown = this.scrollDirection === 'down';
       const shouldHide = isScrollingDown && scrollY > threshold && !this.isMenuOpen;
       

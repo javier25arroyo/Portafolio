@@ -3,6 +3,7 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/shared.css';
+import '../styles/fixes.css';
 import  SpeedInsights  from "@vercel/speed-insights/astro"
 ---
 <!doctype html>
@@ -31,12 +32,12 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     
     <!-- SEO Mejorado -->
     <title>Javier_cr | Portfolio</title>
-    <meta name="description" content="Software Developer specializing in modern web technologies. View my portfolio of projects and skills." />
-    <meta name="keywords" content="software developer, web developer, portfolio, JavaScript, TypeScript, React, Node.js" />
+    <meta name="description" content="Software Development Engineer specializing in modern web technologies. View my portfolio of projects and skills." />
+    <meta name="keywords" content="software development engineer, web developer, portfolio, JavaScript, TypeScript, React, Node.js" />
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Javier Arroyo - Software Developer" />
-    <meta property="og:description" content="Software Developer specializing in modern web technologies" />
+    <meta property="og:title" content="Javier Arroyo - Software Development Engineer" />
+    <meta property="og:description" content="Software Development Engineer specializing in modern web technologies" />
     <meta property="og:type" content="website" />
     
     <!-- Fonts optimizados -->
@@ -63,7 +64,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
         font-family: 'Montserrat', sans-serif;
         line-height: 1.6;
         overflow-x: hidden;
-        transition: all var(--transition-normal);
+        position: relative;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
@@ -124,7 +125,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
         width: 100%;
         height: 100%;
         pointer-events: none;
-        z-index: -1;
+        z-index: -2;
         opacity: 0.03;
       }
 
@@ -208,7 +209,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     <Navigation />
     
     <!-- Contenido principal -->
-    <main class="min-h-screen">
+    <main id="main-content" class="min-h-screen relative">
       <slot />
     </main>
     
@@ -216,12 +217,12 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     <Footer />
     
     <!-- Componentes UX -->
-    <div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-50 scroll-progress-bg">
+    <div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-30 scroll-progress-bg">
       <div id="scroll-progress-bar" class="h-full transition-all duration-300 ease-out scroll-progress-bar" style="width: 0%;"></div>
     </div>
     <button 
       id="back-to-top" 
-      class="fixed bottom-8 right-8 w-14 h-14 rounded-full shadow-lg transition-all duration-300 transform opacity-0 pointer-events-none z-40 glass-elevated hover:neon-glow back-to-top-btn"
+      class="fixed bottom-8 right-8 w-14 h-14 rounded-full shadow-lg transition-all duration-300 transform opacity-0 pointer-events-none z-30 glass-elevated hover:neon-glow back-to-top-btn"
       aria-label="Back to top"
       data-track="back-to-top"
     >
