@@ -71,3 +71,108 @@
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
+/* Suaviza la navegación a anclas compensando el navbar fijo */
+section[id] {
+  scroll-margin-top: 84px;
+}
+
+@media (max-width: 768px) {
+  section[id] {
+    scroll-margin-top: 64px;
+  }
+}
+
+/* Transiciones suaves entre secciones */
+.section-transition {
+  position: relative;
+  z-index: 1;
+}
+
+/* Efecto parallax sutil en el scroll */
+@media (prefers-reduced-motion: no-preference) {
+  .section-transition {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+}
+
+/* === Fondos por sección (claramente diferenciados) === */
+.section-base {
+  position: relative;
+  isolation: isolate; /* Aísla capas para evitar fugas de mezcla */
+}
+
+/* Separador sutil entre secciones */
+.section-base::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Capa de patrón de puntos suave reutilizable */
+.bg-dot-grid {
+  background-image:
+    radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+/* Home: hero más limpio, foco en el contenido */
+section#home.section-base {
+  background:
+    radial-gradient(800px 500px at 80% 0%, rgba(79, 70, 229, 0.16) 0%, transparent 60%),
+    radial-gradient(900px 600px at 0% 100%, rgba(8, 145, 178, 0.12) 0%, transparent 60%),
+    var(--gradient-hero);
+}
+
+/* About/Skills: tono más cálido con grid sutil */
+section#about.section-base {
+  background:
+    radial-gradient(900px 600px at 100% 20%, rgba(124, 58, 237, 0.16) 0%, transparent 60%),
+    radial-gradient(700px 500px at 0% 80%, rgba(16, 185, 129, 0.14) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+}
+section#about.section-base::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1.2px);
+  background-size: 24px 24px;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Projects: contraste marcado con acentos índigo */
+section#projects.section-base {
+  background:
+    radial-gradient(700px 500px at 15% 0%, rgba(79, 70, 229, 0.18) 0%, transparent 60%),
+    radial-gradient(900px 600px at 100% 100%, rgba(2, 132, 199, 0.14) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-surface) 100%);
+}
+
+/* Contact: mezcla fresca con verde/cyan */
+section#contact.section-base {
+  background:
+    radial-gradient(700px 500px at 85% 20%, rgba(16, 185, 129, 0.16) 0%, transparent 60%),
+    radial-gradient(900px 600px at 10% 90%, rgba(6, 182, 212, 0.14) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+}
+
+/* Ajustes para usuarios con movimiento reducido: mantener estático el diseño */
+@media (prefers-reduced-motion: reduce) {
+  section#home.section-base,
+  section#about.section-base,
+  section#projects.section-base,
+  section#contact.section-base {
+    background-attachment: initial;
+  }
+}

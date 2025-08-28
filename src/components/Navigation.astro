@@ -611,7 +611,7 @@
       this.handleNavbarVisibility(currentScrollY);
       
       // Actualizar link activo
-      this.debounce(() => this.updateActiveLink(), 100)();
+      this.debounce(() => this.updateActiveLink(), 150)();
       
       this.lastScrollY = currentScrollY;
     }
@@ -629,24 +629,44 @@
     private updateActiveLink(): void {
       if (!this.navLinks) return;
 
-      const sections = document.querySelectorAll('section[id], div[id]');
+      const sections = document.querySelectorAll('section[id]');
       let currentSection = '';
+      const scrollPosition = window.scrollY + 100; // Offset para mejor detección
 
       sections.forEach(section => {
         const htmlSection = section as HTMLElement;
         const rect = htmlSection.getBoundingClientRect();
-        const threshold = window.innerHeight * 0.3;
+        const sectionTop = rect.top + window.scrollY;
+        const sectionBottom = sectionTop + rect.height;
         
-        if (rect.top <= threshold && rect.bottom >= threshold) {
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
           const id = section.getAttribute('id');
           if (id) currentSection = id;
         }
       });
 
-      // Actualizar clases activas
+      // Si estamos cerca del final de la página, activar la última sección
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+        const lastSection = Array.from(sections).pop();
+        if (lastSection) {
+          currentSection = lastSection.getAttribute('id') || '';
+        }
+      }
+
+      // Actualizar clases activas con transición suave
       this.navLinks.forEach(link => {
         const isActive = link.getAttribute('href') === `#${currentSection}`;
-        link.classList.toggle('active', isActive);
+        if (isActive !== link.classList.contains('active')) {
+          link.classList.toggle('active', isActive);
+          
+          // Efecto visual suave al cambiar de link activo
+          if (isActive) {
+            link.style.transform = 'scale(1.02)';
+            setTimeout(() => {
+              link.style.transform = '';
+            }, 200);
+          }
+        }
       });
     }
 

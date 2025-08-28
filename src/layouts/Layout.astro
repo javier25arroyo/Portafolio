@@ -231,16 +231,10 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
       </svg>
     </button>
     <div id="page-loader" class="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 page-loader">
-      <div class="flex flex-col items-center">
-        <div class="w-12 h-12 border-4 border-transparent rounded-full animate-spin mb-4 loader-spinner"></div>
-        <p class="loader-text">Loading amazing content...</p>
-      </div>
     </div>
 
     <script>
-      // === INICIALIZACIÓN DE LA PÁGINA ===
       document.addEventListener('DOMContentLoaded', () => {
-        // Marcar página como cargada
         setTimeout(() => {
           document.body.classList.remove('page-loading');
           document.body.classList.add('page-loaded');
@@ -248,8 +242,8 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
 
         // === SISTEMA DE REVEAL ===
         const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
+          threshold: 0.15,
+          rootMargin: '0px 0px -80px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -257,7 +251,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
             if (entry.isIntersecting) {
               setTimeout(() => {
                 entry.target.classList.add('revealed');
-              }, index * 100);
+              }, index * 150); // Delay más espaciado para mejor efecto
               observer.unobserve(entry.target);
             }
           });
@@ -267,20 +261,7 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
           observer.observe(el);
         });
 
-        // === NAVEGACIÓN SUAVE ===
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (this: HTMLAnchorElement, e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href')!);
-            if (target) {
-              target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-                inline: 'nearest'
-              });
-            }
-          });
-        });
+  // Navegación suave: lo gestiona CSS (html { scroll-behavior }) + scroll-margin en secciones
 
         // === UX Enhancements Script ===
         let ticking = false;

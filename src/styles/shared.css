@@ -48,16 +48,16 @@
 
 /* === EFECTOS HOVER MEJORADOS === */
 .hover-lift {
-  transition: transform var(--transition-normal), 
-              box-shadow var(--transition-normal), 
-              filter var(--transition-normal),
-              background-color var(--transition-normal);
+  transition: transform 280ms ease, 
+              box-shadow 280ms ease, 
+              filter 280ms ease,
+              background-color 280ms ease;
 }
 
 .hover-lift:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--shadow-xl), var(--shadow-glow);
-  filter: brightness(1.05) saturate(1.1);
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  filter: brightness(1.03) saturate(1.06);
 }
 
 .hover-glow {
