@@ -7,4 +7,33 @@ export default defineConfig({
   site: 'https://javier25arroyo.github.io',
   base: '/Portafolio',
   integrations: [tailwind()],
+  
+  // Performance optimizations
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['astro/runtime/client/idle.js', 'astro/runtime/client/load.js'],
+            utils: ['astro/runtime/client/media.js']
+          }
+        }
+      }
+    },
+    ssr: {
+      external: ['@vercel/speed-insights']
+    }
+  },
+  
+  // Build optimizations
+  compressHTML: true,
+  build: {
+    inlineStylesheets: 'auto',
+    assets: 'assets'
+  },
+  
+  // Experimental features for better performance
+  experimental: {
+    optimizeHoistedScript: true
+  }
 });
