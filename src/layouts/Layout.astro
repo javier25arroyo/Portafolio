@@ -12,14 +12,19 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Script para corregir rutas en GitHub Pages -->
-    <script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
-      const script = document.createElement('script');
-      script.src = baseUrl + '/fixPaths.js';
-      document.head.appendChild(script);
-    </script>
+    <!-- Performance Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://walink.co">
+    <link rel="dns-prefetch" href="https://github.com">
+    <link rel="dns-prefetch" href="https://linkedin.com">
     
-    <!-- Favicon configuration - Multiple formats for maximum compatibility -->
+    <!-- Critical Resource Preloads -->
+    <link rel="preload" href={`${import.meta.env.BASE_URL}/favicon.ico`} as="image" type="image/x-icon">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"></noscript>
+    
+    <!-- Favicon configuration - Optimized -->
     <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}/favicon.ico`} />
     <link rel="apple-touch-icon" sizes="180x180" href={`${import.meta.env.BASE_URL}/assets/icons/favicon.ico`} />
     <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}/assets/icons/favicon.ico`} />
@@ -30,23 +35,27 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     
     <meta name="generator" content={Astro.generator} />
     
-    <!-- SEO Mejorado -->
-    <title>Javier_cr | Portfolio</title>
-    <meta name="description" content="Software Development Engineer specializing in modern web technologies. View my portfolio of projects and skills." />
-    <meta name="keywords" content="software development engineer, web developer, portfolio, JavaScript, TypeScript, React, Node.js" />
+    <!-- SEO Optimizado -->
+    <title>Javier Arroyo | Software Developer Portfolio</title>
+    <meta name="description" content="Software Development Engineer specializing in modern web technologies. Explore my portfolio of innovative projects built with JavaScript, TypeScript, React, and more." />
+    <meta name="keywords" content="software development engineer, web developer, portfolio, JavaScript, TypeScript, React, Node.js, full-stack developer, Javier Arroyo" />
+    <meta name="author" content="Javier Arroyo Rojas" />
     
     <!-- Open Graph -->
     <meta property="og:title" content="Javier Arroyo - Software Development Engineer" />
-    <meta property="og:description" content="Software Development Engineer specializing in modern web technologies" />
+    <meta property="og:description" content="Software Development Engineer specializing in modern web technologies. View my portfolio and connect with me." />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://javier25arroyo.github.io/Portafolio" />
+    <meta property="og:site_name" content="Javier Arroyo Portfolio" />
     
-    <!-- Fonts optimizados -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Javier Arroyo - Software Developer" />
+    <meta name="twitter:description" content="Software Development Engineer specializing in modern web technologies" />
     
-    <style>
-      /* === ESTILOS BASE MEJORADOS === */
+    <!-- Critical CSS Inline -->
+    <style is:inline>
+      /* Critical above-the-fold styles */
       *, *::before, *::after {
         box-sizing: border-box;
       }
@@ -54,23 +63,22 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
       html {
         scroll-behavior: smooth;
         scroll-padding-top: 80px;
+        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       }
 
       body {
         margin: 0;
         padding: 0;
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        font-family: 'Montserrat', sans-serif;
+        background: #0B0D17;
+        color: #F1F5F9;
         line-height: 1.6;
         overflow-x: hidden;
-        position: relative;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
       }
 
-      /* === EFECTOS DE CARGA === */
+      /* Initial loading state */
       .page-loading {
         opacity: 0;
         transform: translateY(30px);
@@ -83,128 +91,51 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
         transform: translateY(0);
       }
 
-      /* === SCROLLBAR PERSONALIZADA === */
-      ::-webkit-scrollbar {
-        width: 8px;
+      /* Hero critical styles */
+      .hero-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0B0D17 0%, #151825 50%, #1F2337 100%);
       }
 
-      ::-webkit-scrollbar-track {
-        background: var(--bg-surface);
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
-        border-radius: 4px;
-        transition: all var(--transition-normal);
-      }
-
-      ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient(180deg, var(--color-primary-light), var(--color-secondary-light));
-      }
-
-      /* === SELECCIÓN DE TEXTO === */
-      ::selection {
-        background: rgba(79, 70, 229, 0.3);
-        color: var(--text-primary);
-      }
-
-      /* === ACCESIBILIDAD === */
-      :focus-visible {
-        outline: 3px solid var(--color-primary);
-        outline-offset: 2px;
-        border-radius: 8px;
-        box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.2);
-      }
-
-      /* === EFECTOS DE FONDO === */
-      .bg-particles {
+      /* Navigation critical styles */
+      nav {
         position: fixed;
         top: 0;
-        left: 0;
         width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -2;
-        opacity: 0.03;
-      }
-
-      .bg-particles::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-          radial-gradient(circle at 20% 80%, var(--color-primary) 1px, transparent 1px),
-          radial-gradient(circle at 80% 20%, var(--color-secondary) 1px, transparent 1px),
-          radial-gradient(circle at 40% 40%, var(--color-accent) 1px, transparent 1px);
-        background-size: 100px 100px, 150px 150px, 200px 200px;
-        animation: float 20s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        33% { transform: translateY(-10px) rotate(1deg); }
-        66% { transform: translateY(5px) rotate(-1deg); }
-      }
-
-      /* === REVEAL ANIMATIONS === */
-      .reveal {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .reveal.revealed {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* === TIPOGRAFÍA === */
-      h1, h2, h3, h4, h5, h6 {
-        font-weight: 700;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-        margin: 0;
-      }
-
-      p {
-        line-height: 1.7;
-        margin: 0;
-      }
-
-      /* === RESPONSIVE === */
-      @media (max-width: 768px) {
-        html {
-          scroll-padding-top: 60px;
-        }
-        
-        .page-loading {
-          transform: translateY(20px);
-        }
-      }
-
-      /* === ACCESIBILIDAD - MOVIMIENTO REDUCIDO === */
-      @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-        
-        html {
-          scroll-behavior: auto;
-        }
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        background: rgba(11, 13, 23, 0.8);
       }
     </style>
+    
+    <!-- Performance monitoring script inline -->
+    <script is:inline>
+      // Performance monitoring
+      if ('performance' in window) {
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData) {
+              console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+            }
+          }, 0);
+        });
+      }
+    </script>
+    
+    <!-- Script para corregir rutas en GitHub Pages - Defer -->
+    <script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
+      const script = document.createElement('script');
+      script.src = baseUrl + '/fixPaths.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    </script>
   </head>
   
   <body class="page-loading">
-    <!-- Elementos de fondo -->
-    <div class="bg-particles"></div>
-    
     <!-- Navegación -->
     <Navigation />
     
@@ -216,10 +147,11 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     <!-- Footer -->
     <Footer />
     
-    <!-- Componentes UX -->
+    <!-- Componentes UX optimizados -->
     <div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-30 scroll-progress-bg">
       <div id="scroll-progress-bar" class="h-full transition-all duration-300 ease-out scroll-progress-bar" style="width: 0%;"></div>
     </div>
+    
     <button 
       id="back-to-top" 
       class="fixed bottom-8 right-8 w-14 h-14 rounded-full shadow-lg transition-all duration-300 transform opacity-0 pointer-events-none z-30 glass-elevated hover:neon-glow back-to-top-btn"
@@ -230,41 +162,49 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
       </svg>
     </button>
-    <div id="page-loader" class="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 page-loader">
+    
+    <div id="page-loader" class="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 page-loader" style="display: none;">
     </div>
 
+    <!-- Deferred JavaScript for better performance -->
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(() => {
-          document.body.classList.remove('page-loading');
-          document.body.classList.add('page-loaded');
-        }, 100);
+      // Optimized DOMContentLoaded handler
+      const initializeApp = () => {
+        // Remove loading class
+        document.body.classList.remove('page-loading');
+        document.body.classList.add('page-loaded');
 
-        // === SISTEMA DE REVEAL ===
+        // Intersection Observer for reveal animations
         const observerOptions = {
-          threshold: 0.15,
-          rootMargin: '0px 0px -80px 0px'
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry, index) => {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              setTimeout(() => {
-                entry.target.classList.add('revealed');
-              }, index * 150); // Delay más espaciado para mejor efecto
-              observer.unobserve(entry.target);
+              entry.target.classList.add('revealed');
+              revealObserver.unobserve(entry.target);
             }
           });
         }, observerOptions);
 
+        // Observe all reveal elements
         document.querySelectorAll('.reveal').forEach(el => {
-          observer.observe(el);
+          revealObserver.observe(el);
         });
 
-  // Navegación suave: lo gestiona CSS (html { scroll-behavior }) + scroll-margin en secciones
-
-        // === UX Enhancements Script ===
-        let ticking = false;
+        // Optimized scroll handler with throttling
+        let scrollTimeout;
+        const handleScrollOptimized = () => {
+          if (scrollTimeout) return;
+          
+          scrollTimeout = setTimeout(() => {
+            updateScrollProgress();
+            toggleBackToTop();
+            scrollTimeout = null;
+          }, 16); // ~60fps
+        };
 
         function updateScrollProgress() {
           const scrollProgress = document.getElementById('scroll-progress-bar');
@@ -285,50 +225,43 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
           
           if (scrollTop > 300) {
             backToTop.classList.remove('opacity-0', 'pointer-events-none');
-            backToTop.classList.add('opacity-100', 'pointer-events-auto', 'hover:scale-110');
+            backToTop.classList.add('opacity-100', 'pointer-events-auto');
           } else {
             backToTop.classList.add('opacity-0', 'pointer-events-none');
-            backToTop.classList.remove('opacity-100', 'pointer-events-auto', 'hover:scale-110');
+            backToTop.classList.remove('opacity-100', 'pointer-events-auto');
           }
         }
 
-        function hideLoader() {
-          const loader = document.getElementById('page-loader');
-          if (!loader) return;
-          
-          setTimeout(() => {
-            document.body.classList.add('page-loaded');
-            loader.style.opacity = '0';
-            setTimeout(() => {
-              loader.style.display = 'none';
-            }, 500);
-          }, 800);
-        }
-
-        function handleScroll() {
-          if (!ticking) {
-            requestAnimationFrame(() => {
-              updateScrollProgress();
-              toggleBackToTop();
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }
-
-        hideLoader();
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        // Event listeners
+        window.addEventListener('scroll', handleScrollOptimized, { passive: true });
         
         const backToTop = document.getElementById('back-to-top');
         if (backToTop) {
-          backToTop.addEventListener('click', () => {
+          backToTop.addEventListener('click', (e) => {
+            e.preventDefault();
             window.scrollTo({
               top: 0,
               behavior: 'smooth'
             });
           });
         }
-      });
+
+        // Hide loader
+        const loader = document.getElementById('page-loader');
+        if (loader) {
+          loader.style.display = 'none';
+        }
+      };
+
+      // Initialize when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeApp);
+      } else {
+        initializeApp();
+      }
     </script>
+
+    <!-- Speed Insights -->
+    <SpeedInsights />
   </body>
 </html>
