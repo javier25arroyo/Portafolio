@@ -1,75 +1,71 @@
 ---
 import Button from './Button.astro';
 ---
-<!-- 🎨 Hero Section Modernizado -->
+<!-- 🎨 Hero Section Optimizado para Performance -->
 <div class="min-h-screen relative overflow-hidden hero-bg">
   
-  <!-- Contenido principal con animaciones escalonadas -->
+  <!-- Contenido principal con animaciones optimizadas -->
   <div class="relative z-10 flex items-center justify-center min-h-screen pt-20 md:pt-24">
     <div class="container mx-auto px-6 py-12">
       
-      <!-- Header con introducción animada -->
-      <div class="text-left mb-8 animate-fade-in-up hero-intro">
+      <!-- Header con introducción optimizada -->
+      <div class="text-left mb-8 reveal hero-intro">
         <div class="inline-flex items-center px-4 py-2 rounded-full backdrop-blur-sm mb-6 glass-dark border border-border-light status-badge">
-          <div class="w-2 h-2 rounded-full mr-3 animate-ping status-dot"></div>
+          <div class="w-2 h-2 rounded-full mr-3 status-dot"></div>
           <span class="font-medium text-sm status-text">Available for opportunities</span>
         </div>
         
-        <!-- Greeting con efectos impactantes -->
+        <!-- Greeting optimizado -->
         <div class="greeting-container mb-4">
-          <p class="text-2xl md:text-3xl font-light animate-fade-in-up greeting-text">
-            <span class="greeting-word" data-word="Hi,">Hi,</span>
-            <span class="greeting-word" data-word="I'm">I'm</span>
-            <span class="name-highlight" data-name="Javier Arroyo">
-              <span class="name-letter" data-letter="J">J</span><span class="name-letter" data-letter="a">a</span><span class="name-letter" data-letter="v">v</span><span class="name-letter" data-letter="i">i</span><span class="name-letter" data-letter="e">e</span><span class="name-letter" data-letter="r">r</span>
-              <span class="name-space"> </span>
-              <span class="name-letter" data-letter="A">A</span><span class="name-letter" data-letter="r">r</span><span class="name-letter" data-letter="r">r</span><span class="name-letter" data-letter="o">o</span><span class="name-letter" data-letter="y">y</span><span class="name-letter" data-letter="o">o</span>
+          <p class="text-2xl md:text-3xl font-light reveal greeting-text">
+            <span class="greeting-word">Hi,</span>
+            <span class="greeting-word">I'm</span>
+            <span class="name-highlight">
+              Javier Arroyo
             </span>
           </p>
         </div>
         
-        <!-- Título principal con efecto de escritura mejorado -->
+        <!-- Título principal optimizado -->
         <h1 class="text-6xl md:text-8xl font-bold leading-tight mb-6 hero-title">
-          <span class="block animate-slide-in-left title-first">Software</span>
-          <span class="block gradient-text animate-slide-in-right title-second">Developer</span>
+          <span class="block reveal title-first">Software</span>
+          <span class="block gradient-text reveal title-second">Developer</span>
         </h1>
       </div>
 
-      <!-- Descripción con animación mejorada -->
-      <div class="max-w-4xl mb-12 animate-fade-in-up hero-description">
+      <!-- Descripción optimizada -->
+      <div class="max-w-4xl mb-12 reveal hero-description">
         <p class="text-xl md:text-2xl leading-relaxed font-light description-text">
           Crafting exceptional digital experiences through 
           <span class="font-medium relative text-glow highlight-innovation">
             innovative design
-            <span class="absolute -bottom-1 left-0 w-full h-0.5 transform scale-x-0 animate-scale-in underline-effect"></span>
           </span> 
           and 
           <span class="font-medium relative text-glow-secondary highlight-tech">
             cutting-edge technology
-            <span class="absolute -bottom-1 left-0 w-full h-0.5 transform scale-x-0 animate-scale-in underline-effect-secondary"></span>
           </span>
         </p>
       </div>
 
-      <!-- CTAs con animaciones mejoradas -->
-      <div class="flex flex-col sm:flex-row gap-6 mb-12 animate-fade-in-up hero-ctas">
-        <a href="#projects" class="btn-primary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-view-work">
+      <!-- CTAs optimizados -->
+      <div class="flex flex-col sm:flex-row gap-6 mb-12 reveal hero-ctas">
+        <a href="#projects" class="btn-primary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-view-work" rel="nofollow">
           <span>View My Work</span>
-          <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>
         </a>
         
-        <a href="#contact" class="btn-secondary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-lets-connect">
+        <a href="#contact" class="btn-secondary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-lets-connect" rel="nofollow">
           <span>Let's Connect</span>
-          <svg class="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
           </svg>
         </a>
       </div>
 
-      <!-- Scroll indicator mejorado -->
-      <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 animate-bounce scroll-indicator z-10">
+      <!-- Scroll indicator optimizado -->
+      <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 scroll-indicator z-10" aria-hidden="true">
         <div class="flex flex-col items-center gap-2 scroll-text">
           <span class="text-xs font-medium">Scroll to explore</span>
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,12 +77,13 @@ import Button from './Button.astro';
   </div>
 </div>
 
-<!-- 🎨 Estilos personalizados para animaciones -->
+<!-- 🎨 Estilos optimizados para performance -->
 <style>
-  /* === BACKGROUND === */
+  /* === BACKGROUND OPTIMIZADO === */
   .hero-bg {
-    background: var(--gradient-hero);
+    background: linear-gradient(135deg, #0B0D17 0%, #151825 50%, #1F2337 100%);
     position: relative;
+    will-change: auto; /* Solo cuando sea necesario */
   }
 
   .hero-bg::before {
@@ -97,7 +94,6 @@ import Button from './Button.astro';
       radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.15) 0%, transparent 70%),
       radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.12) 0%, transparent 70%),
       radial-gradient(circle at 40% 40%, rgba(5, 150, 105, 0.08) 0%, transparent 70%);
-    animation: float 20s ease-in-out infinite;
     pointer-events: none;
     z-index: -1;
   }
@@ -107,240 +103,124 @@ import Button from './Button.astro';
     position: absolute;
     inset: 0;
     background-image: 
-      linear-gradient(var(--border-subtle) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+      linear-gradient(rgba(241, 245, 249, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241, 245, 249, 0.02) 1px, transparent 1px);
     background-size: 50px 50px;
     opacity: 0.5;
     pointer-events: none;
     z-index: -1;
   }
 
-  /* === ANIMATION DELAYS === */
-  .hero-intro {
-    animation-delay: 0.5s;
+  /* === ANIMACIONES OPTIMIZADAS === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* === GREETING EFFECTS === */
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === GREETING EFFECTS SIMPLIFICADOS === */
   .greeting-container {
     position: relative;
-    overflow: hidden;
   }
 
   .greeting-text {
-    animation-delay: 0.7s;
-    color: var(--text-secondary);
+    color: #CBD5E1;
     position: relative;
   }
 
   .greeting-word {
     display: inline-block;
     margin-right: 0.5rem;
-    opacity: 0;
-    animation: slideInFromLeft 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
   }
 
-  .greeting-word:nth-child(1) {
-    animation-delay: 0.8s;
-  }
-
-  .greeting-word:nth-child(2) {
-    animation-delay: 1.0s;
-  }
-
-  /* === NAME HIGHLIGHT EFFECTS === */
+  /* === NAME HIGHLIGHT OPTIMIZADO === */
   .name-highlight {
     position: relative;
     display: inline-block;
     font-weight: 600;
-    color: var(--color-accent);
-    text-shadow: 0 0 30px rgba(79, 70, 229, 0.5);
-    animation: nameGlow 2s ease-in-out infinite alternate;
-    filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.3));
-  }
-
-  /* Gradient overlay effect */
-  .name-highlight::after {
-    content: attr(data-name);
-    position: absolute;
-    top: 0;
-    left: 0;
     background: linear-gradient(135deg, 
-      var(--color-accent) 0%, 
-      var(--color-secondary) 50%, 
-      var(--color-primary) 100%);
-    background-size: 300% 300%;
+      #7C3AED 0%, 
+      #059669 50%, 
+      #4F46E5 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: gradientShift 3s ease-in-out infinite;
-    z-index: 1;
-  }
-
-  .name-highlight::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, 
-      rgba(79, 70, 229, 0.1), 
-      rgba(124, 58, 237, 0.1), 
-      rgba(5, 150, 105, 0.1));
-    border-radius: 12px;
-    filter: blur(20px);
-    opacity: 0;
-    animation: glowPulse 3s ease-in-out infinite;
-    z-index: -1;
-  }
-
-  .name-letter {
-    display: inline-block;
-    position: relative;
-    opacity: 0;
-    transform: translateY(100px) rotateX(90deg);
-    animation: letterReveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    transition: all 0.3s ease;
-  }
-
-  .name-letter:hover {
-    transform: scale(1.2) translateY(-5px);
-    text-shadow: 0 10px 20px rgba(79, 70, 229, 0.5);
-  }
-
-  /* Staggered animation delays for each letter */
-  .name-letter:nth-child(1) { animation-delay: 1.2s; }
-  .name-letter:nth-child(2) { animation-delay: 1.3s; }
-  .name-letter:nth-child(3) { animation-delay: 1.4s; }
-  .name-letter:nth-child(4) { animation-delay: 1.5s; }
-  .name-letter:nth-child(5) { animation-delay: 1.6s; }
-  .name-letter:nth-child(6) { animation-delay: 1.7s; }
-  .name-letter:nth-child(8) { animation-delay: 1.9s; }
-  .name-letter:nth-child(9) { animation-delay: 2.0s; }
-  .name-letter:nth-child(10) { animation-delay: 2.1s; }
-  .name-letter:nth-child(11) { animation-delay: 2.2s; }
-  .name-letter:nth-child(12) { animation-delay: 2.3s; }
-  .name-letter:nth-child(13) { animation-delay: 2.4s; }
-
-  .name-space {
-    width: 0.5rem;
-    animation-delay: 1.8s;
-  }
-
-  .title-first {
-    animation-delay: 0.9s;
-  }
-
-  .title-second {
-    animation-delay: 1.2s;
+    animation: nameShimmer 3s ease-in-out infinite;
   }
 
   .hero-title {
-    color: var(--text-primary);
+    color: #F1F5F9;
   }
 
-  .hero-description {
-    animation-delay: 1.4s;
+  .title-first,
+  .title-second {
+    display: block;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 35%, #059669 70%, #0891B2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .description-text {
-    color: var(--text-secondary);
-  }
-
-  .hero-ctas {
-    animation-delay: 1.6s;
-  }
-
-  .scroll-indicator {
-    animation-delay: 3s;
-  }
-
-  .scroll-text {
-    color: var(--text-muted);
-  }
-
-  /* === STATUS BADGE === */
-  .status-dot {
-    background: var(--color-secondary);
-  }
-
-  .status-text {
-    color: var(--color-secondary);
+    color: #CBD5E1;
   }
 
   /* === HIGHLIGHTS === */
   .highlight-innovation {
-    color: var(--color-accent);
+    color: #7C3AED;
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
   }
 
   .highlight-tech {
-    color: var(--color-secondary);
+    color: #059669;
+    text-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
   }
 
-  .underline-effect {
-    background: var(--gradient-primary);
-    animation-delay: 2s;
+  .text-glow {
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
   }
 
-  .underline-effect-secondary {
-    background: var(--gradient-primary);
-    animation-delay: 2.2s;
+  .text-glow-secondary {
+    text-shadow: 0 0 20px rgba(5, 150, 105, 0.4);
   }
 
-  /* === KEYFRAMES === */
-  @keyframes float {
-    0%, 100% { 
-      transform: translateY(0px) rotate(0deg); 
-    }
-    33% { 
-      transform: translateY(-10px) rotate(1deg); 
-    }
-    66% { 
-      transform: translateY(5px) rotate(-1deg); 
-    }
+  /* === STATUS BADGE === */
+  .status-dot {
+    background: #059669;
+    animation: pulse 2s ease-in-out infinite;
   }
 
-  @keyframes scale-in {
-    from {
-      transform: scaleX(0);
-    }
-    to {
-      transform: scaleX(1);
-    }
+  .status-text {
+    color: #059669;
   }
 
-  /* === GREETING KEYFRAMES === */
-  @keyframes slideInFromLeft {
-    0% {
-      opacity: 0;
-      transform: translateX(-100px) translateY(20px) rotateY(-90deg);
-    }
-    60% {
-      opacity: 0.8;
-      transform: translateX(10px) translateY(-5px) rotateY(0deg);
-    }
-    100% {
-      opacity: 1;
-      transform: translateX(0) translateY(0) rotateY(0deg);
-    }
+  .glass-dark {
+    background: rgba(31, 35, 55, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(241, 245, 249, 0.1);
   }
 
-  @keyframes letterReveal {
-    0% {
-      opacity: 0;
-      transform: translateY(100px) rotateX(90deg) scale(0.3);
-    }
-    50% {
-      opacity: 0.7;
-      transform: translateY(-10px) rotateX(0deg) scale(1.1);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0) rotateX(0deg) scale(1);
-    }
+  /* === SCROLL INDICATOR === */
+  .scroll-indicator {
+    animation: bounce 2s infinite;
   }
 
-  @keyframes gradientShift {
+  .scroll-text {
+    color: #94A3B8;
+  }
+
+  /* === KEYFRAMES OPTIMIZADOS === */
+  @keyframes nameShimmer {
     0% {
       background-position: 0% 50%;
     }
@@ -352,49 +232,40 @@ import Button from './Button.astro';
     }
   }
 
-  @keyframes nameGlow {
-    0% {
-      text-shadow: 0 0 30px rgba(79, 70, 229, 0.5);
-      filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.3));
-    }
-    100% {
-      text-shadow: 0 0 50px rgba(79, 70, 229, 0.8);
-      filter: drop-shadow(0 0 40px rgba(79, 70, 229, 0.6));
-    }
-  }
-
-  @keyframes glowPulse {
+  @keyframes pulse {
     0%, 100% {
-      opacity: 0;
-      transform: scale(0.8);
+      opacity: 1;
     }
     50% {
-      opacity: 0.3;
-      transform: scale(1.2);
+      opacity: 0.5;
     }
   }
 
-  @keyframes textShimmer {
-    0% {
-      background-position: -200% center;
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transform: translate3d(0, 0, 0);
     }
-    100% {
-      background-position: 200% center;
+    40%, 43% {
+      transform: translate3d(0, -8px, 0);
+    }
+    70% {
+      transform: translate3d(0, -4px, 0);
+    }
+    90% {
+      transform: translate3d(0, -2px, 0);
     }
   }
 
-  .animate-scale-in {
-    animation: scale-in 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  /* === RESPONSIVE === */
+  /* === RESPONSIVE OPTIMIZADO === */
   @media (max-width: 768px) {
     .text-6xl {
       font-size: 3rem;
+      line-height: 1.1;
     }
     
     .md\:text-8xl {
       font-size: 4rem;
+      line-height: 1;
     }
     
     .text-xl {
@@ -405,25 +276,17 @@ import Button from './Button.astro';
       font-size: 1.25rem;
     }
     
-    /* Ajuste específico para contenedor hero en móvil */
     .hero-bg > div {
-      padding-top: 5rem !important; /* Compensar navbar más padding */
+      padding-top: 4rem !important;
       padding-bottom: 2rem;
     }
-  }
 
-  /* === RESPONSIVE GREETING === */
-  @media (max-width: 768px) {
     .greeting-text {
       font-size: 1.5rem;
     }
     
     .name-highlight {
       font-size: 1.75rem;
-    }
-    
-    .name-letter:hover {
-      transform: scale(1.1) translateY(-3px);
     }
   }
 
@@ -435,54 +298,70 @@ import Button from './Button.astro';
     .name-highlight {
       font-size: 1.5rem;
     }
+
+    .text-6xl {
+      font-size: 2.5rem;
+    }
+
+    .md\:text-8xl {
+      font-size: 3rem;
+    }
   }
 
-  /* === ACCESSIBILITY === */
+  /* === ACCESSIBILITY & PERFORMANCE === */
   @media (prefers-reduced-motion: reduce) {
-    .animate-bounce,
-    .animate-pulse,
-    .animate-ping,
-    .hero-bg::before,
-    .greeting-word,
-    .name-letter,
-    .name-highlight {
+    .reveal,
+    .name-highlight,
+    .status-dot,
+    .scroll-indicator,
+    .hero-bg::before {
       animation: none;
+      transition: none;
     }
     
     .name-highlight {
-      color: var(--color-accent);
-      text-shadow: none;
-      filter: none;
+      background: #7C3AED;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+      background-clip: initial;
+      color: #7C3AED;
     }
     
-    .name-highlight::before,
-    .name-highlight::after {
-      display: none;
-    }
-    
-    .hover-lift:hover,
-    .name-letter:hover {
-      transform: none;
-    }
-    
-    .greeting-word,
-    .name-letter {
+    .reveal {
       opacity: 1;
       transform: none;
     }
   }
 
-  /* === HIGH CONTRAST MODE === */
   @media (prefers-contrast: high) {
     .name-highlight {
-      color: var(--text-primary);
+      color: #F1F5F9;
       text-shadow: none;
-      filter: none;
+      background: none;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
     }
     
-    .name-highlight::before,
-    .name-highlight::after {
-      display: none;
+    .highlight-innovation,
+    .highlight-tech {
+      text-shadow: none;
     }
+  }
+
+  /* === GPU ACCELERATION SOLO DONDE ES NECESARIO === */
+  .hover-lift {
+    transition: transform 0.2s ease-out;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .group:hover .group-hover\:translate-x-1 {
+    transform: translateX(0.25rem);
+  }
+
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
   }
 </style>
