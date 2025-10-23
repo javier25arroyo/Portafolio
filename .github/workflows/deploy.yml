@@ -46,19 +46,22 @@ jobs:
             exit 1
           fi
       
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'npm'
+          cache: 'pnpm'
       
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
+      - name: Install dependencies
+        run: pnpm install
       
       - name: Build with Astro
-        run: npm run build
+        run: pnpm build
       
       - name: Upload build artifacts
         uses: actions/upload-pages-artifact@v3
