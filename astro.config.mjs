@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://javier25arroyo.github.io',
-  base: '/Portafolio',
+  base: process.env.NODE_ENV === 'production' ? '/Portafolio' : '/',
   integrations: [tailwind()],
   
   // Performance optimizations
@@ -31,9 +31,4 @@ export default defineConfig({
     inlineStylesheets: 'auto',
     assets: 'assets'
   },
-  
-  // Experimental features for better performance
-  experimental: {
-    optimizeHoistedScript: true
-  }
 });

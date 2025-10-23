@@ -5,6 +5,7 @@ import '../styles/global.css';
 import '../styles/shared.css';
 import '../styles/fixes.css';
 import  SpeedInsights  from "@vercel/speed-insights/astro"
+const isProd = import.meta.env.PROD;
 ---
 <!doctype html>
 <html lang="en" class="font-sans scroll-smooth">
@@ -20,14 +21,14 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
     <link rel="dns-prefetch" href="https://linkedin.com">
     
     <!-- Critical Resource Preloads -->
-    <link rel="preload" href={`${import.meta.env.BASE_URL}/favicon.ico`} as="image" type="image/x-icon">
+    <link rel="preload" href={`${import.meta.env.BASE_URL}favicon.ico`} as="image" type="image/x-icon">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"></noscript>
     
     <!-- Favicon configuration - Optimized -->
-    <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}/favicon.ico`} />
-    <link rel="apple-touch-icon" sizes="180x180" href={`${import.meta.env.BASE_URL}/assets/icons/favicon.ico`} />
-    <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}/assets/icons/favicon.ico`} />
+    <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${import.meta.env.BASE_URL}assets/icons/favicon.ico`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}assets/icons/favicon.ico`} />
 
     <!-- Theme color for browser UI -->
     <meta name="theme-color" content="#4F46E5" />
@@ -126,13 +127,15 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
       }
     </script>
     
-    <!-- Script para corregir rutas en GitHub Pages - Defer -->
-    <script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
-      const script = document.createElement('script');
-      script.src = baseUrl + '/fixPaths.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    </script>
+    <!-- Script para corregir rutas en GitHub Pages - Defer (production only) -->
+    {isProd && (
+      <script is:inline define:vars={{ baseUrl: import.meta.env.BASE_URL }}>
+        const script = document.createElement('script');
+        script.src = baseUrl + 'fixPaths.js';
+        script.defer = true;
+        document.head.appendChild(script);
+      </script>
+    )}
   </head>
   
   <body class="page-loading">
@@ -174,7 +177,34 @@ import  SpeedInsights  from "@vercel/speed-insights/astro"
         document.body.classList.remove('page-loading');
         document.body.classList.add('page-loaded');
 
-        // Intersection Observer for reveal animations
+        // === SMOOTH SCROLL OPTIMIZADO ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              // Obtener altura del navbar
+              const navbarHeight = document.querySelector('nav')?.offsetHeight || 80;
+              const additionalOffset = 32; // 2rem adicional
+              const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+              const offsetPosition = targetPosition - navbarHeight - additionalOffset;
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+              });
+
+              // Actualizar URL sin saltar
+              history.pushState(null, '', targetId);
+            }
+          });
+        });
+
+        // Intersection Observer para reveal animations
         const observerOptions = {
           threshold: 0.1,
           rootMargin: '0px 0px -50px 0px'

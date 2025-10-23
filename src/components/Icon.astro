@@ -20,22 +20,22 @@ const iconClasses = `${sizes[size]} ${className}`;
 // Mapeo de iconos disponibles
 const iconMap: Record<string, string> = {
   // Tech skills icons
-  'java': `${import.meta.env.BASE_URL}/assets/icons/java.svg`,
-  'csharp': `${import.meta.env.BASE_URL}/assets/icons/CSharp.svg`,
-  'html': `${import.meta.env.BASE_URL}/assets/icons/HTML.svg`,
-  'css': `${import.meta.env.BASE_URL}/assets/icons/CSS.svg`,
-  'javascript': `${import.meta.env.BASE_URL}/assets/icons/JavaScript.svg`,
-  'typescript': `${import.meta.env.BASE_URL}/assets/icons/TypeScript.svg`,
-  'nodejs': `${import.meta.env.BASE_URL}/assets/icons/Node.js.svg`,
-  'angular': `${import.meta.env.BASE_URL}/assets/icons/Angular.svg`,
-  'mysql': `${import.meta.env.BASE_URL}/assets/icons/MySQL.svg`,
-  'sqlserver': `${import.meta.env.BASE_URL}/assets/icons/SqlServer.svg`,
-  'oracle': `${import.meta.env.BASE_URL}/assets/icons/Oracle.svg`,
-  'mongodb': `${import.meta.env.BASE_URL}/assets/icons/MongoDB.svg`,
-  'git': `${import.meta.env.BASE_URL}/assets/icons/GIT.svg`,
-  'azure': `${import.meta.env.BASE_URL}/assets/icons/Azure.svg`,
-  'figma': `${import.meta.env.BASE_URL}/assets/icons/Figma.svg`,
-  'whatsapp': `${import.meta.env.BASE_URL}/assets/icons/Whatsapp.svg`
+'java': `${import.meta.env.BASE_URL}assets/icons/java.svg`,
+'csharp': `${import.meta.env.BASE_URL}assets/icons/CSharp.svg`,
+'html': `${import.meta.env.BASE_URL}assets/icons/HTML.svg`,
+'css': `${import.meta.env.BASE_URL}assets/icons/CSS.svg`,
+'javascript': `${import.meta.env.BASE_URL}assets/icons/JavaScript.svg`,
+'typescript': `${import.meta.env.BASE_URL}assets/icons/TypeScript.svg`,
+'nodejs': `${import.meta.env.BASE_URL}assets/icons/Node.js.svg`,
+'angular': `${import.meta.env.BASE_URL}assets/icons/Angular.svg`,
+'mysql': `${import.meta.env.BASE_URL}assets/icons/MySQL.svg`,
+'sqlserver': `${import.meta.env.BASE_URL}assets/icons/SqlServer.svg`,
+'oracle': `${import.meta.env.BASE_URL}assets/icons/Oracle.svg`,
+'mongodb': `${import.meta.env.BASE_URL}assets/icons/MongoDB.svg`,
+'git': `${import.meta.env.BASE_URL}assets/icons/GIT.svg`,
+'azure': `${import.meta.env.BASE_URL}assets/icons/Azure.svg`,
+'figma': `${import.meta.env.BASE_URL}assets/icons/Figma.svg`,
+'whatsapp': `${import.meta.env.BASE_URL}assets/icons/Whatsapp.svg`
 };
 
 // No importamos los SVG, los usamos directamente como imágenes
@@ -48,6 +48,10 @@ let iconContent = '';
     src={iconPath}
     alt={`${name} icon`} 
     class={iconClasses}
+    loading="lazy"
+    decoding="async"
+    draggable="false"
+    data-icon={name.toLowerCase()}
     style={color ? `color: ${color}` : ''}
   />
 ) : (
