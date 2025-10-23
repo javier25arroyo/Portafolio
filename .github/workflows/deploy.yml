@@ -58,14 +58,12 @@ jobs:
         uses: actions/configure-pages@v5
       
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }} --no-optional
+        run: npm ci --legacy-peer-deps
         working-directory: ${{ env.BUILD_PATH }}
       
       - name: Build Astro site
         run: |
-          ${{ steps.detect-package-manager.outputs.runner }} astro build \
-            --site "${{ steps.pages.outputs.origin }}" \
-            --base "${{ steps.pages.outputs.base_path }}"
+          npm run build
         working-directory: ${{ env.BUILD_PATH }}
       
       - name: Upload build artifacts
