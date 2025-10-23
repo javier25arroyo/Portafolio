@@ -22,7 +22,6 @@
     "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
-    "@rollup/rollup-win32-x64-msvc": "^4.52.5",
     "astro": "^5.14.8",
     "autoprefixer": "^10.4.14",
     "gh-pages": "^6.3.0",
