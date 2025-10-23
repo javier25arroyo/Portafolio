@@ -46,25 +46,19 @@ jobs:
             exit 1
           fi
       
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: ${{ env.BUILD_PATH }}/${{ steps.detect-package-manager.outputs.lockfile }}
+          node-version: '18'
+          cache: 'npm'
       
-      - name: Setup GitHub Pages
-        id: pages
-        uses: actions/configure-pages@v5
-      
-      - name: Install dependencies
-        run: npm ci --legacy-peer-deps
-        working-directory: ${{ env.BUILD_PATH }}
-      
-      - name: Build Astro site
+      - name: Clean install dependencies
         run: |
-          npm run build
-        working-directory: ${{ env.BUILD_PATH }}
+          rm -rf node_modules package-lock.json
+          npm install
+      
+      - name: Build with Astro
+        run: npm run build
       
       - name: Upload build artifacts
         uses: actions/upload-pages-artifact@v3
