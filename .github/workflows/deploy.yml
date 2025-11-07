@@ -24,12 +24,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: "20"
           cache: "npm"
 
-      # Workaround: npm@10 rompe con optional deps de Rollup; usar npm@9
-      - name: Use npm v9
-        run: npm i -g npm@9
 
       - name: Clean npm cache (prevent stale artifacts)
         run: npm cache clean --force
