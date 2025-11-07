@@ -1,5 +1,0 @@
-{
-  "buildCommand": "npm ci --omit=optional && npm run build",
-  "installCommand": "npm ci --omit=optional",
-  "framework": "astro"
-}
