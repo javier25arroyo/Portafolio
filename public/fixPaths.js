@@ -14,8 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
   
-  // Verificar si estamos en GitHub Pages o entorno local con base path
-  if (window.location.hostname.includes('github.io') || window.location.hostname === 'localhost') {
+  // Solo corregimos rutas cuando realmente estamos en GitHub Pages.
+  const isGitHubPages = window.location.hostname.endsWith('github.io');
+
+  if (isGitHubPages) {
     try {
       // Corregir rutas CSS
       document.querySelectorAll('link[rel="stylesheet"]').forEach(function(link) {
