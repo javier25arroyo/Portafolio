@@ -110,19 +110,6 @@ npm ≥ 9.x
 Git ≥ 2.x
 ```
 
-### **Instalación Rápida**
-```bash
-# 1️⃣ Clonar el repositorio
-git clone https://github.com/javier25arroyo/Portafolio.git
-cd Portafolio
-
-# 2️⃣ Instalar dependencias
-npm install
-
-# 3️⃣ Iniciar desarrollo
-npm run dev
-```
-
 ### **Scripts Disponibles**
 
 | Comando | Descripción | Uso |
