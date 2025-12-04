@@ -4,7 +4,6 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/shared.css';
 import '../styles/fixes.css';
-import  SpeedInsights  from "@vercel/speed-insights/astro"
 const isProd = import.meta.env.PROD;
 ---
 <!doctype html>
@@ -21,7 +20,6 @@ const isProd = import.meta.env.PROD;
     <link rel="dns-prefetch" href="https://linkedin.com">
     
     <!-- Critical Resource Preloads -->
-    <link rel="preload" href={`${import.meta.env.BASE_URL}favicon.ico`} as="image" type="image/x-icon">
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"></noscript>
     
@@ -329,8 +327,5 @@ const isProd = import.meta.env.PROD;
         initializeApp();
       }
     </script>
-
-    <!-- Speed Insights -->
-    <SpeedInsights />
   </body>
 </html>

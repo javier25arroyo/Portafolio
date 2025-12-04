@@ -61,10 +61,10 @@
 
 <div align="center">
 
-| Frontend | Styling | Build Tools | Deployment | Analytics |
-|:--------:|:-------:|:-----------:|:----------:|:---------:|
-| ![Astro](https://img.shields.io/badge/Astro-ff6d01?style=flat-square&logo=astro&logoColor=white) | ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white) | ![Rollup](https://img.shields.io/badge/Rollup-ef3335?style=flat-square&logo=rollup.js&logoColor=white) | ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-181717?style=flat-square&logo=github&logoColor=white) | ![Vercel](https://img.shields.io/badge/Vercel_Analytics-000000?style=flat-square&logo=vercel&logoColor=white) |
-| **v3.6.5** | **v3.4.0** | **v4.46.2** | **Actions** | **Speed Insights** |
+| Frontend | Styling | Build Tools | Deployment |
+|:--------:|:-------:|:-----------:|:----------:|
+| ![Astro](https://img.shields.io/badge/Astro-ff6d01?style=flat-square&logo=astro&logoColor=white) | ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white) | ![Rollup](https://img.shields.io/badge/Rollup-ef3335?style=flat-square&logo=rollup.js&logoColor=white) | ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-181717?style=flat-square&logo=github&logoColor=white) |
+| **v5.16.3** | **v3.4.0** | **v4.46.2** | **Actions** |
 
 </div>
 
