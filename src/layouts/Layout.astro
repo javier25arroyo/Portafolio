@@ -120,7 +120,6 @@ const isProd = import.meta.env.PROD;
           setTimeout(() => {
             const perfData = performance.getEntriesByType('navigation')[0];
             if (perfData) {
-              console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
             }
           }, 0);
         });
@@ -204,24 +203,64 @@ const isProd = import.meta.env.PROD;
           });
         });
 
-        // Intersection Observer para reveal animations
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: '0px 0px -50px 0px'
+        // === ENHANCED INTERSECTION OBSERVER FOR REVEAL ANIMATIONS ===
+        const revealObserverOptions = {
+          threshold: [0, 0.1, 0.2, 0.3],
+          rootMargin: '0px 0px -80px 0px'
         };
 
         const revealObserver = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('revealed');
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.1) {
+              // Add revealed class with a small delay for smoother effect
+              requestAnimationFrame(() => {
+                entry.target.classList.add('revealed');
+              });
               revealObserver.unobserve(entry.target);
             }
           });
-        }, observerOptions);
+        }, revealObserverOptions);
 
-        // Observe all reveal elements
-        document.querySelectorAll('.reveal').forEach(el => {
+        // Observe all reveal elements (including variants)
+        const revealSelectors = '.reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate';
+        document.querySelectorAll(revealSelectors).forEach(el => {
           revealObserver.observe(el);
+        });
+
+        // === SECTION VISIBILITY OBSERVER ===
+        const sectionObserverOptions = {
+          threshold: [0, 0.15, 0.3, 0.5],
+          rootMargin: '-10% 0px -10% 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const section = entry.target;
+            
+            if (entry.isIntersecting) {
+              // Smooth section entrance
+              section.style.opacity = '1';
+              section.style.transform = 'translateY(0)';
+              
+              // Add active class for potential styling
+              section.classList.add('section-active');
+              
+              // Trigger staggered children animations
+              const staggerContainer = section.querySelector('.reveal-stagger');
+              if (staggerContainer) {
+                staggerContainer.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right').forEach(child => {
+                  child.classList.add('revealed');
+                });
+              }
+            } else {
+              section.classList.remove('section-active');
+            }
+          });
+        }, sectionObserverOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section[id]').forEach(section => {
+          sectionObserver.observe(section);
         });
 
         // Optimized scroll handler with throttling

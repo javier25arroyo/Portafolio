@@ -8,41 +8,41 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
     <main>
         <!-- 🎨 Hero Section -->
-        <section id="home" class="reveal relative section-base section-transition">
+        <section id="home" class="relative section-base section-transition">
             <Welcome />
         </section>
         
         <!-- 🎨 About/Skills Section -->
-        <section id="about" class="reveal relative section-base section-transition pt-24 pb-32">
+        <section id="about" class="reveal-fade relative section-base section-transition pt-24 pb-32">
             <div class="container mx-auto px-6">
                 <Skills />
             </div>
         </section>
         
         <!-- 🎨 Projects Section -->
-        <section id="projects" class="reveal relative section-base section-transition pt-24 pb-32">
+        <section id="projects" class="reveal-fade relative section-base section-transition pt-24 pb-32">
             <div class="container mx-auto px-6">
                 <Projects />
             </div>
         </section>
         
         <!-- 🎨 Contact Section -->
-        <section id="contact" class="reveal relative section-base section-transition pt-24 pb-32">
+        <section id="contact" class="reveal-fade relative section-base section-transition pt-24 pb-32">
             <div class="container mx-auto px-6">
-				<div class="text-center mb-16">
+				<div class="text-center mb-16 reveal">
 					<h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
 						Get In Touch
 					</h2>
-					<p class="text-lg max-w-2xl mx-auto" style="color: var(--text-secondary);">
+					<p class="text-lg max-w-2xl mx-auto reveal reveal-delay-100" style="color: var(--text-secondary);">
 						Ready to bring your ideas to life? Let's collaborate and create something amazing together.
 					</p>
 				</div>
 				
-				<div class="max-w-4xl mx-auto">
+				<div class="max-w-4xl mx-auto reveal-stagger">
 					<!-- 📧 Contact Info Grid -->
 					<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
 						<!-- Email Card -->
-						<a href="mailto:javier25arojas@gmail.com" class="group" data-track="contact-email" rel="noopener">
+						<a href="mailto:javier25arojas@gmail.com" class="group reveal-scale" data-track="contact-email" rel="noopener">
 							<div class="glass-elevated rounded-2xl p-6 transition-all duration-300 hover:neon-glow-secondary hover-lift">
 								<div class="flex items-center space-x-4">
 									<div class="w-12 h-12 rounded-lg flex items-center justify-center" 
@@ -60,7 +60,7 @@ import Layout from '../layouts/Layout.astro';
 						</a>
 
 						<!-- Quick Response Card -->
-						<div class="glass-elevated rounded-2xl p-6">
+						<div class="glass-elevated rounded-2xl p-6 reveal-scale">
 							<div class="flex items-center space-x-4">
 								<div class="w-12 h-12 rounded-lg flex items-center justify-center" 
 								     style="background: rgba(79, 70, 229, 0.2); color: var(--color-primary);">
@@ -77,12 +77,12 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 					
 					<!-- 🌐 Social Media Section -->
-					<div class="glass-premium rounded-2xl p-8 mb-8">
+					<div class="glass-premium rounded-2xl p-8 mb-8 reveal">
 						<h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);">Connect with me</h4>
-						<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+						<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal-stagger">
 							<!-- LinkedIn -->
 							<a href="https://www.linkedin.com/in/javier-arroyo-268147226/" target="_blank" rel="noopener noreferrer" 
-							   class="group" data-track="social-linkedin">
+							   class="group reveal-scale" data-track="social-linkedin">
 								<div class="card text-center hover-lift">
 									<div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" 
 									     style="background: rgba(79, 70, 229, 0.2); color: var(--color-primary);">
@@ -97,7 +97,7 @@ import Layout from '../layouts/Layout.astro';
 							
 							<!-- GitHub -->
 							<a href="https://github.com/javier25arroyo" target="_blank" rel="noopener noreferrer" 
-							   class="group" data-track="social-github">
+							   class="group reveal-scale" data-track="social-github">
 								<div class="card text-center hover-lift">
 									<div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" 
 									     style="background: rgba(148, 163, 184, 0.2); color: var(--text-primary);">
@@ -112,7 +112,7 @@ import Layout from '../layouts/Layout.astro';
 							
 							<!-- WhatsApp -->
 							<a href="https://walink.co/bdf8ef" target="_blank" rel="noopener noreferrer" 
-							   class="group" data-track="social-whatsapp">
+							   class="group reveal-scale" data-track="social-whatsapp">
 								<div class="card text-center hover-lift">
 									<div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" 
 									     style="background: rgba(5, 150, 105, 0.2); color: var(--color-secondary);">
@@ -128,13 +128,13 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 					
 					<!-- 📄 CV Download Section -->
-					<div class="glass-premium rounded-2xl p-8">
+					<div class="glass-premium rounded-2xl p-8 reveal">
 						<h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);">Download CV</h4>
-						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 reveal-stagger">
 							<!-- CV Español -->
 						<a href={`${import.meta.env.BASE_URL}assets/cv/CV_Javier_Arroyo_ES.pdf`} 
 							   download="CV_Javier_Arroyo_Español.pdf" 
-							   class="group" data-track="download-cv-es"
+							   class="group reveal-left" data-track="download-cv-es"
 							   rel="noopener">
 								<div class="card text-center hover-lift hover:neon-glow">
 									<div class="w-20 h-20 rounded-xl flex items-center justify-center mb-4 mx-auto" 
@@ -156,7 +156,7 @@ import Layout from '../layouts/Layout.astro';
 							<!-- CV English -->
 						<a href={`${import.meta.env.BASE_URL}assets/cv/CV_Javier_Arroyo_EN.pdf`} 
 							   download="CV_Javier_Arroyo_English.pdf" 
-							   class="group" data-track="download-cv-en"
+							   class="group reveal-right" data-track="download-cv-en"
 							   rel="noopener">
 								<div class="card text-center hover-lift hover:neon-glow">
 									<div class="w-20 h-20 rounded-xl flex items-center justify-center mb-4 mx-auto" 

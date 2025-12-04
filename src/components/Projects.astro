@@ -1,61 +1,106 @@
 ---
-// Componente de proyectos destacados
-const projects = [
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import VeterinariaImage from '../assets/projects/veterinaria-moka.png';
+import LabManagementImage from '../assets/projects/lab-management.png';
+import CodeCraftersImage from '../assets/projects/codecrafters.png';
+import PuzzleGameImage from '../assets/projects/puzzle-game.png';
+import DefaultProjectImage from '../assets/projects/default-project.svg?url';
+import OracleDatabaseImage from '../assets/projects/oracle-database.svg?url';
+
+type Project = {
+  title: string;
+  description: string;
+  link: string;
+  backendLink?: string;
+  hasMultipleRepos?: boolean;
+  image: ImageMetadata | string;
+  alt: string;
+  priority?: 'high' | 'low' | 'auto';
+};
+
+const projectMediaWidths = [320, 480, 640, 960];
+const projectMediaSizes = '(max-width: 768px) 100vw, 320px';
+
+const isOptimizedAsset = (image: Project['image']): image is ImageMetadata =>
+  typeof image === 'object' && image !== null && 'src' in image;
+
+const projects: Project[] = [
   {
-    title: "Veterinaria Moka",
-image: `${import.meta.env.BASE_URL}assets/img-projects/Captura de pantalla 2025-07-26 112847.png`,
-    description: "A full-stack solution for a veterinary practice.",  
-    link: "https://github.com/javier25arroyo/Veterinaria-Moka.git"
+    title: 'Veterinaria Moka',
+    image: VeterinariaImage,
+    alt: 'Screenshot of Veterinaria Moka management dashboard',
+    description: 'A full-stack solution for a veterinary practice.',
+    link: 'https://github.com/javier25arroyo/Veterinaria-Moka.git',
+    priority: 'high'
   },
   {
-    title: "Lab Management System",
-image: `${import.meta.env.BASE_URL}assets/img-projects/Captura de pantalla 2025-07-26 114002.png`,
-    description: "Development of a Java Swing desktop application for user management and asset administration.",
-    link: "https://github.com/javier25arroyo/Lab1.git"
+    title: 'Lab Management System',
+    image: LabManagementImage,
+    alt: 'Screenshot of laboratory management desktop app',
+    description: 'Development of a Java Swing desktop application for user management and asset administration.',
+    link: 'https://github.com/javier25arroyo/Lab1.git'
   },
   {
-    title: "CodeCrafters",
-image: `${import.meta.env.BASE_URL}assets/img-projects/Captura de pantalla 2025-07-26 114137.png`,
-    description: "Full-stack development (Angular and Spring Boot) of a video game application for seniors to help prevent cognitive decline.", 
-    link: "https://github.com/javier25arroyo/CodeCrafters-FrontEnd.git",
-    backendLink: "https://github.com/javier25arroyo/CodeCrafters-BackEnd.git",
+    title: 'CodeCrafters',
+    image: CodeCraftersImage,
+    alt: 'Screenshot of CodeCrafters serious game interface',
+    description: 'Full-stack development (Angular and Spring Boot) of a video game application for seniors to help prevent cognitive decline.',
+    link: 'https://github.com/javier25arroyo/CodeCrafters-FrontEnd.git',
+    backendLink: 'https://github.com/javier25arroyo/CodeCrafters-BackEnd.git',
     hasMultipleRepos: true
   },
   {
-    title: "Puzzle Game for Seniors",
-image: `${import.meta.env.BASE_URL}assets/img-projects/Captura de pantalla 2025-07-26 115039.png`,
-    description: "Development of a puzzle video game for seniors.",
-    link: "https://javier25arroyo.github.io/puzzle-game/"
+    title: 'Puzzle Game for Seniors',
+    image: PuzzleGameImage,
+    alt: 'Screenshot of the puzzle mini-game for seniors',
+    description: 'Development of a puzzle video game for seniors.',
+    link: 'https://javier25arroyo.github.io/puzzle-game/'
   },
   {
-    title: "CareConnect IoT System",
-image: `${import.meta.env.BASE_URL}assets/img-projects/default-project.svg`,
-    description: "Development of a physical server system for obstacle detection using an Ideaboard in MicroPython.",
-    link: "https://github.com/javier25arroyo/CareConnect.git"
+    title: 'CareConnect IoT System',
+    image: DefaultProjectImage,
+    alt: 'Abstract IoT system illustration',
+    description: 'Development of a physical server system for obstacle detection using an Ideaboard in MicroPython.',
+    link: 'https://github.com/javier25arroyo/CareConnect.git'
   },
-  // Agrega más proyectos aquí
   {
-    title: "Oracle Tech Store DB",
-image: `${import.meta.env.BASE_URL}assets/img-projects/oracle-database.svg`,
-    description: "Database management project for a tech product sales store in Oracle Database.",
-    link: "https://github.com/javier25arroyo/Proyecto-programacion-de-bases-de-datos.git"
+    title: 'Oracle Tech Store DB',
+    image: OracleDatabaseImage,
+    alt: 'Database entity-relationship diagram preview',
+    description: 'Database management project for a tech product sales store in Oracle Database.',
+    link: 'https://github.com/javier25arroyo/Proyecto-programacion-de-bases-de-datos.git'
   }
 ];
 ---
 
 <section class="projects-section">
   <div class="container mx-auto px-6">
-    <div class="title-container">
+    <div class="title-container reveal">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
         My Projects
       </h2>
     </div>
   </div>
-  <div class="projects-grid">
-    {projects.map(project => (
-      <div class="project-card">
+  <div class="projects-grid reveal-stagger">
+    {projects.map((project, index) => (
+      <div class={`project-card reveal-scale`} style={`transition-delay: ${index * 100}ms`}>
         <div class="project-image-container">
-          <img src={project.image} alt={project.title} class="project-image" loading="lazy" />
+          {isOptimizedAsset(project.image) ? (
+            <Image
+              src={project.image}
+              alt={project.alt}
+              class="project-image"
+              loading="lazy"
+              decoding="async"
+              format="webp"
+              widths={projectMediaWidths}
+              sizes={projectMediaSizes}
+              fetchpriority={project.priority ?? 'auto'}
+            />
+          ) : (
+            <img src={project.image} alt={project.alt} class="project-image" loading="lazy" decoding="async" />
+          )}
           <div class="project-overlay">
             <div class="github-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -162,36 +207,19 @@ image: `${import.meta.env.BASE_URL}assets/img-projects/oracle-database.svg`,
   position: relative;
 }
 
-.project-image {
+.project-image,
+.project-image :where(img) {
   width: 100%;
   height: 100%;
+  display: block;
+}
+
+.project-image :where(img) {
   object-fit: cover;
   transition: transform 0.3s ease;
 }
 
-.project-image[src*="default-project"], .project-image:not([src]) {
-  display: none;
-}
-
-.project-image-container:has(.project-image[src*="default-project"]),
-.project-image-container:has(.project-image:not([src])) {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-}
-
-.project-image-container:has(.project-image[src*="default-project"])::before,
-.project-image-container:has(.project-image:not([src]))::before {
-  content: "🔧";
-  font-size: 3rem;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.1);
-}
-
-.project-card:hover .project-image {
+.project-card:hover .project-image :where(img) {
   transform: scale(1.06);
 }
 

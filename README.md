@@ -8,7 +8,7 @@
 [![GitHub Actions](https://img.shields.io/github/actions/workflow/status/javier25arroyo/Portafolio/deploy.yml?style=for-the-badge&logo=github&label=Deploy)](https://github.com/javier25arroyo/Portafolio/actions)
 [![Built with Astro](https://img.shields.io/badge/Built_with-Astro-ff6d01?style=for-the-badge&logo=astro)](https://astro.build/)
 
-<img src="https://raw.githubusercontent.com/javier25arroyo/Portafolio/main/public/assets/img-projects/Captura%20de%20pantalla%202025-07-26%20112847.png" alt="Portafolio Preview" width="800" style="border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);"/>
+<img src="https://raw.githubusercontent.com/javier25arroyo/Portafolio/main/src/assets/projects/veterinaria-moka.png" alt="Portafolio Preview" width="800" style="border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.3);"/>
 
 *Un portafolio web que combina diseño vanguardista con tecnología de punta*
 
@@ -80,9 +80,10 @@
 │   ├── fixPaths.js         # Corrección inteligente de rutas
 │   └── assets/             # Imágenes, íconos, documentos
 │       ├── cv/             # CVs multiidioma (ES/EN)
-│       ├── icons/          # Iconografía técnica SVG
-│       └── img-projects/   # Screenshots de proyectos
+│       └── icons/          # Iconografía técnica SVG
 ├── 🎨 src/                  # Código fuente modular
+│   ├── assets/             # Assets optimizados con Astro
+│   │   └── projects/       # Screenshots convertidos a WebP responsive
 │   ├── components/         # Componentes reutilizables
 │   │   ├── Navigation.astro    # Navegación adaptativa
 │   │   ├── Projects.astro      # Showcase de proyectos

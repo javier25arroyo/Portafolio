@@ -81,13 +81,12 @@ document.addEventListener('DOMContentLoaded', function() {
             el.setAttribute('style', newStyle);
           }
         } catch (e) {
-          console.error('Error al corregir estilo:', e);
+
         }
       });
 
-      console.log('Rutas corregidas para GitHub Pages o entorno local');
     } catch (e) {
-      console.error('Error general al corregir rutas:', e);
+
     }
   }
 });
