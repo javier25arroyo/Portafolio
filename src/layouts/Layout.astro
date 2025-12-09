@@ -178,9 +178,11 @@ const isProd = import.meta.env.PROD;
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
+            const link = e.currentTarget as HTMLAnchorElement | null;
+            if (!link) return;
+            const targetId = link.getAttribute('href');
             
-            if (targetId === '#') return;
+            if (!targetId || targetId === '#') return;
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
@@ -233,8 +235,10 @@ const isProd = import.meta.env.PROD;
 
         const sectionObserver = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
-            const section = entry.target;
+            const section = entry.target as HTMLElement;
             
+            if (!section) return;
+
             if (entry.isIntersecting) {
               // Smooth section entrance
               section.style.opacity = '1';
@@ -262,7 +266,7 @@ const isProd = import.meta.env.PROD;
         });
 
         // Optimized scroll handler with throttling
-        let scrollTimeout;
+        let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
         const handleScrollOptimized = () => {
           if (scrollTimeout) return;
           
