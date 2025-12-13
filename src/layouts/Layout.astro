@@ -5,9 +5,11 @@ import '../styles/global.css';
 import '../styles/shared.css';
 import '../styles/fixes.css';
 const isProd = import.meta.env.PROD;
+const canonicalURL = new URL(Astro.url.pathname, 'https://javier25arroyo.github.io/Portafolio/');
+const ogImageURL = 'https://javier25arroyo.github.io/Portafolio/assets/og-image.png';
 ---
 <!doctype html>
-<html lang="en" class="font-sans scroll-smooth">
+<html lang="es" class="font-sans scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,22 +37,64 @@ const isProd = import.meta.env.PROD;
     <meta name="generator" content={Astro.generator} />
     
     <!-- SEO Optimizado -->
-    <title>Javier Arroyo | Software Developer Portfolio</title>
-    <meta name="description" content="Software Development Engineer specializing in modern web technologies. Explore my portfolio of innovative projects built with JavaScript, TypeScript, React, and more." />
-    <meta name="keywords" content="software development engineer, web developer, portfolio, JavaScript, TypeScript, React, Node.js, full-stack developer, Javier Arroyo" />
+    <title>Javier Arroyo | Desarrollador de Software Full-Stack</title>
+    <meta name="description" content="Desarrollador de Software Full-Stack especializado en tecnologías web modernas. Portafolio de proyectos innovadores con JavaScript, TypeScript, Angular, Node.js, Java, C# y más. Disponible para proyectos freelance y oportunidades laborales." />
+    <meta name="keywords" content="desarrollador software, full-stack developer, web developer, JavaScript, TypeScript, Angular, Node.js, Java, C#, Azure, MongoDB, MySQL, SQL Server, portafolio, Javier Arroyo, Costa Rica, freelance" />
     <meta name="author" content="Javier Arroyo Rojas" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href={canonicalURL} />
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Javier Arroyo - Software Development Engineer" />
-    <meta property="og:description" content="Software Development Engineer specializing in modern web technologies. View my portfolio and connect with me." />
+    <meta property="og:title" content="Javier Arroyo | Desarrollador de Software Full-Stack" />
+    <meta property="og:description" content="Desarrollador Full-Stack especializado en tecnologías web modernas. Explora mi portafolio de proyectos innovadores y contáctame." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://javier25arroyo.github.io/Portafolio" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Javier Arroyo Portfolio" />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Javier Arroyo - Desarrollador de Software Full-Stack" />
+    <meta property="og:locale" content="es_CR" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Javier Arroyo - Software Developer" />
-    <meta name="twitter:description" content="Software Development Engineer specializing in modern web technologies" />
+    <meta name="twitter:title" content="Javier Arroyo | Desarrollador Full-Stack" />
+    <meta name="twitter:description" content="Desarrollador de Software Full-Stack especializado en tecnologías web modernas. Portafolio profesional." />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content="Javier Arroyo - Desarrollador de Software" />
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Javier Arroyo Rojas",
+      "url": "https://javier25arroyo.github.io/Portafolio/",
+      "image": ogImageURL,
+      "jobTitle": "Desarrollador de Software Full-Stack",
+      "description": "Desarrollador Full-Stack especializado en JavaScript, TypeScript, Angular, Node.js, Java, C#, y tecnologías cloud como Azure.",
+      "email": "javier25arojas@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/javier-arroyo-268147226/",
+        "https://github.com/javier25arroyo"
+      ],
+      "knowsAbout": ["JavaScript", "TypeScript", "Angular", "Node.js", "Java", "C#", "Azure", "MongoDB", "MySQL", "SQL Server", "Git", "Figma"],
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "Universidad"
+      }
+    })} />
+    
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Javier Arroyo Portfolio",
+      "url": "https://javier25arroyo.github.io/Portafolio/",
+      "description": "Portafolio profesional de Javier Arroyo, desarrollador de software Full-Stack",
+      "author": {
+        "@type": "Person",
+        "name": "Javier Arroyo Rojas"
+      }
+    })} />
     
     <!-- Critical CSS Inline -->
     <style is:inline>
