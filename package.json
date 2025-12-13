@@ -11,7 +11,7 @@
     "deploy": "gh-pages -d dist"
   },
   "engines": {
-    "node": "20.18.x"
+    "node": "20.19.x"
   },
   "dependencies": {
     "@astrojs/tailwind": "^6.0.2",

@@ -105,7 +105,7 @@
 
 ### **Requisitos del Sistema**
 ```bash
-Node.js ≥ 18.x
+Node.js 20.19.x
 npm ≥ 9.x
 Git ≥ 2.x
 ```
