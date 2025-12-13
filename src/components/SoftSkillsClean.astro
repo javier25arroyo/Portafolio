@@ -43,13 +43,12 @@
 <style>
     .soft-skills-container {
         position: relative;
-        min-height: 500px; /* Reduced from 700px */
-        height: 500px; /* Reduced from 700px */
+        min-height: 500px;
+        height: 500px;
         display: flex;
-        align-items: stretch; /* Changed from center to stretch */
+        align-items: stretch;
         justify-content: center;
         overflow: hidden;
-        /* Completely transparent background */
         background: transparent;
         border-radius: 0;
         backdrop-filter: none;
@@ -218,70 +217,104 @@
     /* Responsive design */
     @media (max-width: 768px) {
         .soft-skills-container {
-            min-height: 450px; /* Adjusted for smaller container */
-            height: 450px;
+            min-height: auto;
+            height: auto;
+            padding: 1rem 0;
         }
 
         .bubbles-container {
-            width: 95%; /* Slightly larger on mobile for better use of space */
-            padding: 1rem;
+            width: 100%;
+            min-height: auto;
+            padding: 0.75rem;
             position: relative;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
             align-items: center;
             justify-items: center;
         }
 
         .bubble {
             position: relative !important;
-            min-width: 120px !important;
-            min-height: 120px !important;
-            max-width: 160px !important;
-            max-height: 160px !important;
-            width: auto !important;
+            transform: none !important;
+            min-width: 90px !important;
+            min-height: 90px !important;
+            max-width: 110px !important;
+            max-height: 110px !important;
+            width: 100% !important;
             height: auto !important;
+            aspect-ratio: 1 / 1;
             top: auto !important;
             left: auto !important;
-            margin: 0.5rem;
-            padding: 0.8rem !important;
+            margin: 0 !important;
+            padding: 0.6rem !important;
+            border-radius: 50% !important;
         }
 
         .bubble span {
-            font-size: 0.8rem;
+            font-size: 0.65rem;
+            line-height: 1.15;
+            white-space: normal;
         }
 
         .bubble[data-skill="Effective Communication"] span,
         .bubble[data-skill="Critical Thinking"] span,
         .bubble[data-skill="Continuous Learning"] span,
         .bubble[data-skill="Attention to Detail"] span {
-            font-size: 0.75rem;
+            font-size: 0.58rem;
         }
     }
 
     @media (max-width: 480px) {
+        .soft-skills-container {
+            min-height: auto;
+            height: auto;
+            padding: 0.5rem 0;
+        }
+
         .bubbles-container {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+            padding: 0.5rem;
         }
 
         .bubble {
-            min-width: 100px !important;
-            min-height: 100px !important;
-            max-width: 140px !important;
-            max-height: 140px !important;
-            padding: 0.6rem !important;
+            min-width: 75px !important;
+            min-height: 75px !important;
+            max-width: 95px !important;
+            max-height: 95px !important;
+            padding: 0.4rem !important;
         }
 
         .bubble span {
-            font-size: 0.7rem;
+            font-size: 0.55rem;
+            line-height: 1.1;
         }
 
         .bubble[data-skill="Effective Communication"] span,
         .bubble[data-skill="Critical Thinking"] span,
         .bubble[data-skill="Continuous Learning"] span,
         .bubble[data-skill="Attention to Detail"] span {
-            font-size: 0.65rem;
+            font-size: 0.5rem;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .bubbles-container {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        .bubble {
+            min-width: 90px !important;
+            min-height: 90px !important;
+            max-width: 120px !important;
+            max-height: 120px !important;
+            padding: 0.5rem !important;
+        }
+
+        .bubble span {
+            font-size: 0.6rem;
         }
     }
 </style>
