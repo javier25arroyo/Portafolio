@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // Solo corregimos rutas cuando realmente estamos en GitHub Pages.
-  const isGitHubPages = window.location.hostname.endsWith('github.io');
+  // Stricter check: Host must be exactly of the form "<username>.github.io"
+  const isGitHubPages = /^[a-zA-Z0-9-]+\.github\.io$/.test(window.location.hostname);
 
   if (isGitHubPages) {
     try {
