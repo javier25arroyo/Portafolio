@@ -4,7 +4,7 @@ import SoftSkills from './SoftSkillsClean.astro';
 
 ---
 
-<div class="container mx-auto px-6">
+<section id="about" class="container mx-auto px-6">
     <!-- Main Title -->
     <div class="text-center mb-16 reveal">
         <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
@@ -13,22 +13,22 @@ import SoftSkills from './SoftSkillsClean.astro';
     </div>
     
     <!-- Soft Skills Section -->
-    <div class="mb-20 reveal reveal-delay-100">
+    <section class="mb-20 reveal reveal-delay-100" aria-labelledby="soft-skills-heading">
         <div class="text-center mb-12">
-            <h3 class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
+            <h3 id="soft-skills-heading" class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
                 Soft Skills
             </h3>
         </div>
         <SoftSkills />
-    </div>
-</div>
+    </section>
+</section>
 
 <!-- Technical Skills Section -->
-<div class="mb-20 reveal reveal-delay-200">
+<section class="mb-20 reveal reveal-delay-200" aria-labelledby="tech-skills-heading">
     <div class="text-center mb-12">
-        <h3 class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
+        <h3 id="tech-skills-heading" class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
             Technical Skills
         </h3>
     </div>
     <TechnicalSkills />
-</div>
+</section>

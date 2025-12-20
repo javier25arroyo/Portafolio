@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://javier25arroyo.github.io/Portafolio/sitemap-index.xml
+Sitemap: https://javier25arroyo.github.io/Portafolio/sitemap.xml
 
 # Crawl-delay (optional, respected by some bots)
 Crawl-delay: 1

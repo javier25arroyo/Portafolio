@@ -6,8 +6,8 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://javier25arroyo.github.io',
-  base: '/Portafolio/',
-  integrations: [
+    base: '/Portafolio/',
+    integrations: [
     tailwind(),
     sitemap({
       changefreq: 'monthly',
