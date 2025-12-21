@@ -1,0 +1,8 @@
+{
+  "files.readonlyInclude": {},
+  "files.readonlyExclude": {
+    "**/*": true
+  },
+  "editor.readOnly": true,
+  "workbench.editor.readOnly": true
+}

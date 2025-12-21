@@ -1,0 +1,476 @@
+<!DOCTYPE html><html lang="es" class="font-sans scroll-smooth"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Performance Critical Resources --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://walink.co"><link rel="dns-prefetch" href="https://github.com"><link rel="dns-prefetch" href="https://linkedin.com"><!-- Critical Resource Preloads --><link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.ttf" as="font" type="font/ttf" crossorigin><link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"></noscript><!-- Favicon configuration - Optimized --><link rel="icon" type="image/x-icon" href="/Portafolio/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/Portafolio/assets/icons/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/Portafolio/assets/icons/favicon.ico"><!-- Theme color for browser UI --><meta name="theme-color" content="#4F46E5"><meta name="msapplication-TileColor" content="#4F46E5"><meta name="generator" content="Astro v5.16.5"><!-- SEO Optimizado --><title>Javier Arroyo | Desarrollador de Software Full-Stack</title><meta name="description" content="Desarrollador de Software Full-Stack especializado en tecnologías web modernas. Portafolio de proyectos innovadores con JavaScript, TypeScript, Angular, Node.js, Java, C# y más. Disponible para proyectos freelance y oportunidades laborales."><meta name="keywords" content="desarrollador software, full-stack developer, web developer, JavaScript, TypeScript, Angular, Node.js, Java, C#, Azure, MongoDB, MySQL, SQL Server, portafolio, Javier Arroyo, Costa Rica, freelance"><meta name="author" content="Javier Arroyo Rojas"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><link rel="canonical" href="https://javier25arroyo.github.io/Portafolio/"><!-- Open Graph --><meta property="og:title" content="Javier Arroyo | Desarrollador de Software Full-Stack"><meta property="og:description" content="Desarrollador Full-Stack especializado en tecnologías web modernas. Explora mi portafolio de proyectos innovadores y contáctame."><meta property="og:type" content="website"><meta property="og:url" content="https://javier25arroyo.github.io/Portafolio/"><meta property="og:site_name" content="Javier Arroyo Portfolio"><meta property="og:image" content="https://javier25arroyo.github.io/Portafolio/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Javier Arroyo - Desarrollador de Software Full-Stack"><meta property="og:locale" content="es_CR"><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Javier Arroyo | Desarrollador Full-Stack"><meta name="twitter:description" content="Desarrollador de Software Full-Stack especializado en tecnologías web modernas. Portafolio profesional."><meta name="twitter:image" content="https://javier25arroyo.github.io/Portafolio/assets/og-image.png"><meta name="twitter:image:alt" content="Javier Arroyo - Desarrollador de Software"><!-- JSON-LD Structured Data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Javier Arroyo Rojas","url":"https://javier25arroyo.github.io/Portafolio/","image":"https://javier25arroyo.github.io/Portafolio/assets/og-image.png","jobTitle":"Desarrollador de Software Full-Stack","description":"Desarrollador Full-Stack especializado en JavaScript, TypeScript, Angular, Node.js, Java, C#, y tecnologías cloud como Azure.","email":"javier25arojas@gmail.com","sameAs":["https://www.linkedin.com/in/javier-arroyo-268147226/","https://github.com/javier25arroyo"],"knowsAbout":["JavaScript","TypeScript","Angular","Node.js","Java","C#","Azure","MongoDB","MySQL","SQL Server","Git","Figma"],"alumniOf":{"@type":"Organization","name":"Universidad"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Javier Arroyo Portfolio","url":"https://javier25arroyo.github.io/Portafolio/","description":"Portafolio profesional de Javier Arroyo, desarrollador de software Full-Stack","author":{"@type":"Person","name":"Javier Arroyo Rojas"}}</script><!-- Critical CSS Inline --><style>
+      /* Critical above-the-fold styles */
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 80px;
+        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0B0D17;
+        color: #F1F5F9;
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* Initial loading state */
+      .page-loading {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .page-loaded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Hero critical styles */
+      .hero-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0B0D17 0%, #151825 50%, #1F2337 100%);
+      }
+
+      /* Navigation critical styles */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        background: rgba(11, 13, 23, 0.8);
+      }
+    </style><!-- Performance monitoring script inline --><script>
+      // Performance monitoring
+      if ('performance' in window) {
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData) {
+            }
+          }, 0);
+        });
+      }
+    </script><!-- Script para corregir rutas en GitHub Pages - Defer (production only) --><script>(function(){const baseUrl = "/Portafolio/";
+
+        const script = document.createElement('script');
+        script.src = baseUrl + 'fixPaths.js';
+        script.defer = true;
+        document.head.appendChild(script);
+      })();</script><link rel="stylesheet" href="/Portafolio/assets/index.DaKD4-4T.css"></head> <body class="page-loading"> <a class="skip-link" href="#main-content">Saltar al contenido principal</a> <!-- Navegación --> <!-- 🎨 Navegación Modernizada --><nav id="main-nav" class="navbar fixed top-0 left-0 right-0 z-40 backdrop-blur-xl border-b transition-all duration-500 ease-out glass-dark" role="navigation" aria-label="Navegación principal" data-astro-cid-pux6a34n> <div class="container mx-auto px-6 lg:px-8" data-astro-cid-pux6a34n> <div class="relative flex items-center justify-between h-16" data-astro-cid-pux6a34n> <!-- Logo/Brand Mejorado --> <div class="flex-1 flex items-center" data-astro-cid-pux6a34n> <a href="#home" class="logo group relative overflow-hidden" data-track="nav-logo" data-astro-cid-pux6a34n> <span class="gradient-text relative z-10 text-xl font-bold transition-all duration-300 hover:scale-110" data-astro-cid-pux6a34n>JA</span> <div class="absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -m-2" style="background: var(--gradient-primary); opacity: 0.1;" data-astro-cid-pux6a34n></div> </a> </div> <!-- Navigation Links Mejorados --> <div class="hidden md:flex flex-1 items-center justify-center space-x-1" data-astro-cid-pux6a34n> <a href="#home" class="nav-link group relative" data-text="Home" data-track="nav-home" data-astro-cid-pux6a34n> <span class="nav-text" data-astro-cid-pux6a34n>Home</span> <div class="nav-indicator" data-astro-cid-pux6a34n></div> </a> <a href="#about" class="nav-link group relative" data-text="Skills" data-track="nav-skills" data-astro-cid-pux6a34n> <span class="nav-text" data-astro-cid-pux6a34n>Skills</span> <div class="nav-indicator" data-astro-cid-pux6a34n></div> </a> <a href="#projects" class="nav-link group relative" data-text="Projects" data-track="nav-projects" data-astro-cid-pux6a34n> <span class="nav-text" data-astro-cid-pux6a34n>Projects</span> <div class="nav-indicator" data-astro-cid-pux6a34n></div> </a> <a href="#contact" class="nav-link group relative" data-text="Contact" data-track="nav-contact" data-astro-cid-pux6a34n> <span class="nav-text" data-astro-cid-pux6a34n>Contact</span> <div class="nav-indicator" data-astro-cid-pux6a34n></div> </a> </div> <!-- Mobile Menu Button Mejorado --> <div class="flex-1 flex justify-end" data-astro-cid-pux6a34n> <div class="md:hidden" data-astro-cid-pux6a34n> <button id="mobile-menu-btn" class="mobile-menu-btn group relative p-2 rounded-lg transition-all duration-300 hover:bg-white/5" type="button" aria-label="Toggle menu" aria-controls="mobile-menu" data-track="nav-mobile-toggle" data-astro-cid-pux6a34n> <div class="hamburger" data-astro-cid-pux6a34n> <span class="hamburger-line" data-astro-cid-pux6a34n></span> <span class="hamburger-line" data-astro-cid-pux6a34n></span> <span class="hamburger-line" data-astro-cid-pux6a34n></span> </div> </button> </div> </div> </div> <!-- Progress indicator mejorado --> <div class="scroll-progress absolute bottom-0 left-0 h-0.5 transition-all duration-300 ease-out origin-left scale-x-0" style="background: var(--gradient-primary);" data-astro-cid-pux6a34n></div> </div> <!-- Mobile Menu --> <div id="mobile-menu" class="mobile-menu absolute top-full left-0 right-0 overflow-hidden transition-all duration-400 ease-out max-h-0 opacity-0" data-astro-cid-pux6a34n> <div class="mobile-menu-content backdrop-blur-xl border-b m-4 rounded-2xl shadow-xl" style="background: rgba(26, 26, 35, 0.95); border-color: var(--border-light);" data-astro-cid-pux6a34n> <div class="p-6 space-y-2" data-astro-cid-pux6a34n> <a href="#home" class="mobile-nav-link block" data-astro-cid-pux6a34n> <span class="mobile-nav-text" data-astro-cid-pux6a34n>Home</span> </a> <a href="#about" class="mobile-nav-link block" data-astro-cid-pux6a34n> <span class="mobile-nav-text" data-astro-cid-pux6a34n>Skills</span> </a> <a href="#projects" class="mobile-nav-link block" data-astro-cid-pux6a34n> <span class="mobile-nav-text" data-astro-cid-pux6a34n>Projects</span> </a> <a href="#contact" class="mobile-nav-link block" data-astro-cid-pux6a34n> <span class="mobile-nav-text" data-astro-cid-pux6a34n>Contact</span> </a> </div> </div> </div> </nav>  <script type="module" src="/Portafolio/assets/Navigation.astro_astro_type_script_index_0_lang.C55D2enq.js"></script> <!-- Contenido principal --> <main id="main-content" class="min-h-screen relative" tabindex="-1">  <main> <!-- 🎨 Hero Section --> <section id="home" class="relative section-base section-transition"> <!-- 🎨 Hero Section Optimizado para Performance --><div class="min-h-screen relative overflow-hidden hero-bg" role="region" aria-labelledby="hero-title" aria-describedby="hero-description" data-astro-cid-mmc7otgs> <!-- Contenido principal con animaciones optimizadas --> <div class="relative z-10 flex items-center justify-center min-h-screen pt-20 md:pt-24" data-astro-cid-mmc7otgs> <div class="container mx-auto px-6 py-12" data-astro-cid-mmc7otgs> <!-- Header con introducción optimizada --> <div class="text-left mb-8 reveal hero-intro" data-astro-cid-mmc7otgs> <div class="inline-flex items-center px-4 py-2 rounded-full backdrop-blur-sm mb-6 glass-dark border border-border-light status-badge" data-astro-cid-mmc7otgs> <div class="w-2 h-2 rounded-full mr-3 status-dot" data-astro-cid-mmc7otgs></div> <span class="font-medium text-sm status-text" data-astro-cid-mmc7otgs>Available for opportunities</span> </div> <!-- Greeting optimizado --> <div class="greeting-container mb-4" data-astro-cid-mmc7otgs> <p class="text-2xl md:text-3xl font-light reveal greeting-text" data-astro-cid-mmc7otgs> <span class="greeting-word" data-astro-cid-mmc7otgs>Hi,</span> <span class="greeting-word" data-astro-cid-mmc7otgs>I'm</span> <span class="name-highlight" data-astro-cid-mmc7otgs>
+Javier Arroyo
+</span> </p> </div> <!-- Título principal optimizado --> <h1 id="hero-title" class="text-6xl md:text-8xl font-bold leading-tight mb-6 hero-title" data-astro-cid-mmc7otgs> <span class="block reveal title-first" data-astro-cid-mmc7otgs>Software</span> <span class="block gradient-text reveal title-second" data-astro-cid-mmc7otgs>Developer</span> </h1> </div> <!-- Descripción optimizada --> <div id="hero-description" class="max-w-4xl mb-12 reveal hero-description" data-astro-cid-mmc7otgs> <p class="text-xl md:text-2xl leading-relaxed font-light description-text" data-astro-cid-mmc7otgs>
+Crafting exceptional digital experiences through
+<span class="font-medium relative text-glow highlight-innovation" data-astro-cid-mmc7otgs>
+innovative design
+</span>
+and
+<span class="font-medium relative text-glow-secondary highlight-tech" data-astro-cid-mmc7otgs>
+cutting-edge technology
+</span> </p> </div> <!-- CTAs optimizados --> <div class="flex flex-col sm:flex-row gap-6 mb-12 reveal hero-ctas" data-astro-cid-mmc7otgs> <a href="#projects" class="btn-primary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-view-work" rel="nofollow" data-astro-cid-mmc7otgs> <span data-astro-cid-mmc7otgs>View My Work</span> <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-mmc7otgs> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" data-astro-cid-mmc7otgs></path> </svg> </a> <a href="#contact" class="btn-secondary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-lets-connect" rel="nofollow" data-astro-cid-mmc7otgs> <span data-astro-cid-mmc7otgs>Let's Connect</span> <svg class="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-mmc7otgs> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" data-astro-cid-mmc7otgs></path> </svg> </a> </div> <!-- Scroll indicator optimizado --> <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 scroll-indicator z-10" aria-hidden="true" data-astro-cid-mmc7otgs> <div class="flex flex-col items-center gap-2 scroll-text" data-astro-cid-mmc7otgs> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-mmc7otgs> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" data-astro-cid-mmc7otgs></path> </svg> </div> </div> </div> </div> </div> <!-- 🎨 Estilos optimizados para performance -->  </section> <!-- 🎨 About/Skills Section --> <section id="about" class="reveal-fade relative section-base section-transition pt-24 pb-32"> <div class="container mx-auto px-6"> <section id="about" class="container mx-auto px-6"> <!-- Main Title --> <div class="text-center mb-16 reveal"> <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+My Skills
+</h2> </div> <!-- Soft Skills Section --> <section class="mb-20 reveal reveal-delay-100" aria-labelledby="soft-skills-heading"> <div class="text-center mb-12"> <h3 id="soft-skills-heading" class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
+Soft Skills
+</h3> </div> <div class="soft-skills-container" role="region" aria-label="Habilidades blandas destacadas" data-astro-cid-7zcd5bb6> <div class="bubbles-container" data-astro-cid-7zcd5bb6> <button type="button" class="bubble" data-skill="Effective Communication" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Effective<br>Communication</span> </button><button type="button" class="bubble" data-skill="Teamwork" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Teamwork</span> </button><button type="button" class="bubble" data-skill="Collaboration" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Collaboration</span> </button><button type="button" class="bubble" data-skill="Problem-Solving" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Problem-Solving</span> </button><button type="button" class="bubble" data-skill="Critical Thinking" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Critical<br>Thinking</span> </button><button type="button" class="bubble" data-skill="Adaptability" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Adaptability</span> </button><button type="button" class="bubble" data-skill="Continuous Learning" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Continuous<br>Learning</span> </button><button type="button" class="bubble" data-skill="Time Management" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Time<br>Management</span> </button><button type="button" class="bubble" data-skill="Attention to Detail" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Attention to Detail</span> </button><button type="button" class="bubble" data-skill="Proactivity" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Proactivity</span> </button><button type="button" class="bubble" data-skill="Resilience" data-astro-cid-7zcd5bb6> <span data-astro-cid-7zcd5bb6>Resilience</span> </button> </div> </div>  <script lang="ts">
+    document.addEventListener('DOMContentLoaded', () => {
+        const wrapper = document.querySelector('.soft-skills-container') as HTMLElement | null;
+        const container = document.querySelector('.bubbles-container') as HTMLElement | null;
+        const bubbles = document.querySelectorAll<HTMLButtonElement>('.bubble');
+        const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const bubblePhysicsMap = new Map<HTMLElement, BubblePhysics>();
+        const bubbleInstances: BubblePhysics[] = [];
+        let animationFrameId: number | null = null;
+
+        if (!container || !wrapper) {
+            console.error('Bubbles container not found!');
+            return;
+        }
+
+        const shouldReduceMotion = () => reduceMotionQuery.matches;
+
+        const markReducedMotion = () => wrapper.classList.add('reduce-motion');
+        const clearReducedMotion = () => wrapper.classList.remove('reduce-motion');
+
+        const pauseBubble = (bubble: HTMLElement) => bubblePhysicsMap.get(bubble)?.pause();
+        const resumeBubble = (bubble: HTMLElement) => bubblePhysicsMap.get(bubble)?.resume();
+        const explodeBubble = (bubble: HTMLElement) => bubblePhysicsMap.get(bubble)?.explode();
+
+        class BubblePhysics {
+            element: HTMLElement;
+            x!: number;
+            y!: number;
+            vx!: number;
+            vy!: number;
+            width!: number;
+            height!: number;
+            isPaused: boolean = false;
+            isExploding: boolean = false;
+            randomForceInterval: number;
+
+            constructor(element: HTMLElement, containerRect: DOMRect) {
+                this.element = element;
+                this.updateDimensions();
+                this.initPosition(containerRect);
+                this.initVelocity();
+                this.randomForceInterval = window.setInterval(
+                    () => this.addRandomForce(),
+                    Math.random() * 5000 + 2000
+                );
+            }
+
+            updateDimensions() {
+                const rect = this.element.getBoundingClientRect();
+                this.width = rect.width;
+                this.height = rect.height;
+            }
+
+            initPosition(containerRect: DOMRect) {
+                const padding = 24;
+                const availableWidth = containerRect.width - padding * 2 - this.width;
+                const availableHeight = containerRect.height - padding * 2 - this.height;
+
+                this.x = padding + Math.random() * Math.max(0, availableWidth);
+                this.y = padding + Math.random() * Math.max(0, availableHeight);
+            }
+
+            initVelocity() {
+                const speed = 0.5;
+                const angle = Math.random() * 2 * Math.PI;
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+            }
+
+            addRandomForce() {
+                if (this.isPaused || this.isExploding) return;
+                const forceStrength = 0.2;
+                this.vx += (Math.random() - 0.5) * forceStrength;
+                this.vy += (Math.random() - 0.5) * forceStrength;
+
+                const maxSpeed = 0.8;
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed > maxSpeed) {
+                    this.vx = (this.vx / speed) * maxSpeed;
+                    this.vy = (this.vy / speed) * maxSpeed;
+                }
+            }
+
+            updatePosition(containerRect: DOMRect) {
+                if (this.isPaused || this.isExploding) return;
+
+                this.x += this.vx;
+                this.y += this.vy;
+
+                const padding = 24;
+                const minX = padding;
+                const maxX = containerRect.width - padding - this.width;
+                const minY = padding;
+                const maxY = containerRect.height - padding - this.height;
+
+                if (this.x <= minX || this.x >= maxX) {
+                    this.vx *= -1;
+                    this.x = Math.max(minX, Math.min(this.x, maxX));
+                }
+                if (this.y <= minY || this.y >= maxY) {
+                    this.vy *= -1;
+                    this.y = Math.max(minY, Math.min(this.y, maxY));
+                }
+            }
+
+            draw() {
+                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+            }
+
+            pause() {
+                this.isPaused = true;
+                this.element.classList.add('is-hovered');
+            }
+
+            resume() {
+                this.isPaused = false;
+                this.element.classList.remove('is-hovered');
+            }
+
+            explode() {
+                if (this.isExploding) return;
+                this.isExploding = true;
+                this.element.classList.add('is-exploding');
+
+                setTimeout(() => {
+                    this.element.classList.remove('is-exploding');
+                    const containerRect = container.getBoundingClientRect();
+                    this.initPosition(containerRect);
+                    this.initVelocity();
+                    this.isExploding = false;
+                }, 500);
+            }
+
+            destroy() {
+                window.clearInterval(this.randomForceInterval);
+            }
+        }
+
+        function bindInteractiveEvents(bubble: HTMLElement) {
+            if (bubble.dataset.eventsBound === 'true') return;
+
+            bubble.addEventListener('mouseenter', () => pauseBubble(bubble));
+            bubble.addEventListener('mouseleave', () => resumeBubble(bubble));
+            bubble.addEventListener('focus', () => pauseBubble(bubble));
+            bubble.addEventListener('blur', () => resumeBubble(bubble));
+            bubble.addEventListener('click', () => explodeBubble(bubble));
+            bubble.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    explodeBubble(bubble);
+                }
+            });
+
+            bubble.dataset.eventsBound = 'true';
+        }
+
+        function setup() {
+            const containerRect = container.getBoundingClientRect();
+            bubbles.forEach(bubble => {
+                const instance = new BubblePhysics(bubble, containerRect);
+                bubbleInstances.push(instance);
+                bubblePhysicsMap.set(bubble, instance);
+                bindInteractiveEvents(bubble);
+            });
+        }
+
+        function animate() {
+            const containerRect = container.getBoundingClientRect();
+            bubbleInstances.forEach(instance => {
+                instance.updatePosition(containerRect);
+                instance.draw();
+            });
+            animationFrameId = requestAnimationFrame(animate);
+        }
+
+        function cleanupInstances() {
+            bubbleInstances.forEach(instance => instance.destroy());
+            bubbleInstances.length = 0;
+            bubblePhysicsMap.clear();
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }
+
+        function init() {
+            cleanupInstances();
+            bubbles.forEach(bubble => {
+                bubble.style.transform = '';
+                bubble.classList.remove('is-hovered', 'is-exploding');
+            });
+
+            const isMobileView = getComputedStyle(container).display === 'grid';
+            if (shouldReduceMotion() || isMobileView) {
+                markReducedMotion();
+                return;
+            }
+
+            clearReducedMotion();
+
+            setTimeout(() => {
+                setup();
+                animate();
+            }, 100);
+        }
+
+        const handleReduceMotionChange = () => {
+            init();
+        };
+
+        if (typeof reduceMotionQuery.addEventListener === 'function') {
+            reduceMotionQuery.addEventListener('change', handleReduceMotionChange);
+        } else if (typeof reduceMotionQuery.addListener === 'function') {
+            reduceMotionQuery.addListener(handleReduceMotionChange);
+        }
+
+        let resizeTimeout: number;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = window.setTimeout(init, 250);
+        });
+
+        setTimeout(init, 200);
+    });
+</script> </section> </section> <!-- Technical Skills Section --> <section class="mb-20 reveal reveal-delay-200" aria-labelledby="tech-skills-heading"> <div class="text-center mb-12"> <h3 id="tech-skills-heading" class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
+Technical Skills
+</h3> </div> <div class="skills-container shadow-lg" style="background: var(--bg-surface);" data-astro-cid-vxpbnb6q> <div class="skills-track" data-astro-cid-vxpbnb6q> <div class="skill-item hover-lift transition-bounce" style="--skill-color: #f89500;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/java.svg" alt="java icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="java" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Java</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #239120;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/CSharp.svg" alt="csharp icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="csharp" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>C#</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #e34f26;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/HTML.svg" alt="html icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="html" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>HTML</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #1572b6;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/CSS.svg" alt="css icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="css" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>CSS</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f7df1e;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/JavaScript.svg" alt="javascript icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="javascript" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>JavaScript</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #3178c6;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/TypeScript.svg" alt="typescript icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="typescript" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>TypeScript</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #339933;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Node.js.svg" alt="nodejs icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="nodejs" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Node.js</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #dd0031;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Angular.svg" alt="angular icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="angular" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Angular</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #4479a1;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/MySQL.svg" alt="mysql icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="mysql" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>MySQL</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #cc2927;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/SqlServer.svg" alt="sqlserver icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="sqlserver" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>SQL Server</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f80000;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Oracle.svg" alt="oracle icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="oracle" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Oracle</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #47a248;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/MongoDB.svg" alt="mongodb icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="mongodb" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>MongoDB</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f05032;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/GIT.svg" alt="git icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="git" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>GIT</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #0078d4;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Azure.svg" alt="azure icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="azure" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Azure</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f24e1e;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Figma.svg" alt="figma icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="figma" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Figma</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f89500;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/java.svg" alt="java icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="java" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Java</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #239120;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/CSharp.svg" alt="csharp icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="csharp" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>C#</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #e34f26;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/HTML.svg" alt="html icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="html" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>HTML</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #1572b6;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/CSS.svg" alt="css icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="css" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>CSS</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f7df1e;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/JavaScript.svg" alt="javascript icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="javascript" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>JavaScript</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #3178c6;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/TypeScript.svg" alt="typescript icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="typescript" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>TypeScript</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #339933;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Node.js.svg" alt="nodejs icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="nodejs" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Node.js</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #dd0031;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Angular.svg" alt="angular icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="angular" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Angular</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #4479a1;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/MySQL.svg" alt="mysql icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="mysql" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>MySQL</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #cc2927;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/SqlServer.svg" alt="sqlserver icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="sqlserver" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>SQL Server</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f80000;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Oracle.svg" alt="oracle icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="oracle" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Oracle</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #47a248;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/MongoDB.svg" alt="mongodb icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="mongodb" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>MongoDB</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f05032;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/GIT.svg" alt="git icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="git" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>GIT</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #0078d4;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Azure.svg" alt="azure icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="azure" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Azure</div> </div><div class="skill-item hover-lift transition-bounce" style="--skill-color: #f24e1e;" data-astro-cid-vxpbnb6q> <div class="skill-icon" data-astro-cid-vxpbnb6q> <img src="/Portafolio/assets/icons/Figma.svg" alt="figma icon" class="w-8 h-8 " loading="lazy" decoding="async" draggable="false" data-icon="figma" style> </div> <div class="skill-label" data-astro-cid-vxpbnb6q>Figma</div> </div> </div> </div>  <script lang="ts">
+  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function initializeSkillsCarousel() {
+    const container = document.querySelector('.skills-container') as HTMLElement;
+    const track = document.querySelector('.skills-track') as HTMLElement;
+    
+    if (!container || !track) return;
+
+    const shouldAnimate = () => !reduceMotionQuery.matches;
+
+    const enforceReducedMotionState = () => {
+      if (reduceMotionQuery.matches) {
+        track.style.animation = 'none';
+        track.style.transform = 'none';
+        track.style.animationPlayState = 'paused';
+      } else {
+        track.style.animation = '';
+        track.style.animationPlayState = 'running';
+        adjustAnimationSpeed(track);
+      }
+    };
+
+    enforceReducedMotionState();
+
+    const skillItems = document.querySelectorAll('.skill-item') as NodeListOf<HTMLElement>;
+    skillItems.forEach((item) => {
+      item.setAttribute('tabindex', '0');
+      item.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!shouldAnimate()) {
+          track.style.animationPlayState = 'paused';
+          return;
+        }
+        track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
+
+    container.addEventListener('focusin', () => {
+      if (shouldAnimate()) {
+        track.style.animationPlayState = 'paused';
+      }
+    });
+
+    container.addEventListener('focusout', () => {
+      if (shouldAnimate()) {
+        track.style.animationPlayState = 'running';
+      }
+    });
+  }
+
+  function adjustAnimationSpeed(existingTrack?: HTMLElement) {
+    const track = existingTrack ?? (document.querySelector('.skills-track') as HTMLElement | null);
+    if (!track) return;
+
+    if (reduceMotionQuery.matches) {
+      track.style.animation = 'none';
+      track.style.transform = 'none';
+      track.style.animationPlayState = 'paused';
+      return;
+    }
+
+    const screenWidth = window.innerWidth;
+    let duration = 40;
+
+    if (screenWidth < 480) {
+      duration = 30;
+    } else if (screenWidth < 768) {
+      duration = 35;
+    }
+
+    track.style.animation = '';
+    track.style.animationDuration = `${duration}s`;
+  }
+
+  const handleReduceMotionChange = () => {
+    const track = document.querySelector('.skills-track') as HTMLElement | null;
+    if (!track) {
+      return;
+    }
+
+    if (reduceMotionQuery.matches) {
+      track.style.animation = 'none';
+      track.style.transform = 'none';
+      track.style.animationPlayState = 'paused';
+    } else {
+      track.style.animation = '';
+      track.style.animationPlayState = 'running';
+      adjustAnimationSpeed(track);
+    }
+  };
+
+  if (typeof reduceMotionQuery.addEventListener === 'function') {
+    reduceMotionQuery.addEventListener('change', handleReduceMotionChange);
+  } else if (typeof reduceMotionQuery.addListener === 'function') {
+    reduceMotionQuery.addListener(handleReduceMotionChange);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeSkillsCarousel();
+      adjustAnimationSpeed();
+    });
+  } else {
+    initializeSkillsCarousel();
+    adjustAnimationSpeed();
+  }
+
+  let resizeTimeout: number;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(() => {
+      adjustAnimationSpeed();
+    }, 250);
+  });
+</script> </section> </div> </section> <!-- 🎨 Projects Section --> <section id="projects" class="reveal-fade relative section-base section-transition pt-24 pb-32"> <div class="container mx-auto px-6"> <section class="projects-section" data-astro-cid-amng4zvp> <div class="container mx-auto px-6" data-astro-cid-amng4zvp> <div class="title-container reveal" data-astro-cid-amng4zvp> <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-astro-cid-amng4zvp>
+My Projects
+</h2> </div> </div> <div class="projects-grid reveal-stagger" data-astro-cid-amng4zvp> <article class="project-card reveal-scale" style="transition-delay: 0ms" aria-labelledby="project-title-0" aria-describedby="project-description-0" data-astro-cid-amng4zvp> <div class="project-image-container" data-astro-cid-amng4zvp> <img src="/Portafolio/assets/veterinaria-moka.BYwlHCA1_ZOMR4s.webp" srcset="/Portafolio/assets/veterinaria-moka.BYwlHCA1_7eLAn.webp 320w, /Portafolio/assets/veterinaria-moka.BYwlHCA1_Z2wArkP.webp 480w, /Portafolio/assets/veterinaria-moka.BYwlHCA1_Bbch7.webp 640w, /Portafolio/assets/veterinaria-moka.BYwlHCA1_1r6tVf.webp 960w" alt="Screenshot of Veterinaria Moka management dashboard" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 320px" fetchpriority="high" data-astro-cid-amng4zvp="true" width="1919" height="1078" class="project-image"> <div class="project-overlay" data-astro-cid-amng4zvp></div> </div> <div class="project-info" data-astro-cid-amng4zvp> <h3 id="project-title-0" class="project-name" data-astro-cid-amng4zvp>Veterinaria Moka</h3> <p id="project-description-0" class="project-description" data-astro-cid-amng4zvp>A full-stack solution for a veterinary practice.</p> <a href="https://github.com/javier25arroyo/Veterinaria-Moka.git" target="_blank" rel="noopener noreferrer" class="project-cta" aria-label="Abrir el proyecto Veterinaria Moka en una nueva pestaña" data-astro-cid-amng4zvp> <span class="cta-text" data-astro-cid-amng4zvp>View Project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon" aria-hidden="true" data-astro-cid-amng4zvp> <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" data-astro-cid-amng4zvp></path> </svg> </a> </div> </article><article class="project-card reveal-scale" style="transition-delay: 100ms" aria-labelledby="project-title-1" aria-describedby="project-description-1" data-astro-cid-amng4zvp> <div class="project-image-container" data-astro-cid-amng4zvp> <img src="/Portafolio/assets/lab-management.D5chfBzy_1tMOE5.webp" srcset="/Portafolio/assets/lab-management.D5chfBzy_1TGgDO.webp 320w, /Portafolio/assets/lab-management.D5chfBzy_Z2flrsN.webp 480w, /Portafolio/assets/lab-management.D5chfBzy_ZBLi2g.webp 640w, /Portafolio/assets/lab-management.D5chfBzy_ZDbXL3.webp 960w" alt="Screenshot of laboratory management desktop app" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 320px" fetchpriority="auto" data-astro-cid-amng4zvp="true" width="979" height="741" class="project-image"> <div class="project-overlay" data-astro-cid-amng4zvp></div> </div> <div class="project-info" data-astro-cid-amng4zvp> <h3 id="project-title-1" class="project-name" data-astro-cid-amng4zvp>Lab Management System</h3> <p id="project-description-1" class="project-description" data-astro-cid-amng4zvp>Development of a Java Swing desktop application for user management and asset administration.</p> <a href="https://github.com/javier25arroyo/Lab1.git" target="_blank" rel="noopener noreferrer" class="project-cta" aria-label="Abrir el proyecto Lab Management System en una nueva pestaña" data-astro-cid-amng4zvp> <span class="cta-text" data-astro-cid-amng4zvp>View Project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon" aria-hidden="true" data-astro-cid-amng4zvp> <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" data-astro-cid-amng4zvp></path> </svg> </a> </div> </article><article class="project-card reveal-scale" style="transition-delay: 200ms" aria-labelledby="project-title-2" aria-describedby="project-description-2" data-astro-cid-amng4zvp> <div class="project-image-container" data-astro-cid-amng4zvp> <img src="/Portafolio/assets/codecrafters.DhWfYb2u_1ry2sT.webp" srcset="/Portafolio/assets/codecrafters.DhWfYb2u_Z2rHbex.webp 320w, /Portafolio/assets/codecrafters.DhWfYb2u_ZFolkH.webp 480w, /Portafolio/assets/codecrafters.DhWfYb2u_1Nkdim.webp 640w, /Portafolio/assets/codecrafters.DhWfYb2u_Yat1k.webp 960w" alt="Screenshot of CodeCrafters serious game interface" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 320px" fetchpriority="auto" data-astro-cid-amng4zvp="true" width="1919" height="1079" class="project-image"> <div class="project-overlay" data-astro-cid-amng4zvp></div> </div> <div class="project-info" data-astro-cid-amng4zvp> <h3 id="project-title-2" class="project-name" data-astro-cid-amng4zvp>CodeCrafters</h3> <p id="project-description-2" class="project-description" data-astro-cid-amng4zvp>Full-stack development (Angular and Spring Boot) of a video game application for seniors to help prevent cognitive decline.</p> <div class="project-links" data-astro-cid-amng4zvp> <a href="https://github.com/javier25arroyo/CodeCrafters-FrontEnd.git" target="_blank" rel="noopener noreferrer" class="project-cta" aria-label="Abrir repositorio frontend de CodeCrafters en una nueva pestaña" data-astro-cid-amng4zvp> <span class="cta-text" data-astro-cid-amng4zvp>View on GitHub Frontend</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon" aria-hidden="true" data-astro-cid-amng4zvp> <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" data-astro-cid-amng4zvp></path> </svg> </a> <a href="https://github.com/javier25arroyo/CodeCrafters-BackEnd.git" target="_blank" rel="noopener noreferrer" class="project-cta" aria-label="Abrir repositorio backend de CodeCrafters en una nueva pestaña" data-astro-cid-amng4zvp> <span class="cta-text" data-astro-cid-amng4zvp>View on GitHub Backend</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon" aria-hidden="true" data-astro-cid-amng4zvp> <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" data-astro-cid-amng4zvp></path> </svg> </a> </div> </div> </article><article class="project-card reveal-scale" style="transition-delay: 300ms" aria-labelledby="project-title-3" aria-describedby="project-description-3" data-astro-cid-amng4zvp> <div class="project-image-container" data-astro-cid-amng4zvp> <img src="/Portafolio/assets/puzzle-game.I_qROhOg_mGLnu.webp" srcset="/Portafolio/assets/puzzle-game.I_qROhOg_Z1IXLWO.webp 320w, /Portafolio/assets/puzzle-game.I_qROhOg_Z2gvGAr.webp 480w, /Portafolio/assets/puzzle-game.I_qROhOg_Z25CRtP.webp 640w, /Portafolio/assets/puzzle-game.I_qROhOg_Z2rhX0Q.webp 960w" alt="Screenshot of the puzzle mini-game for seniors" loading="lazy" decoding="async" sizes="(max-width: 768px) 100vw, 320px" fetchpriority="auto" data-astro-cid-amng4zvp="true" width="1919" height="1079" class="project-image"> <div class="project-overlay" data-astro-cid-amng4zvp></div> </div> <div class="project-info" data-astro-cid-amng4zvp> <h3 id="project-title-3" class="project-name" data-astro-cid-amng4zvp>Puzzle Game for Seniors</h3> <p id="project-description-3" class="project-description" data-astro-cid-amng4zvp>Development of a puzzle video game for seniors.</p> <a href="https://javier25arroyo.github.io/puzzle-game/" target="_blank" rel="noopener noreferrer" class="project-cta" aria-label="Abrir el proyecto Puzzle Game for Seniors en una nueva pestaña" data-astro-cid-amng4zvp> <span class="cta-text" data-astro-cid-amng4zvp>View Project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon" aria-hidden="true" data-astro-cid-amng4zvp> <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" data-astro-cid-amng4zvp></path> </svg> </a> </div> </article><article class="project-card reveal-scale" style="transition-delay: 400ms" aria-labelledby="project-title-4" aria-describedby="project-description-4" data-astro-cid-amng4zvp> <div class="project-image-container" data-astro-cid-amng4zvp> <img src="/Portafolio/assets/default-project.K5_nrfu4.svg" alt="Abstract IoT system illustration" class="project-image" loading="lazy" decoding="async" data-astro-cid-amng4zvp> <div class="project-overlay" data-astro-cid-amng4zvp></div> </div> <div class="project-info" data-astro-cid-amng4zvp> <h3 id="project-title-4" class="project-name" data-astro-cid-amng4zvp>CareConnect IoT System</h3> <p id="project-description-4" class="project-description" data-astro-cid-amng4zvp>Development of a physical server system for obstacle detection using an Ideaboard in MicroPython.</p> <a href="https://github.com/javier25arroyo/CareConnect.git" target="_blank" rel="noopener noreferrer" class="project-cta" aria-label="Abrir el proyecto CareConnect IoT System en una nueva pestaña" data-astro-cid-amng4zvp> <span class="cta-text" data-astro-cid-amng4zvp>View Project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon" aria-hidden="true" data-astro-cid-amng4zvp> <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" data-astro-cid-amng4zvp></path> </svg> </a> </div> </article><article class="project-card reveal-scale" style="transition-delay: 500ms" aria-labelledby="project-title-5" aria-describedby="project-description-5" data-astro-cid-amng4zvp> <div class="project-image-container" data-astro-cid-amng4zvp> <img src="/Portafolio/assets/oracle-database.DeFneJcr.svg" alt="Database entity-relationship diagram preview" class="project-image" loading="lazy" decoding="async" data-astro-cid-amng4zvp> <div class="project-overlay" data-astro-cid-amng4zvp></div> </div> <div class="project-info" data-astro-cid-amng4zvp> <h3 id="project-title-5" class="project-name" data-astro-cid-amng4zvp>Oracle Tech Store DB</h3> <p id="project-description-5" class="project-description" data-astro-cid-amng4zvp>Database management project for a tech product sales store in Oracle Database.</p> <a href="https://github.com/javier25arroyo/Proyecto-programacion-de-bases-de-datos.git" target="_blank" rel="noopener noreferrer" class="project-cta" aria-label="Abrir el proyecto Oracle Tech Store DB en una nueva pestaña" data-astro-cid-amng4zvp> <span class="cta-text" data-astro-cid-amng4zvp>View Project</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="external-link-icon" aria-hidden="true" data-astro-cid-amng4zvp> <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" data-astro-cid-amng4zvp></path> </svg> </a> </div> </article> </div> </section>  </div> </section> <!-- 🎨 Contact Section --> <section id="contact" class="reveal-fade relative section-base section-transition pt-24 pb-32"> <div class="container mx-auto px-6"> <div class="text-center mb-16 reveal"> <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+Get In Touch
+</h2> <p class="text-lg max-w-2xl mx-auto reveal reveal-delay-100" style="color: var(--text-secondary);">
+Ready to bring your ideas to life? Let's collaborate and create something amazing together.
+</p> </div> <div class="max-w-4xl mx-auto reveal-stagger"> <!-- 📧 Contact Info Grid --> <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12"> <!-- Email Card --> <a href="mailto:javier25arojas@gmail.com" class="group reveal-scale" data-track="contact-email" rel="noopener"> <div class="glass-elevated rounded-2xl p-6 transition-all duration-300 hover:neon-glow-secondary hover-lift"> <div class="flex items-center space-x-4"> <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: rgba(5, 150, 105, 0.2); color: var(--color-secondary);"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </div> <div> <h4 class="font-semibold" style="color: var(--text-primary);">Email</h4> <p style="color: var(--text-secondary);">javier25arojas@gmail.com</p> </div> </div> </div> </a> <!-- Quick Response Card --> <div class="glass-elevated rounded-2xl p-6 reveal-scale"> <div class="flex items-center space-x-4"> <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background: rgba(79, 70, 229, 0.2); color: var(--color-primary);"> <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path> </svg> </div> <div> <h4 class="font-semibold" style="color: var(--text-primary);">Response Time</h4> <p style="color: var(--text-secondary);">Usually within 24 hours</p> </div> </div> </div> </div> <!-- 🌐 Social Media Section --> <div class="glass-premium rounded-2xl p-8 mb-8 reveal"> <h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);">Connect with me</h4> <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal-stagger"> <!-- LinkedIn --> <a href="https://www.linkedin.com/in/javier-arroyo-268147226/" target="_blank" rel="noopener noreferrer" class="group reveal-scale" data-track="social-linkedin"> <div class="card text-center hover-lift"> <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" style="background: rgba(79, 70, 229, 0.2); color: var(--color-primary);"> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path> </svg> </div> <h5 class="font-semibold mb-2" style="color: var(--text-primary);">LinkedIn</h5> <p class="text-sm" style="color: var(--text-secondary);">Professional network</p> </div> </a> <!-- GitHub --> <a href="https://github.com/javier25arroyo" target="_blank" rel="noopener noreferrer" class="group reveal-scale" data-track="social-github"> <div class="card text-center hover-lift"> <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" style="background: rgba(148, 163, 184, 0.2); color: var(--text-primary);"> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path> </svg> </div> <h5 class="font-semibold mb-2" style="color: var(--text-primary);">GitHub</h5> <p class="text-sm" style="color: var(--text-secondary);">Code repository</p> </div> </a> <!-- WhatsApp --> <a href="https://walink.co/bdf8ef" target="_blank" rel="noopener noreferrer" class="group reveal-scale" data-track="social-whatsapp"> <div class="card text-center hover-lift"> <div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" style="background: rgba(5, 150, 105, 0.2); color: var(--color-secondary);"> <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"></path> </svg> </div> <h5 class="font-semibold mb-2" style="color: var(--text-primary);">WhatsApp</h5> <p class="text-sm" style="color: var(--text-secondary);">Direct message</p> </div> </a> </div> </div> <!-- 📄 CV Download Section --> <div class="glass-premium rounded-2xl p-8 reveal"> <h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);">Download CV</h4> <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 reveal-stagger"> <!-- CV Español --> <a href="/Portafolio/assets/cv/CV_Javier_Arroyo_ES.pdf" download="CV_Javier_Arroyo_Español.pdf" class="group reveal-left" data-track="download-cv-es" rel="noopener"> <div class="card text-center hover-lift hover:neon-glow"> <div class="w-20 h-20 rounded-xl flex items-center justify-center mb-4 mx-auto" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;"> <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"></path> </svg> </div> <h5 class="font-semibold mb-2 text-lg" style="color: var(--text-primary);">CV Español</h5> <div class="flex items-center justify-center space-x-2 text-sm" style="color: var(--text-secondary);"> <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"></path> </svg> <span>Download PDF</span> </div> </div> </a> <!-- CV English --> <a href="/Portafolio/assets/cv/CV_Javier_Arroyo_EN.pdf" download="CV_Javier_Arroyo_English.pdf" class="group reveal-right" data-track="download-cv-en" rel="noopener"> <div class="card text-center hover-lift hover:neon-glow"> <div class="w-20 h-20 rounded-xl flex items-center justify-center mb-4 mx-auto" style="background: rgba(79, 70, 229, 0.2); color: var(--color-primary);"> <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"></path> </svg> </div> <h5 class="font-semibold mb-2 text-lg" style="color: var(--text-primary);">CV English</h5> <div class="flex items-center justify-center space-x-2 text-sm" style="color: var(--text-secondary);"> <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"> <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"></path> </svg> <span>Download PDF</span> </div> </div> </a> </div> </div> </div> </div> </section> </main>  </main> <!-- Footer --> <footer class="relative py-16 border-t overflow-hidden" style="background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-primary) 100%); border-color: rgba(255, 255, 255, 0.1);" data-astro-cid-sz7xmlte> <!-- Animated background elements --> <div class="absolute inset-0 overflow-hidden" data-astro-cid-sz7xmlte> <!-- Gradient orbs --> <div class="absolute -top-32 -left-32 w-64 h-64 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl animate-pulse-slow" data-astro-cid-sz7xmlte></div> <div class="absolute -bottom-32 -right-32 w-64 h-64 bg-gradient-to-br from-emerald-500/20 to-cyan-600/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;" data-astro-cid-sz7xmlte></div> <!-- Floating particles --> <div class="absolute inset-0 opacity-30" data-astro-cid-sz7xmlte> <div class="absolute top-1/4 left-1/4 w-1 h-1 bg-blue-400 rounded-full animate-float" data-astro-cid-sz7xmlte></div> <div class="absolute top-3/4 left-3/4 w-1 h-1 bg-purple-400 rounded-full animate-float" style="animation-delay: 1s;" data-astro-cid-sz7xmlte></div> <div class="absolute top-1/2 right-1/4 w-1 h-1 bg-emerald-400 rounded-full animate-float" style="animation-delay: 3s;" data-astro-cid-sz7xmlte></div> </div> </div> <div class="container mx-auto px-6 relative z-10" data-astro-cid-sz7xmlte> <!-- Technologies Section --> <div class="mb-12" data-astro-cid-sz7xmlte> <!-- Header with better typography --> <div class="text-center mb-10" data-astro-cid-sz7xmlte> <h3 class="text-2xl md:text-3xl font-bold mb-3 gradient-text-enhanced" data-astro-cid-sz7xmlte>
+Powered by Modern Stack
+</h3> <p class="text-sm md:text-base opacity-70 max-w-md mx-auto" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+Built with cutting-edge technologies for optimal performance and developer experience
+</p> </div> <!-- Enhanced tech grid --> <div class="flex justify-center items-center gap-12 md:gap-16" data-astro-cid-sz7xmlte> <!-- Astro --> <div class="group flex flex-col items-center cursor-pointer" data-astro-cid-sz7xmlte> <div class="relative" data-astro-cid-sz7xmlte> <!-- Glow effect background --> <div class="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-red-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 scale-110" data-astro-cid-sz7xmlte></div> <!-- Main container --> <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3" style="background: linear-gradient(135deg, rgba(255, 93, 1, 0.15) 0%, rgba(255, 22, 57, 0.15) 100%); border: 1px solid rgba(255, 93, 1, 0.3); backdrop-filter: blur(10px);" data-astro-cid-sz7xmlte> <svg class="w-10 h-10 md:w-12 md:h-12 transition-all duration-500 group-hover:scale-110" viewBox="0 0 256 366" fill="none" data-astro-cid-sz7xmlte> <defs data-astro-cid-sz7xmlte> <linearGradient id="astroGradient" x1="0%" y1="0%" x2="100%" y2="100%" data-astro-cid-sz7xmlte> <stop offset="0%" style="stop-color:#FF5D01" data-astro-cid-sz7xmlte></stop> <stop offset="100%" style="stop-color:#FF1639" data-astro-cid-sz7xmlte></stop> </linearGradient> </defs> <path fill="url(#astroGradient)" d="M182.022 9.147c2.982 3.702 4.502 8.697 7.543 18.687L256 246.074a276.467 276.467 0 0 0-79.426-26.891L133.318 73.008a5.63 5.63 0 0 0-10.802.017L79.784 219.11A276.453 276.453 0 0 0 0 246.04L66.76 27.783c3.051-9.972 4.577-14.959 7.559-18.654a24.541 24.541 0 0 1 9.946-7.584C88.67 0 93.885 0 104.314 0h47.683c10.443 0 15.664 0 20.074 1.545a24.541 24.541 0 0 1 9.951 7.602Z" data-astro-cid-sz7xmlte></path> <path fill="#FF5D01" d="M189.972 256.46c-10.952 9.364-32.812 15.751-57.992 15.751-30.904 0-56.807-9.621-63.68-22.56-2.458 7.415-3.009 15.903 0 21.8 7.941 15.244 36.271 25.729 63.68 25.729 27.409 0 55.739-10.485 63.68-25.729 2.343-4.5 1.618-11.009-5.688-14.991Z" data-astro-cid-sz7xmlte></path> </svg> </div> </div> <span class="text-sm md:text-base font-semibold transition-all duration-300 group-hover:text-orange-400 group-hover:scale-105" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+Astro
+</span> <span class="text-xs mt-1 opacity-60 transition-opacity duration-300 group-hover:opacity-100" style="color: var(--text-muted);" data-astro-cid-sz7xmlte>
+Framework
+</span> </div> <!-- TypeScript --> <div class="group flex flex-col items-center cursor-pointer" data-astro-cid-sz7xmlte> <div class="relative" data-astro-cid-sz7xmlte> <!-- Glow effect background --> <div class="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-blue-600/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 scale-110" data-astro-cid-sz7xmlte></div> <!-- Main container --> <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3" style="background: linear-gradient(135deg, rgba(49, 120, 198, 0.15) 0%, rgba(0, 122, 204, 0.15) 100%); border: 1px solid rgba(49, 120, 198, 0.3); backdrop-filter: blur(10px);" data-astro-cid-sz7xmlte> <img src="/Portafolio/assets/icons/TypeScript.svg" alt="TypeScript" class="w-10 h-10 md:w-12 md:h-12 transition-all duration-500 group-hover:scale-110" data-astro-cid-sz7xmlte> </div> </div> <span class="text-sm md:text-base font-semibold transition-all duration-300 group-hover:text-blue-400 group-hover:scale-105" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+TypeScript
+</span> <span class="text-xs mt-1 opacity-60 transition-opacity duration-300 group-hover:opacity-100" style="color: var(--text-muted);" data-astro-cid-sz7xmlte>
+Language
+</span> </div> <!-- Tailwind CSS --> <div class="group flex flex-col items-center cursor-pointer" data-astro-cid-sz7xmlte> <div class="relative" data-astro-cid-sz7xmlte> <!-- Glow effect background --> <div class="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-teal-500/30 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500 scale-110" data-astro-cid-sz7xmlte></div> <!-- Main container --> <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl flex items-center justify-center mb-4 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3" style="background: linear-gradient(135deg, rgba(56, 178, 172, 0.15) 0%, rgba(6, 182, 212, 0.15) 100%); border: 1px solid rgba(56, 178, 172, 0.3); backdrop-filter: blur(10px);" data-astro-cid-sz7xmlte> <svg class="w-10 h-10 md:w-12 md:h-12 transition-all duration-500 group-hover:scale-110" fill="#38B2AC" viewBox="0 0 24 24" data-astro-cid-sz7xmlte> <path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C7.666,17.818,9.027,19.2,12.001,19.2c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z" data-astro-cid-sz7xmlte></path> </svg> </div> </div> <span class="text-sm md:text-base font-semibold transition-all duration-300 group-hover:text-cyan-400 group-hover:scale-105" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+Tailwind CSS
+</span> <span class="text-xs mt-1 opacity-60 transition-opacity duration-300 group-hover:opacity-100" style="color: var(--text-muted);" data-astro-cid-sz7xmlte>
+Styling
+</span> </div> </div> </div> <!-- Enhanced Divider with animation --> <div class="relative mb-10" data-astro-cid-sz7xmlte> <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" data-astro-cid-sz7xmlte></div> <div class="absolute inset-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent animate-pulse" data-astro-cid-sz7xmlte></div> </div> <!-- Footer Content with improved layout --> <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start" data-astro-cid-sz7xmlte> <!-- Copyright & Brand --> <div class="text-center md:text-left" data-astro-cid-sz7xmlte> <div class="mb-3" data-astro-cid-sz7xmlte> <h4 class="text-lg font-bold gradient-text-enhanced mb-1" data-astro-cid-sz7xmlte>Javier Arroyo</h4> <p class="text-sm opacity-80" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+Software Development Engineer
+</p> </div> <p class="text-xs opacity-60" style="color: var(--text-muted);" data-astro-cid-sz7xmlte>
+© 2025 All rights reserved.
+</p> <p class="text-xs opacity-60 mt-1" style="color: var(--text-muted);" data-astro-cid-sz7xmlte>
+Crafted with passion and modern web technologies
+</p> </div> <!-- Quick Navigation --> <div class="text-center" data-astro-cid-sz7xmlte> <h5 class="text-sm font-semibold mb-4 opacity-90" style="color: var(--text-primary);" data-astro-cid-sz7xmlte>Navigation</h5> <div class="flex flex-wrap justify-center gap-4" data-astro-cid-sz7xmlte> <a href="#home" class="text-sm transition-all duration-300 hover:scale-105 hover:text-blue-400 px-3 py-1 rounded-full hover:bg-white/5" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+Home
+</a> <a href="#about" class="text-sm transition-all duration-300 hover:scale-105 hover:text-blue-400 px-3 py-1 rounded-full hover:bg-white/5" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+About
+</a> <a href="#projects" class="text-sm transition-all duration-300 hover:scale-105 hover:text-blue-400 px-3 py-1 rounded-full hover:bg-white/5" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+Projects
+</a> <a href="#contact" class="text-sm transition-all duration-300 hover:scale-105 hover:text-blue-400 px-3 py-1 rounded-full hover:bg-white/5" style="color: var(--text-secondary);" data-astro-cid-sz7xmlte>
+Contact
+</a> </div> </div> <!-- Social Links --> <div class="text-center md:text-right" data-astro-cid-sz7xmlte> <h5 class="text-sm font-semibold mb-4 opacity-90" style="color: var(--text-primary);" data-astro-cid-sz7xmlte>Connect</h5> <div class="flex justify-center md:justify-end gap-3" data-astro-cid-sz7xmlte> <a href="https://github.com/javier25arroyo" target="_blank" rel="noopener noreferrer" class="group relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 social-link" style="background: linear-gradient(135deg, rgba(148, 163, 184, 0.1) 0%, rgba(100, 116, 139, 0.1) 100%); border: 1px solid rgba(148, 163, 184, 0.2);" title="GitHub" data-astro-cid-sz7xmlte> <div class="absolute inset-0 bg-gradient-to-r from-gray-400/20 to-gray-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-astro-cid-sz7xmlte></div> <svg class="w-5 h-5 relative z-10 transition-colors duration-300 group-hover:text-white" fill="currentColor" style="color: var(--text-secondary);" viewBox="0 0 24 24" data-astro-cid-sz7xmlte> <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" data-astro-cid-sz7xmlte></path> </svg> </a> <a href="https://www.linkedin.com/in/javier-arroyo-dev" target="_blank" rel="noopener noreferrer" class="group relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 social-link" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(67, 56, 202, 0.1) 100%); border: 1px solid rgba(79, 70, 229, 0.2);" title="LinkedIn" data-astro-cid-sz7xmlte> <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-indigo-600/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-astro-cid-sz7xmlte></div> <svg class="w-5 h-5 relative z-10 transition-colors duration-300 group-hover:text-blue-400" fill="currentColor" style="color: var(--color-primary);" viewBox="0 0 24 24" data-astro-cid-sz7xmlte> <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" data-astro-cid-sz7xmlte></path> </svg> </a> </div> </div> </div> <!-- Version Info with enhanced styling --> <div class="text-center mt-8 pt-6 border-t border-white/10" data-astro-cid-sz7xmlte> <p class="text-xs opacity-50 hover:opacity-80 transition-opacity duration-300" style="color: var(--text-muted);" data-astro-cid-sz7xmlte> <span class="font-mono" data-astro-cid-sz7xmlte>Portfolio v2025.1</span> <span class="mx-2" data-astro-cid-sz7xmlte>•</span>
+Built with <span class="text-red-400 animate-pulse" data-astro-cid-sz7xmlte>❤️</span> using Astro & Modern Web Standards
+</p> </div> </div> </footer>  <!-- Componentes UX optimizados --> <div id="scroll-progress" class="fixed top-0 left-0 w-full h-1 z-30 scroll-progress-bg"> <div id="scroll-progress-bar" class="h-full transition-all duration-300 ease-out scroll-progress-bar" style="width: 0%;"></div> </div> <button id="back-to-top" class="fixed bottom-8 right-8 w-14 h-14 rounded-full shadow-lg transition-all duration-300 transform opacity-0 pointer-events-none z-30 glass-elevated hover:neon-glow back-to-top-btn" aria-label="Back to top" data-track="back-to-top"> <svg class="w-6 h-6 mx-auto back-to-top-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path> </svg> </button> <div id="page-loader" class="fixed inset-0 z-50 flex items-center justify-center transition-opacity duration-500 page-loader" style="display: none;"></div> <!-- Deferred JavaScript for better performance --> <script type="module">const i=()=>{document.body.classList.remove("page-loading"),document.body.classList.add("page-loaded"),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(t){t.preventDefault();const o=t.currentTarget;if(!o)return;const r=o.getAttribute("href");if(!r||r==="#")return;const s=document.querySelector(r);if(s){const m=document.querySelector("nav")?.offsetHeight||80,h=s.getBoundingClientRect().top+window.pageYOffset-m-32;window.scrollTo({top:h,behavior:"smooth"}),history.pushState(null,"",r)}})});const d={threshold:[0,.1,.2,.3],rootMargin:"0px 0px -80px 0px"},a=new IntersectionObserver(e=>{e.forEach(t=>{t.isIntersecting&&t.intersectionRatio>=.1&&(requestAnimationFrame(()=>{t.target.classList.add("revealed")}),a.unobserve(t.target))})},d);document.querySelectorAll(".reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale, .reveal-rotate").forEach(e=>{a.observe(e)});const u={threshold:[0,.15,.3,.5],rootMargin:"-10% 0px -10% 0px"},v=new IntersectionObserver(e=>{e.forEach(t=>{const o=t.target;if(o)if(t.isIntersecting){o.style.opacity="1",o.style.transform="translateY(0)",o.classList.add("section-active");const r=o.querySelector(".reveal-stagger");r&&r.querySelectorAll(".reveal, .reveal-scale, .reveal-left, .reveal-right").forEach(s=>{s.classList.add("revealed")})}else o.classList.remove("section-active")})},u);document.querySelectorAll("section[id]").forEach(e=>{v.observe(e)});let n=null;const f=()=>{n||(n=setTimeout(()=>{p(),g(),n=null},16))};function p(){const e=document.getElementById("scroll-progress-bar");if(!e)return;const t=window.pageYOffset,o=document.documentElement.scrollHeight-window.innerHeight,r=Math.min(t/o*100,100);e.style.width=r+"%"}function g(){const e=document.getElementById("back-to-top");if(!e)return;window.pageYOffset>300?(e.classList.remove("opacity-0","pointer-events-none"),e.classList.add("opacity-100","pointer-events-auto")):(e.classList.add("opacity-0","pointer-events-none"),e.classList.remove("opacity-100","pointer-events-auto"))}window.addEventListener("scroll",f,{passive:!0});const l=document.getElementById("back-to-top");l&&l.addEventListener("click",e=>{e.preventDefault(),window.scrollTo({top:0,behavior:"smooth"})});const c=document.getElementById("page-loader");c&&(c.style.display="none")};document.readyState==="loading"?document.addEventListener("DOMContentLoaded",i):i();</script> </body> </html>

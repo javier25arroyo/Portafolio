@@ -1,0 +1,92 @@
+<svg width="400" height="225" viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="circuit-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="225" fill="url(#bg-gradient)"/>
+  
+  <!-- Circuit Pattern -->
+  <g stroke="url(#circuit-gradient)" stroke-width="2" fill="none" opacity="0.6">
+    <!-- Horizontal lines -->
+    <line x1="50" y1="50" x2="150" y2="50"/>
+    <line x1="250" y1="50" x2="350" y2="50"/>
+    <line x1="50" y1="100" x2="200" y2="100"/>
+    <line x1="250" y1="100" x2="350" y2="100"/>
+    <line x1="50" y1="150" x2="150" y2="150"/>
+    <line x1="200" y1="150" x2="350" y2="150"/>
+    
+    <!-- Vertical lines -->
+    <line x1="100" y1="30" x2="100" y2="80"/>
+    <line x1="150" y1="50" x2="150" y2="150"/>
+    <line x1="200" y1="100" x2="200" y2="150"/>
+    <line x1="250" y1="50" x2="250" y2="100"/>
+    <line x1="300" y1="30" x2="300" y2="170"/>
+    
+    <!-- Connection points -->
+    <circle cx="100" cy="50" r="4" fill="#60a5fa"/>
+    <circle cx="150" cy="50" r="4" fill="#60a5fa"/>
+    <circle cx="200" cy="100" r="4" fill="#60a5fa"/>
+    <circle cx="250" cy="50" r="4" fill="#60a5fa"/>
+    <circle cx="250" cy="100" r="4" fill="#60a5fa"/>
+    <circle cx="300" cy="50" r="4" fill="#60a5fa"/>
+    <circle cx="150" cy="150" r="4" fill="#60a5fa"/>
+    <circle cx="200" cy="150" r="4" fill="#60a5fa"/>
+  </g>
+  
+  <!-- Main Icon -->
+  <g transform="translate(175, 87.5)">
+    <!-- Microcontroller chip -->
+    <rect x="-25" y="-25" width="50" height="50" rx="5" fill="rgba(255,255,255,0.95)" stroke="rgba(59,130,246,0.8)" stroke-width="2"/>
+    
+    <!-- Chip pins -->
+    <rect x="-30" y="-15" width="5" height="3" fill="#374151"/>
+    <rect x="-30" y="-5" width="5" height="3" fill="#374151"/>
+    <rect x="-30" y="5" width="5" height="3" fill="#374151"/>
+    <rect x="-30" y="15" width="5" height="3" fill="#374151"/>
+    
+    <rect x="25" y="-15" width="5" height="3" fill="#374151"/>
+    <rect x="25" y="-5" width="5" height="3" fill="#374151"/>
+    <rect x="25" y="5" width="5" height="3" fill="#374151"/>
+    <rect x="25" y="15" width="5" height="3" fill="#374151"/>
+    
+    <rect x="-15" y="-30" width="3" height="5" fill="#374151"/>
+    <rect x="-5" y="-30" width="3" height="5" fill="#374151"/>
+    <rect x="5" y="-30" width="3" height="5" fill="#374151"/>
+    <rect x="15" y="-30" width="3" height="5" fill="#374151"/>
+    
+    <rect x="-15" y="25" width="3" height="5" fill="#374151"/>
+    <rect x="-5" y="25" width="3" height="5" fill="#374151"/>
+    <rect x="5" y="25" width="3" height="5" fill="#374151"/>
+    <rect x="15" y="25" width="3" height="5" fill="#374151"/>
+    
+    <!-- Chip label -->
+    <text x="0" y="-5" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#3b82f6">μPy</text>
+    <text x="0" y="8" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" fill="#6b7280">IoT</text>
+  </g>
+  
+  <!-- Sensor waves -->
+  <g transform="translate(120, 60)" opacity="0.7">
+    <path d="M0,0 Q10,-10 20,0 Q30,10 40,0" stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="none"/>
+    <path d="M0,8 Q10,-2 20,8 Q30,18 40,8" stroke="rgba(255,255,255,0.6)" stroke-width="2" fill="none"/>
+    <path d="M0,16 Q10,6 20,16 Q30,26 40,16" stroke="rgba(255,255,255,0.4)" stroke-width="2" fill="none"/>
+  </g>
+  
+  <!-- Detection indicator -->
+  <g transform="translate(320, 140)">
+    <circle cx="0" cy="0" r="12" fill="rgba(34,197,94,0.2)" stroke="rgba(34,197,94,0.8)" stroke-width="2"/>
+    <circle cx="0" cy="0" r="6" fill="rgba(34,197,94,0.4)"/>
+    <circle cx="0" cy="0" r="2" fill="#22c55e"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="200" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="rgba(255,255,255,0.95)">Physical Server System</text>
+  <text x="200" y="215" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.8)">Obstacle Detection • MicroPython</text>
+</svg>
