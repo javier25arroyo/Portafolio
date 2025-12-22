@@ -10,7 +10,8 @@ import OracleDatabaseImage from '../assets/projects/oracle-database.svg?url';
 
 type Project = {
   title: string;
-  description: string;
+  descriptionEn: string;
+  descriptionEs: string;
   link: string;
   backendLink?: string;
   hasMultipleRepos?: boolean;
@@ -30,7 +31,8 @@ const projects: Project[] = [
     title: 'Veterinaria Moka',
     image: VeterinariaImage,
     alt: 'Screenshot of Veterinaria Moka management dashboard',
-    description: 'A full-stack solution for a veterinary practice.',
+    descriptionEn: 'A full-stack solution for a veterinary practice.',
+    descriptionEs: 'Una solución full-stack para una clínica veterinaria.',
     link: 'https://github.com/javier25arroyo/Veterinaria-Moka.git',
     priority: 'high'
   },
@@ -38,14 +40,16 @@ const projects: Project[] = [
     title: 'Lab Management System',
     image: LabManagementImage,
     alt: 'Screenshot of laboratory management desktop app',
-    description: 'Development of a Java Swing desktop application for user management and asset administration.',
+    descriptionEn: 'Development of a Java Swing desktop application for user management and asset administration.',
+    descriptionEs: 'Desarrollo de una aplicación de escritorio en Java Swing para gestión de usuarios y administración de activos.',
     link: 'https://github.com/javier25arroyo/Lab1.git'
   },
   {
     title: 'CodeCrafters',
     image: CodeCraftersImage,
     alt: 'Screenshot of CodeCrafters serious game interface',
-    description: 'Full-stack development (Angular and Spring Boot) of a video game application for seniors to help prevent cognitive decline.',
+    descriptionEn: 'Full-stack development (Angular and Spring Boot) of a video game application for seniors to help prevent cognitive decline.',
+    descriptionEs: 'Desarrollo full-stack (Angular y Spring Boot) de una aplicación de videojuegos para adultos mayores para ayudar a prevenir el deterioro cognitivo.',
     link: 'https://github.com/javier25arroyo/CodeCrafters-FrontEnd.git',
     backendLink: 'https://github.com/javier25arroyo/CodeCrafters-BackEnd.git',
     hasMultipleRepos: true
@@ -54,21 +58,24 @@ const projects: Project[] = [
     title: 'Puzzle Game for Seniors',
     image: PuzzleGameImage,
     alt: 'Screenshot of the puzzle mini-game for seniors',
-    description: 'Development of a puzzle video game for seniors.',
+    descriptionEn: 'Development of a puzzle video game for seniors.',
+    descriptionEs: 'Desarrollo de un videojuego de rompecabezas para adultos mayores.',
     link: 'https://javier25arroyo.github.io/puzzle-game/'
   },
   {
     title: 'CareConnect IoT System',
     image: DefaultProjectImage,
     alt: 'Abstract IoT system illustration',
-    description: 'Development of a physical server system for obstacle detection using an Ideaboard in MicroPython.',
+    descriptionEn: 'Development of a physical server system for obstacle detection using an Ideaboard in MicroPython.',
+    descriptionEs: 'Desarrollo de un sistema de servidor físico para detección de obstáculos usando una Ideaboard en MicroPython.',
     link: 'https://github.com/javier25arroyo/CareConnect.git'
   },
   {
     title: 'Oracle Tech Store DB',
     image: OracleDatabaseImage,
     alt: 'Database entity-relationship diagram preview',
-    description: 'Database management project for a tech product sales store in Oracle Database.',
+    descriptionEn: 'Database management project for a tech product sales store in Oracle Database.',
+    descriptionEs: 'Proyecto de gestión de base de datos para una tienda de productos tecnológicos en Oracle Database.',
     link: 'https://github.com/javier25arroyo/Proyecto-programacion-de-bases-de-datos.git'
   }
 ];
@@ -106,7 +113,7 @@ const projects: Project[] = [
         </div>
         <div class="project-info">
           <h3 class="project-name">{project.title}</h3>
-          <p class="project-description">{project.description}</p>
+          <p class="project-description" data-i18n={`project-${project.title.toLowerCase().replace(/\s+/g, '-')}`} data-i18n-en={project.descriptionEn} data-i18n-es={project.descriptionEs}>{project.descriptionEn}</p>
           {project.hasMultipleRepos ? (
             <div class="project-links">
               <a href={project.link} target="_blank" rel="noopener noreferrer" class="project-cta">
