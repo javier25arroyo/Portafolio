@@ -12,14 +12,14 @@ import Button from './Button.astro';
       <div class="text-left mb-8 reveal hero-intro">
         <div class="inline-flex items-center px-4 py-2 rounded-full backdrop-blur-sm mb-6 glass-dark border border-border-light status-badge">
           <div class="w-2 h-2 rounded-full mr-3 status-dot"></div>
-          <span class="font-medium text-sm status-text">Available for opportunities</span>
+          <span class="font-medium text-sm status-text" data-i18n="status" data-i18n-en="Available for opportunities" data-i18n-es="Disponible para oportunidades">Available for opportunities</span>
         </div>
         
         <!-- Greeting optimizado -->
         <div class="greeting-container mb-4">
           <p class="text-2xl md:text-3xl font-light reveal greeting-text">
-            <span class="greeting-word">Hi,</span>
-            <span class="greeting-word">I'm</span>
+            <span class="greeting-word" data-i18n="greeting" data-i18n-en="Hi," data-i18n-es="Hola,">Hi,</span>
+            <span class="greeting-word" data-i18n="greeting2" data-i18n-en="I'm" data-i18n-es="soy">I'm</span>
             <span class="name-highlight">
               Javier Arroyo
             </span>
@@ -28,20 +28,20 @@ import Button from './Button.astro';
         
         <!-- Título principal optimizado -->
         <h1 class="text-6xl md:text-8xl font-bold leading-tight mb-6 hero-title">
-          <span class="block reveal title-first">Software</span>
-          <span class="block gradient-text reveal title-second">Developer</span>
+          <span class="block reveal title-first" data-i18n="title1" data-i18n-en="Software" data-i18n-es="Desarrollador">Software</span>
+          <span class="block gradient-text reveal title-second" data-i18n="title2" data-i18n-en="Developer" data-i18n-es="de Software">Developer</span>
         </h1>
       </div>
 
       <!-- Descripción optimizada -->
       <div class="max-w-4xl mb-12 reveal hero-description">
         <p class="text-xl md:text-2xl leading-relaxed font-light description-text">
-          Crafting exceptional digital experiences through 
-          <span class="font-medium relative text-glow highlight-innovation">
+          <span data-i18n="desc1" data-i18n-en="Crafting exceptional digital experiences through" data-i18n-es="Creando experiencias digitales excepcionales mediante">Crafting exceptional digital experiences through</span>
+          <span class="font-medium relative text-glow highlight-innovation" data-i18n="desc2" data-i18n-en="innovative design" data-i18n-es="diseño innovador">
             innovative design
           </span> 
-          and 
-          <span class="font-medium relative text-glow-secondary highlight-tech">
+          <span data-i18n="desc3" data-i18n-en="and" data-i18n-es="y">and</span>
+          <span class="font-medium relative text-glow-secondary highlight-tech" data-i18n="desc4" data-i18n-en="cutting-edge technology" data-i18n-es="tecnología de vanguardia">
             cutting-edge technology
           </span>
         </p>
@@ -50,14 +50,14 @@ import Button from './Button.astro';
       <!-- CTAs optimizados -->
       <div class="flex flex-col sm:flex-row gap-6 mb-12 reveal hero-ctas">
         <a href="#projects" class="btn-primary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-view-work" rel="nofollow">
-          <span>View My Work</span>
+          <span data-i18n="cta1" data-i18n-en="View My Work" data-i18n-es="Ver mi Trabajo">View My Work</span>
           <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>
         </a>
         
         <a href="#contact" class="btn-secondary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-lets-connect" rel="nofollow">
-          <span>Let's Connect</span>
+          <span data-i18n="cta2" data-i18n-en="Let's Connect" data-i18n-es="Conectemos">Let's Connect</span>
           <svg class="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
           </svg>
