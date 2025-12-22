@@ -30,10 +30,10 @@ import Layout from '../layouts/Layout.astro';
         <section id="contact" class="reveal-fade relative section-base section-transition pt-24 pb-32">
             <div class="container mx-auto px-6">
 				<div class="text-center mb-16 reveal">
-					<h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+					<h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text" data-i18n="contact-title" data-i18n-en="Get In Touch" data-i18n-es="Contáctame">
 						Get In Touch
 					</h2>
-					<p class="text-lg max-w-2xl mx-auto reveal reveal-delay-100" style="color: var(--text-secondary);">
+					<p class="text-lg max-w-2xl mx-auto reveal reveal-delay-100" style="color: var(--text-secondary);" data-i18n="contact-desc" data-i18n-en="Ready to bring your ideas to life? Let's collaborate and create something amazing together." data-i18n-es="¿Listo para dar vida a tus ideas? Colaboremos y creemos algo increíble juntos.">
 						Ready to bring your ideas to life? Let's collaborate and create something amazing together.
 					</p>
 				</div>
@@ -69,8 +69,8 @@ import Layout from '../layouts/Layout.astro';
 									</svg>
 								</div>
 								<div>
-									<h4 class="font-semibold" style="color: var(--text-primary);">Response Time</h4>
-									<p style="color: var(--text-secondary);">Usually within 24 hours</p>
+									<h4 class="font-semibold" style="color: var(--text-primary);" data-i18n="contact-response" data-i18n-en="Response Time" data-i18n-es="Tiempo de Respuesta">Response Time</h4>
+									<p style="color: var(--text-secondary);" data-i18n="contact-response-time" data-i18n-en="Usually within 24 hours" data-i18n-es="Usualmente dentro de 24 horas">Usually within 24 hours</p>
 								</div>
 							</div>
 						</div>
@@ -78,7 +78,7 @@ import Layout from '../layouts/Layout.astro';
 					
 					<!-- 🌐 Social Media Section -->
 					<div class="glass-premium rounded-2xl p-8 mb-8 reveal">
-						<h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);">Connect with me</h4>
+						<h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);" data-i18n="contact-connect" data-i18n-en="Connect with me" data-i18n-es="Conéctate conmigo">Connect with me</h4>
 						<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal-stagger">
 							<!-- LinkedIn -->
 							<a href="https://www.linkedin.com/in/javier-arroyo-268147226/" target="_blank" rel="noopener noreferrer" 
@@ -91,7 +91,7 @@ import Layout from '../layouts/Layout.astro';
 										</svg>
 									</div>
 									<h5 class="font-semibold mb-2" style="color: var(--text-primary);">LinkedIn</h5>
-									<p class="text-sm" style="color: var(--text-secondary);">Professional network</p>
+									<p class="text-sm" style="color: var(--text-secondary);" data-i18n="linkedin-desc" data-i18n-en="Professional network" data-i18n-es="Red profesional">Professional network</p>
 								</div>
 							</a>
 							
@@ -106,7 +106,7 @@ import Layout from '../layouts/Layout.astro';
 										</svg>
 									</div>
 									<h5 class="font-semibold mb-2" style="color: var(--text-primary);">GitHub</h5>
-									<p class="text-sm" style="color: var(--text-secondary);">Code repository</p>
+									<p class="text-sm" style="color: var(--text-secondary);" data-i18n="github-desc" data-i18n-en="Code repository" data-i18n-es="Repositorio de código">Code repository</p>
 								</div>
 							</a>
 							
@@ -121,7 +121,7 @@ import Layout from '../layouts/Layout.astro';
 										</svg>
 									</div>
 									<h5 class="font-semibold mb-2" style="color: var(--text-primary);">WhatsApp</h5>
-									<p class="text-sm" style="color: var(--text-secondary);">Direct message</p>
+									<p class="text-sm" style="color: var(--text-secondary);" data-i18n="whatsapp-desc" data-i18n-en="Direct message" data-i18n-es="Mensaje directo">Direct message</p>
 								</div>
 							</a>
 						</div>
@@ -129,7 +129,7 @@ import Layout from '../layouts/Layout.astro';
 					
 					<!-- 📄 CV Download Section -->
 					<div class="glass-premium rounded-2xl p-8 reveal">
-						<h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);">Download CV</h4>
+						<h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);" data-i18n="cv-download" data-i18n-en="Download CV" data-i18n-es="Descargar CV">Download CV</h4>
 						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 reveal-stagger">
 							<!-- CV Español -->
 						<a href={`${import.meta.env.BASE_URL}assets/cv/CV_Javier_Arroyo_ES.pdf`} 
@@ -143,7 +143,7 @@ import Layout from '../layouts/Layout.astro';
 											<path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
 										</svg>
 									</div>
-									<h5 class="font-semibold mb-2 text-lg" style="color: var(--text-primary);">CV Español</h5>
+									<h5 class="font-semibold mb-2 text-lg" style="color: var(--text-primary);">CV-Spanish</h5>
 									<div class="flex items-center justify-center space-x-2 text-sm" style="color: var(--text-secondary);">
 										<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 											<path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
@@ -165,7 +165,7 @@ import Layout from '../layouts/Layout.astro';
 											<path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
 										</svg>
 									</div>
-									<h5 class="font-semibold mb-2 text-lg" style="color: var(--text-primary);">CV English</h5>
+									<h5 class="font-semibold mb-2 text-lg" style="color: var(--text-primary);">CV-English</h5>
 									<div class="flex items-center justify-center space-x-2 text-sm" style="color: var(--text-secondary);">
 										<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 											<path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>

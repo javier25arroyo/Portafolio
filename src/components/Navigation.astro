@@ -34,8 +34,19 @@
         </a>
       </div>
       
-      <!-- Mobile Menu Button Mejorado -->
-      <div class="flex-1 flex justify-end">
+      <!-- Language Switch + Mobile Menu Button -->
+      <div class="flex-1 flex justify-end items-center gap-4">
+        <!-- Language Switch -->
+        <div class="language-switch flex items-center gap-2">
+          <span class="lang-label text-xs font-medium transition-colors duration-300" data-lang="en">EN</span>
+          <button id="lang-toggle" class="lang-toggle relative w-12 h-6 rounded-full transition-all duration-300" 
+                  aria-label="Toggle language" data-track="nav-lang-toggle">
+            <span class="lang-slider absolute top-1 left-1 w-4 h-4 rounded-full transition-all duration-300"></span>
+          </button>
+          <span class="lang-label text-xs font-medium transition-colors duration-300" data-lang="es">ES</span>
+        </div>
+        
+        <!-- Mobile Menu Button Mejorado -->
         <div class="md:hidden">
           <button id="mobile-menu-btn" class="mobile-menu-btn group relative p-2 rounded-lg transition-all duration-300 hover:bg-white/5" 
                   aria-label="Toggle menu" data-track="nav-mobile-toggle">
@@ -406,6 +417,61 @@
   .nav-link:not(:hover) {
     will-change: auto;
   }
+
+  /* Language Switch Styles */
+  .language-switch {
+    opacity: 0;
+    transform: translateY(-10px);
+    animation: lang-switch-enter 0.5s var(--nav-timing) forwards;
+    animation-delay: 1.1s;
+  }
+
+  @keyframes lang-switch-enter {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .lang-label {
+    color: var(--text-tertiary);
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .lang-label.active {
+    color: var(--color-secondary);
+    font-weight: 600;
+    transform: scale(1.1);
+  }
+
+  .lang-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+  }
+
+  .lang-toggle:hover {
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  .lang-slider {
+    background: var(--color-secondary);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
+  }
+
+  .lang-toggle[data-lang="es"] .lang-slider,
+  .lang-toggle.es .lang-slider {
+    transform: translateX(24px);
+  }
+
+  .lang-toggle:focus-visible {
+    outline: 2px solid #10b981;
+    outline-offset: 2px;
+  }
 </style>
 
 <script>
@@ -424,6 +490,9 @@
     private mobileMenu: HTMLElement | null = null;
     private scrollProgress: HTMLElement | null = null;
     private navLinks: NodeListOf<HTMLElement> | null = null;
+    private langToggle: HTMLElement | null = null;
+    private langLabels: NodeListOf<HTMLElement> | null = null;
+    private currentLang: 'en' | 'es' = 'en';
     private isMenuOpen = false;
     private lastScrollY = 0;
     private scrollDirection: 'up' | 'down' = 'up';
@@ -448,6 +517,7 @@
       this.setupIntersectionObserver();
       this.setupKeyboardNavigation();
       this.setupAccessibility();
+      this.setupLanguageSwitch();
       
     }
 
@@ -767,6 +837,122 @@
       if (window.innerWidth >= 768 && this.isMenuOpen) {
         this.toggleMobileMenu();
       }
+    }
+
+    private setupLanguageSwitch(): void {
+      this.langToggle = document.getElementById('lang-toggle');
+      this.langLabels = document.querySelectorAll('.lang-label');
+      
+      // Obtener idioma guardado o usar inglés por defecto
+      const savedLang = localStorage.getItem('preferredLang') as 'en' | 'es';
+      this.currentLang = savedLang || 'en';
+      
+      // Aplicar idioma inicial
+      this.applyLanguage(this.currentLang);
+      
+      // Event listener para el toggle
+      this.langToggle?.addEventListener('click', () => {
+        this.toggleLanguage();
+      });
+      
+      // Event listeners para las etiquetas
+      this.langLabels?.forEach(label => {
+        label.addEventListener('click', () => {
+          const lang = label.getAttribute('data-lang') as 'en' | 'es';
+          if (lang && lang !== this.currentLang) {
+            this.toggleLanguage();
+          }
+        });
+      });
+    }
+
+    private toggleLanguage(): void {
+      this.currentLang = this.currentLang === 'es' ? 'en' : 'es';
+      this.applyLanguage(this.currentLang);
+      localStorage.setItem('preferredLang', this.currentLang);
+      
+      // Efecto visual
+      this.triggerHapticFeedback();
+      
+      // Disparar evento personalizado para que otros componentes puedan reaccionar
+      window.dispatchEvent(new CustomEvent('languageChanged', { 
+        detail: { lang: this.currentLang } 
+      }));
+    }
+
+    private applyLanguage(lang: 'en' | 'es'): void {
+      // Actualizar toggle visual
+      if (this.langToggle) {
+        this.langToggle.classList.toggle('es', lang === 'es');
+        this.langToggle.setAttribute('data-lang', lang);
+      }
+      
+      // Actualizar etiquetas activas
+      this.langLabels?.forEach(label => {
+        const labelLang = label.getAttribute('data-lang');
+        label.classList.toggle('active', labelLang === lang);
+      });
+      
+      // Actualizar atributo lang del HTML
+      document.documentElement.setAttribute('lang', lang);
+      
+      // Aplicar traducciones
+      this.translateContent(lang);
+    }
+
+    private translateContent(lang: 'en' | 'es'): void {
+      const translations: Record<string, Record<'en' | 'es', string>> = {
+        // Navegación
+        'nav-home': { en: 'Home', es: 'Inicio' },
+        'nav-skills': { en: 'Skills', es: 'Habilidades' },
+        'nav-projects': { en: 'Projects', es: 'Proyectos' },
+        'nav-contact': { en: 'Contact', es: 'Contacto' },
+      };
+      
+      // Traducciones de habilidades blandas con saltos de línea
+      const softSkillsTranslations: Record<string, Record<'en' | 'es', string>> = {
+        'skill-communication': { en: 'Effective<br>Communication', es: 'Comunicación<br>Efectiva' },
+        'skill-teamwork': { en: 'Teamwork', es: 'Trabajo en Equipo' },
+        'skill-collaboration': { en: 'Collaboration', es: 'Colaboración' },
+        'skill-problem-solving': { en: 'Problem-Solving', es: 'Resolución de<br>Problemas' },
+        'skill-critical-thinking': { en: 'Critical<br>Thinking', es: 'Pensamiento<br>Crítico' },
+        'skill-adaptability': { en: 'Adaptability', es: 'Adaptabilidad' },
+        'skill-continuous-learning': { en: 'Continuous<br>Learning', es: 'Aprendizaje<br>Continuo' },
+        'skill-time-management': { en: 'Time<br>Management', es: 'Gestión del<br>Tiempo' },
+        'skill-attention-detail': { en: 'Attention to Detail', es: 'Atención al Detalle' },
+        'skill-proactivity': { en: 'Proactivity', es: 'Proactividad' },
+        'skill-resilience': { en: 'Resilience', es: 'Resiliencia' },
+      };
+      
+      // Actualizar links de navegación
+      const navTexts = document.querySelectorAll('.nav-text, .mobile-nav-text');
+      navTexts.forEach(textEl => {
+        const parent = textEl.closest('[data-track]') as HTMLElement;
+        if (parent) {
+          const key = parent.getAttribute('data-track');
+          if (key && translations[key]) {
+            textEl.textContent = translations[key][lang];
+          }
+        }
+      });
+      
+      // Actualizar elementos con data-i18n
+      const translatableElements = document.querySelectorAll('[data-i18n]');
+      translatableElements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (key) {
+          // Verificar si es una habilidad blanda (usa innerHTML para <br>)
+          if (softSkillsTranslations[key]) {
+            el.innerHTML = softSkillsTranslations[key][lang];
+          } else {
+            // Buscar traducción en el atributo data-i18n-en o data-i18n-es
+            const translation = el.getAttribute(`data-i18n-${lang}`);
+            if (translation) {
+              el.textContent = translation;
+            }
+          }
+        }
+      });
     }
 
     private debounce(func: Function, wait: number): Function {
