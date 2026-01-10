@@ -474,7 +474,7 @@
   }
 </style>
 
-<script>
+<script lang="ts">
   // Declaraciones TypeScript mejoradas
   declare global {
     interface Window {
@@ -533,8 +533,6 @@
         return;
       }
 
-      // Configurar estado inicial
-      this.updateActiveLink();
     }
 
     private setupEventListeners(): void {
@@ -678,9 +676,6 @@
       // Auto-hide navbar (opcional)
       this.handleNavbarVisibility(currentScrollY);
       
-      // Actualizar link activo
-      this.debounce(() => this.updateActiveLink(), 150)();
-      
       this.lastScrollY = currentScrollY;
     }
 
@@ -692,50 +687,6 @@
       const shouldHide = isScrollingDown && scrollY > threshold && !this.isMenuOpen;
       
       this.navbar.classList.toggle('hidden', shouldHide);
-    }
-
-    private updateActiveLink(): void {
-      if (!this.navLinks) return;
-
-      const sections = document.querySelectorAll('section[id]');
-      let currentSection = '';
-      const scrollPosition = window.scrollY + 100; // Offset para mejor detección
-
-      sections.forEach(section => {
-        const htmlSection = section as HTMLElement;
-        const rect = htmlSection.getBoundingClientRect();
-        const sectionTop = rect.top + window.scrollY;
-        const sectionBottom = sectionTop + rect.height;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-          const id = section.getAttribute('id');
-          if (id) currentSection = id;
-        }
-      });
-
-      // Si estamos cerca del final de la página, activar la última sección
-      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
-        const lastSection = Array.from(sections).pop();
-        if (lastSection) {
-          currentSection = lastSection.getAttribute('id') || '';
-        }
-      }
-
-      // Actualizar clases activas con transición suave
-      this.navLinks.forEach(link => {
-        const isActive = link.getAttribute('href') === `#${currentSection}`;
-        if (isActive !== link.classList.contains('active')) {
-          link.classList.toggle('active', isActive);
-          
-          // Efecto visual suave al cambiar de link activo
-          if (isActive) {
-            link.style.transform = 'scale(1.02)';
-            setTimeout(() => {
-              link.style.transform = '';
-            }, 200);
-          }
-        }
-      });
     }
 
     private setupIntersectionObserver(): void {
@@ -844,7 +795,7 @@
       this.langLabels = document.querySelectorAll('.lang-label');
       
       // Obtener idioma guardado o usar inglés por defecto
-      const savedLang = localStorage.getItem('preferredLang') as 'en' | 'es';
+      const savedLang = this.safeGetStoredLang();
       this.currentLang = savedLang || 'en';
       
       // Aplicar idioma inicial
@@ -869,7 +820,7 @@
     private toggleLanguage(): void {
       this.currentLang = this.currentLang === 'es' ? 'en' : 'es';
       this.applyLanguage(this.currentLang);
-      localStorage.setItem('preferredLang', this.currentLang);
+      this.safeStoreLang(this.currentLang);
       
       // Efecto visual
       this.triggerHapticFeedback();
@@ -878,6 +829,23 @@
       window.dispatchEvent(new CustomEvent('languageChanged', { 
         detail: { lang: this.currentLang } 
       }));
+    }
+
+    private safeGetStoredLang(): 'en' | 'es' | null {
+      try {
+        return window?.localStorage?.getItem('preferredLang') as 'en' | 'es' | null;
+      } catch (err) {
+        console.warn('LocalStorage unavailable, defaulting to en', err);
+        return null;
+      }
+    }
+
+    private safeStoreLang(lang: 'en' | 'es'): void {
+      try {
+        window?.localStorage?.setItem('preferredLang', lang);
+      } catch (err) {
+        console.warn('Could not persist language preference', err);
+      }
     }
 
     private applyLanguage(lang: 'en' | 'es'): void {
