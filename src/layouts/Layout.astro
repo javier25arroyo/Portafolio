@@ -5,8 +5,10 @@ import '../styles/global.css';
 import '../styles/shared.css';
 import '../styles/fixes.css';
 const isProd = import.meta.env.PROD;
-const canonicalURL = new URL(Astro.url.pathname, 'https://javier25arroyo.github.io/Portafolio/');
-const ogImageURL = 'https://javier25arroyo.github.io/Portafolio/assets/og-image.png';
+const site = Astro.site ?? new URL('https://www.javier25cr.dev');
+const canonicalURL = new URL(Astro.url.pathname, site);
+const ogImageURL = new URL(`${import.meta.env.BASE_URL}assets/og-image.png`, site).toString();
+const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
 ---
 <!doctype html>
 <html lang="es" class="font-sans scroll-smooth">
@@ -70,7 +72,7 @@ const ogImageURL = 'https://javier25arroyo.github.io/Portafolio/assets/og-image.
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Javier Arroyo Rojas",
-      "url": "https://javier25arroyo.github.io/Portafolio/",
+      "url": siteUrl,
       "image": ogImageURL,
       "jobTitle": "Desarrollador de Software Full-Stack",
       "description": "Desarrollador Full-Stack especializado en JavaScript, TypeScript, Angular, Node.js, Java, C#, y tecnologías cloud como Azure.",
@@ -90,7 +92,7 @@ const ogImageURL = 'https://javier25arroyo.github.io/Portafolio/assets/og-image.
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Javier Arroyo Portfolio",
-      "url": "https://javier25arroyo.github.io/Portafolio/",
+      "url": siteUrl,
       "description": "Portafolio profesional de Javier Arroyo, desarrollador de software Full-Stack",
       "author": {
         "@type": "Person",
