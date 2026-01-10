@@ -15,6 +15,13 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script is:inline>
+      try {
+        document.documentElement.classList.add('js');
+      } catch {
+      }
+    </script>
     
     <!-- Performance Critical Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -127,10 +134,15 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
 
       /* Initial loading state */
       .page-loading {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      html.js .page-loading {
         opacity: 0;
         transform: translateY(30px);
-        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
-                    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .page-loaded {
@@ -215,7 +227,8 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
     </div>
 
     <!-- Deferred JavaScript for better performance -->
-    <script lang="ts">
+    <script>
+      // @ts-nocheck
       // Optimized DOMContentLoaded handler
       const initializeApp = () => {
         // Remove loading class
@@ -226,8 +239,8 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const link = e.currentTarget as HTMLAnchorElement | null;
-            if (!link) return;
+            const link = e.currentTarget;
+            if (!(link instanceof HTMLAnchorElement)) return;
             const targetId = link.getAttribute('href');
             
             if (!targetId || targetId === '#') return;
@@ -283,9 +296,8 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
 
         const sectionObserver = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
-            const section = entry.target as HTMLElement;
-            
-            if (!section) return;
+            const section = entry.target;
+            if (!(section instanceof HTMLElement)) return;
 
             if (entry.isIntersecting) {
               // Smooth section entrance
@@ -314,7 +326,7 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
         });
 
         // Optimized scroll handler with throttling
-        let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+        let scrollTimeout = null;
         const handleScrollOptimized = () => {
           if (scrollTimeout) return;
           

@@ -319,11 +319,12 @@
     }
 </style>
 
-<script lang="ts">
+<script>
+    // @ts-nocheck
     document.addEventListener('DOMContentLoaded', function() {
-        const container = document.querySelector('.bubbles-container') as HTMLElement;
-        const bubbles = document.querySelectorAll('.bubble') as NodeListOf<HTMLElement>;
-        let animationFrameId: number;
+        const container = document.querySelector('.bubbles-container');
+        const bubbles = document.querySelectorAll('.bubble');
+        let animationFrameId;
 
         if (!container) {
             console.error('Bubbles container not found!');
@@ -333,18 +334,18 @@
         // --- Physics and Animation Core ---
 
         class BubblePhysics {
-            element: HTMLElement;
-            x!: number;
-            y!: number;
-            vx!: number;
-            vy!: number;
-            width!: number;
-            height!: number;
-            isPaused: boolean = false;
-            isExploding: boolean = false;
-            randomForceInterval: number;
+            element;
+            x;
+            y;
+            vx;
+            vy;
+            width;
+            height;
+            isPaused = false;
+            isExploding = false;
+            randomForceInterval;
 
-            constructor(element: HTMLElement, containerRect: DOMRect) {
+            constructor(element, containerRect) {
                 this.element = element;
                 this.updateDimensions();
                 this.initPosition(containerRect);
@@ -360,7 +361,7 @@
                 this.height = rect.height;
             }
 
-            initPosition(containerRect: DOMRect) {
+            initPosition(containerRect) {
                 // Account for padding (1.5rem = 24px on each side)
                 const padding = 24;
                 const availableWidth = containerRect.width - (padding * 2) - this.width;
@@ -392,7 +393,7 @@
                 }
             }
 
-            updatePosition(containerRect: DOMRect) {
+            updatePosition(containerRect) {
                 if (this.isPaused || this.isExploding) return;
 
                 this.x += this.vx;
@@ -445,7 +446,7 @@
             }
         }
 
-        const bubbleInstances: BubblePhysics[] = [];
+        const bubbleInstances = [];
 
         function setup() {
             const containerRect = container.getBoundingClientRect();
@@ -494,7 +495,7 @@
         }
 
         // Re-initialize on window resize to adapt to new container dimensions
-        let resizeTimeout: number;
+        let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = window.setTimeout(init, 250);

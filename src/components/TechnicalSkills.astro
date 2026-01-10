@@ -72,27 +72,28 @@ const skills = [
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     padding: 1.75rem 1.5rem;
-    border-radius: 1rem;
+    border-radius: 1.25rem;
     cursor: pointer;
-    min-width: 140px;
+    min-width: 150px;
     position: relative;
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-light);
-    box-shadow: 0 2px 6px var(--shadow-subtle);
-    will-change: transform;
-    contain: content;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   .skill-item:hover {
-    transform: translateY(-6px) scale(1.025);
-    background: var(--bg-accent);
+    transform: translateY(-8px) scale(1.05);
+    background: rgba(255, 255, 255, 0.08);
     border-color: var(--skill-color);
-    box-shadow: 0 8px 20px var(--shadow-medium);
+    box-shadow: 0 10px 30px -10px var(--skill-color);
   }
-
-  /* Eliminado el pseudo-elemento superior para evitar la "línea" y re-paints innecesarios */
+  
+  .skill-item:hover .skill-icon {
+    transform: scale(1.1);
+  }
 
   .skill-icon {
     width: 64px;
@@ -100,12 +101,19 @@ const skills = [
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.25s ease, filter 0.25s ease;
-    margin-bottom: 0.75rem;
-    position: relative;
-    overflow: visible;
-    transform-origin: center;
-    will-change: transform;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  }
+  
+  .skill-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+  }
+  
+  .skill-item:hover .skill-label {
+    color: white;
   }
 
   .skill-item:hover .skill-icon {
@@ -329,19 +337,22 @@ const skills = [
   }
 </style>
 
-<script lang="ts">
+<script>
   // Inicializar el carrusel de habilidades
   function initializeSkillsCarousel() {
-    const container = document.querySelector('.skills-container') as HTMLElement;
-    const track = document.querySelector('.skills-track') as HTMLElement;
+    /** @type {HTMLElement | null} */
+    const container = document.querySelector('.skills-container');
+    /** @type {HTMLElement | null} */
+    const track = document.querySelector('.skills-track');
     
     if (!container || !track) return;
 
     // Accesibilidad básica: permitir foco en items para pausar el carrusel
-    const skillItems = document.querySelectorAll('.skill-item') as NodeListOf<HTMLElement>;
+    const skillItems = document.querySelectorAll('.skill-item');
     skillItems.forEach((item) => {
+      if (!(item instanceof HTMLElement)) return;
       item.setAttribute('tabindex', '0');
-      item.addEventListener('keydown', (e: KeyboardEvent) => {
+      item.addEventListener('keydown', /** @param {KeyboardEvent} e */ (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           item.click();
@@ -374,11 +385,12 @@ const skills = [
 
   // Función para ajustar velocidad según el tamaño de pantalla
   function adjustAnimationSpeed() {
-    const track = document.querySelector('.skills-track') as HTMLElement;
+    /** @type {HTMLElement | null} */
+    const track = document.querySelector('.skills-track');
     if (!track) return;
 
     const screenWidth = window.innerWidth;
-  let duration = 40; // duración base en segundos
+    let duration = 40; // duración base en segundos
 
     if (screenWidth < 480) {
       duration = 30;
@@ -401,9 +413,10 @@ const skills = [
   }
 
   // Ajustar velocidad al redimensionar
-  let resizeTimeout: number;
+  /** @type {ReturnType<typeof window.setTimeout> | undefined} */
+  let resizeTimeout;
   window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
+    if (resizeTimeout) window.clearTimeout(resizeTimeout);
     resizeTimeout = window.setTimeout(() => {
       adjustAnimationSpeed();
     }, 250);

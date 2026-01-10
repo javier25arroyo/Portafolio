@@ -43,33 +43,36 @@ import Layout from '../layouts/Layout.astro';
 					<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
 						<!-- Email Card -->
 						<a href="mailto:javier25arojas@gmail.com" class="group reveal-scale" data-track="contact-email" rel="noopener">
-							<div class="glass-elevated rounded-2xl p-6 transition-all duration-300 hover:neon-glow-secondary hover-lift">
-								<div class="flex items-center space-x-4">
-									<div class="w-12 h-12 rounded-lg flex items-center justify-center" 
-									     style="background: rgba(5, 150, 105, 0.2); color: var(--color-secondary);">
-										<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<div class="glass-elevated rounded-2xl p-6 transition-all duration-300 hover:neon-glow-secondary hover-lift h-full flex items-center">
+								<div class="flex items-center space-x-4 w-full">
+									<div class="w-14 h-14 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110" 
+									     style="background: rgba(5, 150, 105, 0.15); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.2);">
+										<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 											<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
 										</svg>
 									</div>
 									<div>
-										<h4 class="font-semibold" style="color: var(--text-primary);">Email</h4>
-										<p style="color: var(--text-secondary);">javier25arojas@gmail.com</p>
+										<h4 class="font-semibold text-lg" style="color: var(--text-primary);">Email</h4>
+										<p style="color: var(--text-secondary);" class="group-hover:text-white transition-colors">javier25arojas@gmail.com</p>
 									</div>
+                                    <div class="ml-auto opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
+                                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                    </div>
 								</div>
 							</div>
 						</a>
 
 						<!-- Quick Response Card -->
-						<div class="glass-elevated rounded-2xl p-6 reveal-scale">
-							<div class="flex items-center space-x-4">
-								<div class="w-12 h-12 rounded-lg flex items-center justify-center" 
-								     style="background: rgba(79, 70, 229, 0.2); color: var(--color-primary);">
-									<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+						<div class="glass-elevated rounded-2xl p-6 reveal-scale h-full flex items-center">
+							<div class="flex items-center space-x-4 w-full">
+								<div class="w-14 h-14 rounded-xl flex items-center justify-center" 
+								     style="background: rgba(79, 70, 229, 0.15); color: var(--color-primary); border: 1px solid rgba(79, 70, 229, 0.2);">
+									<svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
 									</svg>
 								</div>
 								<div>
-									<h4 class="font-semibold" style="color: var(--text-primary);" data-i18n="contact-response" data-i18n-en="Response Time" data-i18n-es="Tiempo de Respuesta">Response Time</h4>
+									<h4 class="font-semibold text-lg" style="color: var(--text-primary);" data-i18n="contact-response" data-i18n-en="Response Time" data-i18n-es="Tiempo de Respuesta">Response Time</h4>
 									<p style="color: var(--text-secondary);" data-i18n="contact-response-time" data-i18n-en="Usually within 24 hours" data-i18n-es="Usualmente dentro de 24 horas">Usually within 24 hours</p>
 								</div>
 							</div>
@@ -77,51 +80,51 @@ import Layout from '../layouts/Layout.astro';
 					</div>
 					
 					<!-- 🌐 Social Media Section -->
-					<div class="glass-premium rounded-2xl p-8 mb-8 reveal">
-						<h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);" data-i18n="contact-connect" data-i18n-en="Connect with me" data-i18n-es="Conéctate conmigo">Connect with me</h4>
+					<div class="mb-12 reveal">
+						<h4 class="font-semibold mb-8 text-center text-xl gradient-text" data-i18n="contact-connect" data-i18n-en="Connect with me" data-i18n-es="Conéctate conmigo">Connect with me</h4>
 						<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal-stagger">
 							<!-- LinkedIn -->
-							<a href="https://www.linkedin.com/in/javier-arroyo-268147226/" target="_blank" rel="noopener noreferrer" 
+							<a href="https://www.linkedin.com/in/javier-arroyo-dev" target="_blank" rel="noopener noreferrer" 
 							   class="group reveal-scale" data-track="social-linkedin">
-								<div class="card text-center hover-lift">
-									<div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" 
-									     style="background: rgba(79, 70, 229, 0.2); color: var(--color-primary);">
+								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300" style="border-top: 2px solid transparent;" onmouseover="this.style.borderColor='#0077b5'; this.style.backgroundColor='rgba(0, 119, 181, 0.1)'" onmouseout="this.style.borderColor='transparent'; this.style.backgroundColor='var(--bg-elevated)'">
+									<div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 shadow-lg" 
+									     style="background: linear-gradient(135deg, #0077b5 0%, #005e8e 100%); color: white;">
 										<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 											<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
 										</svg>
 									</div>
-									<h5 class="font-semibold mb-2" style="color: var(--text-primary);">LinkedIn</h5>
-									<p class="text-sm" style="color: var(--text-secondary);" data-i18n="linkedin-desc" data-i18n-en="Professional network" data-i18n-es="Red profesional">Professional network</p>
+									<h5 class="font-bold text-lg mb-1" style="color: var(--text-primary);">LinkedIn</h5>
+									<p class="text-sm opacity-80" style="color: var(--text-secondary);" data-i18n="linkedin-cta" data-i18n-en="Let's connect" data-i18n-es="Conectemos">Let's connect</p>
 								</div>
 							</a>
 							
 							<!-- GitHub -->
 							<a href="https://github.com/javier25arroyo" target="_blank" rel="noopener noreferrer" 
-							   class="group reveal-scale" data-track="social-github">
-								<div class="card text-center hover-lift">
-									<div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" 
-									     style="background: rgba(148, 163, 184, 0.2); color: var(--text-primary);">
+							   class="group reveal-scale" style="transition-delay: 0.1s;" data-track="social-github">
+								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300" style="border-top: 2px solid transparent;" onmouseover="this.style.borderColor='#ffffff'; this.style.backgroundColor='rgba(255, 255, 255, 0.08)'" onmouseout="this.style.borderColor='transparent'; this.style.backgroundColor='var(--bg-elevated)'">
+									<div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 shadow-lg" 
+									     style="background: linear-gradient(135deg, #333 0%, #111 100%); color: white;">
 										<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 											<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 										</svg>
 									</div>
-									<h5 class="font-semibold mb-2" style="color: var(--text-primary);">GitHub</h5>
-									<p class="text-sm" style="color: var(--text-secondary);" data-i18n="github-desc" data-i18n-en="Code repository" data-i18n-es="Repositorio de código">Code repository</p>
+									<h5 class="font-bold text-lg mb-1" style="color: var(--text-primary);">GitHub</h5>
+									<p class="text-sm opacity-80" style="color: var(--text-secondary);" data-i18n="github-cta" data-i18n-en="Check my code" data-i18n-es="Ver mi código">Check my code</p>
 								</div>
 							</a>
 							
 							<!-- WhatsApp -->
 							<a href="https://walink.co/bdf8ef" target="_blank" rel="noopener noreferrer" 
-							   class="group reveal-scale" data-track="social-whatsapp">
-								<div class="card text-center hover-lift">
-									<div class="w-16 h-16 rounded-xl flex items-center justify-center mb-4 mx-auto" 
-									     style="background: rgba(5, 150, 105, 0.2); color: var(--color-secondary);">
+							   class="group reveal-scale" style="transition-delay: 0.2s;" data-track="social-whatsapp">
+								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300" style="border-top: 2px solid transparent;" onmouseover="this.style.borderColor='#25d366'; this.style.backgroundColor='rgba(37, 211, 102, 0.1)'" onmouseout="this.style.borderColor='transparent'; this.style.backgroundColor='var(--bg-elevated)'">
+									<div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 shadow-lg" 
+									     style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white;">
 										<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 											<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488"/>
 										</svg>
 									</div>
-									<h5 class="font-semibold mb-2" style="color: var(--text-primary);">WhatsApp</h5>
-									<p class="text-sm" style="color: var(--text-secondary);" data-i18n="whatsapp-desc" data-i18n-en="Direct message" data-i18n-es="Mensaje directo">Direct message</p>
+									<h5 class="font-bold text-lg mb-1" style="color: var(--text-primary);">WhatsApp</h5>
+									<p class="text-sm opacity-80" style="color: var(--text-secondary);" data-i18n="whatsapp-cta" data-i18n-en="Chat with me" data-i18n-es="Chatea conmigo">Chat with me</p>
 								</div>
 							</a>
 						</div>
@@ -129,27 +132,23 @@ import Layout from '../layouts/Layout.astro';
 					
 					<!-- 📄 CV Download Section -->
 					<div class="glass-premium rounded-2xl p-8 reveal">
-						<h4 class="font-semibold mb-6 text-center text-xl" style="color: var(--text-primary);" data-i18n="cv-download" data-i18n-en="Download CV" data-i18n-es="Descargar CV">Download CV</h4>
+						<h4 class="font-semibold mb-6 text-center text-xl gradient-text" data-i18n="cv-download" data-i18n-en="Download CV" data-i18n-es="Descargar CV">Download CV</h4>
 						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 reveal-stagger">
 							<!-- CV Español -->
 						<a href={`${import.meta.env.BASE_URL}assets/cv/CV_Javier_Arroyo_ES.pdf`} 
 							   download="CV_Javier_Arroyo_Español.pdf" 
 							   class="group reveal-left" data-track="download-cv-es"
 							   rel="noopener">
-								<div class="card text-center hover-lift hover:neon-glow">
-									<div class="w-20 h-20 rounded-xl flex items-center justify-center mb-4 mx-auto" 
-									     style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">
-										<svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-											<path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-										</svg>
+								<div class="card p-4 flex items-center justify-center space-x-4 hover-lift hover:neon-glow border border-transparent hover:border-red-500/30 transition-all rounded-xl cursor-pointer bg-opacity-10" style="background: rgba(239, 68, 68, 0.05);">
+									<div class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform" 
+									     style="background: #ef4444; color: white;">
+										<span class="font-bold text-sm">ES</span>
 									</div>
-									<h5 class="font-semibold mb-2 text-lg" style="color: var(--text-primary);" data-i18n="cv-spanish" data-i18n-en="CV-Spanish" data-i18n-es="CV-Español">CV-Spanish</h5>
-									<div class="flex items-center justify-center space-x-2 text-sm" style="color: var(--text-secondary);">
-										<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-											<path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
-										</svg>
-										<span data-i18n="download-pdf" data-i18n-en="Download PDF" data-i18n-es="Descargar PDF">Download PDF</span>
+									<div class="text-left">
+                                        <h5 class="font-bold" style="color: var(--text-primary);">Español</h5>
+                                        <span class="text-xs text-red-400 font-semibold uppercase tracking-wider">PDF • 2025</span>
 									</div>
+                                    <svg class="w-5 h-5 ml-auto text-red-400 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
 								</div>
 							</a>
 							
@@ -158,20 +157,16 @@ import Layout from '../layouts/Layout.astro';
 							   download="CV_Javier_Arroyo_English.pdf" 
 							   class="group reveal-right" data-track="download-cv-en"
 							   rel="noopener">
-								<div class="card text-center hover-lift hover:neon-glow">
-									<div class="w-20 h-20 rounded-xl flex items-center justify-center mb-4 mx-auto" 
-									     style="background: rgba(79, 70, 229, 0.2); color: var(--color-primary);">
-										<svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-											<path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-										</svg>
+								<div class="card p-4 flex items-center justify-center space-x-4 hover-lift hover:neon-glow border border-transparent hover:border-blue-500/30 transition-all rounded-xl cursor-pointer bg-opacity-10" style="background: rgba(59, 130, 246, 0.05);">
+									<div class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform" 
+									     style="background: #3b82f6; color: white;">
+										<span class="font-bold text-sm">EN</span>
 									</div>
-									<h5 class="font-semibold mb-2 text-lg" style="color: var(--text-primary);" data-i18n="cv-english" data-i18n-en="CV-English" data-i18n-es="CV-Inglés">CV-English</h5>
-									<div class="flex items-center justify-center space-x-2 text-sm" style="color: var(--text-secondary);">
-										<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-											<path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
-										</svg>
-										<span data-i18n="download-pdf" data-i18n-en="Download PDF" data-i18n-es="Descargar PDF">Download PDF</span>
+									<div class="text-left">
+                                        <h5 class="font-bold" style="color: var(--text-primary);">English</h5>
+                                        <span class="text-xs text-blue-400 font-semibold uppercase tracking-wider">PDF • 2025</span>
 									</div>
+                                    <svg class="w-5 h-5 ml-auto text-blue-400 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
 								</div>
 							</a>
 						</div>

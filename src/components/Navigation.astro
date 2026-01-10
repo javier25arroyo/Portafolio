@@ -474,476 +474,414 @@
   }
 </style>
 
-<script lang="ts">
-  // Declaraciones TypeScript mejoradas
-  declare global {
-    interface Window {
-      navbarInitialized?: boolean;
-      scrollDirection?: 'up' | 'down';
-      lastScrollY?: number;
-    }
-  }
+<script>
+  // @ts-nocheck
+  (() => {
+    if (window.navbarInitialized) return;
+    window.navbarInitialized = true;
 
-  class NavbarController {
-    private navbar: HTMLElement | null = null;
-    private mobileMenuBtn: HTMLElement | null = null;
-    private mobileMenu: HTMLElement | null = null;
-    private scrollProgress: HTMLElement | null = null;
-    private navLinks: NodeListOf<HTMLElement> | null = null;
-    private langToggle: HTMLElement | null = null;
-    private langLabels: NodeListOf<HTMLElement> | null = null;
-    private currentLang: 'en' | 'es' = 'en';
-    private isMenuOpen = false;
-    private lastScrollY = 0;
-    private scrollDirection: 'up' | 'down' = 'up';
-    private scrollTimeout: number | null = null;
-    private resizeObserver: ResizeObserver | null = null;
+    class NavbarController {
+      constructor() {
+        this.navbar = null;
+        this.mobileMenuBtn = null;
+        this.mobileMenu = null;
+        this.scrollProgress = null;
+        this.navLinks = null;
+        this.langToggle = null;
+        this.langLabels = null;
+        this.currentLang = 'en';
+        this.isMenuOpen = false;
+        this.lastScrollY = 0;
+        this.scrollDirection = 'up';
+        this.scrollTimeout = null;
+        this.resizeObserver = null;
 
-    constructor() {
-      this.init();
-    }
+        this.init();
+      }
 
-    private async init(): Promise<void> {
-      
-      // Esperar a que el DOM esté completamente cargado
-      if (document.readyState === 'loading') {
-        await new Promise(resolve => {
-          document.addEventListener('DOMContentLoaded', resolve);
+      async init() {
+        if (document.readyState === 'loading') {
+          await new Promise((resolve) => {
+            document.addEventListener('DOMContentLoaded', resolve, { once: true });
+          });
+        }
+
+        this.setupElements();
+        if (!this.navbar) return;
+
+        this.setupEventListeners();
+        this.setupIntersectionObserver();
+        this.setupKeyboardNavigation();
+        this.setupAccessibility();
+        this.setupLanguageSwitch();
+      }
+
+      setupElements() {
+        this.navbar = document.getElementById('main-nav');
+        this.mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        this.mobileMenu = document.getElementById('mobile-menu');
+        this.scrollProgress = this.navbar ? this.navbar.querySelector('.scroll-progress') : null;
+        this.navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+
+        if (!this.navbar) {
+          console.error('❌ Navbar element not found');
+        }
+      }
+
+      setupEventListeners() {
+        this.mobileMenuBtn?.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.toggleMobileMenu();
+        });
+
+        this.navLinks?.forEach((link) => {
+          link.addEventListener('click', (e) => this.handleNavClick(e, link));
+        });
+
+        let ticking = false;
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+              this.handleScroll();
+              ticking = false;
+            });
+          },
+          { passive: true }
+        );
+
+        this.setupResizeObserver();
+
+        window.addEventListener('themeChanged', () => {
+          this.handleThemeChange();
         });
       }
 
-      this.setupElements();
-      this.setupEventListeners();
-      this.setupIntersectionObserver();
-      this.setupKeyboardNavigation();
-      this.setupAccessibility();
-      this.setupLanguageSwitch();
-      
-    }
+      setupResizeObserver() {
+        this.resizeObserver = new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.target === document.body) {
+              this.handleResize();
+            }
+          }
+        });
 
-    private setupElements(): void {
-      this.navbar = document.getElementById('main-nav');
-      this.mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      this.mobileMenu = document.getElementById('mobile-menu');
-      this.scrollProgress = this.navbar?.querySelector('.scroll-progress') as HTMLElement;
-      this.navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
-
-      if (!this.navbar) {
-        console.error('❌ Navbar element not found');
-        return;
+        this.resizeObserver.observe(document.body);
       }
 
-    }
-
-    private setupEventListeners(): void {
-      // Mobile menu toggle con animación mejorada
-      this.mobileMenuBtn?.addEventListener('click', (e) => {
+      handleNavClick(e, link) {
         e.preventDefault();
-        this.toggleMobileMenu();
-      });
 
-      // Smooth scrolling optimizado
-      this.navLinks?.forEach(link => {
-        link.addEventListener('click', (e) => this.handleNavClick(e, link));
-      });
+        const href = link.getAttribute('href');
+        if (!href) return;
 
-      // Scroll events optimizados con throttling
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            this.handleScroll();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      }, { passive: true });
+        this.addClickEffect(link);
 
-      // Resize observer para responsive
-      this.setupResizeObserver();
+        const target = document.querySelector(href);
+        if (!(target instanceof HTMLElement)) return;
 
-      // Eventos de tema
-      window.addEventListener('themeChanged', () => {
-        this.handleThemeChange();
-      });
-    }
+        const offset = 80;
+        const targetPosition = target.offsetTop - offset;
 
-    private setupResizeObserver(): void {
-      this.resizeObserver = new ResizeObserver(entries => {
-        for (const entry of entries) {
-          if (entry.target === document.body) {
-            this.handleResize();
-          }
-        }
-      });
-      
-      this.resizeObserver.observe(document.body);
-    }
-
-    private handleNavClick(e: Event, link: HTMLElement): void {
-      e.preventDefault();
-      
-      const href = link.getAttribute('href');
-      if (!href) return;
-
-      // Efecto de clic visual
-      this.addClickEffect(link);
-
-      // Scroll suave con offset personalizado
-      const target = document.querySelector(href);
-      if (target) {
-        const offset = 80; // Altura del navbar
-        const targetPosition = (target as HTMLElement).offsetTop - offset;
-        
         window.scrollTo({
           top: targetPosition,
-          behavior: 'smooth'
+          behavior: 'smooth',
         });
 
-        // Cerrar menú móvil si está abierto
         if (this.isMenuOpen) {
           setTimeout(() => this.toggleMobileMenu(), 200);
         }
 
-        // Feedback háptico en dispositivos compatibles
         this.triggerHapticFeedback();
       }
-    }
 
-    private addClickEffect(element: HTMLElement): void {
-      element.style.transform = 'scale(0.95)';
-      element.style.transition = 'transform 0.1s ease-out';
-      
-      setTimeout(() => {
-        element.style.transform = '';
-        element.style.transition = '';
-      }, 150);
-    }
+      addClickEffect(element) {
+        element.style.transform = 'scale(0.95)';
+        element.style.transition = 'transform 0.1s ease-out';
 
-    private triggerHapticFeedback(): void {
-      if ('vibrate' in navigator) {
-        navigator.vibrate(10);
-      }
-    }
-
-    private toggleMobileMenu(): void {
-      if (!this.mobileMenu || !this.mobileMenuBtn) return;
-
-      this.isMenuOpen = !this.isMenuOpen;
-      
-      // Actualizar clase del botón
-      this.mobileMenuBtn.classList.toggle('active', this.isMenuOpen);
-      
-      if (this.isMenuOpen) {
-        // Abrir menú
-        this.mobileMenu.classList.add('show');
-        this.mobileMenu.setAttribute('aria-hidden', 'false');
-        this.mobileMenuBtn.setAttribute('aria-expanded', 'true');
-        
-        // Enfocar primer link para accesibilidad
-        const firstLink = this.mobileMenu.querySelector('.mobile-nav-link') as HTMLElement;
-        setTimeout(() => firstLink?.focus(), 300);
-      } else {
-        // Cerrar menú
-        this.mobileMenu.classList.remove('show');
-        this.mobileMenu.setAttribute('aria-hidden', 'true');
-        this.mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        setTimeout(() => {
+          element.style.transform = '';
+          element.style.transition = '';
+        }, 150);
       }
 
-      this.triggerHapticFeedback();
-    }
-
-    private handleScroll(): void {
-      if (!this.navbar || !this.scrollProgress) return;
-
-      const currentScrollY = window.scrollY;
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollProgress = Math.min(currentScrollY / documentHeight, 1);
-      
-      // Actualizar dirección de scroll
-      this.scrollDirection = currentScrollY > this.lastScrollY ? 'down' : 'up';
-      
-      // Actualizar progreso visual
-      this.scrollProgress.style.transform = `scaleX(${scrollProgress})`;
-      
-      // Efectos de scroll en navbar
-      if (currentScrollY > 50) {
-        this.navbar.classList.add('scrolled');
-      } else {
-        this.navbar.classList.remove('scrolled');
+      triggerHapticFeedback() {
+        if ('vibrate' in navigator) {
+          navigator.vibrate(10);
+        }
       }
 
-      // Auto-hide navbar (opcional)
-      this.handleNavbarVisibility(currentScrollY);
-      
-      this.lastScrollY = currentScrollY;
-    }
+      toggleMobileMenu() {
+        if (!this.mobileMenu || !this.mobileMenuBtn) return;
 
-    private handleNavbarVisibility(scrollY: number): void {
-      if (!this.navbar) return;
+        this.isMenuOpen = !this.isMenuOpen;
 
-      const threshold = 200;
-      const isScrollingDown = this.scrollDirection === 'down';
-      const shouldHide = isScrollingDown && scrollY > threshold && !this.isMenuOpen;
-      
-      this.navbar.classList.toggle('hidden', shouldHide);
-    }
+        this.mobileMenuBtn.classList.toggle('active', this.isMenuOpen);
 
-    private setupIntersectionObserver(): void {
-      const observerOptions = {
-        threshold: [0.1, 0.5, 0.9],
-        rootMargin: '-80px 0px -80px 0px'
-      };
+        if (this.isMenuOpen) {
+          this.mobileMenu.classList.add('show');
+          this.mobileMenu.setAttribute('aria-hidden', 'false');
+          this.mobileMenuBtn.setAttribute('aria-expanded', 'true');
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          const firstLink = this.mobileMenu.querySelector('.mobile-nav-link');
+          setTimeout(() => {
+            if (firstLink instanceof HTMLElement) firstLink.focus();
+          }, 300);
+        } else {
+          this.mobileMenu.classList.remove('show');
+          this.mobileMenu.setAttribute('aria-hidden', 'true');
+          this.mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
+
+        this.triggerHapticFeedback();
+      }
+
+      handleScroll() {
+        if (!this.navbar || !this.scrollProgress) return;
+
+        const currentScrollY = window.scrollY;
+        const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = documentHeight > 0 ? Math.min(currentScrollY / documentHeight, 1) : 0;
+
+        this.scrollDirection = currentScrollY > this.lastScrollY ? 'down' : 'up';
+        this.scrollProgress.style.transform = `scaleX(${progress})`;
+
+        if (currentScrollY > 50) {
+          this.navbar.classList.add('scrolled');
+        } else {
+          this.navbar.classList.remove('scrolled');
+        }
+
+        this.handleNavbarVisibility(currentScrollY);
+        this.lastScrollY = currentScrollY;
+      }
+
+      handleNavbarVisibility(scrollY) {
+        if (!this.navbar) return;
+
+        const threshold = 200;
+        const isScrollingDown = this.scrollDirection === 'down';
+        const shouldHide = isScrollingDown && scrollY > threshold && !this.isMenuOpen;
+        this.navbar.classList.toggle('hidden', shouldHide);
+      }
+
+      setupIntersectionObserver() {
+        const observerOptions = {
+          threshold: [0.1, 0.5, 0.9],
+          rootMargin: '-80px 0px -80px 0px',
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
             const id = entry.target.getAttribute('id');
-            if (id) {
-              this.highlightNavLink(id);
-            }
+            if (id) this.highlightNavLink(id);
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('section[id]').forEach((section) => {
+          observer.observe(section);
+        });
+      }
+
+      highlightNavLink(sectionId) {
+        this.navLinks?.forEach((link) => {
+          const isActive = link.getAttribute('href') === `#${sectionId}`;
+          link.classList.toggle('active', isActive);
+        });
+      }
+
+      setupKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+          switch (e.key) {
+            case 'Escape':
+              if (this.isMenuOpen) this.toggleMobileMenu();
+              break;
+            case 'Tab':
+              document.body.classList.add('keyboard-navigation');
+              break;
+            default:
+              if (e.altKey && e.key >= '1' && e.key <= '4') {
+                e.preventDefault();
+                const index = parseInt(e.key, 10) - 1;
+                const links = Array.from(this.navLinks || []);
+                const targetLink = links.filter((link) => !link.classList.contains('mobile-nav-link'))[index];
+                if (targetLink instanceof HTMLElement) targetLink.click();
+              }
           }
         });
-      }, observerOptions);
 
-      // Observar secciones
-      document.querySelectorAll('section[id]').forEach(section => {
-        observer.observe(section);
-      });
-    }
+        document.addEventListener('mousedown', () => {
+          document.body.classList.remove('keyboard-navigation');
+        });
+      }
 
-    private highlightNavLink(sectionId: string): void {
-      this.navLinks?.forEach(link => {
-        const isActive = link.getAttribute('href') === `#${sectionId}`;
-        link.classList.toggle('active', isActive);
-      });
-    }
+      setupAccessibility() {
+        this.mobileMenuBtn?.setAttribute('aria-label', 'Toggle navigation menu');
+        this.mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+        this.mobileMenu?.setAttribute('aria-hidden', 'true');
+        this.createSkipLink();
+      }
 
-    private setupKeyboardNavigation(): void {
-      document.addEventListener('keydown', (e) => {
-        switch (e.key) {
-          case 'Escape':
-            if (this.isMenuOpen) {
-              this.toggleMobileMenu();
-            }
-            break;
-          
-          case 'Tab':
-            document.body.classList.add('keyboard-navigation');
-            break;
-            
-          default:
-            // Navegación rápida con Alt + número
-            if (e.altKey && e.key >= '1' && e.key <= '4') {
-              e.preventDefault();
-              const index = parseInt(e.key) - 1;
-              const links = Array.from(this.navLinks || []);
-              const targetLink = links.filter(link => 
-                !link.classList.contains('mobile-nav-link')
-              )[index];
-              
-              if (targetLink) {
-                (targetLink as HTMLElement).click();
-              }
-            }
-        }
-      });
+      createSkipLink() {
+        const skipLink = document.createElement('a');
+        skipLink.href = '#main-content';
+        skipLink.textContent = 'Skip to main content';
+        skipLink.className =
+          'skip-link sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-3 py-2 rounded z-50';
 
-      document.addEventListener('mousedown', () => {
-        document.body.classList.remove('keyboard-navigation');
-      });
-    }
+        document.body.insertBefore(skipLink, document.body.firstChild);
+      }
 
-    private setupAccessibility(): void {
-      // Configurar ARIA labels
-      this.mobileMenuBtn?.setAttribute('aria-label', 'Toggle navigation menu');
-      this.mobileMenuBtn?.setAttribute('aria-expanded', 'false');
-      this.mobileMenu?.setAttribute('aria-hidden', 'true');
-      
-      // Skip link para accesibilidad
-      this.createSkipLink();
-    }
-
-    private createSkipLink(): void {
-      const skipLink = document.createElement('a');
-      skipLink.href = '#main-content';
-      skipLink.textContent = 'Skip to main content';
-      skipLink.className = 'skip-link sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-3 py-2 rounded z-50';
-      
-      document.body.insertBefore(skipLink, document.body.firstChild);
-    }
-
-    private handleThemeChange(): void {
-      // Animación suave para cambio de tema
-      if (this.navbar) {
+      handleThemeChange() {
+        if (!this.navbar) return;
         this.navbar.style.transition = 'all 0.3s ease-out';
         setTimeout(() => {
-          this.navbar!.style.transition = '';
+          if (this.navbar) this.navbar.style.transition = '';
         }, 300);
       }
-    }
 
-    private handleResize(): void {
-      // Cerrar menú móvil en pantallas grandes
-      if (window.innerWidth >= 768 && this.isMenuOpen) {
-        this.toggleMobileMenu();
+      handleResize() {
+        if (window.innerWidth >= 768 && this.isMenuOpen) {
+          this.toggleMobileMenu();
+        }
       }
-    }
 
-    private setupLanguageSwitch(): void {
-      this.langToggle = document.getElementById('lang-toggle');
-      this.langLabels = document.querySelectorAll('.lang-label');
-      
-      // Obtener idioma guardado o usar inglés por defecto
-      const savedLang = this.safeGetStoredLang();
-      this.currentLang = savedLang || 'en';
-      
-      // Aplicar idioma inicial
-      this.applyLanguage(this.currentLang);
-      
-      // Event listener para el toggle
-      this.langToggle?.addEventListener('click', () => {
-        this.toggleLanguage();
-      });
-      
-      // Event listeners para las etiquetas
-      this.langLabels?.forEach(label => {
-        label.addEventListener('click', () => {
-          const lang = label.getAttribute('data-lang') as 'en' | 'es';
-          if (lang && lang !== this.currentLang) {
-            this.toggleLanguage();
-          }
+      setupLanguageSwitch() {
+        this.langToggle = document.getElementById('lang-toggle');
+        this.langLabels = document.querySelectorAll('.lang-label');
+
+        const savedLang = this.safeGetStoredLang();
+        this.currentLang = savedLang || 'en';
+        this.applyLanguage(this.currentLang);
+
+        this.langToggle?.addEventListener('click', () => {
+          this.toggleLanguage();
         });
-      });
-    }
 
-    private toggleLanguage(): void {
-      this.currentLang = this.currentLang === 'es' ? 'en' : 'es';
-      this.applyLanguage(this.currentLang);
-      this.safeStoreLang(this.currentLang);
-      
-      // Efecto visual
-      this.triggerHapticFeedback();
-      
-      // Disparar evento personalizado para que otros componentes puedan reaccionar
-      window.dispatchEvent(new CustomEvent('languageChanged', { 
-        detail: { lang: this.currentLang } 
-      }));
-    }
-
-    private safeGetStoredLang(): 'en' | 'es' | null {
-      try {
-        return window?.localStorage?.getItem('preferredLang') as 'en' | 'es' | null;
-      } catch (err) {
-        console.warn('LocalStorage unavailable, defaulting to en', err);
-        return null;
+        this.langLabels?.forEach((label) => {
+          label.addEventListener('click', () => {
+            const lang = label.getAttribute('data-lang');
+            if ((lang === 'en' || lang === 'es') && lang !== this.currentLang) {
+              this.currentLang = lang;
+              this.applyLanguage(this.currentLang);
+              this.safeStoreLang(this.currentLang);
+              window.dispatchEvent(
+                new CustomEvent('languageChanged', {
+                  detail: { lang: this.currentLang },
+                })
+              );
+            }
+          });
+        });
       }
-    }
 
-    private safeStoreLang(lang: 'en' | 'es'): void {
-      try {
-        window?.localStorage?.setItem('preferredLang', lang);
-      } catch (err) {
-        console.warn('Could not persist language preference', err);
+      toggleLanguage() {
+        this.currentLang = this.currentLang === 'es' ? 'en' : 'es';
+        this.applyLanguage(this.currentLang);
+        this.safeStoreLang(this.currentLang);
+
+        this.triggerHapticFeedback();
+
+        window.dispatchEvent(
+          new CustomEvent('languageChanged', {
+            detail: { lang: this.currentLang },
+          })
+        );
       }
-    }
 
-    private applyLanguage(lang: 'en' | 'es'): void {
-      // Actualizar toggle visual
-      if (this.langToggle) {
-        this.langToggle.classList.toggle('es', lang === 'es');
-        this.langToggle.setAttribute('data-lang', lang);
+      safeGetStoredLang() {
+        try {
+          const stored = window?.localStorage?.getItem('preferredLang');
+          return stored === 'en' || stored === 'es' ? stored : null;
+        } catch (err) {
+          console.warn('LocalStorage unavailable, defaulting to en', err);
+          return null;
+        }
       }
-      
-      // Actualizar etiquetas activas
-      this.langLabels?.forEach(label => {
-        const labelLang = label.getAttribute('data-lang');
-        label.classList.toggle('active', labelLang === lang);
-      });
-      
-      // Actualizar atributo lang del HTML
-      document.documentElement.setAttribute('lang', lang);
-      
-      // Aplicar traducciones
-      this.translateContent(lang);
-    }
 
-    private translateContent(lang: 'en' | 'es'): void {
-      const translations: Record<string, Record<'en' | 'es', string>> = {
-        // Navegación
-        'nav-home': { en: 'Home', es: 'Inicio' },
-        'nav-skills': { en: 'Skills', es: 'Habilidades' },
-        'nav-projects': { en: 'Projects', es: 'Proyectos' },
-        'nav-contact': { en: 'Contact', es: 'Contacto' },
-      };
-      
-      // Traducciones de habilidades blandas con saltos de línea
-      const softSkillsTranslations: Record<string, Record<'en' | 'es', string>> = {
-        'skill-communication': { en: 'Effective<br>Communication', es: 'Comunicación<br>Efectiva' },
-        'skill-teamwork': { en: 'Teamwork', es: 'Trabajo en Equipo' },
-        'skill-collaboration': { en: 'Collaboration', es: 'Colaboración' },
-        'skill-problem-solving': { en: 'Problem-Solving', es: 'Resolución de<br>Problemas' },
-        'skill-critical-thinking': { en: 'Critical<br>Thinking', es: 'Pensamiento<br>Crítico' },
-        'skill-adaptability': { en: 'Adaptability', es: 'Adaptabilidad' },
-        'skill-continuous-learning': { en: 'Continuous<br>Learning', es: 'Aprendizaje<br>Continuo' },
-        'skill-time-management': { en: 'Time<br>Management', es: 'Gestión del<br>Tiempo' },
-        'skill-attention-detail': { en: 'Attention to Detail', es: 'Atención al Detalle' },
-        'skill-proactivity': { en: 'Proactivity', es: 'Proactividad' },
-        'skill-resilience': { en: 'Resilience', es: 'Resiliencia' },
-      };
-      
-      // Actualizar links de navegación
-      const navTexts = document.querySelectorAll('.nav-text, .mobile-nav-text');
-      navTexts.forEach(textEl => {
-        const parent = textEl.closest('[data-track]') as HTMLElement;
-        if (parent) {
+      safeStoreLang(lang) {
+        try {
+          window?.localStorage?.setItem('preferredLang', lang);
+        } catch (err) {
+          console.warn('Could not persist language preference', err);
+        }
+      }
+
+      applyLanguage(lang) {
+        if (this.langToggle) {
+          this.langToggle.classList.toggle('es', lang === 'es');
+          this.langToggle.setAttribute('data-lang', lang);
+        }
+
+        this.langLabels?.forEach((label) => {
+          const labelLang = label.getAttribute('data-lang');
+          label.classList.toggle('active', labelLang === lang);
+        });
+
+        document.documentElement.setAttribute('lang', lang);
+        this.translateContent(lang);
+      }
+
+      translateContent(lang) {
+        const translations = {
+          'nav-home': { en: 'Home', es: 'Inicio' },
+          'nav-skills': { en: 'Skills', es: 'Habilidades' },
+          'nav-projects': { en: 'Projects', es: 'Proyectos' },
+          'nav-contact': { en: 'Contact', es: 'Contacto' },
+        };
+
+        const softSkillsTranslations = {
+          'skill-communication': { en: 'Effective<br>Communication', es: 'Comunicación<br>Efectiva' },
+          'skill-teamwork': { en: 'Teamwork', es: 'Trabajo en Equipo' },
+          'skill-collaboration': { en: 'Collaboration', es: 'Colaboración' },
+          'skill-problem-solving': { en: 'Problem-Solving', es: 'Resolución de<br>Problemas' },
+          'skill-critical-thinking': { en: 'Critical<br>Thinking', es: 'Pensamiento<br>Crítico' },
+          'skill-adaptability': { en: 'Adaptability', es: 'Adaptabilidad' },
+          'skill-continuous-learning': { en: 'Continuous<br>Learning', es: 'Aprendizaje<br>Continuo' },
+          'skill-time-management': { en: 'Time<br>Management', es: 'Gestión del<br>Tiempo' },
+          'skill-attention-detail': { en: 'Attention to Detail', es: 'Atención al Detalle' },
+          'skill-proactivity': { en: 'Proactivity', es: 'Proactividad' },
+          'skill-resilience': { en: 'Resilience', es: 'Resiliencia' },
+        };
+
+        const navTexts = document.querySelectorAll('.nav-text, .mobile-nav-text');
+        navTexts.forEach((textEl) => {
+          const parent = textEl.closest('[data-track]');
+          if (!(parent instanceof HTMLElement)) return;
           const key = parent.getAttribute('data-track');
           if (key && translations[key]) {
             textEl.textContent = translations[key][lang];
           }
-        }
-      });
-      
-      // Actualizar elementos con data-i18n
-      const translatableElements = document.querySelectorAll('[data-i18n]');
-      translatableElements.forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (key) {
-          // Verificar si es una habilidad blanda (usa innerHTML para <br>)
+        });
+
+        const translatableElements = document.querySelectorAll('[data-i18n]');
+        translatableElements.forEach((el) => {
+          const key = el.getAttribute('data-i18n');
+          if (!key) return;
+
           if (softSkillsTranslations[key]) {
             el.innerHTML = softSkillsTranslations[key][lang];
-          } else {
-            // Buscar traducción en el atributo data-i18n-en o data-i18n-es
-            const translation = el.getAttribute(`data-i18n-${lang}`);
-            if (translation) {
-              el.textContent = translation;
-            }
+            return;
           }
-        }
-      });
-    }
 
-    private debounce(func: Function, wait: number): Function {
-      return (...args: any[]) => {
+          const translation = el.getAttribute(`data-i18n-${lang}`);
+          if (translation) {
+            el.textContent = translation;
+          }
+        });
+      }
+
+      destroy() {
+        this.resizeObserver?.disconnect();
         if (this.scrollTimeout) {
           clearTimeout(this.scrollTimeout);
         }
-        this.scrollTimeout = window.setTimeout(() => func.apply(this, args), wait);
-      };
-    }
-
-    // Método para cleanup
-    public destroy(): void {
-      this.resizeObserver?.disconnect();
-      if (this.scrollTimeout) {
-        clearTimeout(this.scrollTimeout);
       }
     }
-  }
 
-  // Inicializar navbar si no se ha hecho ya
-  if (!window.navbarInitialized) {
-    window.navbarInitialized = true;
     new NavbarController();
-  }
+  })();
 </script>
