@@ -5,9 +5,9 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://javier25arroyo.github.io',
-    base: '/Portafolio/',
-    integrations: [
+  site: 'https://www.javier25cr.dev',
+  base: '/',
+  integrations: [
     tailwind(),
     sitemap({
       changefreq: 'monthly',
