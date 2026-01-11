@@ -24,11 +24,17 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
     </script>
     
     <!-- Performance Critical Resources -->
-    <link rel="preload" href={`${import.meta.env.BASE_URL}assets/index.CmRfqdfp.css`} as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href={`${import.meta.env.BASE_URL}assets/index.CmRfqdfp.css`}></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="https://walink.co">
     <link rel="dns-prefetch" href="https://github.com">
     <link rel="dns-prefetch" href="https://linkedin.com">
+    
+    <!-- Critical Resource Preloads -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM70w-.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"></noscript>
     
     <!-- Favicon configuration - Optimized -->
     <link rel="icon" type="image/x-icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
@@ -111,7 +117,7 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
       html {
         scroll-behavior: smooth;
         scroll-padding-top: 80px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       }
 
       body {
@@ -124,13 +130,14 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
-        font-display: swap;
       }
 
       /* Initial loading state */
       .page-loading {
         opacity: 1;
         transform: translateY(0);
+        transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       html.js .page-loading {
@@ -143,14 +150,13 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
         transform: translateY(0);
       }
 
-      /* Hero critical styles - optimized for LCP */
+      /* Hero critical styles */
       .hero-container {
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         background: linear-gradient(135deg, #0B0D17 0%, #151825 50%, #1F2337 100%);
-        contain: layout style paint;
       }
 
       /* Navigation critical styles */
@@ -161,30 +167,19 @@ const siteUrl = new URL(import.meta.env.BASE_URL, site).toString();
         z-index: 50;
         backdrop-filter: blur(10px);
         background: rgba(11, 13, 23, 0.8);
-        will-change: transform;
-      }
-
-      /* Preload hints for above-the-fold */
-      main {
-        contain: layout style;
-      }
-
-      /* Optimize text rendering */
-      h1, h2, h3 {
-        font-weight: 700;
-        line-height: 1.2;
-        text-rendering: optimizeSpeed;
       }
     </style>
     
     <!-- Performance monitoring script inline -->
     <script is:inline>
-      // Minimal performance monitoring
-      if ('performance' in window && 'PerformanceObserver' in window) {
+      // Performance monitoring
+      if ('performance' in window) {
         window.addEventListener('load', () => {
-          requestIdleCallback(() => {
+          setTimeout(() => {
             const perfData = performance.getEntriesByType('navigation')[0];
-          }, { timeout: 2000 });
+            if (perfData) {
+            }
+          }, 0);
         });
       }
     </script>
