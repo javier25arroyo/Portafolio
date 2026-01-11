@@ -3,38 +3,38 @@
 ---
 
 <div class="soft-skills-container">
-    <div class="bubbles-container">
-        <div class="bubble" data-skill="Effective Communication">
+    <div class="bubbles-container" role="list" aria-label="Soft skills showcase">
+        <div class="bubble" role="listitem" data-skill="Effective Communication" tabindex="0">
             <span data-i18n="skill-communication" data-i18n-en="Effective Communication" data-i18n-es="Comunicación Efectiva">Effective<br>Communication</span>
         </div>
-        <div class="bubble" data-skill="Teamwork">
+        <div class="bubble" role="listitem" data-skill="Teamwork" tabindex="0">
             <span data-i18n="skill-teamwork" data-i18n-en="Teamwork" data-i18n-es="Trabajo en Equipo">Teamwork</span>
         </div>
-        <div class="bubble" data-skill="Collaboration">
+        <div class="bubble" role="listitem" data-skill="Collaboration" tabindex="0">
             <span data-i18n="skill-collaboration" data-i18n-en="Collaboration" data-i18n-es="Colaboración">Collaboration</span>
         </div>
-        <div class="bubble" data-skill="Problem-Solving">
+        <div class="bubble" role="listitem" data-skill="Problem-Solving" tabindex="0">
             <span data-i18n="skill-problem-solving" data-i18n-en="Problem-Solving" data-i18n-es="Resolución de Problemas">Problem-Solving</span>
         </div>
-        <div class="bubble" data-skill="Critical Thinking">
+        <div class="bubble" role="listitem" data-skill="Critical Thinking" tabindex="0">
             <span data-i18n="skill-critical-thinking" data-i18n-en="Critical Thinking" data-i18n-es="Pensamiento Crítico">Critical<br>Thinking</span>
         </div>
-        <div class="bubble" data-skill="Adaptability">
+        <div class="bubble" role="listitem" data-skill="Adaptability" tabindex="0">
             <span data-i18n="skill-adaptability" data-i18n-en="Adaptability" data-i18n-es="Adaptabilidad">Adaptability</span>
         </div>
-        <div class="bubble" data-skill="Continuous Learning">
+        <div class="bubble" role="listitem" data-skill="Continuous Learning" tabindex="0">
             <span data-i18n="skill-continuous-learning" data-i18n-en="Continuous Learning" data-i18n-es="Aprendizaje Continuo">Continuous<br>Learning</span>
         </div>
-        <div class="bubble" data-skill="Time Management">
+        <div class="bubble" role="listitem" data-skill="Time Management" tabindex="0">
             <span data-i18n="skill-time-management" data-i18n-en="Time Management" data-i18n-es="Gestión del Tiempo">Time<br>Management</span>
         </div>
-        <div class="bubble" data-skill="Attention to Detail">
+        <div class="bubble" role="listitem" data-skill="Attention to Detail" tabindex="0">
             <span data-i18n="skill-attention-detail" data-i18n-en="Attention to Detail" data-i18n-es="Atención al Detalle">Attention to Detail</span>
         </div>
-        <div class="bubble" data-skill="Proactivity">
+        <div class="bubble" role="listitem" data-skill="Proactivity" tabindex="0">
             <span data-i18n="skill-proactivity" data-i18n-en="Proactivity" data-i18n-es="Proactividad">Proactivity</span>
         </div>
-        <div class="bubble" data-skill="Resilience">
+        <div class="bubble" role="listitem" data-skill="Resilience" tabindex="0">
             <span data-i18n="skill-resilience" data-i18n-en="Resilience" data-i18n-es="Resiliencia">Resilience</span>
         </div>
     </div>
@@ -57,29 +57,22 @@
 
     .bubbles-container {
         position: relative;
-        width: 85%; /* Reduced from 100% to make it more compact */
-        height: 90%; /* Reduced from 100% to add some margin */
-        min-height: 400px; /* Reduced from 600px */
-        display: block; /* Ensure it takes up space in the flex parent */
-        /* The following properties are for when using grid on smaller screens */
-        /* display: flex; */
-        /* flex-wrap: wrap; */
-        /* justify-content: center; */
-        /* align-items: center; */
-        padding: 1.5rem; /* Reduced from 2rem */
+        width: 85%;
+        height: 90%;
+        min-height: 400px;
+        display: block;
+        padding: 1.5rem;
         perspective: 1000px;
         transform-style: preserve-3d;
-        overflow: hidden; /* Contain the bubbles */
+        overflow: hidden;
     }
 
     .bubble {
         position: absolute;
-        /* Fondo aclarado para evitar bloque oscuro perceptible */
         background: radial-gradient(ellipse at 32% 28%, 
             rgba(79, 70, 229, 0.10) 0%, 
             rgba(124, 58, 237, 0.08) 40%,
             rgba(31, 35, 55, 0.25) 100%);
-        /* Evitar oscurecer el fondo global */
         backdrop-filter: blur(8px) saturate(1.1);
         border: 1px solid var(--border-light);
         border-radius: 52% 48% 45% 55% / 58% 42% 65% 35%;
@@ -96,10 +89,8 @@
             0 8px 24px rgba(0, 0, 0, 0.25),
             0 2px 8px rgba(0, 0, 0, 0.20),
             inset 0 1px 2px rgba(241, 245, 249, 0.08);
-        /* CSS animations are removed to be replaced by JS */
         transform-style: preserve-3d;
         will-change: transform, border-radius;
-        /* Auto-sizing properties */
         min-width: 140px;
         min-height: 140px;
         max-width: 220px;
@@ -447,11 +438,12 @@
         }
 
         const bubbleInstances = [];
+        let cachedContainerRect = null;
 
         function setup() {
-            const containerRect = container.getBoundingClientRect();
+            cachedContainerRect = container.getBoundingClientRect();
             bubbles.forEach(bubble => {
-                const instance = new BubblePhysics(bubble, containerRect);
+                const instance = new BubblePhysics(bubble, cachedContainerRect);
                 bubbleInstances.push(instance);
 
                 // Add event listeners for interaction
@@ -462,9 +454,9 @@
         }
 
         function animate() {
-            const containerRect = container.getBoundingClientRect();
+            // Use cached rect to avoid forced reflow in animation loop
             bubbleInstances.forEach(instance => {
-                instance.updatePosition(containerRect);
+                instance.updatePosition(cachedContainerRect);
                 instance.draw();
             });
             animationFrameId = requestAnimationFrame(animate);
@@ -498,7 +490,10 @@
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
-            resizeTimeout = window.setTimeout(init, 250);
+            resizeTimeout = window.setTimeout(() => {
+                cachedContainerRect = container.getBoundingClientRect();
+                init();
+            }, 250);
         });
 
         // Initial start with delay to ensure DOM is fully rendered

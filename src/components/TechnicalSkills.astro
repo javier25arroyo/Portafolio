@@ -21,10 +21,10 @@ const skills = [
 ];
 ---
 
-<div class="skills-container shadow-lg" style="background: var(--bg-surface);">
-  <div class="skills-track">
-    {skills.concat(skills).map((skill, index) => (
-      <div class="skill-item hover-lift transition-bounce" style={`--skill-color: ${skill.color};`}>
+<div class="skills-container shadow-lg" style="background: var(--bg-surface);" role="region" aria-label="Technical skills carousel">
+  <div class="skills-track" role="list">
+    {skills.concat(skills).map((skill) => (
+      <div class="skill-item hover-lift transition-bounce" role="listitem" style={`--skill-color: ${skill.color};`}>
         <div class="skill-icon">
           <Icon name={skill.iconName} size="lg" />
         </div>
