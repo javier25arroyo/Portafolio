@@ -5,76 +5,61 @@
 /* === NON-CRITICAL CSS - Below the fold === */
 
 :root {
-  /* 🎨 Paleta de colores optimizada */
-  
-  /* === BACKGROUNDS === */
-  --bg-primary: #0B0D17;
-  --bg-surface: #151825;
-  --bg-elevated: #1F2337;
-  --bg-accent: #252947;
-  --bg-glass: rgba(31, 35, 55, 0.7);
-  
-  /* === COLORES PRINCIPALES === */
-  --color-primary: #4F46E5;
-  --color-primary-light: #6366F1;
-  --color-primary-dark: #3730A3;
-  
-  --color-secondary: #059669;
-  --color-secondary-light: #10B981;
-  --color-secondary-dark: #047857;
-  
-  --color-accent: #7C3AED;
-  --color-accent-light: #8B5CF6;
-  --color-accent-dark: #5B21B6;
-  
-  --color-highlight: #0891B2;
-  --color-highlight-light: #06B6D4;
-  --color-highlight-dark: #0E7490;
-  
-  /* === COLORES DE TEXTO === */
-  --text-primary: #F1F5F9;
-  --text-secondary: #CBD5E1;
-  --text-muted: #94A3B8;
-  --text-subtle: #64748B;
-  
-  /* === SISTEMA DE BORDES === */
-  --border-subtle: rgba(241, 245, 249, 0.06);
-  --border-light: rgba(241, 245, 249, 0.12);
-  --border-medium: rgba(241, 245, 249, 0.18);
-  --border-strong: rgba(241, 245, 249, 0.25);
-  
+  /* === BACKGROUNDS (blue-tinted dark) === */
+  --bg-primary: #060B14;
+  --bg-surface: #0B1628;
+  --bg-elevated: #10233B;
+  --bg-accent: #142A46;
+  --bg-glass: rgba(11, 22, 40, 0.72);
+
+  /* === COLORES PRINCIPALES (Wolf Blue + Gold) === */
+  --color-primary: #006BB1;
+  --color-primary-light: #2FA8FF;
+  --color-primary-dark: #003B73;
+
+  --color-secondary: #F1A82E;        /* oro */
+  --color-secondary-light: #FFC75A;
+  --color-secondary-dark: #C88518;
+
+  /* Accent “de soporte” (azul acero) */
+  --color-accent: #1B4D7A;
+  --color-accent-light: #2B6DA3;
+  --color-accent-dark: #0E2B47;
+
+  /* Highlight (cian controlado para detalles, no protagonista) */
+  --color-highlight: #22D3EE;
+  --color-highlight-light: #67E8F9;
+  --color-highlight-dark: #0891B2;
+
+  /* === TEXTO === */
+  --text-primary: #EAF2FF;
+  --text-secondary: #C8D5EA;
+  --text-muted: #9CB1D3;
+  --text-subtle: #6F86A6;
+
+  /* === BORDES (más finos y elegantes) === */
+  --border-subtle: rgba(234, 242, 255, 0.06);
+  --border-light: rgba(234, 242, 255, 0.12);
+  --border-medium: rgba(234, 242, 255, 0.18);
+  --border-strong: rgba(234, 242, 255, 0.26);
+
   /* === SOMBRAS === */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.2);
-  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.3);
-  --shadow-glow-secondary: 0 0 20px rgba(5, 150, 105, 0.3);
-  
-  /* === GRADIENTES === */
-  --gradient-primary: linear-gradient(135deg, #4F46E5 0%, #7C3AED 35%, #059669 70%, #0891B2 100%);
-  --gradient-hero: linear-gradient(135deg, #0B0D17 0%, #151825 50%, #1F2337 100%);
-  --gradient-card: linear-gradient(145deg, rgba(31, 35, 55, 0.8) 0%, rgba(37, 41, 71, 0.6) 100%);
-  --gradient-button: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-  --gradient-button-hover: linear-gradient(135deg, #3730A3 0%, #4F46E5 100%);
-  
-  /* === TRANSICIONES === */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  
-  /* === NAVEGACIÓN === */
-  --navbar-height: 80px;
-  
-  /* === ESPACIADO === */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 10px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 14px 24px rgba(0, 0, 0, 0.45), 0 6px 10px rgba(0, 0, 0, 0.30);
+  --shadow-xl: 0 26px 34px rgba(0, 0, 0, 0.55), 0 10px 14px rgba(0, 0, 0, 0.25);
+
+  --shadow-glow: 0 0 20px rgba(0, 107, 177, 0.35);
+  --shadow-glow-secondary: 0 0 20px rgba(241, 168, 46, 0.30);
+
+  /* === GRADIENTES (menos arcoíris, más marca) === */
+  --gradient-primary: linear-gradient(135deg, #006BB1 0%, #2FA8FF 45%, #F1A82E 100%);
+  --gradient-hero: linear-gradient(135deg, #060B14 0%, #0B1628 55%, #10233B 100%);
+  --gradient-card: linear-gradient(145deg, rgba(16, 35, 59, 0.82) 0%, rgba(20, 42, 70, 0.62) 100%);
+  --gradient-button: linear-gradient(135deg, #006BB1 0%, #2FA8FF 100%);
+  --gradient-button-hover: linear-gradient(135deg, #003B73 0%, #006BB1 100%);
+
+  /* (deja transiciones, spacing, etc. como ya los tenés) */
 }
 
 /* === BASE RESET === */

@@ -1,6 +1,5 @@
 ---
-import Icon from './Icon.astro';
-
+import Icon from './Icon.tsx';
 // Datos de habilidades para slider infinito
 const skills = [
   { name: "Java", percentage: 85, color: "#f89500", iconName: "java" },
@@ -9,16 +8,17 @@ const skills = [
   { name: "CSS", percentage: 90, color: "#1572b6", iconName: "css" },
   { name: "JavaScript", percentage: 88, color: "#f7df1e", iconName: "javascript" },
   { name: "TypeScript", percentage: 82, color: "#3178c6", iconName: "typescript" },
-  { name: "Node.js", percentage: 78, color: "#339933", iconName: "nodejs" },
+  { name: "Nodejs", percentage: 78, color: "#339933", iconName: "nodejs" },
   { name: "Angular", percentage: 75, color: "#dd0031", iconName: "angular" },
-  { name: "MySQL", percentage: 80, color: "#4479a1", iconName: "mysql" },
-  { name: "SQL Server", percentage: 85, color: "#cc2927", iconName: "sqlserver" },
+  { name: "Mysql", percentage: 80, color: "#4479a1", iconName: "mysql" },
+  { name: "SqlServer", percentage: 85, color: "#cc2927", iconName: "sqlserver" },
   { name: "Oracle", percentage: 70, color: "#f80000", iconName: "oracle" },
-  { name: "MongoDB", percentage: 75, color: "#47a248", iconName: "mongodb" },
-  { name: "GIT", percentage: 90, color: "#f05032", iconName: "git" },
+  { name: "Mongodb", percentage: 75, color: "#47a248", iconName: "mongodb" },
+  { name: "Git", percentage: 90, color: "#f05032", iconName: "git" },
   { name: "Azure", percentage: 72, color: "#0078d4", iconName: "azure" },
   { name: "Figma", percentage: 68, color: "#f24e1e", iconName: "figma" }
 ];
+---
 ---
 
 <div class="skills-container shadow-lg" style="background: var(--bg-surface);">
@@ -26,7 +26,7 @@ const skills = [
     {skills.concat(skills).map((skill, index) => (
       <div class="skill-item hover-lift transition-bounce" style={`--skill-color: ${skill.color};`}>
         <div class="skill-icon">
-          <Icon name={skill.iconName} size="lg" />
+          <Icon name={skill.iconName} size="lg" client:only="react" />
         </div>
         <div class="skill-label">{skill.name}</div>
       </div>
