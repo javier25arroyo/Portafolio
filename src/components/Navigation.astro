@@ -7,7 +7,7 @@
     <div class="relative flex items-center justify-between h-16">
       <!-- Logo/Brand Mejorado -->
       <div class="flex-1 flex items-center">
-        <a href="#home" class="logo group relative overflow-hidden" data-track="nav-logo">
+        <a href="#home" class="logo group relative overflow-hidden" data-track="nav-logo" aria-label="Javier Arroyo - Home">
           <span class="gradient-text relative z-10 text-xl font-bold transition-all duration-300 hover:scale-110">JA</span>
           <div class="absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -m-2" 
                style="background: var(--gradient-primary); opacity: 0.1;"></div>
@@ -38,12 +38,12 @@
       <div class="flex-1 flex justify-end items-center gap-4">
         <!-- Language Switch -->
         <div class="language-switch flex items-center gap-2">
-          <span class="lang-label text-xs font-medium transition-colors duration-300" data-lang="en">EN</span>
+          <button type="button" class="lang-label text-xs font-medium transition-colors duration-300" data-lang="en" aria-label="English">EN</button>
           <button id="lang-toggle" class="lang-toggle relative w-12 h-6 rounded-full transition-all duration-300" 
                   aria-label="Toggle language" data-track="nav-lang-toggle">
             <span class="lang-slider absolute top-1 left-1 w-4 h-4 rounded-full transition-all duration-300"></span>
           </button>
-          <span class="lang-label text-xs font-medium transition-colors duration-300" data-lang="es">ES</span>
+          <button type="button" class="lang-label text-xs font-medium transition-colors duration-300" data-lang="es" aria-label="Spanish">ES</button>
         </div>
         
         <!-- Mobile Menu Button Mejorado -->
@@ -438,6 +438,9 @@
     transition: color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
     user-select: none;
+    background: none;
+    border: none;
+    padding: 0;
   }
 
   .lang-label.active {
@@ -814,11 +817,24 @@
         if (this.langToggle) {
           this.langToggle.classList.toggle('es', lang === 'es');
           this.langToggle.setAttribute('data-lang', lang);
+          // 🎨 Palette: Localized dynamic aria-label for better accessibility
+          const nextLangLabel = lang === 'en' ? 'Spanish' : 'Inglés';
+          const toggleLabel = lang === 'en' ? `Switch language to ${nextLangLabel}` : `Cambiar idioma a ${nextLangLabel}`;
+          this.langToggle.setAttribute('aria-label', toggleLabel);
         }
 
         this.langLabels?.forEach((label) => {
           const labelLang = label.getAttribute('data-lang');
-          label.classList.toggle('active', labelLang === lang);
+          const isActive = labelLang === lang;
+          label.classList.toggle('active', isActive);
+          // 🎨 Palette: Update aria-pressed to reflect selection
+          label.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+
+          // 🎨 Palette: Localize label button for screen readers
+          const localizedName = labelLang === 'en'
+            ? (lang === 'en' ? 'English' : 'Inglés')
+            : (lang === 'en' ? 'Spanish' : 'Español');
+          label.setAttribute('aria-label', localizedName);
         });
 
         document.documentElement.setAttribute('lang', lang);
