@@ -5,58 +5,52 @@
 /* === NON-CRITICAL CSS - Below the fold === */
 
 :root {
-  /* 🎨 Paleta de colores optimizada */
-  
   /* === BACKGROUNDS === */
   --bg-primary: #0B0D17;
-  --bg-surface: #151825;
-  --bg-elevated: #1F2337;
-  --bg-accent: #252947;
-  --bg-glass: rgba(31, 35, 55, 0.7);
-  
-  /* === COLORES PRINCIPALES === */
-  --color-primary: #4F46E5;
-  --color-primary-light: #6366F1;
-  --color-primary-dark: #3730A3;
-  
-  --color-secondary: #059669;
-  --color-secondary-light: #10B981;
-  --color-secondary-dark: #047857;
-  
-  --color-accent: #7C3AED;
-  --color-accent-light: #8B5CF6;
-  --color-accent-dark: #5B21B6;
-  
-  --color-highlight: #0891B2;
-  --color-highlight-light: #06B6D4;
-  --color-highlight-dark: #0E7490;
-  
+  --bg-surface: #111827;
+  --bg-elevated: #182035;
+  --bg-accent: #1E2A44;
+  --bg-glass: rgba(17, 24, 39, 0.75);
+
+  /* === COLORES PRINCIPALES — azul + dorado (lobo) === */
+  --color-primary: #2563EB;
+  --color-primary-light: #3B82F6;
+  --color-primary-dark: #1D4ED8;
+
+  --color-gold: #F0A030;
+  --color-gold-light: #F5B84A;
+  --color-gold-dark: #D08820;
+
+  /* Alias para compatibilidad con componentes existentes */
+  --color-secondary: var(--color-gold);
+  --color-secondary-light: var(--color-gold-light);
+  --color-secondary-dark: var(--color-gold-dark);
+
   /* === COLORES DE TEXTO === */
   --text-primary: #F1F5F9;
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
   --text-subtle: #64748B;
-  
+
   /* === SISTEMA DE BORDES === */
-  --border-subtle: rgba(241, 245, 249, 0.06);
-  --border-light: rgba(241, 245, 249, 0.12);
-  --border-medium: rgba(241, 245, 249, 0.18);
-  --border-strong: rgba(241, 245, 249, 0.25);
-  
+  --border-subtle: rgba(241, 245, 249, 0.05);
+  --border-light: rgba(241, 245, 249, 0.10);
+  --border-medium: rgba(241, 245, 249, 0.16);
+  --border-strong: rgba(241, 245, 249, 0.22);
+
   /* === SOMBRAS === */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.4), 0 4px 6px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.5), 0 10px 10px rgba(0, 0, 0, 0.2);
-  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.3);
-  --shadow-glow-secondary: 0 0 20px rgba(5, 150, 105, 0.3);
-  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5), 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6), 0 10px 10px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.25);
+
   /* === GRADIENTES === */
-  --gradient-primary: linear-gradient(135deg, #4F46E5 0%, #7C3AED 35%, #059669 70%, #0891B2 100%);
-  --gradient-hero: linear-gradient(135deg, #0B0D17 0%, #151825 50%, #1F2337 100%);
-  --gradient-card: linear-gradient(145deg, rgba(31, 35, 55, 0.8) 0%, rgba(37, 41, 71, 0.6) 100%);
-  --gradient-button: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
-  --gradient-button-hover: linear-gradient(135deg, #3730A3 0%, #4F46E5 100%);
+  --gradient-primary: linear-gradient(135deg, #2563EB 0%, #F0A030 100%);
+  --gradient-hero: linear-gradient(180deg, #0B0D17 0%, #111827 100%);
+  --gradient-card: linear-gradient(145deg, rgba(17, 24, 39, 0.9) 0%, rgba(30, 42, 68, 0.7) 100%);
+  --gradient-button: linear-gradient(135deg, #2563EB 0%, #3B82F6 100%);
+  --gradient-button-hover: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   
   /* === TRANSICIONES === */
   --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -85,7 +79,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--navbar-height) + 2rem);
-  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 body {
@@ -197,22 +191,20 @@ section[id]::before {
   z-index: 2;
 }
 
-/* Home: hero optimizado */
+/* Home */
 section#home.section-base {
   background:
-    radial-gradient(circle at 20% 30%, rgba(79, 70, 229, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 10%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
-    linear-gradient(180deg, #0B0D17 0%, #111322 100%);
+    radial-gradient(circle at 25% 35%, rgba(37, 99, 235, 0.10) 0%, transparent 50%),
+    linear-gradient(180deg, #0B0D17 0%, #0E1420 100%);
   min-height: 100vh;
   padding-top: 0;
 }
 
-/* About/Skills: Transición suave desde Home */
+/* About/Skills */
 section#about.section-base {
   background:
-    radial-gradient(circle at 10% 20%, rgba(5, 150, 105, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(79, 70, 229, 0.08) 0%, transparent 40%),
-    linear-gradient(180deg, #111322 0%, #0d1117 100%);
+    radial-gradient(circle at 90% 20%, rgba(37, 99, 235, 0.07) 0%, transparent 40%),
+    linear-gradient(180deg, #0E1420 0%, #0B0D17 100%);
 }
 
 section#about.section-base::before {
@@ -220,26 +212,25 @@ section#about.section-base::before {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at center, rgba(255,255,255,0.02) 1px, transparent 1.2px);
+    radial-gradient(circle at center, rgba(255,255,255,0.015) 1px, transparent 1.2px);
   background-size: 32px 32px;
   opacity: 0.5;
   pointer-events: none;
   z-index: 0;
 }
 
-/* Projects: Transición hacia tonos más técnicos (azules/cyans) */
+/* Projects */
 section#projects.section-base {
   background:
-    radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 15% 85%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-    linear-gradient(180deg, #0d1117 0%, #0f1623 100%);
+    radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #0B0D17 0%, #0E1420 100%);
 }
 
-/* Contact: Finalizar con tonos profundos y acentos brillantes */
+/* Contact */
 section#contact.section-base {
   background:
-    radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 60%),
-    linear-gradient(180deg, #0f1623 0%, #0B0D17 100%);
+    radial-gradient(circle at 50% 60%, rgba(37, 99, 235, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #0E1420 0%, #0B0D17 100%);
 }
 
 /* === REVEAL ANIMATIONS OPTIMIZADAS === */
@@ -360,18 +351,18 @@ section#contact.section-base {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(180deg, var(--color-primary), var(--color-gold));
   border-radius: 4px;
   transition: all var(--transition-normal);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--color-primary-light), var(--color-secondary-light));
+  background: linear-gradient(180deg, var(--color-primary-light), var(--color-gold-light));
 }
 
 /* === SELECTION === */
 ::selection {
-  background: rgba(79, 70, 229, 0.3);
+  background: rgba(37, 99, 235, 0.3);
   color: var(--text-primary);
 }
 
@@ -380,36 +371,26 @@ section#contact.section-base {
   outline: 3px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: 8px;
-  box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.2);
+  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.2);
 }
 
 /* === GRADIENTES DE TEXTO === */
 .gradient-text {
-  background: var(--gradient-primary);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, #2563EB 0%, #F0A030 50%, #2563EB 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 6s ease-in-out infinite;
+  animation: gradientShift 5s ease-in-out infinite;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1.2;
   display: inline-block;
 }
 
-.gradient-text-secondary {
-  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-highlight) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 600;
-}
-
 @keyframes gradientShift {
   0%, 100% { background-position: 0% 50%; }
-  25% { background-position: 100% 50%; }
-  50% { background-position: 200% 50%; }
-  75% { background-position: 300% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* === ANIMACIONES DE ENTRADA === */
@@ -552,47 +533,25 @@ nav {
 }
 
 .glass-premium {
-  background: linear-gradient(145deg, 
-    rgba(79, 70, 229, 0.08) 0%, 
-    rgba(31, 35, 55, 0.9) 100%);
-  backdrop-filter: blur(28px) saturate(1.5);
+  background: linear-gradient(145deg,
+    rgba(37, 99, 235, 0.06) 0%,
+    rgba(17, 24, 39, 0.92) 100%);
+  backdrop-filter: blur(28px) saturate(1.4);
   border: 1px solid var(--border-strong);
-  box-shadow: var(--shadow-xl), 
-              inset 0 1px 0 rgba(241, 245, 249, 0.1);
+  box-shadow: var(--shadow-xl),
+              inset 0 1px 0 rgba(241, 245, 249, 0.08);
 }
 
-/* === NEON GLOW EFFECTS MEJORADOS === */
+/* === GLOW EFFECTS === */
 .neon-glow {
   box-shadow: var(--shadow-glow),
-              0 0 40px rgba(79, 70, 229, 0.2),
-              0 0 80px rgba(79, 70, 229, 0.1);
-  border: 1px solid rgba(79, 70, 229, 0.3);
-}
-
-.neon-glow-secondary {
-  box-shadow: var(--shadow-glow-secondary),
-              0 0 40px rgba(5, 150, 105, 0.2),
-              0 0 80px rgba(5, 150, 105, 0.1);
-  border: 1px solid rgba(5, 150, 105, 0.3);
-}
-
-.neon-glow-accent {
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.4),
-              0 0 40px rgba(124, 58, 237, 0.2),
-              0 0 80px rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+              0 0 40px rgba(37, 99, 235, 0.15);
+  border: 1px solid rgba(37, 99, 235, 0.25);
 }
 
 .text-glow {
-  text-shadow: 0 0 10px rgba(79, 70, 229, 0.6),
-               0 0 20px rgba(79, 70, 229, 0.4),
-               0 0 30px rgba(79, 70, 229, 0.2);
-}
-
-.text-glow-secondary {
-  text-shadow: 0 0 10px rgba(5, 150, 105, 0.6),
-               0 0 20px rgba(5, 150, 105, 0.4),
-               0 0 30px rgba(5, 150, 105, 0.2);
+  text-shadow: 0 0 12px rgba(37, 99, 235, 0.5),
+               0 0 24px rgba(37, 99, 235, 0.25);
 }
 
 /* === BOTONES MEJORADOS === */
@@ -635,10 +594,10 @@ nav {
 }
 
 .btn-secondary {
-  background: var(--bg-glass);
+  background: transparent;
   backdrop-filter: blur(10px);
-  color: var(--color-secondary);
-  border: 2px solid var(--color-secondary);
+  color: var(--color-primary-light);
+  border: 2px solid var(--color-primary);
   padding: calc(0.75rem - 2px) calc(2rem - 2px);
   border-radius: 12px;
   font-weight: 600;
@@ -650,10 +609,10 @@ nav {
 }
 
 .btn-secondary:hover {
-  background: var(--color-secondary);
-  color: var(--bg-primary);
+  background: var(--color-primary);
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow-secondary);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
 }
 
 /* === CARD STYLES MEJORADAS === */
@@ -674,7 +633,7 @@ nav {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
   opacity: 0;
   transition: opacity var(--transition-normal);
 }
