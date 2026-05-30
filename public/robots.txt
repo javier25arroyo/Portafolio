@@ -1,11 +1,4 @@
-# Robots.txt for Javier Arroyo Portfolio
-# https://javier25arroyo.github.io/Portafolio/
-
 User-agent: *
 Allow: /
 
-# Sitemap location
-Sitemap: https://javier25arroyo.github.io/Portafolio/sitemap.xml
-
-# Crawl-delay (optional, respected by some bots)
-Crawl-delay: 1
+Sitemap: https://www.javier25cr.dev/sitemap-index.xml

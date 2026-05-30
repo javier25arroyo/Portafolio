@@ -1,0 +1,19 @@
+---
+import { navigationItems } from '../../data/navigation';
+---
+<header class="site-header">
+  <nav class="site-nav site-container" aria-label="Principal">
+    <a class="brand" href="#inicio" aria-label="Ir al inicio">
+      <span class="brand__mark" aria-hidden="true">JP</span>
+      <span class="brand__text"><strong>Javier Pérez Arroyo</strong><small>Software + IA aplicada</small></span>
+    </a>
+    <ul class="site-nav__links" role="list">
+      {navigationItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+    </ul>
+    <a class="site-nav__cta" href="#contacto">Hablemos</a>
+    <details class="mobile-nav">
+      <summary aria-label="Abrir menú"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></summary>
+      <ul role="list">{navigationItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ul>
+    </details>
+  </nav>
+</header>

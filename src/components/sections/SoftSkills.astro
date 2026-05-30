@@ -1,0 +1,9 @@
+---
+import { softSkills } from '../../data/softSkills';
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+<section class="section" aria-labelledby="soft-skills-title"><Container>
+  <SectionHeading id="soft-skills-title" eyebrow="Forma de trabajar" title="La calidad técnica también depende de cómo se piensa." />
+  <ul class="soft-skills-grid" role="list">{softSkills.map((skill) => <li><h3>{skill.title}</h3><p>{skill.description}</p></li>)}</ul>
+</Container></section>

@@ -1,0 +1,9 @@
+---
+import { services } from '../../data/services';
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+<section class="section" aria-labelledby="value-title"><Container>
+  <SectionHeading id="value-title" eyebrow="Cómo aporto valor" title="Decisiones técnicas alineadas con el problema correcto." description="Cada proyecto parte de una pregunta simple: qué cambio útil debe producir el software." />
+  <ol class="value-grid">{services.map((service) => <li class="value-card"><span>{service.number}</span><h3>{service.title}</h3><p>{service.description}</p></li>)}</ol>
+</Container></section>

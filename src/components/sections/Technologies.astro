@@ -1,0 +1,9 @@
+---
+import TechnologiesGrid from '../islands/TechnologiesGrid';
+import Container from '../ui/Container.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+<section class="section section--technologies" id="tecnologias" aria-labelledby="technologies-title"><Container>
+  <SectionHeading id="technologies-title" eyebrow="Tecnologías" title="Herramientas elegidas por su capacidad de resolver." description="Un stack amplio, organizado con criterio y aplicado según el contexto de cada producto." />
+  <TechnologiesGrid client:visible />
+</Container></section>
