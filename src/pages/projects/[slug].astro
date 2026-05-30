@@ -1,0 +1,58 @@
+---
+import { projects } from '../../data/projects';
+import Layout from '../../layouts/Layout.astro';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (() => {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+---
+<Layout title={`${project.title} — Javier Pérez Arroyo`} description={project.description}>
+  <div class="site-container site-container--narrow" style="padding-block: var(--space-20);">
+
+    <a href="/#proyectos" class="eyebrow" style="display: inline-block; margin-bottom: var(--space-8); text-decoration: none;">
+      ← Proyectos
+    </a>
+
+    <p class="eyebrow" style="margin-bottom: var(--space-4);">{project.category}</p>
+
+    <h1 style="margin-bottom: var(--space-6);">{project.title}</h1>
+
+    <p style="font-size: 1.15rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: var(--space-16); max-width: 42rem;">
+      {project.description}
+    </p>
+
+    <dl style="display: grid; gap: var(--space-6); border-top: 1px solid var(--border-soft); padding-top: var(--space-8); margin-bottom: var(--space-12);">
+      <div>
+        <dt style="color: var(--text-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: var(--space-2);">Rol</dt>
+        <dd style="margin: 0; color: var(--text-primary); font-size: 1rem;">{project.role}</dd>
+      </div>
+      <div>
+        <dt style="color: var(--text-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: var(--space-2);">Stack</dt>
+        <dd style="margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-2);">
+          {project.stack.map((item) => (
+            <span style="padding: 0.25rem 0.75rem; border: 1px solid var(--border-soft); border-radius: var(--radius-pill); color: var(--text-secondary); font-size: 0.82rem; font-weight: 600;">{item}</span>
+          ))}
+        </dd>
+      </div>
+      <div>
+        <dt style="color: var(--text-muted); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: var(--space-2);">Impacto</dt>
+        <dd style="margin: 0; color: var(--silver); font-size: 1rem; font-style: italic;">{project.impact}</dd>
+      </div>
+    </dl>
+
+    <div style="display: flex; flex-wrap: wrap; gap: var(--space-3);">
+      {project.links.map((link) => (
+        <a href={link.href} target="_blank" rel="noopener noreferrer" class="button button--secondary">
+          {link.label} ↗
+        </a>
+      ))}
+    </div>
+
+  </div>
+</Layout>

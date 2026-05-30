@@ -1,0 +1,97 @@
+---
+import { projects } from '../../data/projects';
+
+const featured = projects.find((p) => p.featured);
+const rest = projects.filter((p) => !p.featured);
+const firstRow = rest.slice(0, 2);
+const secondRow = rest.slice(2);
+---
+<div class="projects-bento">
+
+  {featured && (
+    <article
+      class="projects-bento__featured"
+      aria-label={`Proyecto destacado: ${featured.title}`}
+    >
+      <div class={`projects-bento__featured-visual project-card__visual project-card__visual--${featured.visual}`} aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="projects-bento__featured-body">
+        <div>
+          <span class="bento-badge">Producción</span>
+        </div>
+        <p class="bento-card__category">{featured.category}</p>
+        <h3 class="bento-card__title">{featured.title}</h3>
+        <p class="bento-card__desc" style="max-width: 36rem">{featured.description}</p>
+        <ul class="bento-card__stack" role="list">
+          {featured.stack.map((item) => <li>{item}</li>)}
+        </ul>
+        <p class="bento-card__impact">{featured.impact}</p>
+        <div class="bento-card__links">
+          {featured.links.map((link) => (
+            <a href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.label}<span aria-hidden="true"> ↗</span>
+            </a>
+          ))}
+          <a href={`/projects/${featured.slug}`}>Ver case study →</a>
+        </div>
+      </div>
+    </article>
+  )}
+
+  {firstRow.length > 0 && (
+    <div class="projects-bento__grid" role="list">
+      {firstRow.map((project, index) => (
+        <article class="bento-card" role="listitem" aria-label={`Proyecto ${index + 2}: ${project.title}`}>
+          <div class={`bento-card__visual project-card__visual project-card__visual--${project.visual}`} aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="bento-card__body">
+            <p class="bento-card__category">{project.category}</p>
+            <h3 class="bento-card__title">{project.title}</h3>
+            <p class="bento-card__desc">{project.description}</p>
+            <ul class="bento-card__stack" role="list">
+              {project.stack.map((item) => <li>{item}</li>)}
+            </ul>
+            <p class="bento-card__impact">{project.impact}</p>
+            <div class="bento-card__links">
+              {project.links.map((link) => (
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label}<span aria-hidden="true"> ↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  )}
+
+  {secondRow.length > 0 && (
+    <div class="projects-bento__grid projects-bento__grid--three" role="list">
+      {secondRow.map((project, index) => (
+        <article class="bento-card" role="listitem" aria-label={`Proyecto ${index + 4}: ${project.title}`}>
+          <div class={`bento-card__visual project-card__visual project-card__visual--${project.visual}`} aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="bento-card__body">
+            <p class="bento-card__category">{project.category}</p>
+            <h3 class="bento-card__title">{project.title}</h3>
+            <p class="bento-card__desc">{project.description}</p>
+            <ul class="bento-card__stack" role="list">
+              {project.stack.map((item) => <li>{item}</li>)}
+            </ul>
+            <div class="bento-card__links">
+              {project.links.map((link) => (
+                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label}<span aria-hidden="true"> ↗</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  )}
+
+</div>

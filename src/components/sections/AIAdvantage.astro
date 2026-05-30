@@ -1,8 +1,38 @@
 ---
 import Badge from '../ui/Badge.astro';
 import Container from '../ui/Container.astro';
+
+const aiTools = [
+  { name: 'Claude', iconUrl: 'https://svgl.app/library/anthropic.svg' },
+  { name: 'Gemini', iconUrl: 'https://svgl.app/library/gemini.svg' },
+  { name: 'OpenAI', iconUrl: 'https://svgl.app/library/openai-dark.svg' },
+  { name: 'OpenCode', iconUrl: 'https://svgl.app/library/opencode.svg' },
+];
 ---
-<section class="section" aria-labelledby="ai-title"><Container>
-  <div class="ai-panel"><div><p class="eyebrow">IA como ventaja competitiva</p><h2 id="ai-title">La uso para elevar el criterio, no para reemplazarlo.</h2></div>
-  <div><p>Integro IA en investigación, análisis, automatización y calidad de entrega. El valor no está en usar una herramienta: está en saber dónde mejora realmente el resultado.</p><div class="ai-panel__badges"><Badge>Análisis</Badge><Badge>Automatización</Badge><Badge>Calidad</Badge><Badge>Iteración rápida</Badge></div></div></div>
-</Container></section>
+<section class="section" aria-labelledby="ai-title">
+  <Container>
+    <div class="ai-panel">
+      <div>
+        <p class="eyebrow">IA como ventaja competitiva</p>
+        <h2 id="ai-title">La uso para elevar el criterio, no para reemplazarlo.</h2>
+      </div>
+      <div>
+        <p>Integro IA en investigación, análisis, automatización y calidad de entrega. El valor no está en usar una herramienta: está en saber dónde mejora realmente el resultado.</p>
+        <div class="ai-panel__badges">
+          <Badge>Análisis</Badge>
+          <Badge>Automatización</Badge>
+          <Badge>Calidad</Badge>
+          <Badge>Revisión aumentada</Badge>
+        </div>
+        <div class="ai-tools" aria-label="Herramientas de IA que uso">
+          {aiTools.map((tool) => (
+            <div class="ai-tool">
+              <img src={tool.iconUrl} alt="" aria-hidden="true" width="32" height="32" loading="lazy" decoding="async" />
+              <span>{tool.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

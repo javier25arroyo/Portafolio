@@ -3,8 +3,38 @@ import Container from '../ui/Container.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
 ---
 <section class="section section--profile" id="perfil" aria-labelledby="profile-title">
-  <Container><div class="profile-grid">
-    <SectionHeading id="profile-title" eyebrow="Perfil" title="Tecnología avanzada con una perspectiva profundamente práctica." description="Me interesa el software que resuelve problemas reales: productos claros, arquitectura sostenible e interacciones que respetan a quien las usa." />
-    <div class="profile-grid__statement"><p>Trabajo entre desarrollo full-stack, experiencia de usuario e inteligencia artificial aplicada. Mi enfoque combina ejecución técnica con pensamiento estratégico.</p><p>La accesibilidad no es una capa final. Es parte del criterio con el que analizo, diseño y construyo.</p></div>
-  </div></Container>
+  <Container>
+    <div class="profile-grid">
+      <div>
+        <SectionHeading
+          id="profile-title"
+          eyebrow="Perfil"
+          title="Tecnología avanzada con una perspectiva profundamente práctica."
+        />
+        <div class="profile-grid__statement">
+          <p>Trabajo entre desarrollo full-stack, experiencia de usuario e inteligencia artificial aplicada. Mi enfoque combina ejecución técnica con pensamiento estratégico.</p>
+          <p>La accesibilidad no es una capa final. Es parte del criterio con el que analizo, diseño y construyo.</p>
+          <p>Construyo software para que dure: arquitectura sostenible, código comprensible y experiencias que sirven a más personas.</p>
+        </div>
+      </div>
+      <div class="profile-stats" aria-label="Datos destacados">
+        <div class="profile-stat">
+          <span class="profile-stat__value" aria-label="Más de 3 años">3+</span>
+          <span class="profile-stat__label">Años de experiencia</span>
+        </div>
+        <div class="profile-stat">
+          <span class="profile-stat__value" aria-label="22 tecnologías">22</span>
+          <span class="profile-stat__label">Tecnologías</span>
+        </div>
+        <div class="profile-stat">
+          <span class="profile-stat__value" aria-label="Más de 6 proyectos">6+</span>
+          <span class="profile-stat__label">Proyectos</span>
+        </div>
+        <div class="profile-stat">
+          <span class="profile-stat__value" aria-label="WCAG nivel AA">AA</span>
+          <span class="profile-stat__label">WCAG Accesibilidad</span>
+        </div>
+      </div>
+    </div>
+  </Container>
 </section>

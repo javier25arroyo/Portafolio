@@ -17,7 +17,10 @@ export default function Hero() {
     <section className="hero" id="inicio" ref={rootRef} aria-labelledby="hero-title">
       <div className="site-container hero__grid">
         <div className="hero__content">
-          <p className="eyebrow" data-hero-reveal>Desarrollo de software + IA aplicada</p>
+          <div className="hero__eyebrow" data-hero-reveal>
+            <span className="hero__eyebrow-dot" aria-hidden="true"></span>
+            Disponible para proyectos
+          </div>
           <h1 id="hero-title" data-hero-reveal>Construyo software con <span>criterio, claridad y profundidad humana.</span></h1>
           <p className="hero__summary" data-hero-reveal>Soy Javier Pérez Arroyo. Transformo retos complejos en productos digitales útiles, accesibles y preparados para evolucionar.</p>
           <ul className="hero__signals" role="list" data-hero-reveal><li>Full-stack</li><li>IA como ventaja</li><li>Accesibilidad</li></ul>

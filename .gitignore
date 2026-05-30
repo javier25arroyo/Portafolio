@@ -29,3 +29,6 @@ src/components/GetInTouch.astro
 /.agents/skills
 skills-lock.json
 /.claude
+
+# Brainstorm session files
+.superpowers/

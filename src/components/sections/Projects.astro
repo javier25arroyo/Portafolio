@@ -1,9 +1,16 @@
 ---
-import ProjectsCarousel from '../islands/ProjectsCarousel';
+import ProjectsBento from './ProjectsBento.astro';
 import Container from '../ui/Container.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
 ---
-<section class="section section--projects" id="proyectos" aria-labelledby="projects-title"><Container>
-  <SectionHeading id="projects-title" eyebrow="Proyectos seleccionados" title="Productos que convierten complejidad en experiencias útiles." description="Una muestra de sistemas web, arquitectura de datos y soluciones con impacto humano." />
-  <ProjectsCarousel client:visible />
-</Container></section>
+<section class="section section--projects" id="proyectos" aria-labelledby="projects-title">
+  <Container>
+    <SectionHeading
+      id="projects-title"
+      eyebrow="Proyectos seleccionados"
+      title="Productos que convierten complejidad en experiencias útiles."
+      description="Una muestra de sistemas web, arquitectura de datos y soluciones con impacto humano."
+    />
+    <ProjectsBento />
+  </Container>
+</section>
