@@ -26,3 +26,8 @@ src/components/GetInTouch.astro
 .claude/settings.local.json
 .claude/settings.local.json
 .claude/settings.local.json
+/.agents
+/.claude
+/.superpowers
+*.md
+skills-lock.json
