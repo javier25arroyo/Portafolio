@@ -10,7 +10,7 @@ import Button from './Button.astro';
       
       <!-- Header con introducción optimizada -->
       <div class="text-left mb-8 reveal hero-intro">
-        <div class="inline-flex items-center px-4 py-2 rounded-full backdrop-blur-sm mb-6 glass-dark border border-border-light status-badge">
+        <div class="inline-flex items-center px-4 py-2 rounded-full backdrop-blur-sm mb-6 glass-dark border border-border-light status-badge" role="status" aria-live="polite">
           <div class="w-2 h-2 rounded-full mr-3 status-dot"></div>
           <span class="font-medium text-sm status-text" data-i18n="status" data-i18n-en="Available for opportunities" data-i18n-es="Disponible para oportunidades">Available for opportunities</span>
         </div>
@@ -65,14 +65,14 @@ import Button from './Button.astro';
       </div>
 
       <!-- Scroll indicator optimizado -->
-      <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 scroll-indicator z-10" aria-hidden="true">
+      <a href="#about" class="absolute bottom-16 left-1/2 transform -translate-x-1/2 scroll-indicator z-10 transition-colors hover:text-emerald-400" aria-label="Scroll to About section"
+         data-i18n-aria data-i18n-en="Scroll to About section" data-i18n-es="Desplazarse a la sección Sobre mí">
         <div class="flex flex-col items-center gap-2 scroll-text">
-
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
           </svg>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </div>

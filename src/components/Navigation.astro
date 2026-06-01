@@ -7,7 +7,9 @@
     <div class="relative flex items-center justify-between h-16">
       <!-- Logo/Brand Mejorado -->
       <div class="flex-1 flex items-center">
-        <a href="#home" class="logo group relative overflow-hidden" data-track="nav-logo">
+        <a href="#home" class="logo group relative overflow-hidden" data-track="nav-logo"
+           aria-label="Javier Arroyo - Home"
+           data-i18n-aria data-i18n-en="Javier Arroyo - Home" data-i18n-es="Javier Arroyo - Inicio">
           <span class="gradient-text relative z-10 text-xl font-bold transition-all duration-300 hover:scale-110">JA</span>
           <div class="absolute inset-0 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300 -m-2" 
                style="background: var(--gradient-primary); opacity: 0.1;"></div>
@@ -40,7 +42,8 @@
         <div class="language-switch flex items-center gap-2">
           <span class="lang-label text-xs font-medium transition-colors duration-300" data-lang="en">EN</span>
           <button id="lang-toggle" class="lang-toggle relative w-12 h-6 rounded-full transition-all duration-300" 
-                  aria-label="Toggle language" data-track="nav-lang-toggle">
+                  aria-label="Switch to Spanish" data-track="nav-lang-toggle"
+                  data-i18n-aria data-i18n-en="Switch to Spanish" data-i18n-es="Cambiar a Inglés">
             <span class="lang-slider absolute top-1 left-1 w-4 h-4 rounded-full transition-all duration-300"></span>
           </button>
           <span class="lang-label text-xs font-medium transition-colors duration-300" data-lang="es">ES</span>
@@ -870,6 +873,14 @@
           const translation = el.getAttribute(`data-i18n-${lang}`);
           if (translation) {
             el.textContent = translation;
+          }
+        });
+
+        const ariaTranslatable = document.querySelectorAll('[data-i18n-aria]');
+        ariaTranslatable.forEach((el) => {
+          const translation = el.getAttribute(`data-i18n-${lang}`);
+          if (translation) {
+            el.setAttribute('aria-label', translation);
           }
         });
       }

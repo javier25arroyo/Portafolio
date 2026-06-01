@@ -4,39 +4,39 @@
 
 <div class="soft-skills-container">
     <div class="bubbles-container">
-        <div class="bubble" data-skill="Effective Communication">
+        <button class="bubble" data-skill="Effective Communication" aria-label="Soft Skill: Effective Communication">
             <span data-i18n="skill-communication" data-i18n-en="Effective Communication" data-i18n-es="Comunicación Efectiva">Effective<br>Communication</span>
-        </div>
-        <div class="bubble" data-skill="Teamwork">
+        </button>
+        <button class="bubble" data-skill="Teamwork" aria-label="Soft Skill: Teamwork">
             <span data-i18n="skill-teamwork" data-i18n-en="Teamwork" data-i18n-es="Trabajo en Equipo">Teamwork</span>
-        </div>
-        <div class="bubble" data-skill="Collaboration">
+        </button>
+        <button class="bubble" data-skill="Collaboration" aria-label="Soft Skill: Collaboration">
             <span data-i18n="skill-collaboration" data-i18n-en="Collaboration" data-i18n-es="Colaboración">Collaboration</span>
-        </div>
-        <div class="bubble" data-skill="Problem-Solving">
+        </button>
+        <button class="bubble" data-skill="Problem-Solving" aria-label="Soft Skill: Problem-Solving">
             <span data-i18n="skill-problem-solving" data-i18n-en="Problem-Solving" data-i18n-es="Resolución de Problemas">Problem-Solving</span>
-        </div>
-        <div class="bubble" data-skill="Critical Thinking">
+        </button>
+        <button class="bubble" data-skill="Critical Thinking" aria-label="Soft Skill: Critical Thinking">
             <span data-i18n="skill-critical-thinking" data-i18n-en="Critical Thinking" data-i18n-es="Pensamiento Crítico">Critical<br>Thinking</span>
-        </div>
-        <div class="bubble" data-skill="Adaptability">
+        </button>
+        <button class="bubble" data-skill="Adaptability" aria-label="Soft Skill: Adaptability">
             <span data-i18n="skill-adaptability" data-i18n-en="Adaptability" data-i18n-es="Adaptabilidad">Adaptability</span>
-        </div>
-        <div class="bubble" data-skill="Continuous Learning">
+        </button>
+        <button class="bubble" data-skill="Continuous Learning" aria-label="Soft Skill: Continuous Learning">
             <span data-i18n="skill-continuous-learning" data-i18n-en="Continuous Learning" data-i18n-es="Aprendizaje Continuo">Continuous<br>Learning</span>
-        </div>
-        <div class="bubble" data-skill="Time Management">
+        </button>
+        <button class="bubble" data-skill="Time Management" aria-label="Soft Skill: Time Management">
             <span data-i18n="skill-time-management" data-i18n-en="Time Management" data-i18n-es="Gestión del Tiempo">Time<br>Management</span>
-        </div>
-        <div class="bubble" data-skill="Attention to Detail">
+        </button>
+        <button class="bubble" data-skill="Attention to Detail" aria-label="Soft Skill: Attention to Detail">
             <span data-i18n="skill-attention-detail" data-i18n-en="Attention to Detail" data-i18n-es="Atención al Detalle">Attention to Detail</span>
-        </div>
-        <div class="bubble" data-skill="Proactivity">
+        </button>
+        <button class="bubble" data-skill="Proactivity" aria-label="Soft Skill: Proactivity">
             <span data-i18n="skill-proactivity" data-i18n-en="Proactivity" data-i18n-es="Proactividad">Proactivity</span>
-        </div>
-        <div class="bubble" data-skill="Resilience">
+        </button>
+        <button class="bubble" data-skill="Resilience" aria-label="Soft Skill: Resilience">
             <span data-i18n="skill-resilience" data-i18n-en="Resilience" data-i18n-es="Resiliencia">Resilience</span>
-        </div>
+        </button>
     </div>
 </div>
 
@@ -200,6 +200,15 @@
         transform: scale(1.5);
         opacity: 0;
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .bubble:focus-visible {
+        outline: 2px solid var(--color-secondary);
+        outline-offset: 4px;
+        z-index: 20;
+        background: radial-gradient(ellipse at 32% 28%,
+            rgba(16, 185, 129, 0.2) 0%,
+            rgba(59, 130, 246, 0.2) 100%);
     }
 
     /* Animations are now handled by JS */
@@ -457,12 +466,30 @@
                 // Add event listeners for interaction
                 bubble.addEventListener('mouseenter', () => instance.pause());
                 bubble.addEventListener('mouseleave', () => instance.resume());
+                bubble.addEventListener('focus', () => instance.pause());
+                bubble.addEventListener('blur', () => instance.resume());
                 bubble.addEventListener('click', () => instance.explode());
             });
         }
 
+        let isVisible = true;
+        const intersectionObserver = new IntersectionObserver((entries) => {
+            isVisible = entries[0].isIntersecting;
+        }, { threshold: 0.1 });
+
+        intersectionObserver.observe(container);
+
         function animate() {
-            const containerRect = container.getBoundingClientRect();
+            if (!isVisible) {
+                animationFrameId = requestAnimationFrame(animate);
+                return;
+            }
+
+            const containerRect = {
+                width: container.clientWidth,
+                height: container.clientHeight
+            };
+
             bubbleInstances.forEach(instance => {
                 instance.updatePosition(containerRect);
                 instance.draw();

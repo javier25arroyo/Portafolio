@@ -19,6 +19,7 @@ type Project = {
   image: ImageMetadata | string;
   alt: string;
   priority?: 'high' | 'low' | 'auto';
+  technologies: string[];
 };
 
 const projectMediaWidths = [320, 480, 640, 960];
@@ -35,7 +36,8 @@ const projects: Project[] = [
     descriptionEn: 'A full-stack solution for a veterinary practice.',
     descriptionEs: 'Una solución full-stack para una clínica veterinaria.',
     link: 'https://github.com/javier25arroyo/Veterinaria-Moka.git',
-    priority: 'high'
+    priority: 'high',
+    technologies: ['Angular', 'Node.js', 'Express', 'MySQL']
   },
   {
     title: 'Elecciones 2026',
@@ -44,7 +46,8 @@ const projects: Project[] = [
     descriptionEn: 'Informative web platform for the 2026 Costa Rican elections built with Next.js 16 and TypeScript, featuring candidate profiles and interactive quizzes.',
     descriptionEs: 'Plataforma web informativa para las elecciones de Costa Rica 2026 construida con Next.js y TypeScript, con perfiles de candidatos e información interactiva.',
     link: 'https://github.com/javier25arroyo/Elecciones2026',
-    demo: 'https://elecciones2026.lat/'
+    demo: 'https://elecciones2026.lat/',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion']
   },
   {
     title: 'CodeCrafters',
@@ -54,7 +57,8 @@ const projects: Project[] = [
     descriptionEs: 'Desarrollo full-stack (Angular y Spring Boot) de una aplicación de videojuegos para adultos mayores para ayudar a prevenir el deterioro cognitivo.',
     link: 'https://github.com/javier25arroyo/CodeCrafters-FrontEnd.git',
     backendLink: 'https://github.com/javier25arroyo/CodeCrafters-BackEnd.git',
-    hasMultipleRepos: true
+    hasMultipleRepos: true,
+    technologies: ['Angular', 'Spring Boot', 'PostgreSQL', 'TypeScript']
   },
   {
     title: 'Puzzle Game for Seniors',
@@ -62,7 +66,8 @@ const projects: Project[] = [
     alt: 'Screenshot of the puzzle mini-game for seniors',
     descriptionEn: 'Development of a puzzle video game for seniors.',
     descriptionEs: 'Desarrollo de un videojuego de rompecabezas para adultos mayores.',
-    link: 'https://javier25arroyo.github.io/puzzle-game/'
+    link: 'https://javier25arroyo.github.io/puzzle-game/',
+    technologies: ['HTML5', 'CSS3', 'JavaScript']
   },
   {
     title: 'CareConnect IoT System',
@@ -70,7 +75,8 @@ const projects: Project[] = [
     alt: 'Abstract IoT system illustration',
     descriptionEn: 'Development of a physical server system for obstacle detection using an Ideaboard in MicroPython.',
     descriptionEs: 'Desarrollo de un sistema de servidor físico para detección de obstáculos usando una Ideaboard en MicroPython.',
-    link: 'https://github.com/javier25arroyo/CareConnect.git'
+    link: 'https://github.com/javier25arroyo/CareConnect.git',
+    technologies: ['MicroPython', 'IoT', 'Hardware']
   },
   {
     title: 'Oracle Tech Store DB',
@@ -78,7 +84,8 @@ const projects: Project[] = [
     alt: 'Database entity-relationship diagram preview',
     descriptionEn: 'Database management project for a tech product sales store in Oracle Database.',
     descriptionEs: 'Proyecto de gestión de base de datos para una tienda de productos tecnológicos en Oracle Database.',
-    link: 'https://github.com/javier25arroyo/Proyecto-programacion-de-bases-de-datos.git'
+    link: 'https://github.com/javier25arroyo/Proyecto-programacion-de-bases-de-datos.git',
+    technologies: ['Oracle DB', 'SQL', 'Database Design']
   }
 ];
 ---
@@ -155,6 +162,11 @@ const projects: Project[] = [
         </div>
         <div class="project-info">
           <h3 class="project-name">{project.title}</h3>
+          <div class="project-tech-stack">
+            {project.technologies.map(tech => (
+              <span class="tech-tag">{tech}</span>
+            ))}
+          </div>
           <p class="project-description" data-i18n={`project-${project.title.toLowerCase().replace(/\s+/g, '-')}`} data-i18n-en={project.descriptionEn} data-i18n-es={project.descriptionEs}>{project.descriptionEn}</p>
           {project.hasMultipleRepos ? (
             <div class="project-links">
@@ -239,8 +251,8 @@ const projects: Project[] = [
   color: inherit;
   position: relative;
   width: 100%;
-  max-width: 300px;
-  height: 420px;
+  max-width: 340px;
+  min-height: 480px;
 }
 
 .project-card:hover {
@@ -324,13 +336,32 @@ const projects: Project[] = [
 .project-name {
   font-size: 1.15rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   color: var(--color-primary);
   transition: color 0.3s ease;
 }
 
 .project-card:hover .project-name {
   color: var(--color-secondary);
+}
+
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.tech-tag {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-primary);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .project-description {
@@ -474,9 +505,8 @@ const projects: Project[] = [
 @media (min-width: 1025px) {
   .projects-grid {
     grid-template-columns: repeat(3, 1fr);
-    max-width: 1000px;
+    max-width: 1100px;
   }
-  /* Con 6 proyectos, distribución perfecta de 2 filas x 3 columnas */
 }
 .gradient-text {
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
