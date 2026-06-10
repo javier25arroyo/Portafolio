@@ -1,0 +1,364 @@
+<!-- 🎨 Hero Section Optimizado para Performance -->
+<section id="home" class="min-h-screen relative overflow-hidden hero-bg">
+  
+  <!-- Contenido principal con animaciones optimizadas -->
+  <div class="relative z-10 flex items-center justify-center min-h-screen pt-20 md:pt-24">
+    <div class="container mx-auto px-6 py-12">
+      
+      <!-- Header con introducción optimizada -->
+      <div class="text-left mb-8 reveal hero-intro">
+        <div class="inline-flex items-center px-4 py-2 rounded-full backdrop-blur-xs mb-6 glass-dark border status-badge">
+          <div class="w-2 h-2 rounded-full mr-3 status-dot"></div>
+          <span class="font-medium text-sm status-text" data-i18n="status" data-i18n-en="Available for opportunities" data-i18n-es="Disponible para oportunidades">Available for opportunities</span>
+        </div>
+        
+        <!-- Greeting optimizado -->
+        <div class="greeting-container mb-4">
+          <p class="text-2xl md:text-3xl font-light reveal greeting-text">
+            <span class="greeting-word" data-i18n="greeting" data-i18n-en="Hi," data-i18n-es="Hola,">Hi,</span>
+            <span class="greeting-word" data-i18n="greeting2" data-i18n-en="I'm" data-i18n-es="soy">I'm</span>
+            <span class="name-highlight">
+              Javier Arroyo
+            </span>
+          </p>
+        </div>
+        
+        <!-- Título principal optimizado -->
+        <h1 class="text-6xl md:text-8xl font-bold leading-tight mb-6 hero-title">
+          <span class="block reveal title-first" data-i18n="title1" data-i18n-en="Software" data-i18n-es="Desarrollador">Software</span>
+          <span class="block gradient-text reveal title-second" data-i18n="title2" data-i18n-en="Developer" data-i18n-es="de Software">Developer</span>
+        </h1>
+      </div>
+
+      <!-- Descripción optimizada -->
+      <div class="max-w-4xl mb-12 reveal hero-description">
+        <p class="text-xl md:text-2xl leading-relaxed font-light description-text">
+          <span data-i18n="desc1" data-i18n-en="Crafting exceptional digital experiences through" data-i18n-es="Creando experiencias digitales excepcionales mediante">Crafting exceptional digital experiences through</span>
+          <span class="font-medium relative text-glow highlight-innovation" data-i18n="desc2" data-i18n-en="innovative design" data-i18n-es="diseño innovador">
+            innovative design
+          </span> 
+          <span data-i18n="desc3" data-i18n-en="and" data-i18n-es="y">and</span>
+          <span class="font-medium relative text-glow-secondary highlight-tech" data-i18n="desc4" data-i18n-en="cutting-edge technology" data-i18n-es="tecnología de vanguardia">
+            cutting-edge technology
+          </span>
+        </p>
+      </div>
+
+      <!-- CTAs optimizados -->
+      <div class="flex flex-col sm:flex-row gap-6 mb-12 reveal hero-ctas">
+        <a href="#projects" class="btn-primary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-view-work" rel="nofollow">
+          <span data-i18n="cta1" data-i18n-en="View My Work" data-i18n-es="Ver mi Trabajo">View My Work</span>
+          <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+        
+        <a href="#contact" class="btn-secondary group inline-flex items-center justify-center gap-3 hover-lift" data-track="hero-lets-connect" rel="nofollow">
+          <span data-i18n="cta2" data-i18n-en="Let's Connect" data-i18n-es="Conectemos">Let's Connect</span>
+          <svg class="w-5 h-5 transform group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Scroll indicator optimizado -->
+      <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 scroll-indicator z-10" aria-hidden="true">
+        <div class="flex flex-col items-center gap-2 scroll-text">
+
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 🎨 Estilos optimizados para performance -->
+<style>
+  /* === BACKGROUND OPTIMIZADO === */
+  .hero-bg {
+    background: linear-gradient(135deg, #0B0D17 0%, #151825 50%, #1F2337 100%);
+    position: relative;
+    will-change: auto; /* Solo cuando sea necesario */
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.15) 0%, transparent 70%),
+      radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.12) 0%, transparent 70%),
+      radial-gradient(circle at 40% 40%, rgba(5, 150, 105, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(241, 245, 249, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(241, 245, 249, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* === ANIMACIONES OPTIMIZADAS === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === GREETING EFFECTS SIMPLIFICADOS === */
+  .greeting-container {
+    position: relative;
+  }
+
+  .greeting-text {
+    color: #CBD5E1;
+    position: relative;
+  }
+
+  .greeting-word {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+
+  /* === NAME HIGHLIGHT OPTIMIZADO === */
+  .name-highlight {
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    background: linear-gradient(135deg, 
+      #7C3AED 0%, 
+      #059669 50%, 
+      #4F46E5 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: nameShimmer 3s ease-in-out infinite;
+  }
+
+  .hero-title {
+    color: #F1F5F9;
+  }
+
+  .title-first,
+  .title-second {
+    display: block;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 35%, #059669 70%, #0891B2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .description-text {
+    color: #CBD5E1;
+  }
+
+  /* === HIGHLIGHTS === */
+  .highlight-innovation {
+    color: #7C3AED;
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+  }
+
+  .highlight-tech {
+    color: #059669;
+    text-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+  }
+
+  .text-glow-secondary {
+    text-shadow: 0 0 20px rgba(5, 150, 105, 0.4);
+  }
+
+  /* === STATUS BADGE === */
+  .status-dot {
+    background: #059669;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .status-text {
+    color: #059669;
+  }
+
+  .glass-dark {
+    background: rgba(31, 35, 55, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(241, 245, 249, 0.1);
+  }
+
+  /* === SCROLL INDICATOR === */
+  .scroll-indicator {
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-text {
+    color: #94A3B8;
+  }
+
+  /* === KEYFRAMES OPTIMIZADOS === */
+  @keyframes nameShimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+      transform: translate3d(0, -8px, 0);
+    }
+    70% {
+      transform: translate3d(0, -4px, 0);
+    }
+    90% {
+      transform: translate3d(0, -2px, 0);
+    }
+  }
+
+  /* === RESPONSIVE OPTIMIZADO === */
+  @media (max-width: 768px) {
+    .text-6xl {
+      font-size: 3rem;
+      line-height: 1.1;
+    }
+    
+    .md\:text-8xl {
+      font-size: 4rem;
+      line-height: 1;
+    }
+    
+    .text-xl {
+      font-size: 1.125rem;
+    }
+    
+    .md\:text-2xl {
+      font-size: 1.25rem;
+    }
+    
+    .hero-bg > div {
+      padding-top: 4rem !important;
+      padding-bottom: 2rem;
+    }
+
+    .greeting-text {
+      font-size: 1.5rem;
+    }
+    
+    .name-highlight {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .greeting-text {
+      font-size: 1.25rem;
+    }
+    
+    .name-highlight {
+      font-size: 1.5rem;
+    }
+
+    .text-6xl {
+      font-size: 2.5rem;
+    }
+
+    .md\:text-8xl {
+      font-size: 3rem;
+    }
+  }
+
+  /* === ACCESSIBILITY & PERFORMANCE === */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .name-highlight,
+    .status-dot,
+    .scroll-indicator,
+    .hero-bg::before {
+      animation: none;
+      transition: none;
+    }
+    
+    .name-highlight {
+      background: #7C3AED;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+      background-clip: initial;
+      color: #7C3AED;
+    }
+    
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .name-highlight {
+      color: #F1F5F9;
+      text-shadow: none;
+      background: none;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+    }
+    
+    .highlight-innovation,
+    .highlight-tech {
+      text-shadow: none;
+    }
+  }
+
+  /* === GPU ACCELERATION SOLO DONDE ES NECESARIO === */
+  .hover-lift {
+    transition: transform 0.2s ease-out;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .group:hover .group-hover\:translate-x-1 {
+    transform: translateX(0.25rem);
+  }
+
+  .group:hover .group-hover\:scale-110 {
+    transform: scale(1.1);
+  }
+</style>

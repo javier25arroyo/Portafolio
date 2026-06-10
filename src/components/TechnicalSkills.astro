@@ -1,0 +1,423 @@
+---
+const skills = [
+  { name: "Java", percentage: 85, color: "#f89500", iconName: "java" },
+  { name: "C#", percentage: 80, color: "#239120", iconName: "csharp" },
+  { name: "HTML", percentage: 95, color: "#e34f26", iconName: "html" },
+  { name: "CSS", percentage: 90, color: "#1572b6", iconName: "css" },
+  { name: "JavaScript", percentage: 88, color: "#f7df1e", iconName: "javascript" },
+  { name: "TypeScript", percentage: 82, color: "#3178c6", iconName: "typescript" },
+  { name: "Nodejs", percentage: 78, color: "#339933", iconName: "nodejs" },
+  { name: "Angular", percentage: 75, color: "#dd0031", iconName: "angular" },
+  { name: "Mysql", percentage: 80, color: "#4479a1", iconName: "mysql" },
+  { name: "SqlServer", percentage: 85, color: "#cc2927", iconName: "sqlserver" },
+  { name: "Oracle", percentage: 70, color: "#f80000", iconName: "oracle" },
+  { name: "Mongodb", percentage: 75, color: "#47a248", iconName: "mongodb" },
+  { name: "Git", percentage: 90, color: "#f05032", iconName: "git" },
+  { name: "Azure", percentage: 72, color: "#0078d4", iconName: "azure" },
+  { name: "Figma", percentage: 68, color: "#f24e1e", iconName: "figma" }
+];
+---
+---
+
+<div class="skills-container shadow-lg" style="background: var(--bg-surface);">
+  <div class="skills-track">
+    {skills.concat(skills).map((skill) => (
+      <div class="skill-item hover-lift" style={`--skill-color: ${skill.color};`}>
+        <div class="skill-icon">
+          <span
+            class="inline-flex items-center justify-center rounded-sm bg-slate-300 text-xs text-slate-600 dark:bg-slate-600 dark:text-slate-300"
+            style="width: 32px; height: 32px;"
+          >
+            {skill.name.charAt(0).toUpperCase()}
+          </span>
+        </div>
+        <div class="skill-label">{skill.name}</div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .skills-container {
+    background: var(--bg-surface);
+    border-radius: 1rem;
+    padding: 2rem 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 10px 30px var(--shadow-medium);
+    border: 1px solid var(--border-light);
+  }
+
+  .skills-track {
+    display: flex;
+    gap: 2.5rem;
+    animation: scroll-infinite 40s linear infinite;
+    width: max-content;
+    padding: 1rem 0.5rem;
+  }
+
+  .skills-container:hover .skills-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-infinite {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.75rem 1.5rem;
+    border-radius: 1.25rem;
+    cursor: pointer;
+    min-width: 150px;
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .skill-item:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--skill-color);
+    box-shadow: 0 10px 30px -10px var(--skill-color);
+  }
+  
+  .skill-item:hover .skill-icon {
+    transform: scale(1.1);
+  }
+
+  .skill-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  }
+  
+  .skill-label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+  }
+  
+  .skill-item:hover .skill-label {
+    color: white;
+  }
+
+  .skill-item:hover .skill-icon {
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  .skill-icon svg,
+  .skill-icon img {
+    width: 48px !important;
+    height: 48px !important;
+    max-width: 48px;
+    max-height: 48px;
+    object-fit: contain;
+    aspect-ratio: 1 / 1;
+    display: block;
+    transform-origin: center;
+  }
+
+  .skill-icon img[data-icon="java"] {
+    width: 44px !important;
+    height: auto !important;
+    max-height: 48px;
+    object-fit: contain;
+    aspect-ratio: auto;
+    transform: translateY(2px) scale(1);
+    transform-origin: center;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  }
+  .skill-item:hover .skill-icon img[data-icon="java"] {
+    transform: translateY(0) scale(1.08);
+  }
+
+  /* Forzar el tamaño específico para los iconos del componente Icon */
+  .skill-icon :global(.w-8),
+  .skill-icon :global(.h-8) {
+    width: 48px !important;
+    height: 48px !important;
+    object-fit: contain;
+  }
+
+  .skill-icon :global(svg) {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .skill-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: 0.025em;
+    transition: color 0.3s ease;
+    margin-bottom: 0.25rem;
+  }
+
+  .skill-percentage {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: all 0.3s ease;
+    background: var(--bg-surface);
+    padding: 0.2rem 0.6rem;
+    border-radius: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .skill-item:hover .skill-label {
+    color: var(--color-primary);
+  }
+
+  .skill-item:hover .skill-percentage {
+    color: var(--skill-color);
+    font-weight: 700;
+    background-color: rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.1);
+    box-shadow: 0 0 10px rgba(var(--skill-color-r, 59), var(--skill-color-g, 130), var(--skill-color-b, 246), 0.2);
+    transform: scale(1.05);
+  }
+
+  /* Gradientes de fade en los bordes para efecto infinito */
+  .skills-container::before,
+  .skills-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px; /* Aumentado para un degradado más suave */
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .skills-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-surface) 25%, transparent 100%);
+  }
+
+  .skills-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-surface) 25%, transparent 100%);
+  }
+
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .skills-container {
+      padding: 1.5rem 0;
+      border-radius: 0.75rem;
+    }
+
+    .skills-track {
+      gap: 2rem;
+      animation-duration: 35s;
+      padding: 0.5rem;
+    }
+
+    .skill-item {
+      min-width: 120px;
+      padding: 1.25rem 1rem;
+    }
+
+  .skill-icon { width: 52px; height: 52px; }
+
+    .skill-icon svg,
+    .skill-icon img,
+    .skill-icon :global(.w-8),
+    .skill-icon :global(.h-8),
+    .skill-icon :global(svg) {
+      width: 40px !important;
+      height: 40px !important;
+      object-fit: contain;
+    }
+
+    .skill-label {
+      font-size: 0.85rem;
+    }
+    
+    .skill-percentage {
+      font-size: 0.8rem;
+      padding: 0.15rem 0.5rem;
+    }
+
+    .skills-container::before,
+    .skills-container::after {
+      width: 100px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .skills-container {
+      padding: 1rem 0;
+      border-radius: 0.75rem;
+    }
+
+    .skills-track {
+      gap: 1.5rem;
+      animation-duration: 30s;
+    }
+
+    .skill-item {
+      min-width: 100px;
+      padding: 1rem;
+    }
+
+  .skill-icon { width: 46px; height: 46px; margin-bottom: 0.5rem; }
+
+    .skill-icon svg,
+    .skill-icon img,
+    .skill-icon :global(.w-8),
+    .skill-icon :global(.h-8),
+    .skill-icon :global(svg) {
+      width: 36px !important;
+      height: 36px !important;
+      object-fit: contain;
+    }
+
+    .skill-label {
+      font-size: 0.75rem;
+      margin-bottom: 0.1rem;
+    }
+    
+    .skill-percentage {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.4rem;
+      margin-top: 0.1rem;
+    }
+
+    .skills-container::before,
+    .skills-container::after {
+      width: 70px;
+    }
+  }
+
+  /* Optimización para dispositivos con movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .skills-track {
+      animation-duration: 80s;
+    }
+    
+    .skill-item:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+  }
+
+  /* Estilos adicionales para unificar con el tema del sitio (sin blur por performance) */
+
+  .skill-item:nth-child(3n+1):hover {
+    border-color: var(--color-primary);
+  }
+
+  .skill-item:nth-child(3n+2):hover {
+    border-color: var(--color-secondary);
+  }
+
+  /* Eliminado efecto radar para evitar repaints costosos */
+
+  /* Optimización de la pista: animación más suave y GPU-friendly */
+  .skills-track { will-change: transform; }
+  @keyframes scroll-infinite {
+    0% { transform: translate3d(0,0,0); }
+    100% { transform: translate3d(-50%,0,0); }
+  }
+</style>
+
+<script>
+  // Inicializar el carrusel de habilidades
+  function initializeSkillsCarousel() {
+    const container = document.querySelector<HTMLElement>('.skills-container');
+    const track = document.querySelector<HTMLElement>('.skills-track');
+    
+    if (!container || !track) return;
+
+    // Accesibilidad básica: permitir foco en items para pausar el carrusel
+    const skillItems = document.querySelectorAll('.skill-item');
+    skillItems.forEach((item) => {
+      if (!(item instanceof HTMLElement)) return;
+      item.setAttribute('tabindex', '0');
+      item.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
+    });
+
+    // Control de animación con intersection observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          track.style.animationPlayState = 'running';
+        } else {
+          track.style.animationPlayState = 'paused';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    observer.observe(container);
+
+    // Pausar animación al enfocar cualquier elemento
+    container.addEventListener('focusin', () => {
+      track.style.animationPlayState = 'paused';
+    });
+
+    container.addEventListener('focusout', () => {
+      track.style.animationPlayState = 'running';
+    });
+  }
+
+  // Función para ajustar velocidad según el tamaño de pantalla
+  function adjustAnimationSpeed() {
+    const track = document.querySelector<HTMLElement>('.skills-track');
+    if (!track) return;
+
+    const screenWidth = window.innerWidth;
+    let duration = 40; // duración base en segundos
+
+    if (screenWidth < 480) {
+      duration = 30;
+    } else if (screenWidth < 768) {
+      duration = 35;
+    }
+
+    track.style.animationDuration = `${duration}s`;
+  }
+
+  // Inicializar cuando el DOM esté listo
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeSkillsCarousel();
+      adjustAnimationSpeed();
+    });
+  } else {
+    initializeSkillsCarousel();
+    adjustAnimationSpeed();
+  }
+
+  // Ajustar velocidad al redimensionar
+  let resizeTimeout: number | undefined;
+  window.addEventListener('resize', () => {
+    if (resizeTimeout) window.clearTimeout(resizeTimeout);
+    resizeTimeout = window.setTimeout(() => {
+      adjustAnimationSpeed();
+    }, 250);
+  });
+</script>
