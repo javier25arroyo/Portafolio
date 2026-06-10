@@ -1,6 +1,4 @@
-/* @tailwind base; */
-/* @tailwind components; */
-/* @tailwind utilities; */
+@import "tailwindcss";
 
 /* === NON-CRITICAL CSS - Below the fold === */
 

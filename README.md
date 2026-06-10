@@ -46,9 +46,9 @@
 - Experiencia consistente en todos los dispositivos
 
 #### 🔧 **Tecnología Moderna**
-- Astro 3.x para máximo rendimiento
-- Tailwind CSS para estilos eficientes
-- TypeScript para código robusto
+- Astro 6 para máximo rendimiento
+- Tailwind CSS 4 para estilos eficientes
+- TypeScript 6 para código robusto
 - GitHub Actions para CI/CD automático
 
 </td>
@@ -63,8 +63,8 @@
 
 | Frontend | Styling | Build Tools | Deployment |
 |:--------:|:-------:|:-----------:|:----------:|
-| ![Astro](https://img.shields.io/badge/Astro-ff6d01?style=flat-square&logo=astro&logoColor=white) | ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white) | ![Rollup](https://img.shields.io/badge/Rollup-ef3335?style=flat-square&logo=rollup.js&logoColor=white) | ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-181717?style=flat-square&logo=github&logoColor=white) |
-| **v5.16.3** | **v3.4.0** | **v4.46.2** | **Actions** |
+| ![Astro](https://img.shields.io/badge/Astro-ff6d01?style=flat-square&logo=astro&logoColor=white) | ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06b6d4?style=flat-square&logo=tailwindcss&logoColor=white) | ![Vite](https://img.shields.io/badge/Vite-646cff?style=flat-square&logo=vite&logoColor=white) | ![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-181717?style=flat-square&logo=github&logoColor=white) |
+| **v6.4.5** | **v4.3.0** | **v7.3.5** | **Actions** |
 
 </div>
 
@@ -96,7 +96,7 @@
 │   └── styles/                 # Estilos globales
 ├── ⚙️ astro.config.mjs       # Configuración Astro
 ├── 🎯 tailwind.config.mjs    # Sistema de diseño
-└── 📦 package.json          # Dependencias optimizadas
+└── 📦 package.json          # Dependencias y toolchain
 ```
 
 ---
@@ -105,8 +105,8 @@
 
 ### **Requisitos del Sistema**
 ```bash
-Node.js 20.19.x
-npm ≥ 9.x
+Node.js 24.x
+pnpm 10.26.2
 Git ≥ 2.x
 ```
 
@@ -114,10 +114,10 @@ Git ≥ 2.x
 
 | Comando | Descripción | Uso |
 |---------|-------------|-----|
-| `npm run dev` | 🔥 Servidor de desarrollo con HMR | Desarrollo local |
-| `npm run build` | 📦 Build optimizado para producción | Pre-deploy |
-| `npm run preview` | 👀 Preview del build de producción | Testing |
-| `npm run deploy` | 🚀 Deploy manual con gh-pages | Deploy alternativo |
+| `pnpm dev` | 🔥 Servidor de desarrollo con HMR | Desarrollo local |
+| `pnpm build` | 📦 Build optimizado para producción | Pre-deploy |
+| `pnpm preview` | 👀 Preview del build de producción | Testing |
+| `pnpm deploy` | 🚀 Deploy manual con gh-pages | Deploy alternativo |
 
 ---
 
@@ -128,8 +128,8 @@ Git ≥ 2.x
 El proyecto incluye un pipeline de CI/CD completamente automatizado:
 
 ```yaml
-✅ Detección automática de package manager (npm/yarn)
-✅ Optimización de cache inteligente
+✅ Instalación reproducible con pnpm
+✅ Cache de pnpm
 ✅ Build multi-entorno
 ✅ Deploy automático a GitHub Pages
 ✅ Notificaciones de estado

@@ -8,37 +8,22 @@
     "start": "astro dev",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "gh-pages -d dist",
-    "generate-sw": "workbox generateSW workbox-config.js"
+    "deploy": "gh-pages -d dist"
   },
   "engines": {
-    "node": "20.19.x"
+    "node": "24.x"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/tailwind": "6.0.2",
-    "autoprefixer": "10.4.21",
-    "framer-motion": "^12.29.2",
-    "lightningcss": "1.30.2",
-    "lucide-react": "^0.563.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "rollup": "4.55.1",
-    "sharp": "^0.33.4",
-    "tailwindcss": "3.4.0"
+    "sharp": "^0.34.5"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "3.6.1",
-    "@types/react": "^19.2.10",
-    "@types/react-dom": "^19.2.3",
-    "astro": "5.16.8",
-    "autoprefixer": "10.4.21",
-    "gh-pages": "6.3.0",
-    "postcss": "8.5.6",
-    "tailwindcss": "3.4.0",
-    "typescript": "5.9.3",
-    "vite-plugin-compression": "^0.5.1",
-    "workbox-cli": "^7.4.0"
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.4.5",
+    "gh-pages": "^6.3.0",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3"
   },
   "packageManager": "pnpm@10.26.2+sha512.0e308ff2005fc7410366f154f625f6631ab2b16b1d2e70238444dd6ae9d630a8482d92a451144debc492416896ed16f7b114a86ec68b8404b2443869e68ffda6"
 }

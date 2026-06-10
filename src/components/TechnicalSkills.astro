@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.tsx';
 const skills = [
   { name: "Java", percentage: 85, color: "#f89500", iconName: "java" },
   { name: "C#", percentage: 80, color: "#239120", iconName: "csharp" },
@@ -22,10 +21,15 @@ const skills = [
 
 <div class="skills-container shadow-lg" style="background: var(--bg-surface);">
   <div class="skills-track">
-    {skills.concat(skills).map((skill, index) => (
-      <div class="skill-item hover-lift transition-bounce" style={`--skill-color: ${skill.color};`}>
+    {skills.concat(skills).map((skill) => (
+      <div class="skill-item hover-lift" style={`--skill-color: ${skill.color};`}>
         <div class="skill-icon">
-          <Icon name={skill.iconName} size="lg" client:only="react" />
+          <span
+            class="inline-flex items-center justify-center rounded-sm bg-slate-300 text-xs text-slate-600 dark:bg-slate-600 dark:text-slate-300"
+            style="width: 32px; height: 32px;"
+          >
+            {skill.name.charAt(0).toUpperCase()}
+          </span>
         </div>
         <div class="skill-label">{skill.name}</div>
       </div>
@@ -339,10 +343,8 @@ const skills = [
 <script>
   // Inicializar el carrusel de habilidades
   function initializeSkillsCarousel() {
-    /** @type {HTMLElement | null} */
-    const container = document.querySelector('.skills-container');
-    /** @type {HTMLElement | null} */
-    const track = document.querySelector('.skills-track');
+    const container = document.querySelector<HTMLElement>('.skills-container');
+    const track = document.querySelector<HTMLElement>('.skills-track');
     
     if (!container || !track) return;
 
@@ -351,7 +353,7 @@ const skills = [
     skillItems.forEach((item) => {
       if (!(item instanceof HTMLElement)) return;
       item.setAttribute('tabindex', '0');
-      item.addEventListener('keydown', /** @param {KeyboardEvent} e */ (e) => {
+      item.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           item.click();
@@ -384,8 +386,7 @@ const skills = [
 
   // Función para ajustar velocidad según el tamaño de pantalla
   function adjustAnimationSpeed() {
-    /** @type {HTMLElement | null} */
-    const track = document.querySelector('.skills-track');
+    const track = document.querySelector<HTMLElement>('.skills-track');
     if (!track) return;
 
     const screenWidth = window.innerWidth;
@@ -412,8 +413,7 @@ const skills = [
   }
 
   // Ajustar velocidad al redimensionar
-  /** @type {ReturnType<typeof window.setTimeout> | undefined} */
-  let resizeTimeout;
+  let resizeTimeout: number | undefined;
   window.addEventListener('resize', () => {
     if (resizeTimeout) window.clearTimeout(resizeTimeout);
     resizeTimeout = window.setTimeout(() => {
