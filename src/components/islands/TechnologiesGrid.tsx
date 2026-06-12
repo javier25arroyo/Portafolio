@@ -18,10 +18,10 @@ export default function TechnologiesGrid() {
     const cards = grid.querySelectorAll('.technology-card');
     animate(cards, {
       opacity: [0, 1],
-      y: [8, 0],
-      delay: stagger(35),
-      duration: 260,
-      ease: 'outQuint',
+      y: [12, 0],
+      delay: stagger(40),
+      duration: 400,
+      ease: 'easeOutCubic',
     });
   }, [activeCategory]);
 

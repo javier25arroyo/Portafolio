@@ -1,7 +1,7 @@
 ---
 import Welcome from '../components/Welcome.astro';
-import Skills from '../components/Skills.astro';
-import Projects from '../components/Projects.astro';
+import TechnicalSkills from '../components/TechnicalSkills.astro';
+import Projects from '../components/sections/Projects.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -15,7 +15,7 @@ import Layout from '../layouts/Layout.astro';
         <!-- 🎨 About/Skills Section -->
         <section id="about" class="reveal-fade relative section-base section-transition pt-24 pb-32">
             <div class="container mx-auto px-6">
-                <Skills />
+                <TechnicalSkills />
             </div>
         </section>
         
@@ -56,7 +56,7 @@ import Layout from '../layouts/Layout.astro';
 										<p style="color: var(--text-secondary);" class="group-hover:text-white transition-colors">javier25arojas@gmail.com</p>
 									</div>
                                     <div class="ml-auto opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
-                                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                        <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                                     </div>
 								</div>
 							</div>
@@ -84,9 +84,9 @@ import Layout from '../layouts/Layout.astro';
 						<h4 class="font-semibold mb-8 text-center text-xl gradient-text" data-i18n="contact-connect" data-i18n-en="Connect with me" data-i18n-es="Conéctate conmigo">Connect with me</h4>
 						<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 reveal-stagger">
 							<!-- LinkedIn -->
-							<a href="https://www.linkedin.com/in/javier-arroyo-dev" target="_blank" rel="noopener noreferrer" 
-							   class="group reveal-scale" data-track="social-linkedin">
-								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300" style="border-top: 2px solid transparent;" onmouseover="this.style.borderColor='#0077b5'; this.style.backgroundColor='rgba(0, 119, 181, 0.1)'" onmouseout="this.style.borderColor='transparent'; this.style.backgroundColor='var(--bg-elevated)'">
+							<a href="https://www.linkedin.com/in/javier-arroyo-dev" target="_blank" rel="noopener noreferrer"
+							   class="group reveal-scale social-card social-card--linkedin" data-track="social-linkedin">
+								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300">
 									<div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 shadow-lg" 
 									     style="background: linear-gradient(135deg, #0077b5 0%, #005e8e 100%); color: white;">
 										<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -99,9 +99,9 @@ import Layout from '../layouts/Layout.astro';
 							</a>
 							
 							<!-- GitHub -->
-							<a href="https://github.com/javier25arroyo" target="_blank" rel="noopener noreferrer" 
-							   class="group reveal-scale" style="transition-delay: 0.1s;" data-track="social-github">
-								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300" style="border-top: 2px solid transparent;" onmouseover="this.style.borderColor='#ffffff'; this.style.backgroundColor='rgba(255, 255, 255, 0.08)'" onmouseout="this.style.borderColor='transparent'; this.style.backgroundColor='var(--bg-elevated)'">
+							<a href="https://github.com/javier25arroyo" target="_blank" rel="noopener noreferrer"
+							   class="group reveal-scale social-card social-card--github" style="transition-delay: 0.1s;" data-track="social-github">
+								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300">
 									<div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 shadow-lg" 
 									     style="background: linear-gradient(135deg, #333 0%, #111 100%); color: white;">
 										<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -114,9 +114,9 @@ import Layout from '../layouts/Layout.astro';
 							</a>
 							
 							<!-- WhatsApp -->
-							<a href="https://walink.co/bdf8ef" target="_blank" rel="noopener noreferrer" 
-							   class="group reveal-scale" style="transition-delay: 0.2s;" data-track="social-whatsapp">
-								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300" style="border-top: 2px solid transparent;" onmouseover="this.style.borderColor='#25d366'; this.style.backgroundColor='rgba(37, 211, 102, 0.1)'" onmouseout="this.style.borderColor='transparent'; this.style.backgroundColor='var(--bg-elevated)'">
+							<a href="https://walink.co/bdf8ef" target="_blank" rel="noopener noreferrer"
+							   class="group reveal-scale social-card social-card--whatsapp" style="transition-delay: 0.2s;" data-track="social-whatsapp">
+								<div class="glass-premium rounded-2xl p-6 text-center hover-lift transition-all duration-300">
 									<div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 mx-auto transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 shadow-lg" 
 									     style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); color: white;">
 										<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -148,7 +148,7 @@ import Layout from '../layouts/Layout.astro';
                                         <h5 class="font-bold" style="color: var(--text-primary);">Español</h5>
                                         <span class="text-xs text-red-400 font-semibold uppercase tracking-wider">PDF • 2025</span>
 									</div>
-                                    <svg class="w-5 h-5 ml-auto text-red-400 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                    <svg class="w-5 h-5 ml-auto text-red-400 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
 								</div>
 							</a>
 							
@@ -166,7 +166,7 @@ import Layout from '../layouts/Layout.astro';
                                         <h5 class="font-bold" style="color: var(--text-primary);">English</h5>
                                         <span class="text-xs text-blue-400 font-semibold uppercase tracking-wider">PDF • 2025</span>
 									</div>
-                                    <svg class="w-5 h-5 ml-auto text-blue-400 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                    <svg class="w-5 h-5 ml-auto text-blue-400 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
 								</div>
 							</a>
 						</div>

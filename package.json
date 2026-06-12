@@ -8,7 +8,9 @@
     "start": "astro dev",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test:a11y": "echo 'A11y testing via browser (lighthouse/axe)'",
+    "lint": "astro check"
   },
   "engines": {
     "node": "24.x"

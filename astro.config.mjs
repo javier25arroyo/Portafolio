@@ -14,16 +14,23 @@ export default defineConfig({
       lastmod: new Date(),
     })
   ],
-  
+
   // Performance optimizations
   vite: {
     plugins: [tailwindcss()],
   },
-  
+
   // Build optimizations
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto',
-    assets: 'assets'
+    assets: 'assets',
+  },
+
+  // Image optimization
+  image: {
+    remotePatterns: [
+      { protocol: 'https', hostname: '**.svgl.app' },
+    ],
   },
 });

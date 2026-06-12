@@ -9,8 +9,22 @@ export default function Hero() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    animate(root.querySelectorAll('[data-hero-reveal]'), { opacity: { from: 0 }, y: { from: 18 }, delay: stagger(70), duration: 720, ease: 'outQuint' });
-    animate(root.querySelectorAll('[data-orbit-node]'), { opacity: [0.42, 0.9], scale: [0.94, 1.06], delay: stagger(140, { from: 'center' }), duration: 1800, ease: 'inOutSine', loop: true, alternate: true });
+    animate(root.querySelectorAll('[data-hero-reveal]'), {
+      opacity: { from: 0 },
+      y: { from: 24 },
+      delay: stagger(60),
+      duration: 800,
+      ease: 'easeOutCubic',
+    });
+    animate(root.querySelectorAll('[data-orbit-node]'), {
+      opacity: [0.4, 0.95],
+      scale: [0.92, 1.08],
+      delay: stagger(120, { from: 'center' }),
+      duration: 2200,
+      ease: 'easeInOutSine',
+      loop: true,
+      alternate: true,
+    });
   }, []);
 
   return (

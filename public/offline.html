@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sin conexión — Javier Pérez Arroyo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #060B14 0%, #0B1628 50%, #10233B 100%);
+      color: #EAF2FF;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .offline-container {
+      max-width: 42rem;
+      text-align: center;
+    }
+
+    .offline-icon {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #C8D5EA;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    a {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, #006BB1 0%, #2FA8FF 100%);
+      color: white;
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 107, 177, 0.3);
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(200, 213, 234, 0.3);
+      color: #C8D5EA;
+      background: transparent;
+    }
+
+    .button-secondary:hover {
+      background: rgba(200, 213, 234, 0.1);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    @media (max-width: 640px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .offline-icon {
+        font-size: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <div class="offline-icon">📡</div>
+    <h1>Sin conexión a Internet</h1>
+    <p>Parece que no tienes conexión. Algunos contenidos pueden no estar disponibles. Intenta nuevamente cuando tengas conexión.</p>
+    <div class="actions">
+      <a class="button-primary" href="javascript:location.reload()">Reintentar</a>
+      <a class="button-secondary" href="/">Ir al inicio</a>
+    </div>
+  </div>
+</body>
+</html>

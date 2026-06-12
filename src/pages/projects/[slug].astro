@@ -11,8 +11,20 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 
 const { project } = Astro.props;
+const projectSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CreativeWork',
+  name: project.title,
+  description: project.description,
+  author: {
+    '@type': 'Person',
+    name: 'Javier Pérez Arroyo',
+  },
+  keywords: project.stack.join(', '),
+};
 ---
 <Layout title={`${project.title} — Javier Pérez Arroyo`} description={project.description}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(projectSchema)} />
   <div class="site-container site-container--narrow" style="padding-block: var(--space-20);">
 
     <a href="/#proyectos" class="eyebrow" style="display: inline-block; margin-bottom: var(--space-8); text-decoration: none;">

@@ -1,0 +1,48 @@
+---
+// Analytics tracking component
+// Tracks page views and user interactions
+---
+<script>
+  import { trackPageView, trackExternalLink, trackNavigation } from '../utils/analytics';
+
+  // Track page view on load
+  if (typeof window !== 'undefined') {
+    trackPageView(window.location.pathname);
+
+    // Track navigation clicks
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a') as HTMLAnchorElement;
+
+      if (!link) return;
+
+      const href = link.getAttribute('href');
+      if (!href) return;
+
+      // External links
+      if (href.startsWith('http')) {
+        trackExternalLink(href);
+      }
+      // Internal navigation
+      else if (href.startsWith('#')) {
+        trackNavigation(href.substring(1));
+      }
+    });
+
+    // Track button clicks with data-track
+    document.addEventListener('click', (e) => {
+      const button = (e.target as HTMLElement).closest('[data-track]') as HTMLElement;
+      if (button) {
+        const trackLabel = button.getAttribute('data-track');
+        if (trackLabel) {
+          import('../utils/analytics').then(({ trackEvent }) => {
+            trackEvent('interaction', {
+              category: 'user_action',
+              label: trackLabel,
+            });
+          });
+        }
+      }
+    });
+  }
+</script>

@@ -43,15 +43,17 @@ const iconPath = iconMap[name.toLowerCase()];
 ---
 
 {iconPath ? (
-  <img 
+  <img
     src={iconPath}
-    alt={`${name} icon`} 
+    alt={`${name} icon`}
     class={iconClasses}
     loading="lazy"
     decoding="async"
     draggable="false"
     data-icon={name.toLowerCase()}
     style={color ? `color: ${color}` : ''}
+    width="24"
+    height="24"
   />
 ) : (
   <!-- Fallback si el icono no se encuentra -->

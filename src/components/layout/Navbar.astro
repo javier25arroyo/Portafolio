@@ -1,5 +1,6 @@
 ---
 import { navigationItems } from '../../data/navigation';
+import { trackNavigation } from '../../utils/analytics';
 ---
 <header class="site-header">
   <nav class="site-nav site-container" aria-label="Principal">
@@ -10,6 +11,22 @@ import { navigationItems } from '../../data/navigation';
     <ul class="site-nav__links" role="list">
       {navigationItems.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
     </ul>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema oscuro/claro" title="Cambiar tema">
+      <svg class="theme-toggle__icon theme-toggle__icon--light" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="theme-toggle__icon theme-toggle__icon--dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
     <a class="site-nav__cta" href="#contacto">Hablemos</a>
     <details class="mobile-nav">
       <summary aria-label="Abrir menú"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></summary>
@@ -17,3 +34,82 @@ import { navigationItems } from '../../data/navigation';
     </details>
   </nav>
 </header>
+
+<script>
+  function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    const savedTheme = localStorage.getItem('theme');
+    const initialTheme = savedTheme || (prefersDark.matches ? 'dark' : 'light');
+
+    function setTheme(theme: string) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+    }
+
+    setTheme(initialTheme);
+
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+
+    prefersDark.addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThemeToggle);
+  } else {
+    initThemeToggle();
+  }
+</script>
+
+<style>
+  .theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+  }
+
+  .theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .theme-toggle__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke-width: 2;
+  }
+
+  .theme-toggle__icon--dark {
+    display: none;
+  }
+
+  :root[data-theme='dark'] .theme-toggle__icon--light {
+    display: none;
+  }
+
+  :root[data-theme='dark'] .theme-toggle__icon--dark {
+    display: block;
+  }
+</style>

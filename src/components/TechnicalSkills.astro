@@ -22,11 +22,12 @@ const skills = [
 <div class="skills-container shadow-lg" style="background: var(--bg-surface);">
   <div class="skills-track">
     {skills.concat(skills).map((skill) => (
-      <div class="skill-item hover-lift" style={`--skill-color: ${skill.color};`}>
+      <div class="skill-item hover-lift" style={`--skill-color: ${skill.color};`} role="button" aria-label={`${skill.name} skill`} tabindex="0">
         <div class="skill-icon">
           <span
             class="inline-flex items-center justify-center rounded-sm bg-slate-300 text-xs text-slate-600 dark:bg-slate-600 dark:text-slate-300"
             style="width: 32px; height: 32px;"
+            aria-hidden="true"
           >
             {skill.name.charAt(0).toUpperCase()}
           </span>
@@ -345,14 +346,13 @@ const skills = [
   function initializeSkillsCarousel() {
     const container = document.querySelector<HTMLElement>('.skills-container');
     const track = document.querySelector<HTMLElement>('.skills-track');
-    
+
     if (!container || !track) return;
 
-    // Accesibilidad básica: permitir foco en items para pausar el carrusel
+    // Accesibilidad: permitir foco en items para pausar el carrusel
     const skillItems = document.querySelectorAll('.skill-item');
     skillItems.forEach((item) => {
       if (!(item instanceof HTMLElement)) return;
-      item.setAttribute('tabindex', '0');
       item.addEventListener('keydown', (e: KeyboardEvent) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
