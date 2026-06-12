@@ -1,46 +1,47 @@
 ---
 // Analytics tracking component
-// Tracks page views and user interactions
 ---
 <script>
-  import { trackPageView, trackExternalLink, trackNavigation } from '../utils/analytics';
-
   // Track page view on load
+  function trackEvent(event, options) {
+    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+      try {
+        const events = JSON.parse(localStorage.getItem('analytics_events') || '[]');
+        const newEvent = {
+          event,
+          category: options?.category,
+          label: options?.label,
+          value: options?.value,
+          timestamp: Date.now(),
+        };
+        const updated = [newEvent, ...events].slice(0, 100);
+        localStorage.setItem('analytics_events', JSON.stringify(updated));
+      } catch (e) {
+        console.warn('Analytics error:', e);
+      }
+    }
+  }
+
   if (typeof window !== 'undefined') {
-    trackPageView(window.location.pathname);
+    trackEvent('page_view', { category: 'engagement', label: window.location.pathname });
 
-    // Track navigation clicks
+    // Track clicks
     document.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      const link = target.closest('a') as HTMLAnchorElement;
-
-      if (!link) return;
-
-      const href = link.getAttribute('href');
-      if (!href) return;
-
-      // External links
-      if (href.startsWith('http')) {
-        trackExternalLink(href);
+      const link = e.target.closest('a');
+      if (link) {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('http')) {
+          trackEvent('external_link', { category: 'engagement', label: href });
+        } else if (href && href.startsWith('#')) {
+          trackEvent('navigation', { category: 'engagement', label: href.substring(1) });
+        }
       }
-      // Internal navigation
-      else if (href.startsWith('#')) {
-        trackNavigation(href.substring(1));
-      }
-    });
 
-    // Track button clicks with data-track
-    document.addEventListener('click', (e) => {
-      const button = (e.target as HTMLElement).closest('[data-track]') as HTMLElement;
+      const button = e.target.closest('[data-track]');
       if (button) {
-        const trackLabel = button.getAttribute('data-track');
-        if (trackLabel) {
-          import('../utils/analytics').then(({ trackEvent }) => {
-            trackEvent('interaction', {
-              category: 'user_action',
-              label: trackLabel,
-            });
-          });
+        const label = button.getAttribute('data-track');
+        if (label) {
+          trackEvent('interaction', { category: 'user_action', label });
         }
       }
     });
