@@ -44,7 +44,7 @@ import { trackNavigation } from '../../utils/analytics';
     const savedTheme = localStorage.getItem('theme');
     const initialTheme = savedTheme || (prefersDark.matches ? 'dark' : 'light');
 
-    function setTheme(theme: string) {
+    function setTheme(theme) {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
       toggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
