@@ -1,104 +1,13 @@
 ::selection { background: var(--accent); color: var(--bg-primary); }
 
-/* === REVEAL ANIMATIONS === */
-.reveal {
-  animation: revealFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.reveal-fade {
-  animation: revealFadeOnly 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.reveal-left {
-  animation: revealLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.reveal-right {
-  animation: revealRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.reveal-scale {
-  animation: revealScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes revealFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes revealFadeOnly {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes revealLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes revealRight {
-  from {
-    opacity: 0;
-    transform: translateX(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes revealScale {
-  from {
-    opacity: 0;
-    transform: scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* === STAGGER DELAYS === */
-.reveal-stagger > :nth-child(1) { animation-delay: 0ms; }
-.reveal-stagger > :nth-child(2) { animation-delay: 80ms; }
-.reveal-stagger > :nth-child(3) { animation-delay: 160ms; }
-.reveal-stagger > :nth-child(4) { animation-delay: 240ms; }
-.reveal-stagger > :nth-child(5) { animation-delay: 320ms; }
-.reveal-stagger > :nth-child(n+6) { animation-delay: 400ms; }
-
-/* === HOVER ANIMATIONS === */
+/* === HOVER LIFT === */
 .hover-lift {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
-
 .hover-lift:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
 }
 
-/* === BUTTON FOCUS === */
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-button {
-  transition: background-color 0.2s, transform 0.2s;
-}
-
-/* === PREFERS-REDUCED-MOTION === */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
@@ -106,15 +15,7 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-
   .button:hover, .project-card:hover, .project-card:focus-within,
   .technology-card:hover, .technology-card:hover img,
-  .reveal, .reveal-fade, .reveal-left, .reveal-right, .reveal-scale {
-    animation: none !important;
-    transform: none !important;
-  }
-
-  .hover-lift:hover {
-    transform: none;
-  }
+  .hover-lift:hover { transform: none; }
 }
