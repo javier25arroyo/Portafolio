@@ -16,7 +16,10 @@
     "node": "24.x"
   },
   "dependencies": {
-    "animejs": "^3.2.2",
+    "@astrojs/react": "^5.0.7",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "animejs": "^4.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sharp": "^0.34.5"

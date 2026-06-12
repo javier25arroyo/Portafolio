@@ -14,14 +14,14 @@ export default function Hero() {
       y: { from: 24 },
       delay: stagger(60),
       duration: 800,
-      ease: 'easeOutCubic',
+      ease: 'outCubic',
     });
     animate(root.querySelectorAll('[data-orbit-node]'), {
       opacity: [0.4, 0.95],
       scale: [0.92, 1.08],
       delay: stagger(120, { from: 'center' }),
       duration: 2200,
-      ease: 'easeInOutSine',
+      ease: 'inOutSine',
       loop: true,
       alternate: true,
     });

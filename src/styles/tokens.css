@@ -1,20 +1,23 @@
 :root {
   color-scheme: dark;
-  --bg-primary: #0a0e13;
-  --bg-secondary: #111826;
-  --bg-tertiary: #10233d;
-  --surface: #18212d;
-  --surface-hover: #1d2835;
-  --text-primary: #eef3f8;
-  --text-secondary: #a9b4c2;
-  --text-muted: #7c8796;
-  --accent: #6fd6f5;
-  --accent-hover: #8ee2fb;
-  --accent-soft: rgba(111, 214, 245, 0.10);
-  --silver: #b8c2cf;
-  --border: #263244;
-  --border-soft: rgba(184, 194, 207, 0.12);
-  --border-accent: rgba(111, 214, 245, 0.28);
+  --bg-primary: #05070D;
+  --bg-secondary: #0B1020;
+  --bg-tertiary: #111827;
+  --surface: #111827;
+  --surface-hover: #16203A;
+  --text-primary: #F5F7FA;
+  --text-secondary: #A6B0C3;
+  --text-muted: #7E89A0;
+  --accent: #3B82F6;
+  --accent-hover: #60A5FA;
+  --accent-soft: rgba(59, 130, 246, 0.10);
+  --accent-premium: #8B5CF6;
+  --accent-warm: #F59E0B;
+  --accent-tech: #22C55E;
+  --silver: #A6B0C3;
+  --border: #1E293B;
+  --border-soft: rgba(166, 176, 195, 0.12);
+  --border-accent: rgba(59, 130, 246, 0.28);
   --radius-sm: 0.625rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
@@ -39,8 +42,33 @@
   --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
   --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.22);
   --shadow-elevated: 0 16px 40px rgba(0, 0, 0, 0.28);
-  --shadow-accent: 0 0 0 1px rgba(111, 214, 245, 0.18), 0 10px 30px rgba(111, 214, 245, 0.08);
+  --shadow-accent: 0 0 0 1px rgba(59, 130, 246, 0.18), 0 10px 30px rgba(59, 130, 246, 0.08);
   --container: 75rem;
   --reading-width: 45rem;
   --nav-height: 4.75rem;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #EEF2F7;
+  --bg-tertiary: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-hover: #EEF2F7;
+  --text-primary: #0B1020;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --accent: #2563EB;
+  --accent-hover: #3B82F6;
+  --accent-soft: rgba(37, 99, 235, 0.08);
+  --accent-premium: #7C3AED;
+  --accent-warm: #D97706;
+  --accent-tech: #16A34A;
+  --silver: #64748B;
+  --border: #D7DEE8;
+  --border-soft: rgba(11, 16, 32, 0.10);
+  --border-accent: rgba(37, 99, 235, 0.30);
+  --shadow-soft: 0 8px 30px rgba(11, 16, 32, 0.08);
+  --shadow-elevated: 0 16px 40px rgba(11, 16, 32, 0.12);
+  --shadow-accent: 0 0 0 1px rgba(37, 99, 235, 0.15), 0 10px 30px rgba(37, 99, 235, 0.08);
 }

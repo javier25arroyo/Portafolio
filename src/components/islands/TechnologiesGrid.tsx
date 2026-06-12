@@ -21,7 +21,7 @@ export default function TechnologiesGrid() {
       y: [12, 0],
       delay: stagger(40),
       duration: 400,
-      ease: 'easeOutCubic',
+      ease: 'outCubic',
     });
   }, [activeCategory]);
 

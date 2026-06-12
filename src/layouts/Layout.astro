@@ -14,20 +14,36 @@ const canonicalUrl = new URL(Astro.url.pathname, site);
 <!doctype html>
 <html lang="es">
   <head>
-    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width" /><meta name="theme-color" content="#0A0E13" /><meta name="generator" content={Astro.generator} /><meta name="description" content={description} /><meta name="author" content="Javier Pérez Arroyo" /><meta name="robots" content="index, follow" />
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width" /><meta name="theme-color" content="#05070D" /><meta name="generator" content={Astro.generator} /><meta name="description" content={description} /><meta name="author" content="Javier Pérez Arroyo" /><meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} /><link rel="icon" type="image/png" href="/assets/favicon.png" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" /><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" />
     <title>{title}</title>
     <meta property="og:type" content="website" /><meta property="og:locale" content="es_CR" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonicalUrl} /><meta property="og:site_name" content="Javier Pérez Arroyo" /><meta property="og:image" content={new URL('/og-image.png', site)} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={new URL('/og-image.png', site)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Person', name: 'Javier Pérez Arroyo', url: site.toString(), email: 'mailto:javier25arojas@gmail.com', jobTitle: 'Desarrollador de software', knowsAbout: ['Desarrollo full-stack', 'Inteligencia artificial aplicada', 'Accesibilidad web', 'TypeScript', 'Angular', 'Java'], sameAs: ['https://github.com/javier25arroyo', 'https://www.linkedin.com/in/javier-arroyo-268147226/'] })} />
   </head>
-  <body><a class="skip-link" href="#contenido">Saltar al contenido principal</a><Navbar /><main id="contenido" tabindex="-1"><slot /></main><Footer /><Analytics />
+  <body><a class="skip-link" href="#contenido">Saltar al contenido principal</a><Navbar /><main id="contenido"><slot /></main><Footer /><Analytics />
+    <script>
+      // Skip-link: foco programático en <main> sin tabindex estático
+      document.querySelector('.skip-link')?.addEventListener('click', () => {
+        const main = document.getElementById('contenido');
+        if (!main) return;
+        main.setAttribute('tabindex', '-1');
+        main.focus({ preventScroll: true });
+        main.addEventListener('blur', () => main.removeAttribute('tabindex'), { once: true });
+      });
+    </script>
     <script>
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').then((reg) => {
-          console.log('Service Worker registered:', reg);
-        }).catch((err) => {
-          console.log('Service Worker registration failed:', err);
-        });
+        if (import.meta.env.PROD) {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        } else {
+          // En dev: desregistrar SW y limpiar cachés para evitar servir versiones viejas
+          navigator.serviceWorker.getRegistrations().then((regs) => {
+            regs.forEach((reg) => reg.unregister());
+          });
+          if ('caches' in window) {
+            caches.keys().then((keys) => keys.forEach((key) => caches.delete(key)));
+          }
+        }
       }
     </script>
   </body>
