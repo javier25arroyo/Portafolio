@@ -1,0 +1,79 @@
+---
+const points = [
+  {
+    title: "Full-stack",
+    text: "Del backend en Java y C# al frontend en Angular y TypeScript: el mismo criterio de un lado a otro.",
+  },
+  {
+    title: "IA con criterio",
+    text: "La uso para acelerar lo repetitivo. Las decisiones de arquitectura y el código final siguen siendo míos.",
+  },
+  {
+    title: "Accesibilidad WCAG",
+    text: "Construyo accesible desde el primer commit, no como parche al final. Es calidad técnica, no narrativa.",
+  },
+];
+---
+
+<section class="value-props">
+  <div class="container">
+    <div class="value-props__grid">
+      {points.map((point, i) => (
+        <div class="value-props__item reveal" style={`transition-delay: ${i * 60}ms`}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="value-props__icon">
+            {i === 0 && <path stroke-linecap="round" stroke-linejoin="round" d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" />}
+            {i === 1 && <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2M15 3v2M9 19v2M15 19v2M3 9h2M3 15h2M19 9h2M19 15h2M7 7h10v10H7z" />}
+            {i === 2 && <path stroke-linecap="round" stroke-linejoin="round" d="m4 12 6 6L20 6" />}
+          </svg>
+          <h3 class="value-props__title">{point.title}</h3>
+          <p class="value-props__text">{point.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .value-props {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--border);
+  }
+
+  .value-props__grid {
+    display: grid;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .value-props__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-10);
+    }
+
+    .value-props__item:not(:first-child) {
+      padding-left: var(--space-10);
+      border-left: 1px solid var(--border);
+    }
+  }
+
+  .value-props__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .value-props__icon {
+    color: var(--accent);
+  }
+
+  .value-props__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    font-weight: 600;
+  }
+
+  .value-props__text {
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+</style>

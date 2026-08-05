@@ -1,0 +1,83 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<section id="contacto" class="contact-cta">
+  <div class="container">
+    <div class="tech-frame">
+      <p class="eyebrow">Contacto</p>
+      <h2 class="contact-cta__heading">Hablemos de tu próximo proyecto</h2>
+      <p class="contact-cta__subtitle">
+        Disponible para roles full-time y proyectos freelance. Respondo en menos de 24 horas.
+      </p>
+
+      <div class="contact-cta__actions">
+        <Button href="mailto:javier25arojas@gmail.com" variant="primary" size="lg">
+          Escribime
+        </Button>
+        <Button
+          href="https://wa.me/50684408294"
+          variant="secondary"
+          size="lg"
+          target="_blank"
+        >
+          WhatsApp
+        </Button>
+        <Button
+          href="https://www.linkedin.com/in/javier-arroyo-dev"
+          variant="secondary"
+          size="lg"
+          target="_blank"
+        >
+          LinkedIn
+        </Button>
+        <Button href="/assets/cv/CV_Javier_Arroyo_ES.pdf" variant="ghost" size="lg" target="_blank">
+          Descargar CV
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-cta {
+    padding-block: var(--space-16) var(--space-20);
+  }
+
+  .contact-cta .tech-frame {
+    position: relative;
+    text-align: center;
+    padding: var(--space-12) var(--space-5);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--bg-elevated);
+  }
+
+  .contact-cta .eyebrow {
+    justify-content: center;
+  }
+
+  .contact-cta__heading {
+    font-family: var(--font-display);
+    font-size: var(--fs-h1);
+    font-weight: 600;
+    margin-top: var(--space-3);
+    max-width: 20ch;
+    margin-inline: auto;
+  }
+
+  .contact-cta__subtitle {
+    margin-top: var(--space-4);
+    color: var(--text-muted);
+    max-width: 50ch;
+    margin-inline: auto;
+  }
+
+  .contact-cta__actions {
+    margin-top: var(--space-8);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+</style>

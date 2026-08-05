@@ -1,0 +1,70 @@
+---
+import ProjectCard from "../ui/ProjectCard.astro";
+import Button from "../ui/Button.astro";
+import { projects } from "../../data/projects";
+---
+
+<section id="proyectos" class="featured-projects">
+  <div class="container">
+    <p class="eyebrow">Proyectos</p>
+    <h2 class="featured-projects__heading">Trabajo reciente</h2>
+
+    <div class="featured-projects__grid">
+      {projects.map((project) => (
+        <div class="reveal">
+          <ProjectCard
+            title={project.title}
+            description={project.description}
+            category={project.category}
+            year={project.year}
+            image={project.image}
+            imageAlt={project.imageAlt}
+            tags={project.tags}
+            href={project.href}
+            featured={project.featured}
+          />
+        </div>
+      ))}
+    </div>
+
+    <p class="featured-projects__note">Más proyectos en camino.</p>
+  </div>
+</section>
+
+<style>
+  .featured-projects {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--border);
+  }
+
+  .featured-projects__heading {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .featured-projects__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 768px) {
+    .featured-projects__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .featured-projects__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .featured-projects__note {
+    margin-top: var(--space-8);
+    color: var(--text-subtle);
+    font-size: var(--fs-small);
+  }
+</style>

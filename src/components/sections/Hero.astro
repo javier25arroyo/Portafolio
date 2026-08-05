@@ -1,0 +1,171 @@
+---
+import WolfMark from "../ui/WolfMark.astro";
+import Button from "../ui/Button.astro";
+import Badge from "../ui/Badge.astro";
+---
+
+<section id="inicio" class="hero">
+  <div class="container-wide">
+    <div class="tech-frame">
+      <span class="tech-frame__mark tech-frame__mark--tl" aria-hidden="true"></span>
+      <span class="tech-frame__mark tech-frame__mark--tr" aria-hidden="true"></span>
+      <span class="tech-frame__mark tech-frame__mark--bl" aria-hidden="true"></span>
+      <span class="tech-frame__mark tech-frame__mark--br" aria-hidden="true"></span>
+
+      <div class="hero__grid">
+        <div class="hero__content">
+          <p class="eyebrow">Software Engineer · Costa Rica</p>
+
+          <h1 class="hero__title">
+            Construyo productos full-stack, <span class="hero__highlight">accesibles</span> y listos para escalar.
+          </h1>
+
+          <p class="hero__subtitle">
+            Java, TypeScript y Angular en el día a día. Uso IA como herramienta con criterio
+            y construyo con accesibilidad WCAG desde el primer commit.
+          </p>
+
+          <div class="hero__actions">
+            <Button href="#proyectos" variant="primary" size="lg">Ver proyectos</Button>
+            <Button href="/assets/cv/CV_Javier_Arroyo_ES.pdf" variant="secondary" size="lg" target="_blank">
+              Descargar CV
+            </Button>
+          </div>
+
+          <Badge tone="success" dot class="hero__status">Disponible para trabajo</Badge>
+        </div>
+
+        <div class="hero__mark">
+          <WolfMark size={220} animated />
+        </div>
+      </div>
+
+      <p class="hero__readout font-mono">San José, CR · 09.9281°N 84.0907°W</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: var(--space-10) var(--space-16);
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      padding-block: var(--space-12) var(--space-20);
+    }
+  }
+
+  .tech-frame {
+    position: relative;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8) var(--space-5) var(--space-6);
+  }
+
+  @media (min-width: 1024px) {
+    .tech-frame {
+      padding: var(--space-12) var(--space-10) var(--space-6);
+    }
+  }
+
+  .tech-frame__mark {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--gold);
+    opacity: 0.7;
+  }
+
+  .tech-frame__mark--tl {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .tech-frame__mark--tr {
+    top: -1px;
+    right: -1px;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  .tech-frame__mark--bl {
+    bottom: -1px;
+    left: -1px;
+    border-right: none;
+    border-top: none;
+  }
+
+  .tech-frame__mark--br {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+  }
+
+  .hero__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero__grid {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-10);
+    }
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-5);
+    max-width: 640px;
+  }
+
+  .hero__title {
+    font-family: var(--font-display);
+    font-size: var(--fs-display);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__highlight {
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 6px;
+    text-decoration-thickness: 2px;
+  }
+
+  .hero__subtitle {
+    font-size: var(--fs-body-lg);
+    color: var(--text-muted);
+    max-width: 60ch;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .hero__mark {
+    flex-shrink: 0;
+    opacity: 0.9;
+  }
+
+  .hero__readout {
+    margin-top: var(--space-8);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--border);
+    font-size: var(--fs-mono);
+    color: var(--text-subtle);
+  }
+</style>

@@ -31,3 +31,5 @@ src/components/GetInTouch.astro
 /.superpowers
 *.md
 skills-lock.json
+/.impeccable
+/public

@@ -8,7 +8,7 @@ export default defineConfig({
   site: 'https://www.javier25cr.dev',
   base: '/',
   integrations: [
-    tailwind(),
+    tailwind({ applyBaseStyles: false }),
     sitemap({
       changefreq: 'monthly',
       priority: 0.7,

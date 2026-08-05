@@ -1,0 +1,82 @@
+---
+import { technologies } from "../../data/technologies";
+---
+
+<section id="stack" class="tech-stack">
+  <div class="container">
+    <p class="eyebrow">Stack</p>
+    <h2 class="tech-stack__heading">Con lo que construyo</h2>
+
+    <ul class="tech-stack__row reveal">
+      {technologies.map((tech) => (
+        <li class="tech-stack__item">
+          <img
+            src={`${import.meta.env.BASE_URL}assets/icons/${tech.icon}`}
+            alt=""
+            aria-hidden="true"
+            width="36"
+            height="36"
+          />
+          <span class="sr-only">{tech.name}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .tech-stack {
+    padding-block: var(--space-16);
+    border-top: 1px solid var(--border);
+  }
+
+  .tech-stack__heading {
+    font-family: var(--font-display);
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .tech-stack__row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    list-style: none;
+  }
+
+  @media (min-width: 768px) {
+    .tech-stack__row {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .tech-stack__row {
+      grid-template-columns: repeat(10, 1fr);
+    }
+  }
+
+  .tech-stack__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+
+  .tech-stack__item img {
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: filter var(--dur-base) var(--ease-standard),
+      opacity var(--dur-base) var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    .tech-stack__item:hover img {
+      filter: none;
+      opacity: 1;
+    }
+  }
+</style>

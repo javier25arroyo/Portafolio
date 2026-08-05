@@ -1,0 +1,169 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100svh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  transition: background-color var(--dur-base) var(--ease-standard),
+    color var(--dur-base) var(--ease-standard);
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+/* ============ Focus visible — nunca se elimina ============ */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ============ Skip link ============ */
+.skip-link {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: var(--z-overlay);
+  padding: var(--space-2) var(--space-4);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transform: translateY(-150%);
+  transition: transform var(--dur-fast) var(--ease-standard);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* ============ Containers ============ */
+.container,
+.container-wide,
+.container-narrow {
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container {
+  max-width: var(--container);
+}
+
+.container-wide {
+  max-width: var(--container-wide);
+}
+
+.container-narrow {
+  max-width: var(--container-narrow);
+}
+
+@media (min-width: 1024px) {
+  .container,
+  .container-wide,
+  .container-narrow {
+    --gutter: var(--space-8);
+  }
+}
+
+/* ============ Eyebrow — firma del sistema ============ */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eyebrow--muted {
+  color: var(--text-muted);
+}
+
+/* ============ Datos tabulares ============ */
+.font-mono,
+.tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============ Reveal on scroll ============ */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity var(--dur-slow) var(--ease-out),
+      transform var(--dur-slow) var(--ease-out);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============ Hairline ============ */
+.hairline {
+  border: none;
+  border-top: 1px solid var(--border);
+}

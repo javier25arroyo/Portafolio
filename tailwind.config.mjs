@@ -1,117 +1,90 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  darkMode: 'class',
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}"],
   theme: {
+    container: false,
     extend: {
+      colors: {
+        bg: "var(--bg)",
+        "bg-elevated": "var(--bg-elevated)",
+        surface: "var(--surface)",
+        border: "var(--border)",
+        "border-strong": "var(--border-strong)",
+        text: "var(--text)",
+        "text-muted": "var(--text-muted)",
+        "text-subtle": "var(--text-subtle)",
+        accent: "var(--accent)",
+        "accent-hover": "var(--accent-hover)",
+        "accent-contrast": "var(--accent-contrast)",
+        gold: "var(--gold)",
+        success: "var(--success)",
+        warning: "var(--warning)",
+        danger: "var(--danger)",
+      },
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'],
+        display: "var(--font-display)",
+        sans: "var(--font-sans)",
+        mono: "var(--font-mono)",
       },
       fontSize: {
-        'xs': '0.75rem',
-        'sm': '0.875rem',
-        'base': '1rem',
-        'lg': '1.125rem',
-        'xl': '1.25rem',
-        '2xl': '1.5rem',
-        '3xl': '1.875rem',
-        '4xl': '2.25rem',
-        '5xl': '3rem',
-        '6xl': '3.75rem',
-        '7xl': '4.5rem',
-        '8xl': '6rem',
-        'hero': '4.5rem',
-      },
-      colors: {
-        // Backgrounds
-        'bg-primary': 'var(--bg-primary)',
-        'bg-surface': 'var(--bg-surface)',
-        'bg-elevated': 'var(--bg-elevated)',
-        'bg-accent': 'var(--bg-accent)',
-        'bg-glass': 'var(--bg-glass)',
-        
-        // Primary colors
-        'primary': {
-          DEFAULT: 'var(--color-primary)',
-          light: 'var(--color-primary-light)',
-          dark: 'var(--color-primary-dark)',
-        },
-        
-        // Secondary colors
-        'secondary': {
-          DEFAULT: 'var(--color-secondary)',
-          light: 'var(--color-secondary-light)',
-          dark: 'var(--color-secondary-dark)',
-        },
-        
-        // Accent colors
-        'accent': {
-          DEFAULT: 'var(--color-accent)',
-          light: 'var(--color-accent-light)',
-          dark: 'var(--color-accent-dark)',
-        },
-        
-        // Highlight colors
-        'highlight': {
-          DEFAULT: 'var(--color-highlight)',
-          light: 'var(--color-highlight-light)',
-          dark: 'var(--color-highlight-dark)',
-        },
-        
-        // Text colors
-        'text-primary': 'var(--text-primary)',
-        'text-secondary': 'var(--text-secondary)',
-        'text-muted': 'var(--text-muted)',
-        'text-subtle': 'var(--text-subtle)',
-        
-        // Border colors
-        'border-subtle': 'var(--border-subtle)',
-        'border-light': 'var(--border-light)',
-        'border-medium': 'var(--border-medium)',
-        'border-strong': 'var(--border-strong)',
+        display: ["var(--fs-display)", { lineHeight: "1.05" }],
+        h1: ["var(--fs-h1)", { lineHeight: "1.1" }],
+        h2: ["var(--fs-h2)", { lineHeight: "1.15" }],
+        h3: ["var(--fs-h3)", { lineHeight: "1.2" }],
+        "body-lg": ["var(--fs-body-lg)", { lineHeight: "1.6" }],
+        body: ["var(--fs-body)", { lineHeight: "1.6" }],
+        small: ["var(--fs-small)", { lineHeight: "1.5" }],
+        mono: ["var(--fs-mono)", { lineHeight: "1.4" }],
+        eyebrow: ["var(--fs-eyebrow)", { lineHeight: "1.3" }],
       },
       spacing: {
-        'xs': 'var(--space-xs)',
-        'sm': 'var(--space-sm)',
-        'md': 'var(--space-md)',
-        'lg': 'var(--space-lg)',
-        'xl': 'var(--space-xl)',
-        '2xl': 'var(--space-2xl)',
-        '3xl': 'var(--space-3xl)',
+        1: "var(--space-1)",
+        2: "var(--space-2)",
+        3: "var(--space-3)",
+        4: "var(--space-4)",
+        5: "var(--space-5)",
+        6: "var(--space-6)",
+        7: "var(--space-7)",
+        8: "var(--space-8)",
+        10: "var(--space-10)",
+        12: "var(--space-12)",
+        16: "var(--space-16)",
+        20: "var(--space-20)",
+      },
+      maxWidth: {
+        container: "var(--container)",
+        "container-wide": "var(--container-wide)",
+        "container-narrow": "var(--container-narrow)",
+      },
+      borderRadius: {
+        none: "var(--radius-none)",
+        sm: "var(--radius-sm)",
+        DEFAULT: "var(--radius-md)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+        full: "var(--radius-full)",
       },
       boxShadow: {
-        'sm': 'var(--shadow-sm)',
-        'md': 'var(--shadow-md)',
-        'lg': 'var(--shadow-lg)',
-        'xl': 'var(--shadow-xl)',
-        'glow': 'var(--shadow-glow)',
-        'glow-secondary': 'var(--shadow-glow-secondary)',
-      },
-      backgroundImage: {
-        'gradient-primary': 'var(--gradient-primary)',
-        'gradient-hero': 'var(--gradient-hero)',
-        'gradient-card': 'var(--gradient-card)',
-        'gradient-button': 'var(--gradient-button)',
-        'gradient-button-hover': 'var(--gradient-button-hover)',
-      },
-      animation: {
-        'gradient-shift': 'gradientShift 6s ease-in-out infinite',
-        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-        'fade-in-down': 'fadeInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-        'slide-in-left': 'slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-        'slide-in-right': 'slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-        'scale-in': 'scaleIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
-        'float-in': 'floatIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
+        none: "var(--shadow-none)",
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
       },
       transitionDuration: {
-        'fast': 'var(--transition-fast)',
-        'normal': 'var(--transition-normal)',
-        'slow': 'var(--transition-slow)',
+        fast: "var(--dur-fast)",
+        base: "var(--dur-base)",
+        slow: "var(--dur-slow)",
       },
       transitionTimingFunction: {
-        'bounce': 'var(--transition-bounce)',
+        standard: "var(--ease-standard)",
+        out: "var(--ease-out)",
+      },
+      zIndex: {
+        header: "var(--z-header)",
+        overlay: "var(--z-overlay)",
       },
     },
   },
   plugins: [],
-}
+};

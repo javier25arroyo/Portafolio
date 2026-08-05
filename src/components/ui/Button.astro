@@ -1,0 +1,110 @@
+---
+interface Props {
+  variant?: "primary" | "secondary" | "ghost";
+  size?: "sm" | "md" | "lg";
+  href?: string;
+  type?: "button" | "submit";
+  class?: string;
+  target?: string;
+  rel?: string;
+  "aria-label"?: string;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  type = "button",
+  class: className = "",
+  target,
+  rel,
+  ...rest
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+---
+
+<Tag
+  class:list={["btn", `btn--${variant}`, `btn--${size}`, className]}
+  href={href}
+  type={!href ? type : undefined}
+  target={target}
+  rel={target === "_blank" ? "noopener noreferrer" : rel}
+  {...rest}
+>
+  <slot />
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    white-space: nowrap;
+    transition: background-color var(--dur-fast) var(--ease-standard),
+      border-color var(--dur-fast) var(--ease-standard),
+      color var(--dur-fast) var(--ease-standard);
+  }
+
+  .btn--sm {
+    height: 36px;
+    padding-inline: var(--space-4);
+    font-size: var(--fs-small);
+  }
+
+  .btn--md {
+    height: 44px;
+    padding-inline: var(--space-5);
+    font-size: var(--fs-body);
+  }
+
+  .btn--lg {
+    height: 52px;
+    padding-inline: var(--space-6);
+    font-size: var(--fs-body-lg);
+  }
+
+  .btn--primary {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  @media (hover: hover) {
+    .btn--primary:hover {
+      background: var(--accent-hover);
+    }
+  }
+
+  .btn--secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+  }
+
+  @media (hover: hover) {
+    .btn--secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+  }
+
+  .btn--ghost {
+    background: transparent;
+    color: var(--text-muted);
+  }
+
+  @media (hover: hover) {
+    .btn--ghost:hover {
+      color: var(--accent);
+    }
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+</style>

@@ -1,0 +1,327 @@
+---
+import WolfMark from "../ui/WolfMark.astro";
+import Button from "../ui/Button.astro";
+
+const links = [
+  { href: "#inicio", label: "Inicio" },
+  { href: "#stack", label: "Stack" },
+  { href: "#proyectos", label: "Proyectos" },
+  { href: "#contacto", label: "Contacto" },
+];
+---
+
+<header class="navbar" id="navbar">
+  <div class="container navbar__inner">
+    <a href="#inicio" class="navbar__brand" aria-label="Javier Pérez Arroyo — inicio">
+      <WolfMark size={32} />
+      <span class="navbar__name">Javier Pérez Arroyo</span>
+    </a>
+
+    <nav class="navbar__nav" aria-label="Principal">
+      <ul class="navbar__links">
+        {links.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="navbar__actions">
+      <button
+        id="theme-toggle"
+        class="navbar__icon-btn"
+        type="button"
+        aria-label="Cambiar tema"
+      >
+        <svg class="icon icon--sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path stroke-linecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+        <svg class="icon icon--moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+        </svg>
+      </button>
+
+      <Button href="#contacto" variant="primary" size="sm" class="navbar__cta">
+        Hablemos
+      </Button>
+
+      <button
+        id="menu-toggle"
+        class="navbar__icon-btn navbar__menu-btn"
+        type="button"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="mobile-panel"
+      >
+        <svg class="icon icon--menu" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg class="icon icon--close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-panel" class="mobile-panel" hidden>
+    <ul class="mobile-panel__links">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="mobile-panel__link">{link.label}</a>
+        </li>
+      ))}
+    </ul>
+    <Button href="#contacto" variant="primary" size="lg" class="mobile-panel__cta">
+      Hablemos
+    </Button>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    height: 64px;
+    background: var(--bg);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur-base) var(--ease-standard);
+  }
+
+  .navbar.is-scrolled {
+    border-bottom-color: var(--border);
+  }
+
+  .navbar__inner {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .navbar__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    color: var(--text);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--fs-body);
+  }
+
+  .navbar__name {
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .navbar__name {
+      display: inline;
+    }
+  }
+
+  .navbar__nav {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .navbar__nav {
+      display: block;
+    }
+  }
+
+  .navbar__links {
+    display: flex;
+    gap: var(--space-6);
+    list-style: none;
+  }
+
+  .navbar__links a {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: var(--fs-small);
+    color: var(--text-muted);
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: color var(--dur-fast) var(--ease-standard),
+      border-color var(--dur-fast) var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    .navbar__links a:hover {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+  }
+
+  .navbar__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .navbar__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-muted);
+    border-radius: var(--radius-md);
+    transition: color var(--dur-fast) var(--ease-standard);
+  }
+
+  @media (hover: hover) {
+    .navbar__icon-btn:hover {
+      color: var(--accent);
+    }
+  }
+
+  .icon--moon {
+    display: none;
+  }
+
+  :global([data-theme="light"]) .icon--sun {
+    display: none;
+  }
+
+  :global([data-theme="light"]) .icon--moon {
+    display: block;
+  }
+
+  .navbar__cta {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .navbar__cta {
+      display: inline-flex;
+    }
+  }
+
+  .navbar__menu-btn {
+    display: inline-flex;
+  }
+
+  @media (min-width: 768px) {
+    .navbar__menu-btn {
+      display: none;
+    }
+  }
+
+  .icon--close {
+    display: none;
+  }
+
+  .navbar__menu-btn[aria-expanded="true"] .icon--menu {
+    display: none;
+  }
+
+  .navbar__menu-btn[aria-expanded="true"] .icon--close {
+    display: block;
+  }
+
+  .mobile-panel {
+    position: fixed;
+    inset: 64px 0 0 0;
+    z-index: var(--z-overlay);
+    background: var(--bg);
+    padding: var(--space-8) var(--gutter);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .mobile-panel[hidden] {
+    display: none;
+  }
+
+  .mobile-panel__links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .mobile-panel__link {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .mobile-panel__cta {
+    width: 100%;
+  }
+</style>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  const onScroll = () => {
+    navbar?.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  const themeToggle = document.getElementById("theme-toggle");
+  themeToggle?.addEventListener("click", () => {
+    const current = document.documentElement.getAttribute("data-theme");
+    const next = current === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+
+  const menuToggle = document.getElementById("menu-toggle");
+  const panel = document.getElementById("mobile-panel");
+  let lastFocused: HTMLElement | null = null;
+
+  const closeMenu = () => {
+    if (!panel || !menuToggle) return;
+    panel.hidden = true;
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Abrir menú");
+    document.body.style.overflow = "";
+    lastFocused?.focus();
+  };
+
+  const openMenu = () => {
+    if (!panel || !menuToggle) return;
+    lastFocused = document.activeElement as HTMLElement;
+    panel.hidden = false;
+    menuToggle.setAttribute("aria-expanded", "true");
+    menuToggle.setAttribute("aria-label", "Cerrar menú");
+    document.body.style.overflow = "hidden";
+    const firstLink = panel.querySelector("a") as HTMLElement | null;
+    firstLink?.focus();
+  };
+
+  menuToggle?.addEventListener("click", () => {
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  panel?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape" || panel?.hidden) return;
+    closeMenu();
+  });
+
+  panel?.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab") return;
+    const focusable = panel.querySelectorAll<HTMLElement>("a, button");
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+</script>

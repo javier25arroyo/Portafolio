@@ -1,0 +1,48 @@
+---
+interface Props {
+  tone?: "neutral" | "gold" | "success";
+  dot?: boolean;
+  class?: string;
+}
+
+const { tone = "neutral", dot = false, class: className = "" } = Astro.props;
+---
+
+<span class:list={["badge", `badge--${tone}`, className]}>
+  {dot && <span class="badge__dot" aria-hidden="true" />}
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-eyebrow);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .badge--gold {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .badge--success {
+    color: var(--success);
+    border-color: var(--success);
+  }
+
+  .badge__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background: currentColor;
+  }
+</style>
